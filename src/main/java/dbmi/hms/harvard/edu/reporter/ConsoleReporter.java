@@ -4,13 +4,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-/*public class ConsoleReporter extends Reporter{
+public class ConsoleReporter extends Reporter{
 	public void doReport(){
 		doDelimitedReportToConsole();
 	}
-*/	
-//	public void doDelimitedReportToConsole(){
-/*		// Summary of results
+	
+public void doDelimitedReportToConsole(){
+		// Summary of results
 		Map<String, Integer> summaryResults = doCalcResults(getTestResults());
 		
 		System.out.println("Total Passed: " + summaryResults.get("successes") + "\t\t" + "Total Failed: " + summaryResults.get("failures"));
@@ -42,4 +42,3 @@ import java.util.Map;
 		return results;
 	}
 }
-*/

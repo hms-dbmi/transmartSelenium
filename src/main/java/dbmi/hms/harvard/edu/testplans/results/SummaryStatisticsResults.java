@@ -1,4 +1,4 @@
-/*package dbmi.hms.harvard.edu.testplans.results;
+package dbmi.hms.harvard.edu.testplans.results;
 
 import java.util.Map;
 
@@ -15,9 +15,9 @@ public class SummaryStatisticsResults extends Results {
 	private String patientCountSubset1 = ".//*[@class='analysis']/table[1]/tbody/tr[3]/td/table/tbody/tr/td/table/tbody/tr[2]/td[1]";
 	private String patientCountSubset2 = ".//*[@class='analysis']/table[1]/tbody/tr[3]/td/table/tbody/tr/td/table/tbody/tr[2]/td[3]";
 	
-	*//**
+	/**
 	 *  Simple console output
-	 *//*
+	 */
 	public void doResultsCheck(WebDriver driver, String successType, String successVal){
 		WebDriverWait wait = new WebDriverWait(driver, 0);
 		wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[contains(text(), 'Subject Totals')]")));
@@ -49,9 +49,9 @@ public class SummaryStatisticsResults extends Results {
 		};
 	}	
 
-	*//**
+	/**
 	 *  Use reporting object to output to console
-	 *//*
+	 */
 	public void doResultsCheck(WebDriver driver, Map testPlan, Reporter reporter) {
 		String successType = testPlan.get("success").toString();
 		System.out.println("test");
@@ -103,12 +103,11 @@ public class SummaryStatisticsResults extends Results {
 		};
 	}
 	
-	*//**
+	/**
 	 *  to-do use reporting object to output to log4j
-	 *//*	
+	 */	
 	
-	*//**
+	/**
 	 *  to-do use reporting object to output to html report?
-	 *//*		
+	 */		
 }
-*/

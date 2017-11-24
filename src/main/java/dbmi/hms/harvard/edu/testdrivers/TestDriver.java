@@ -1,8 +1,10 @@
-/*package dbmi.hms.harvard.edu.testdrivers;
+package dbmi.hms.harvard.edu.testdrivers;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.Map;
+
+import org.yaml.snakeyaml.error.YAMLException;
 
 import com.esotericsoftware.yamlbeans.YamlException;
 import com.esotericsoftware.yamlbeans.YamlReader;
@@ -19,7 +21,7 @@ public class TestDriver {
 		Testplan testPlan = null;
 		Reporter reporter = null;
 		try {
-				YamlReader reader = new YamlReader(new FileReader("resources/testConfigs/projects.yaml"));
+			YamlReader reader = new YamlReader(new FileReader("resources/testConfigs/projects.yaml"));
 				while(true){
 					Map testConfig = (Map) reader.read();
 
@@ -36,7 +38,7 @@ public class TestDriver {
 			} catch (FileNotFoundException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			} catch (YamlException e) {
+			} catch (YAMLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			} finally {
@@ -99,4 +101,3 @@ public class TestDriver {
 		}		
 	}
 }
-*/

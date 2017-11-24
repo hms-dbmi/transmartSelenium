@@ -1,4 +1,4 @@
-/*package dbmi.hms.harvard.edu.testplans;
+package dbmi.hms.harvard.edu.testplans;
 
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
@@ -147,4 +147,3 @@ public class BasicStatisticsTestPlan extends Testplan{
 		
 	}
 }
-*/
