@@ -12,7 +12,12 @@ import org.openqa.selenium.support.ui.WebDriverWait;
  * 	@author Tom DeSain
  *	 This is a sample example of how to use selenium webdriver to
  *	drive a firefox driver
+ *@author Atul Sanagar
+ *Updating it for safari browser
+ * 
  */
+
+
 public class SimpleExample {
 
 	public static void main(String[] args) {

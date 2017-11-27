@@ -17,7 +17,7 @@ public class TestDriver {
 	public static final String TESTPLANS = "dbmi.hms.harvard.edu.testplans.";
 	public static final String REPORTS = "dbmi.hms.harvard.edu.reporter.";
 	
-	public static void main(String[] args) {
+	public static void main(String[] args) throws YamlException {
 		Testplan testPlan = null;
 		Reporter reporter = null;
 		try {
