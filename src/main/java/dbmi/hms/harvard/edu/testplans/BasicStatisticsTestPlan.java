@@ -6,6 +6,7 @@ import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.safari.SafariDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import dbmi.hms.harvard.edu.authentication.AuthTypes;
@@ -51,10 +52,13 @@ public class BasicStatisticsTestPlan extends Testplan{
 	public void doPlan(){
     	try {
 			
-			System.setProperty(BROWSER,BROWSERDRIVER);
+			//System.setProperty(BROWSER,BROWSERDRIVER);
 	
-		    driver = new FirefoxDriver();
-		    
+		    //driver = new FirefoxDriver();
+    		WebDriver driver = new SafariDriver();
+    		
+    		driver.get("http://store.demoqa.com");
+    		
 		    driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 		    
 		    driver.get(testPlan.get("url").toString());

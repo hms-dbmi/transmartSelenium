@@ -21,7 +21,9 @@ public class TestDriver {
 		Testplan testPlan = null;
 		Reporter reporter = null;
 		try {
-			YamlReader reader = new YamlReader(new FileReader("resources/testConfigs/projects.yaml"));
+			//Updated file path
+			
+			YamlReader reader = new YamlReader(new FileReader("resources/testConfigs/projects.yaml.template"));
 				while(true){
 					Map testConfig = (Map) reader.read();
 
