@@ -28,26 +28,17 @@
     <artifactId>snakeyaml</artifactId>
     <version>1.19</version>
 </dependency>
-    
-     <dependency>
+        <dependency>
         <groupId>org.seleniumhq.selenium</groupId>
-        
         <artifactId>selenium-java</artifactId>
-        <version>3.5.3</version>
+        <version>3.7.1</version>
     </dependency> 
      <dependency>
       <groupId>org.seleniumhq.selenium</groupId>
       <artifactId>selenium-chrome-driver</artifactId>
-      <version>2.34.0</version>
+      <version>3.7.1</version>
       </dependency>
-      <!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-safari-driver -->
-<dependency>
-    <groupId>org.seleniumhq.selenium</groupId>
-    <artifactId>selenium-safari-driver</artifactId>
-    <version>2.47.1</version>
-</dependency>
-      
-    <dependency>
+      <dependency>
       <groupId>org.testng</groupId>
       <artifactId>testng</artifactId>
       <version>6.8</version>

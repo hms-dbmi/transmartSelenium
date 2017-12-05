@@ -1,8 +1,6 @@
  name: grdr patient count
- url: https://grdr-dev.hms.harvard.edu/transmart/login/auth
+ url: https://nhanes.hms.harvard.edu/transmart/datasetExplorer/index
  authmethod: HMS
- username: 
- password: 
  test: regression
  type: BasicStatisticsTestPlan
  reporter: ConsoleReporter

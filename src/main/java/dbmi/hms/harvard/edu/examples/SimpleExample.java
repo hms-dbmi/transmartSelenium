@@ -1,4 +1,4 @@
-package dbmi.hms.harvard.edu.examples;
+	package dbmi.hms.harvard.edu.examples;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -12,8 +12,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
  * 	@author Tom DeSain
  *	 This is a sample example of how to use selenium webdriver to
  *	drive a firefox driver
- *@author Atul Sanagar
- *Updating it for safari browser
+ *
  * 
  */
 
