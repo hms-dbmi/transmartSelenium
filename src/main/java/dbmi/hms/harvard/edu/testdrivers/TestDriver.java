@@ -4,6 +4,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.Map;
 
+import org.testng.annotations.Test;
 import org.yaml.snakeyaml.error.YAMLException;
 
 import com.esotericsoftware.yamlbeans.YamlException;
@@ -17,7 +18,12 @@ public class TestDriver {
 	public static final String TESTPLANS = "dbmi.hms.harvard.edu.testplans.";
 	public static final String REPORTS = "dbmi.hms.harvard.edu.reporter.";
 	
-	public static void main(String[] args) throws YamlException {
+	//public static void main(String[] args) throws YamlException {
+		
+		@Test
+		
+		public static void testDriver() throws YamlException{ 
+		
 		Testplan testPlan = null;
 		Reporter reporter = null;
 		try {

@@ -1,11 +1,14 @@
 	package dbmi.hms.harvard.edu.examples;
 
+import java.util.logging.Logger;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.annotations.Test;
 
 /**
  * 
@@ -19,7 +22,10 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class SimpleExample {
 
-	public static void main(String[] args) {
+	@Test
+	public void testngtest(){
+//	public static void main(String[] args) {
+		final Logger LOGGER = Logger.getLogger( SimpleExample.class.getName() );
 		System.setProperty("webdriver.firefox.marionette","/Users/tom/Documents/workspace-ggts-3.6.4.RELEASE/transmartQA/drivers/geckodriver");
 
 		// New instance of firefox driver
@@ -44,9 +50,9 @@ public class SimpleExample {
 		});
 		
 		System.out.println("Page title is: " + driver.getTitle());
-		
+		LOGGER.info("Page title is: " + driver.getTitle());
 		// Close the Browser
 		driver.quit();
 	}
+	}
 
-}

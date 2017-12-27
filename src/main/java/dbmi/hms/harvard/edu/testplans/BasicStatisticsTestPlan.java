@@ -18,8 +18,8 @@ import dbmi.hms.harvard.edu.transmartModules.SummaryStatistics;
 
 public class BasicStatisticsTestPlan extends Testplan{
 	private static final int TIMEOUT = 30;
-	//private static final String BROWSER = "webdriver.firefox.marionette";
-	//private static final String BROWSERDRIVER = "/Users/tom/Documents/workspace-ggts-3.6.4.RELEASE/transmartQA/drivers/geckodriver";
+	private static final String BROWSER = "webdriver.firefox.marionette";
+	private static final String BROWSERDRIVER = "/Users/tom/Documents/workspace-ggts-3.6.4.RELEASE/transmartQA/drivers/geckodriver";
 	
 	
 	private Set<String> subset1;
@@ -54,18 +54,18 @@ public class BasicStatisticsTestPlan extends Testplan{
 	public void doPlan(){
     	try {
 			
-			//System.setProperty(BROWSER,BROWSERDRIVER);
-    		System.setProperty("webdriver.chrome.driver","D://chromedriver.exe" );
-    		WebDriver driver=new ChromeDriver();
+			System.setProperty(BROWSER,BROWSERDRIVER);
+    		//System.setProperty("webdriver.chrome.driver","D://chromedriver.exe" );
+    		//WebDriver driver=new ChromeDriver();
     		
     			driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-    		//driver.manage().window().maximize();
-    		driver.get("http://timesofindia.indiatimes.com/");
+    		driver.manage().window().maximize();
+    		//driver.get("http://timesofindia.indiatimes.com/");
     		
 		    //driver = new FirefoxDriver();
     		//WebDriver driver = new SafariDriver();
     		
-    		driver.get("http://store.demoqa.com");
+    	//	driver.get("http://store.demoqa.com");
     		
 		    driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 		    
@@ -111,15 +111,15 @@ public class BasicStatisticsTestPlan extends Testplan{
 	public void doPlan(Reporter reporter){
     	try {
 			
-			//System.setProperty(BROWSER,BROWSERDRIVER);
+			System.setProperty(BROWSER,BROWSERDRIVER);
 	
-		    //driver = new FirefoxDriver();
+		    driver = new FirefoxDriver();
 		    
-    		System.setProperty("webdriver.chrome.driver","D://chromedriver.exe" );
-    		WebDriver driver=new ChromeDriver();
+    		//System.setProperty("webdriver.chrome.driver","D://chromedriver.exe" );
+    		//WebDriver driver=new ChromeDriver();
     		
-    		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-    		//driver.manage().window().maximize();
+    		//driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+    		driver.manage().window().maximize();
     		
 		    driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 		    

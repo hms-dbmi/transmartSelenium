@@ -29,9 +29,9 @@ public class TransmartExample {
 		System.setProperty("webdriver.firefox.marionette","/Users/tom/Documents/workspace-ggts-3.6.4.RELEASE/transmartQA/drivers/geckodriver");
 
 	    driver = new FirefoxDriver();
-	    baseUrl = "https://grdr-dev.hms.harvard.edu/";
+	  // baseUrl = "https://grdr-dev.hms.harvard.edu/";
 	    driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-	    driver.get(baseUrl + "/transmart/login/auth");
+	    //driver.get(baseUrl + "/transmart/login/auth");
 	    driver.findElement(By.linkText("Harvard Medical School")).click();
 	    
 
