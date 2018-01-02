@@ -58,7 +58,7 @@ public class BasicStatisticsTestPlan extends Testplan{
     		//System.setProperty("webdriver.chrome.driver","D://chromedriver.exe" );
     		//WebDriver driver=new ChromeDriver();
     		
-    			driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+    		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
     		driver.manage().window().maximize();
     		//driver.get("http://timesofindia.indiatimes.com/");
     		

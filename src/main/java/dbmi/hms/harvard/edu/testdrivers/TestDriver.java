@@ -31,6 +31,7 @@ public class TestDriver {
 			
 			YamlReader reader = new YamlReader(new FileReader("resources/testConfigs/projects.yaml.template"));
 				while(true){
+					@SuppressWarnings("rawtypes")
 					Map testConfig = (Map) reader.read();
 
 					if(testConfig == null) break;
@@ -53,7 +54,8 @@ public class TestDriver {
 				//return testplan;
 			}
 	}
-	private static Testplan initTestPlan(String testType, Map map){
+	@SuppressWarnings("finally")
+	private static Testplan initTestPlan(String testType, @SuppressWarnings("rawtypes") Map map){
 		Testplan newInstance = null;
 		try {		
 			Class<?> resourceInterfaceClass = Class.forName(TESTPLANS + testType);
@@ -86,6 +88,7 @@ public class TestDriver {
 		}
 	}
 	
+	@SuppressWarnings("finally")
 	private static Reporter initReporter(String reporterType){
 		Reporter newInstance = null;
 		

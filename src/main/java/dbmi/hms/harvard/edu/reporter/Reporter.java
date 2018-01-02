@@ -7,10 +7,12 @@ import java.util.Map;
 import dbmi.hms.harvard.edu.testplans.Testplan;
 
 public abstract class Reporter {
+	@SuppressWarnings("rawtypes")
 	private List<Map> testResults = new ArrayList<Map>();
 	
 	public void doReport(){};
 	
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public Map appendTestResults(Map testPlan, String result){
 		testPlan.put("TestResult", result);
 		testResults.add(testPlan);
