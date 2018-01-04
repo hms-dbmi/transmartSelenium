@@ -1,5 +1,5 @@
  name1: grdr patient count
- url: https://nhanes.hms.harvard.edu/transmart/datasetExplorer/index
+ url: https://nhanes.hms.harvard.edu/transmart/login/forceAuth
  authmethod: HMS
  test: regression
  type: BasicStatisticsTestPlan

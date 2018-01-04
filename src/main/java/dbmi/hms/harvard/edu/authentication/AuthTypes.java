@@ -18,6 +18,7 @@ public class AuthTypes {
 	public void doAuth(WebDriver driver, Map testPlan)	{
 		switch(testPlan.get("authmethod").toString()){
 			case "HMS": doHMSAuth(driver, testPlan); 
+			case "PUB": dopublicauth(driver,testPlan);
 						break;
 		}
 	}
@@ -27,10 +28,29 @@ public class AuthTypes {
 	    	String usernamebox = ".//*[@id='ctl00_ContentPlaceHolder1_UsernameTextBox']";
 	    	String passwordbox = "//*[@id='ctl00_ContentPlaceHolder1_PasswordTextBox']";
 	    	String submitbutton = "//*[@id='ctl00_ContentPlaceHolder1_SubmitButton']";
-	    	
+	    	String submitbutton1 = ".//*[@id='public']/div/a/span]";
+
 			driver.findElement(By.xpath(usernamebox)).sendKeys(testPlan.get("username").toString());
 			driver.findElement(By.xpath(passwordbox)).sendKeys(testPlan.get("password").toString());
-			driver.findElement(By.xpath(submitbutton)).click();
+			driver.findElement(By.xpath(submitbutton1)).click();
+			
+		} catch (SecurityException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	    
+	   // driver.findElement(By.xpath("//*[@id='ctl00_ContentPlaceHolder1_PasswordTextBox']")).sendKeys(PASSWORD);
+	}
+	public void dopublicauth(WebDriver driver, Map testPlan){
+	    try {
+//	    	String usernamebox = ".//*[@id='ctl00_ContentPlaceHolder1_UsernameTextBox']";
+//	    	String passwordbox = "//*[@id='ctl00_ContentPlaceHolder1_PasswordTextBox']";
+//	    	String submitbutton = "//*[@id='ctl00_ContentPlaceHolder1_SubmitButton']";
+	    	String submitbutton1 = ".//*[@id='public']";
+
+//			driver.findElement(By.xpath(usernamebox)).sendKeys(testPlan.get("username").toString());
+//			driver.findElement(By.xpath(passwordbox)).sendKeys(testPlan.get("password").toString());
+			driver.findElement(By.xpath(submitbutton1)).click();
 			
 		} catch (SecurityException e) {
 			// TODO Auto-generated catch block

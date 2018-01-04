@@ -136,7 +136,7 @@ public class BasicStatisticsTestPlan extends Testplan{
 		    	authLink = null;
 		    }    
 
-		    driver.findElement(By.linkText(authLink)).click();
+		    //driver.findElement(By.linkText(authLink)).click();
 		    
 		    authTypes.doAuth(driver,testPlan);
 

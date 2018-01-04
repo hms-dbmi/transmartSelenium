@@ -27,7 +27,7 @@ public class TestDriver {
 		Testplan testPlan = null;
 		Reporter reporter = null;
 		try {
-			//Updated file path
+			//Updated file path Atul
 			
 			YamlReader reader = new YamlReader(new FileReader("resources/testConfigs/projects.yaml.template"));
 				while(true){
