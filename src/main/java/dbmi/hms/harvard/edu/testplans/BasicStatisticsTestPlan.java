@@ -1,5 +1,7 @@
 package dbmi.hms.harvard.edu.testplans;
 
+import static org.testng.Assert.assertTrue;
+
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
@@ -9,6 +11,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.safari.SafariDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 
 import dbmi.hms.harvard.edu.authentication.AuthTypes;
 import dbmi.hms.harvard.edu.reporter.Reporter;
@@ -141,6 +144,16 @@ public class BasicStatisticsTestPlan extends Testplan{
 		    authTypes.doAuth(driver,testPlan);
 
 		    driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		    
+		    //Checking the title of loaded window
+		    
+		    String winodwTitle = driver.getTitle();
+		    System.out.println(winodwTitle);
+		    assertTrue(winodwTitle.contains("specific text"));
+		    
+		    //Check if text present on the home page
+		    //String bodyText = driver.findElement(By.tagName("body")).getText();
+		    //Assert.assertTrue("Text not found!", bodyText.contains(text));
 		    
 		    for(String path: java.util.Arrays.asList(testPlan.get("subset1").toString().split(","))){
 				DatasetExplorer.class.newInstance().doNavigateByPath(driver, path);
