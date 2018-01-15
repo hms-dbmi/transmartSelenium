@@ -31,7 +31,7 @@ public abstract class Testplan {
 	
 	public void doPlan(){};
 
-	public void doPlan(Reporter reporter){};
+	public void doPlan(Reporter reporter) throws InterruptedException{};
 	
 	public void validateTestPlan(Map testPlan) throws Exception{
 		for(String reqField : REQUIRED_FIELDS){

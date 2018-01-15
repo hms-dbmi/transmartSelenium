@@ -23,7 +23,7 @@ public class TestDriver {
 	
 		@Test
 		
-		public static void testDriver() throws YamlException{ 
+		public static void testDriver() throws YamlException, InterruptedException{ 
 		
 		Testplan testPlan = null;
 		Reporter reporter = null;

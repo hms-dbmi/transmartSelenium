@@ -7,11 +7,13 @@ import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.safari.SafariDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+import org.testng.annotations.Test;
 
 import dbmi.hms.harvard.edu.authentication.AuthTypes;
 import dbmi.hms.harvard.edu.reporter.Reporter;
@@ -145,16 +147,45 @@ public class BasicStatisticsTestPlan extends Testplan{
 
 		    driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		    
-		    //Checking the title of loaded window
+		    //Checking the title of loaded window after login
 		    
 		    String winodwTitle = driver.getTitle();
 		    System.out.println(winodwTitle);
-		    assertTrue(winodwTitle.contains("specific text"));
+		    assertTrue(winodwTitle.contains("Dataset Explorer"));
+		
+		    System.out.println("*************************************************");
+		 
+		    //Check if text present on the home page to confirm page is loaded
 		    
-		    //Check if text present on the home page
-		    //String bodyText = driver.findElement(By.tagName("body")).getText();
-		    //Assert.assertTrue("Text not found!", bodyText.contains(text));
+		    WebElement bodyText = driver.findElement(By.xpath(".//*[@id='resultsTabPanel__queryPanel']"));
+		    String DatasetString =bodyText.getText();
+		    System.out.println(DatasetString);
+		    Assert.assertEquals("Comparison", DatasetString, "Home page is loaded");
 		    
+		    //Test Expanding/collapsing the concept tree
+		    
+		  //  WebElement conceptTreeDemo = driver.findElement(By.xpath(".//*[@id='extdd-3']/img[1]"));
+		    
+		    WebElement conceptTreeDemo = driver.findElement(By.xpath(".//*[@id='extdd-4']/img[1]"));
+		    String conceptTreeDemoValue =conceptTreeDemo.getText();
+		    System.out.println(conceptTreeDemoValue);
+		    try {
+				Thread.sleep(5000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		    conceptTreeDemo.click();
+		    
+		    //Check the value of expanded concept Tree
+		    WebElement examination=driver.findElement(By.xpath(".//*[@id='extdd-15']"));
+		    String examcollpaseText =examination.getText();
+		    System.out.println(examcollpaseText);
+		    Assert.assertEquals("blood pressure", examcollpaseText, "DemoGraphics expanded");
+		    
+
+		    
+		     
 		    for(String path: java.util.Arrays.asList(testPlan.get("subset1").toString().split(","))){
 				DatasetExplorer.class.newInstance().doNavigateByPath(driver, path);
 	    		String subset = "subset1";
