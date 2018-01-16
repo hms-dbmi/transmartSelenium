@@ -113,7 +113,7 @@ public class BasicStatisticsTestPlan extends Testplan{
 		}
 	}
 	
-	public void doPlan(Reporter reporter){
+	public void doPlan(Reporter reporter) throws InterruptedException{
     	try {
 			
 			System.setProperty(BROWSER,BROWSERDRIVER);
@@ -134,7 +134,7 @@ public class BasicStatisticsTestPlan extends Testplan{
 		    
 		    // Set authentication type
 			String authLink;
-		    
+		   
 		    if(authTypes.getAuthTypes().containsKey(testPlan.get("authmethod").toString())){
 		    	authLink = authTypes.getAuthTypes().get(testPlan.get("authmethod").toString());
 		    } else {
@@ -165,7 +165,7 @@ public class BasicStatisticsTestPlan extends Testplan{
 		    //Test Expanding/collapsing the concept tree
 		    
 		  //  WebElement conceptTreeDemo = driver.findElement(By.xpath(".//*[@id='extdd-3']/img[1]"));
-		    
+		    String ExamCollapse="blood"; 
 		    WebElement conceptTreeDemo = driver.findElement(By.xpath(".//*[@id='extdd-4']/img[1]"));
 		    String conceptTreeDemoValue =conceptTreeDemo.getText();
 		    System.out.println(conceptTreeDemoValue);
@@ -181,14 +181,23 @@ public class BasicStatisticsTestPlan extends Testplan{
 		    WebElement examination=driver.findElement(By.xpath(".//*[@id='extdd-15']"));
 		    String examcollpaseText =examination.getText();
 		    System.out.println(examcollpaseText);
-		    Assert.assertEquals("blood pressure", examcollpaseText, "DemoGraphics expanded");
+		  //  Assert.assertEquals("blood pressure (37971)", examcollpaseText, "Concept tree gets expanded");
+		      assertTrue(examcollpaseText.contains(ExamCollapse));
+		    //assertThat("FooBarBaz", matchesPattern("^Foo"));
 		    
-
-		    
-		     
+		      
+		    // Generate summary statstics  with No subsets
+		      driver.findElement(By.xpath(".//*[@id='ext-gen49']")).click();
+		      Thread.sleep(3000);
+		      WebElement noSubset=driver.findElement(By.xpath(".//*[@class='ext-mb-text']"));
+		      System.out.println(noSubset.toString());  
+		      
+		    //  driver.findElement(By.xpath("//button[[@type, 'submit'] and [text()='New']]")).click();
+		      
 		    for(String path: java.util.Arrays.asList(testPlan.get("subset1").toString().split(","))){
 				DatasetExplorer.class.newInstance().doNavigateByPath(driver, path);
 	    		String subset = "subset1";
+	    		
 				DatasetExplorer.class.newInstance().doDragAndDrop(driver, path, subset);
 				DatasetExplorer.class.newInstance().doReverseNavigateByPath(driver, path);				
 		    }
