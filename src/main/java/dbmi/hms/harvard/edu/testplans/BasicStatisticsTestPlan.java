@@ -2,8 +2,10 @@ package dbmi.hms.harvard.edu.testplans;
 
 import static org.testng.Assert.assertTrue;
 
+import java.util.Iterator;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
+import java.util.regex.Pattern;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -14,6 +16,12 @@ import org.openqa.selenium.safari.SafariDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+
+import  static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.presentation.StandardRepresentation.STANDARD_REPRESENTATION;
+import static org.assertj.core.util.Arrays.array;
+import static org.assertj.core.util.Lists.newArrayList;
+
 
 import dbmi.hms.harvard.edu.authentication.AuthTypes;
 import dbmi.hms.harvard.edu.reporter.Reporter;
@@ -60,20 +68,10 @@ public class BasicStatisticsTestPlan extends Testplan{
     	try {
 			
 			System.setProperty(BROWSER,BROWSERDRIVER);
-    		//System.setProperty("webdriver.chrome.driver","D://chromedriver.exe" );
-    		//WebDriver driver=new ChromeDriver();
     		
     		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
     		driver.manage().window().maximize();
-    		//driver.get("http://timesofindia.indiatimes.com/");
-    		
-		    //driver = new FirefoxDriver();
-    		//WebDriver driver = new SafariDriver();
-    		
-    	//	driver.get("http://store.demoqa.com");
-    		
-		    driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-		    
+    		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 		    driver.get(testPlan.get("url").toString());
 		    
 		    AuthTypes authTypes = new AuthTypes();
@@ -120,14 +118,9 @@ public class BasicStatisticsTestPlan extends Testplan{
 	
 		    driver = new FirefoxDriver();
 		    
-    		//System.setProperty("webdriver.chrome.driver","D://chromedriver.exe" );
-    		//WebDriver driver=new ChromeDriver();
-    		
-    		//driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+    		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
     		driver.manage().window().maximize();
-    		
-		    driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-		    
+    		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 		    driver.get(testPlan.get("url").toString());
 		    
 		    AuthTypes authTypes = new AuthTypes();
@@ -147,9 +140,11 @@ public class BasicStatisticsTestPlan extends Testplan{
 
 		    driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		    
-		    //Checking the title of loaded window after login
+/*		    //Checking the title of loaded window after login
 		    
 		    String winodwTitle = driver.getTitle();
+		    
+		    
 		    System.out.println(winodwTitle);
 		    assertTrue(winodwTitle.contains("Dataset Explorer"));
 		
@@ -168,7 +163,7 @@ public class BasicStatisticsTestPlan extends Testplan{
 		    String ExamCollapse="blood"; 
 		    WebElement conceptTreeDemo = driver.findElement(By.xpath(".//*[@id='extdd-4']/img[1]"));
 		    String conceptTreeDemoValue =conceptTreeDemo.getText();
-		    System.out.println(conceptTreeDemoValue);
+		    System.out.println("Examaination     :" +conceptTreeDemoValue);
 		    try {
 				Thread.sleep(5000);
 			} catch (InterruptedException e) {
@@ -180,21 +175,68 @@ public class BasicStatisticsTestPlan extends Testplan{
 		    //Check the value of expanded concept Tree
 		    WebElement examination=driver.findElement(By.xpath(".//*[@id='extdd-15']"));
 		    String examcollpaseText =examination.getText();
-		    System.out.println(examcollpaseText);
+		    System.out.println("Value after collapsing    "+examcollpaseText);
 		  //  Assert.assertEquals("blood pressure (37971)", examcollpaseText, "Concept tree gets expanded");
-		      assertTrue(examcollpaseText.contains(ExamCollapse));
+		    //  assertTrue(examcollpaseText.contains(ExamCollapse));
 		    //assertThat("FooBarBaz", matchesPattern("^Foo"));
-		    
-		      
+		      System.out.println("---------------------------------------------------");
+		      assertTrue(Pattern.compile(examcollpaseText).matcher("blood pressure").matches());
+		      */
 		    // Generate summary statstics  with No subsets
-		      driver.findElement(By.xpath(".//*[@id='ext-gen49']")).click();
-		      Thread.sleep(3000);
-		      WebElement noSubset=driver.findElement(By.xpath(".//*[@class='ext-mb-text']"));
-		      System.out.println(noSubset.toString());  
+		 //     driver.findElement(By.xpath(".//*[@id='ext-gen49']")).click();
+		   //   String MainWindow=driver.getWindowHandle();	
+		     // System.out.println("Parent Window Title%%%%         :"+MainWindow);
+		      // To handle all new opened window.				
+	        
+		    /*  Set<String> s1=driver.getWindowHandles();
+	            System.out.println(s1.size());
 		      
+	            Iterator<String> i1=s1.iterator();		
+        		
+	            while(i1.hasNext())			
+	            {		
+	                String ChildWindow=i1.next();		
+	                		
+	                if(!MainWindow.equalsIgnoreCase(ChildWindow))			
+	                {    		
+	                     
+	                        // Switching to Child window
+	                        driver.switchTo().window(ChildWindow);	                                                                                                           
+	                        
+	                 }		
+	            }
+		      */
+		      //Thread.sleep(3000);
+		      //WebElement Nosubset=driver.findElement(By.xpath(".//*[@id='ext-gen347']"));
+		      //System.out.println("****************** No subset :"+Nosubset);
+		      //driver.findElement(By.xpath(".//*[@id='ext-comp-1034']/tbody/tr/td[2]")).click();
+		      
+		     /* for (String winHandle : driver.getWindowHandles()) {
+		    	    driver.switchTo().window(winHandle); // switch focus of WebDriver to the next found window handle (that's your newly opened window)
+		    	}
+		      WebElement noSubset=driver.findElement(By.xpath(".//*[@class='ext-mb-text']"));
+		    *//*
+		      
+		        
+		      String childWinodwTitle = driver.getTitle();
+		      System.out.println("childWinodwTitle is              "+childWinodwTitle);
+		      
+		      */
 		    //  driver.findElement(By.xpath("//button[[@type, 'submit'] and [text()='New']]")).click();
 		      
+		   //Result/Analysis without selecting any subset
+		    
+	//	    driver.findElement(By.xpath(".//*[@id='ext-gen49']")).click();
+		    driver.findElement(By.xpath(".//*[@id='resultsTabPanel__analysisPanel']/a[2]/em/span/span")).click();
+		    WebElement NoSubsetResult=driver.findElement(By.xpath(".//*[@id='ext-gen157']/div/table/tbody/tr/td"));
+		    String NoSubsetResultText=NoSubsetResult.getText(); 
+		    //assertTrue(Pattern.compile(NoSubsetResultText).matches("Drag Concept", input));
+		    assertThat(NoSubsetResultText).contains("Drag");
+		    
+		    
+		    
 		    for(String path: java.util.Arrays.asList(testPlan.get("subset1").toString().split(","))){
+		    	System.out.println("Testing");
 				DatasetExplorer.class.newInstance().doNavigateByPath(driver, path);
 	    		String subset = "subset1";
 	    		
@@ -208,6 +250,15 @@ public class BasicStatisticsTestPlan extends Testplan{
 			
 			SummaryStatisticsResults.class.newInstance().doResults(driver,testPlan,reporter);
 
+			
+			
+			
+			
+			
+			
+			
+			
+			
 			reporter.doReport();
 						
 		    driver.close();

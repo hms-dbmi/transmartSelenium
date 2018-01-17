@@ -63,23 +63,12 @@ public class TestDriver {
 
 			newInstance =  (Testplan) resourceInterfaceClass.newInstance();
 			newInstance.setTestPlan(map);
-		} catch (SecurityException e) {
+		} catch (SecurityException | InstantiationException |IllegalAccessException |ClassNotFoundException e) {
 			System.out.println(e);
 			e.printStackTrace();
 			return null;
-		} catch (InstantiationException e) {
-			System.out.println(e);
-			e.printStackTrace();
-			return null;
-		} catch (IllegalAccessException e) {
-			System.out.println(e);
-			e.printStackTrace();
-			return null;
-		} catch (ClassNotFoundException e) {
-			System.out.println(e);
-			e.printStackTrace();
-			return null;
-		} catch (Exception e) {
+		} 
+		 catch (Exception e) {
 			System.out.println(e);
 			e.printStackTrace();
 			return null;
@@ -96,16 +85,7 @@ public class TestDriver {
 		try {		
 			Class<?> resourceInterfaceClass = Class.forName(REPORTS + reporterType);
 			newInstance =  (Reporter) resourceInterfaceClass.newInstance();
-		} catch (SecurityException e) {
-			e.printStackTrace();
-			return null;
-		} catch (InstantiationException e) {
-			e.printStackTrace();
-			return null;
-		} catch (IllegalAccessException e) {
-			e.printStackTrace();
-			return null;
-		} catch (ClassNotFoundException e) {
+		} catch (SecurityException |InstantiationException |IllegalAccessException |ClassNotFoundException e) {
 			e.printStackTrace();
 			return null;
 		} finally {
