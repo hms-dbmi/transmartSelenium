@@ -10,5 +10,5 @@
  subset2:
  relational:
  success: patientcountsubset1
- successvalue: 945
- expected: fail
+ successvalue: 21210
+ expected: pass 

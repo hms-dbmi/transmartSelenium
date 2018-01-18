@@ -12,15 +12,21 @@ import dbmi.hms.harvard.edu.reporter.Reporter;
 import dbmi.hms.harvard.edu.testplans.Testplan;
 
 public class SummaryStatisticsResults extends Results {
-	private String patientCountSubset1 = ".//*[@class='analysis']/table[1]/tbody/tr[3]/td/table/tbody/tr/td/table/tbody/tr[2]/td[1]";
+	//private String patientCountSubset1 = ".//*[@class='analysis']/table[1]/tbody/tr[3]/td/table/tbody/tr/td/table/tbody/tr[2]/td[1]";
+	public String patientCountSubset1 = ".//*[@id='ext-gen157']/div/table/tbody/tr[4]/td/table/tbody/tr/td/table/tbody/tr[2]/td[1]";
 	private String patientCountSubset2 = ".//*[@class='analysis']/table[1]/tbody/tr[3]/td/table/tbody/tr/td/table/tbody/tr[2]/td[3]";
+	
 	
 	/**
 	 *  Simple console output
 	 */
 	public void doResultsCheck(WebDriver driver, String successType, String successVal){
-		WebDriverWait wait = new WebDriverWait(driver, 0);
-		wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[contains(text(), 'Subject Totals')]")));
+		
+		
+		WebDriverWait wait = new WebDriverWait(driver, 10);
+		
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[contains(text(), 'Subject Totals')]")));
+		//wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[contains(text(), 'Subject Totals')]")));
 		switch(successType){
 			case "patientcountsubset1": doVerifyPatientCountSubset1(driver, successVal);
 										break;
@@ -55,8 +61,10 @@ public class SummaryStatisticsResults extends Results {
 	public void doResultsCheck(WebDriver driver, Map testPlan, Reporter reporter) {
 		String successType = testPlan.get("success").toString();
 		System.out.println("test");
-		WebDriverWait wait = new WebDriverWait(driver, 0);
-		wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[contains(text(), 'Subject Totals')]")));
+		//WebDriverWait wait = new WebDriverWait(driver, 0);
+		WebDriverWait wait = new WebDriverWait(driver, 10);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[contains(text(), 'Subject Totals')]")));
+	//	wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[contains(text(), 'Subject Totals')]")));
 		switch(successType){
 			case "patientcountsubset1": doVerifyPatientCountSubset1(driver, testPlan, reporter);
 										break;

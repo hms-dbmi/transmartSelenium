@@ -10,7 +10,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.safari.SafariDriver;
 
-public class DatasetExplorer extends Module{
+public class DatasetExplorer extends Module{ 
 	private String subset1box = ".//*[@id='queryCriteriaDiv1_1']";
 	private String subset2box = ".//*[@id='queryCriteriaDiv2_1'";
 	private String relationbox = ".//*[@id='queryCriteriaDiv3_1']";
@@ -21,6 +21,7 @@ public class DatasetExplorer extends Module{
 	}
 	
 	public void doNavigateByPath(WebDriver driver, String path){
+		System.out.println("in Naviagate");
 		List<String> nodes = getNodes(path);
 		for(String node : nodes){
 			navigateByNode(driver, node);

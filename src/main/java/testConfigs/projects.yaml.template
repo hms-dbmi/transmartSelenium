@@ -6,9 +6,9 @@
  test: regression
  type: BasicStatisticsTestPlan
  reporter: ConsoleReporter
- subset1: \Intracranial Hypertension Registry\1 Socio-demographic data\Race?\
+ subset1: \demographics\SEX\female
  subset2: 
  relational:
  success: patientcountsubset1
- successvalue: 945
+ successvalue: 21
  expected: fail

@@ -12,6 +12,7 @@ import com.esotericsoftware.yamlbeans.YamlReader;
 
 import dbmi.hms.harvard.edu.reporter.Reporter;
 import dbmi.hms.harvard.edu.testplans.Testplan;
+import dbmi.hms.harvard.edu.transmartModules.SummaryStatistics;
 
 
 public class TestDriver {
@@ -42,6 +43,7 @@ public class TestDriver {
 					reporter = initReporter(testConfig.get("reporter").toString());	
 
 					testPlan.doPlan(reporter);
+					
 
 				}
 			
