@@ -25,7 +25,13 @@ public abstract class Module {
 	
 	protected void navigateByNode(WebDriver driver, String node){
 		if(!node.isEmpty() ) {
-			doubleClick(driver, driver.findElement(By.partialLinkText(node)));
+			//doubleClick(driver, driver.findElement(By.partialLinkText(node)));
+			System.out.println("node value is" +node);
+			doubleClick(driver, driver.findElement(By.xpath(".//*[contains(text(), '"+node+"')]")));
+			
+			//doubleClick(driver, driver.findElement(By.name(node)));
+			
+			//doubleClick(driver, driver(".//[contains(text(), 'Generate Summary Statistics')]"));
 		}
 	}
 	

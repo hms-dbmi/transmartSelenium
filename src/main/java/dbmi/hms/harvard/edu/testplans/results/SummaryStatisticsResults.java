@@ -24,7 +24,6 @@ public class SummaryStatisticsResults extends Results {
 		
 		
 		WebDriverWait wait = new WebDriverWait(driver, 10);
-		
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[contains(text(), 'Subject Totals')]")));
 		//wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[contains(text(), 'Subject Totals')]")));
 		switch(successType){

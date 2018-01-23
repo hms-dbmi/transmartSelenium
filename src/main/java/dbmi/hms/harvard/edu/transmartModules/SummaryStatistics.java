@@ -4,6 +4,7 @@ import org.apache.commons.collections.bag.SynchronizedSortedBag;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
+@SuppressWarnings("unused")
 public class SummaryStatistics {
 //	private String genSummaryStatsButton = "//*[@id='ext-gen48']";
 	//private String genSummaryStatsButton = "//*[@id='ext-gen49']";

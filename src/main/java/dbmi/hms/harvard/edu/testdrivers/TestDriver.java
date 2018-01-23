@@ -21,8 +21,41 @@ public class TestDriver {
 	
 	//public static void main(String[] args) throws YamlException {
 	//@Atul	
+
 	
-		@Test
+	@Test (priority=1)
+	
+	public static void testLogin() throws YamlException, InterruptedException{ 
+	
+	Testplan testPlan = null;
+	Reporter reporter = null;
+	try {
+		//Updated file path Atul
+		
+		YamlReader reader = new YamlReader(new FileReader("resources/testConfigs/projects.yaml.template"));
+			while(true){
+				@SuppressWarnings("rawtypes")
+				Map testConfig = (Map) reader.read();
+
+				if(testConfig == null) break;
+				
+				testPlan = initTestPlan(testConfig.get("type").toString(), testConfig);
+				reporter = initReporter(testConfig.get("reporter").toString());	
+				testPlan.checkWinodwTitle(reporter);
+				//testPlan.doPlan(reporter);
+			}
+		
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (YAMLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			//return testplan;
+		}
+}
+	@Test (priority=2)
 		
 		public static void testDriver() throws YamlException, InterruptedException{ 
 		
@@ -39,12 +72,9 @@ public class TestDriver {
 					if(testConfig == null) break;
 					
 					testPlan = initTestPlan(testConfig.get("type").toString(), testConfig);
-					
 					reporter = initReporter(testConfig.get("reporter").toString());	
-
+					//testPlan.checkWinodwTitle(reporter);
 					testPlan.doPlan(reporter);
-					
-
 				}
 			
 			} catch (FileNotFoundException e) {

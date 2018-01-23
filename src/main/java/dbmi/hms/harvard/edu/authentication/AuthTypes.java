@@ -43,9 +43,10 @@ public class AuthTypes {
 	}
 	public void dopublicauth(WebDriver driver, Map testPlan){
 	    try {
-
+	    	
 	    	String publicLogin = ".//*[@id='public']";
 	    	driver.findElement(By.xpath(publicLogin)).click();
+	    	
 			
 		} catch (SecurityException e) {
 			// TODO Auto-generated catch block

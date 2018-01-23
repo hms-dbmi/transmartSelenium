@@ -16,15 +16,23 @@ public class DatasetExplorer extends Module{
 	private String relationbox = ".//*[@id='queryCriteriaDiv3_1']";
 	private String navigationTab = ".//*[@id='ontPanel__navigateTermsPanel']/a[2]/em/span/span";
 	
+	/*public void doLoginLaunchBrowser(WebDriver driver)
+	{
+		
+	}*/
+	
 	public void doSelectNavigationTab(WebDriver driver){
 		click(driver,driver.findElement(By.xpath(navigationTab)));
 	}
 	
 	public void doNavigateByPath(WebDriver driver, String path){
-		System.out.println("in Naviagate");
+		
 		List<String> nodes = getNodes(path);
+		
 		for(String node : nodes){
+		
 			navigateByNode(driver, node);
+			
 		}
 	}
 	
