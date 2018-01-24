@@ -133,11 +133,43 @@ public class BasicStatisticsTestPlan extends Testplan{
 	    String winodwTitle = driver.getTitle();
 	    System.out.println(winodwTitle);
 	    assertThat(winodwTitle).contains("Dataset Explorer");
-	    
-
-	    
+	 
 	}			
 			
+	//Test Expanding/collapsing the concept tree
+
+public void verifyExpandCollpase()
+	{
+	   for(String path: java.util.Arrays.asList(testPlan.get("subset1").toString().split(","))){
+	       try 
+	       {
+	    	   System.out.println(subset1);
+	    	   DatasetExplorer.class.newInstance().doNavigateByPath(driver, path);
+	       } 
+	       catch (InstantiationException | IllegalAccessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+			   		
+			String subset = "subset1";
+    		try {
+				DatasetExplorer.class.newInstance().doDragAndDrop(driver, path, subset);
+			} 
+    		catch (InstantiationException | IllegalAccessException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			try {
+				DatasetExplorer.class.newInstance().doReverseNavigateByPath(driver, path);
+			} 
+			catch (InstantiationException | IllegalAccessException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}	
+	   }
+	}
+	
+//@Test
 public void doPlan(Reporter reporter) throws InterruptedException{
 		    	try {
 		    		
@@ -231,17 +263,16 @@ public void doPlan(Reporter reporter) throws InterruptedException{
 				    //assertTrue(Pattern.compile(NoSubsetResultText).matches("Drag Concept", input));
 				    assertThat(NoSubsetResultText).contains("Drag");*/
 				    
-		    		System.out.println("testing");
+		    		  //System.out.println("testing");
 				       for(String path: java.util.Arrays.asList(testPlan.get("subset1").toString().split(","))){
-				    	
-						DatasetExplorer.class.newInstance().doNavigateByPath(driver, path);
+				       DatasetExplorer.class.newInstance().doNavigateByPath(driver, path);
 						   		
 						String subset = "subset1";
 			    		
 			    		
 						DatasetExplorer.class.newInstance().doDragAndDrop(driver, path, subset);
 						DatasetExplorer.class.newInstance().doReverseNavigateByPath(driver, path);	
-					//	System.out.println("Testing 4");
+					
 				    }
 					
 				    driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);

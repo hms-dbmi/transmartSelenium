@@ -31,6 +31,7 @@ public class TestDriver {
 	public static void testLogin() throws YamlException, InterruptedException{ 
 	
 	LOGGER.info("---------------------------The test case testLogin is running-------------------------");
+	
 	Testplan testPlan = null;
 	Reporter reporter = null;
 	try {
@@ -61,7 +62,47 @@ public class TestDriver {
 			//return testplan;
 		}
 }
-	@Test (priority=2)
+ @Test
+ 
+ public void testExpandCollapse() throws YamlException, InterruptedException{
+	 
+	 { 
+			
+			LOGGER.info("---------------------------The test case verify Expand and collpasing of concept teeeis running-------------------------");
+			
+			Testplan testPlan = null;
+			Reporter reporter = null;
+			
+			
+							try {
+								//Updated file path Atul
+								
+								YamlReader reader = new YamlReader(new FileReader("resources/testConfigs/projects.yaml.template"));
+									while(true){
+										@SuppressWarnings("rawtypes")
+										Map testConfig = (Map) reader.read();
+				
+										if(testConfig == null) break;
+										testPlan = initTestPlan(testConfig.get("type").toString(), testConfig);
+										reporter = initReporter(testConfig.get("reporter").toString());
+										testPlan.verifyExpandCollpase(reporter);
+									}
+								
+								} catch (FileNotFoundException e) {
+									// TODO Auto-generated catch block
+									LOGGER.info("********************************* File Not Found Exception***************************************");
+									e.printStackTrace();
+								
+								} catch (YAMLException e) {
+									// TODO Auto-generated catch block
+									e.printStackTrace();
+								} finally {
+									//return testplan;
+								}
+						}
+ }
+ 	
+	//@Test (priority=3)
 		
 		public static void testDriver() throws YamlException, InterruptedException{ 
 		

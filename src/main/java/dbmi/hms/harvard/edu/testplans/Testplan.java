@@ -32,11 +32,12 @@ public abstract class Testplan {
 	public void doPlan(){};
 
 	public void doPlan(Reporter reporter) throws InterruptedException{};
-	//public void checkWinodwTitle(){};
-	public void checkWinodwTitle(Reporter reporter) throws InterruptedException{
-		//System.out.println("********************8");
-		};
-	
+
+	public void checkWinodwTitle(Reporter reporter) throws InterruptedException{};
+
+	public void verifyExpandCollpase(Reporter reporter) throws InterruptedException{};
+
+		
 	public void validateTestPlan(Map testPlan) throws Exception{
 		for(String reqField : REQUIRED_FIELDS){
 			if(!testPlan.containsKey(reqField)) throw new Exception("Required field " + reqField + " is missing!");

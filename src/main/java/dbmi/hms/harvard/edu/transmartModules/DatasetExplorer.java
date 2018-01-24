@@ -28,9 +28,7 @@ public class DatasetExplorer extends Module{
 	public void doNavigateByPath(WebDriver driver, String path){
 		
 		List<String> nodes = getNodes(path);
-		
 		for(String node : nodes){
-		
 			navigateByNode(driver, node);
 			
 		}
