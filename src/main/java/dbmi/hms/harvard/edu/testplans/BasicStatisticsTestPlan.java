@@ -38,8 +38,6 @@ public class BasicStatisticsTestPlan extends Testplan{
 	private Set<String> subset1;
 	private Set<String> subset2;
 	private Set<String> relational;
-
-
 	private static WebDriver driver;
 	
 	public BasicStatisticsTestPlan() {

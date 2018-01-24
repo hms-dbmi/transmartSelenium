@@ -3,6 +3,7 @@ package dbmi.hms.harvard.edu.testdrivers;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.Map;
+import java.util.logging.Logger;
 
 import org.testng.annotations.Test;
 import org.yaml.snakeyaml.error.YAMLException;
@@ -19,6 +20,8 @@ public class TestDriver {
 	public static final String TESTPLANS = "dbmi.hms.harvard.edu.testplans.";
 	public static final String REPORTS = "dbmi.hms.harvard.edu.reporter.";
 	
+	private static final Logger LOGGER = Logger.getLogger( TestDriver.class.getName() );	
+	
 	//public static void main(String[] args) throws YamlException {
 	//@Atul	
 
@@ -27,6 +30,7 @@ public class TestDriver {
 	
 	public static void testLogin() throws YamlException, InterruptedException{ 
 	
+	LOGGER.info("---------------------------The test case testLogin is running-------------------------");
 	Testplan testPlan = null;
 	Reporter reporter = null;
 	try {
@@ -47,7 +51,9 @@ public class TestDriver {
 		
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
+			LOGGER.info("********************************* File Not Found Exception***************************************");
 			e.printStackTrace();
+		
 		} catch (YAMLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -62,6 +68,7 @@ public class TestDriver {
 		Testplan testPlan = null;
 		Reporter reporter = null;
 		try {
+		
 			//Updated file path Atul
 			
 			YamlReader reader = new YamlReader(new FileReader("resources/testConfigs/projects.yaml.template"));
