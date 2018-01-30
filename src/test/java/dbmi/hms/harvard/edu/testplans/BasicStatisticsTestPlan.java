@@ -138,7 +138,7 @@ public class BasicStatisticsTestPlan extends Testplan{
 			
 	//Test Expanding/collapsing the concept tree
 
-public void verifyExpandCollpase()
+	public void verifyExpandCollpase(Reporter reporter)
 	{
 	   for(String path: java.util.Arrays.asList(testPlan.get("subset1").toString().split(","))){
 	       try 
@@ -167,6 +167,8 @@ public void verifyExpandCollpase()
 				e.printStackTrace();
 			}	
 	   }
+	   
+	   driver.close();
 	}
 	
 //@Test

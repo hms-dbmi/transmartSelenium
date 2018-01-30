@@ -5,16 +5,21 @@ import java.util.Map;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.testng.annotations.BeforeTest;
 
 import dbmi.hms.harvard.edu.testplans.Testplan;
 
 public class AuthTypes {
+	
+	
+	
 	Map<String, String> authTypes = new HashMap<String,String>()
 			{{
 				put("HMS", "Harvard Medical School");
 				
 			}};
-	
+
+			
 	public void doAuth(WebDriver driver, Map testPlan)	{
 		switch(testPlan.get("authmethod").toString()){
 			case "HMS": doHMSAuth(driver, testPlan); 
