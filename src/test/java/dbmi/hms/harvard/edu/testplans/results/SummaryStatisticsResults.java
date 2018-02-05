@@ -71,7 +71,13 @@ public class SummaryStatisticsResults extends Results {
 										break;
 		}
 	}	
-	
+	public void doFirstResultCheck(WebDriver driver, Map testPlan, Reporter reporter) {
+		String successType = testPlan.get("success").toString();
+		System.out.println("test");
+		//WebDriverWait wait = new WebDriverWait(driver, 0);
+		reporter.appendTestResults(testPlan, "passed");
+	}	
+
 	private void doVerifyPatientCountSubset1(WebDriver driver, Map testPlan, Reporter reporter){
 		String successVal = testPlan.get("successvalue").toString();
 		String resultBox = driver.findElement(By.xpath(patientCountSubset1)).getText();

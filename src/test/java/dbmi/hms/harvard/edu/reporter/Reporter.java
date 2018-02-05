@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import dbmi.hms.harvard.edu.testplans.Testplan;
-
 public abstract class Reporter {
 	@SuppressWarnings("rawtypes")
 	private List<Map> testResults = new ArrayList<Map>();

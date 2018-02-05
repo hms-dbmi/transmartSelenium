@@ -6,9 +6,9 @@
  test: regression
  type: BasicStatisticsTestPlan
  reporter: ConsoleReporter
- subset1: \demographics\SEX\female
+ subset1: \demographics\SEX\male
  subset2: 
  relational:
  success: patientcountsubset1
- successvalue: 21
+ successvalue: 21210
  expected: fail

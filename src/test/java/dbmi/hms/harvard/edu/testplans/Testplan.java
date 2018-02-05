@@ -1,14 +1,13 @@
 package dbmi.hms.harvard.edu.testplans;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 
 import dbmi.hms.harvard.edu.reporter.Reporter;
 import dbmi.hms.harvard.edu.testplans.results.SuccessTypes;
 
-public abstract class Testplan {
+public abstract class Testplan{
 	public static final List<String> REQUIRED_FIELDS = new ArrayList<String>()
 		{{
 			add("name");
