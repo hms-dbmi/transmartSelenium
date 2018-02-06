@@ -1,5 +1,5 @@
 package dbmi.hms.harvard.edu.testplans.results;
 
 public enum SuccessTypes {
-	patientcountsubset1, searchbysubject
+	patientcountsubset1, searchbysubject,patientcountsubset2,patientCountCommon
 }

@@ -1,4 +1,4 @@
- name: grdr patient count1
+ name: grdr patient count
  url: https://nhanes.hms.harvard.edu/transmart/login/forceAuth
  authmethod: PUB
  username: 
@@ -6,9 +6,9 @@
  test: regression
  type: BasicStatisticsTestPlan
  reporter: ConsoleReporter
- subset1: \demographics\SEX\female\
- subset2:
+ subset1: \demographics\SEX\female
+ subset2: \demographics\SEX\male
  relational:
  success: patientcountsubset1
  successvalue: 21210
- expected: pass 
+ expected: fail

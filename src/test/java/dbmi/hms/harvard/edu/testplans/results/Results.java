@@ -5,7 +5,6 @@ import java.util.Map;
 import org.openqa.selenium.WebDriver;
 
 import dbmi.hms.harvard.edu.reporter.Reporter;
-import dbmi.hms.harvard.edu.testplans.Testplan;
 
 public abstract class Results {
 

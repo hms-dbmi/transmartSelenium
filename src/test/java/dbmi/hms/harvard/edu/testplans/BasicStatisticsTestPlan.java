@@ -1,12 +1,14 @@
 package dbmi.hms.harvard.edu.testplans;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.testng.Assert.assertEquals;
 
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.testng.Assert;
 
 import dbmi.hms.harvard.edu.authentication.AuthTypes;
 import dbmi.hms.harvard.edu.reporter.Reporter;
@@ -74,6 +76,7 @@ public class BasicStatisticsTestPlan extends Testplan {
 		String winodwTitle = driver.getTitle();
 		System.out.println("Logged in successfully: Title of winodow is     "+winodwTitle);
 		assertThat(winodwTitle).contains("Dataset Explorer");
+	
 		try {
 			// SummaryStatistics.class.newInstance().runSummaryStatistics(driver);
 
@@ -120,7 +123,7 @@ public class BasicStatisticsTestPlan extends Testplan {
 		// driver.close();
 	}
 
-	// @Test
+
 	public void doPlan(Reporter reporter) throws InterruptedException {
 		try {
 
@@ -258,6 +261,7 @@ public class BasicStatisticsTestPlan extends Testplan {
 				DatasetExplorer.class.newInstance().doNavigateByPath(driver, path);
 
 				String subset = "subset1";
+				
 
 				DatasetExplorer.class.newInstance().doDragAndDrop(driver, path, subset);
 				DatasetExplorer.class.newInstance().doReverseNavigateByPath(driver, path);
@@ -280,6 +284,60 @@ public class BasicStatisticsTestPlan extends Testplan {
 	
 	
 	
+	public void doPlanSubset2(Reporter reporter) throws InterruptedException {
+		try {
+
+
+			for (String path : java.util.Arrays.asList(testPlan.get("subset2").toString().split(","))) {
+				DatasetExplorer.class.newInstance().doNavigateByPath(driver, path);
+				String subset = "subset2";
+				DatasetExplorer.class.newInstance().doDragAndDrop(driver, path, subset);
+				DatasetExplorer.class.newInstance().doReverseNavigateByPath(driver, path);
+			}
+
+			driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+			SummaryStatistics.class.newInstance().runSummaryStatistics(driver);
+			SummaryStatisticsResults.class.newInstance().doResults(driver, testPlan, reporter);
+			//System.out.println(successv);
+		//	Assert.assertEquals(800 /*actual value*/, 700 /*expected value*/, "Correct status code returned");
+			reporter.doReport();
+
+		} catch (InstantiationException | IllegalAccessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
+
+	
+	public void doPlanSubset3(Reporter reporter) throws InterruptedException {
+		try {
+
+
+			for (String path : java.util.Arrays.asList(testPlan.get("subset1").toString().split(","))) {
+				DatasetExplorer.class.newInstance().doNavigateByPath(driver, path);
+				String subset = "subset1";
+				DatasetExplorer.class.newInstance().doDragAndDrop(driver, path, subset);
+				DatasetExplorer.class.newInstance().doReverseNavigateByPath(driver, path);
+			}
+
+			for (String path : java.util.Arrays.asList(testPlan.get("subset2").toString().split(","))) {
+				DatasetExplorer.class.newInstance().doNavigateByPath(driver, path);
+				String subset = "subset2";
+				DatasetExplorer.class.newInstance().doDragAndDrop(driver, path, subset);
+				DatasetExplorer.class.newInstance().doReverseNavigateByPath(driver, path);
+			}
+			
+			driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+			SummaryStatistics.class.newInstance().runSummaryStatistics(driver);
+			SummaryStatisticsResults.class.newInstance().doResults(driver, testPlan, reporter);
+			reporter.doReport();
+
+		} catch (InstantiationException | IllegalAccessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 	
 	public void doPlan() {
 		try {
@@ -316,11 +374,10 @@ public class BasicStatisticsTestPlan extends Testplan {
 			}
 
 			driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-
 			SummaryStatistics.class.newInstance().runSummaryStatistics(driver);
-
 			SummaryStatisticsResults.class.newInstance().doResults(driver, testPlan);
-
+			
+	//		assertThat(winodwTitle).contains("Dataset Explorer");
 			// driver.close();
 		} catch (InstantiationException | IllegalAccessException e) {
 			// TODO Auto-generated catch block

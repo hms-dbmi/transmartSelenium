@@ -8,7 +8,7 @@ import org.openqa.selenium.WebElement;
 
 public class DatasetExplorer extends Module{ 
 	private String subset1box = ".//*[@id='queryCriteriaDiv1_1']";
-	private String subset2box = ".//*[@id='queryCriteriaDiv2_1'";
+	private String subset2box = ".//*[@id='queryCriteriaDiv2_1']";
 	private String relationbox = ".//*[@id='queryCriteriaDiv3_1']";
 	private String navigationTab = ".//*[@id='ontPanel__navigateTermsPanel']/a[2]/em/span/span";
 	

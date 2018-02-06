@@ -5,7 +5,8 @@ import java.io.FileReader;
 import java.util.Map;
 import java.util.logging.Logger;
 
-import org.testng.annotations.BeforeTest;
+import org.openqa.selenium.WebDriver;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.Test;
 import org.yaml.snakeyaml.error.YAMLException;
 
@@ -20,21 +21,26 @@ public class TestDriver {
 	public static final String TESTPLANS = "dbmi.hms.harvard.edu.testplans.";
 	public static final String REPORTS = "dbmi.hms.harvard.edu.reporter.";
 	private static final Logger LOGGER = Logger.getLogger(TestDriver.class.getName());
-
+	// WebDriver driver;
 	// public static void main(String[] args) throws YamlException {
 	// @Atul
-	public static Testplan testPlan = null;
+	public static Testplan testPlan1 = null;
+	public static Testplan testPlan2 = null;
+	public static Testplan testPlan3 = null;
 	static Reporter reporter = null;
 
 	public TestDriver() {
 		try {
-			YamlReader reader = new YamlReader(new FileReader("resources/testConfigs/projects.yaml.template"));
+			YamlReader reader1 = new YamlReader(
+					new FileReader("resources/testConfigs/projects.yaml.subset12.template"));
+			// YamlReader reader2 = new YamlReader(new
+			// FileReader("resources/testConfigs/projects.yaml.template"));
 
 			@SuppressWarnings("rawtypes")
-			Map testConfig = (Map) reader.read();
+			Map testConfig = (Map) reader1.read();
 			if (testConfig != null) {
 
-				testPlan = initTestPlan(testConfig.get("type").toString(), testConfig);
+				testPlan1 = initTestPlan(testConfig.get("type").toString(), testConfig);
 				reporter = initReporter(testConfig.get("reporter").toString());
 			}
 		} catch (FileNotFoundException e) {
@@ -44,15 +50,140 @@ public class TestDriver {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+
+		try {
+			YamlReader reader2 = new YamlReader(new FileReader("resources/testConfigs/projects.yaml.subset2.template"));
+			// YamlReader reader2 = new YamlReader(new
+			// FileReader("resources/testConfigs/projects.yaml.template"));
+
+			@SuppressWarnings("rawtypes")
+			Map testConfig = (Map) reader2.read();
+			if (testConfig != null) {
+
+				testPlan2 = initTestPlan(testConfig.get("type").toString(), testConfig);
+				reporter = initReporter(testConfig.get("reporter").toString());
+			}
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (YamlException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		try {
+			YamlReader reader3 = new YamlReader(
+					new FileReader("resources/testConfigs/projects.yaml.subset12.template"));
+			// YamlReader reader2 = new YamlReader(new
+			// FileReader("resources/testConfigs/projects.yaml.template"));
+
+			@SuppressWarnings("rawtypes")
+			Map testConfig = (Map) reader3.read();
+			if (testConfig != null) {
+
+				testPlan3 = initTestPlan(testConfig.get("type").toString(), testConfig);
+				reporter = initReporter(testConfig.get("reporter").toString());
+			}
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (YamlException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 	}
 
-	@Test(priority=1)
+	@Test(priority = 1)
 	public static void verifyWinowTitle() throws YamlException, InterruptedException {
 
 		LOGGER.info("---------------------------The test case verifyWinowTitle is running-------------------------");
-		testPlan.checkWinodwTitle(reporter);
+		testPlan1.checkWinodwTitle(reporter);
 		LOGGER.info("---------------------------The test case verifyWinowTitle is Finshed-------------------------");
 
+	}
+
+	@Test(priority = 2)
+
+	public static void verifySummaryStats() throws YamlException, InterruptedException {
+
+		LOGGER.info("---------------------------The test case verifySummaryStats is running-------------------------");
+
+		testPlan1.doPlan(reporter);
+
+		LOGGER.info("---------------------------The test case verifySummaryStats is Finshed-------------------------");
+
+	}
+
+	@Test(priority = 3)
+
+	public static void verifySummaryStatsSubset2() throws YamlException, InterruptedException {
+
+		LOGGER.info(
+				"---------------------------The test case verifySummaryStatsSubset2 is running-------------------------");
+
+		testPlan2.doPlanSubset2(reporter);
+
+		LOGGER.info(
+				"---------------------------The test case verifySummaryStatsSubset2 is Finshed-------------------------");
+
+	}
+
+	@Test(priority = 4)
+
+	public static void verifySummaryStatsSubsetOneTwo() throws YamlException, InterruptedException {
+
+		LOGGER.info(
+				"---------------------------The test case verifySummaryStatsSubset3 is running-------------------------");
+
+		testPlan3.doPlanSubset3(reporter);
+
+		LOGGER.info("---------------------------The test case verifySummaryStatsSubset3 is Finshed-------------------------");
+
+	}
+
+	// @AfterClass
+	public void closeApplication() {
+		// driver.quit();
+		System.out.println("===================Browser Session End======================");
+
+	}
+
+	@SuppressWarnings("finally")
+	private static Testplan initTestPlan(String testType, @SuppressWarnings("rawtypes") Map map) {
+		Testplan newInstance = null;
+		try {
+			Class<?> resourceInterfaceClass = Class.forName(TESTPLANS + testType);
+
+			newInstance = (Testplan) resourceInterfaceClass.newInstance();
+			newInstance.setTestPlan(map);
+		} catch (SecurityException | InstantiationException | IllegalAccessException | ClassNotFoundException e) {
+			System.out.println(e);
+			e.printStackTrace();
+			return null;
+		} catch (Exception e) {
+			System.out.println(e);
+			e.printStackTrace();
+			return null;
+		} finally {
+
+			return newInstance;
+		}
+	}
+
+	@SuppressWarnings("finally")
+	private static Reporter initReporter(String reporterType) {
+		Reporter newInstance = null;
+
+		try {
+			Class<?> resourceInterfaceClass = Class.forName(REPORTS + reporterType);
+			newInstance = (Reporter) resourceInterfaceClass.newInstance();
+		} catch (SecurityException | InstantiationException | IllegalAccessException | ClassNotFoundException e) {
+			e.printStackTrace();
+			return null;
+		} finally {
+			return newInstance;
+		}
 	}
 
 	// @Test (priority=1)
@@ -127,48 +258,4 @@ public class TestDriver {
 		}
 	}
 
-	@Test(priority = 2)
-
-	public static void	 verifySummaryStats() throws YamlException, InterruptedException {
-
-		testPlan.doPlan(reporter);
-
-	}
-
-	@SuppressWarnings("finally")
-	private static Testplan initTestPlan(String testType, @SuppressWarnings("rawtypes") Map map) {
-		Testplan newInstance = null;
-		try {
-			Class<?> resourceInterfaceClass = Class.forName(TESTPLANS + testType);
-
-			newInstance = (Testplan) resourceInterfaceClass.newInstance();
-			newInstance.setTestPlan(map);
-		} catch (SecurityException | InstantiationException | IllegalAccessException | ClassNotFoundException e) {
-			System.out.println(e);
-			e.printStackTrace();
-			return null;
-		} catch (Exception e) {
-			System.out.println(e);
-			e.printStackTrace();
-			return null;
-		} finally {
-
-			return newInstance;
-		}
-	}
-
-	@SuppressWarnings("finally")
-	private static Reporter initReporter(String reporterType) {
-		Reporter newInstance = null;
-
-		try {
-			Class<?> resourceInterfaceClass = Class.forName(REPORTS + reporterType);
-			newInstance = (Reporter) resourceInterfaceClass.newInstance();
-		} catch (SecurityException | InstantiationException | IllegalAccessException | ClassNotFoundException e) {
-			e.printStackTrace();
-			return null;
-		} finally {
-			return newInstance;
-		}
-	}
 }

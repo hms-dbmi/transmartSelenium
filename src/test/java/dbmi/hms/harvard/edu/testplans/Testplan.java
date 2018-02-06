@@ -31,7 +31,11 @@ public abstract class Testplan{
 	public void doPlan(){};
 
 	public void doPlan(Reporter reporter) throws InterruptedException{};
-
+	
+	public void doPlanSubset2(Reporter reporter) throws InterruptedException{};
+	
+	public void doPlanSubset3(Reporter reporter) throws InterruptedException{};
+	
 	public void checkWinodwTitle(Reporter reporter) throws InterruptedException{};
 
 	public void verifyExpandCollpase(Reporter reporter) throws InterruptedException{};
