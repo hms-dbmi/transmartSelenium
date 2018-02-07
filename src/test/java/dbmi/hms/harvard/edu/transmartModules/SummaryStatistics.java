@@ -16,5 +16,7 @@ public class SummaryStatistics {
 		
 		driver.findElement(By.xpath(genSummaryStatsButton)).click();
 	}
+	
+	
 
 }

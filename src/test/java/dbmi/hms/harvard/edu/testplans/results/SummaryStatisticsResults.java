@@ -22,7 +22,7 @@ public class SummaryStatisticsResults extends Results {
 	 */
 	public void doResultsCheck(WebDriver driver, String successType, String successVal) {
 
-		WebDriverWait wait = new WebDriverWait(driver, 10);
+		WebDriverWait wait = new WebDriverWait(driver, 30);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[contains(text(), 'Subject Totals')]")));
 		// wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[contains(text(),
 		// 'Subject Totals')]")));
@@ -82,9 +82,8 @@ public class SummaryStatisticsResults extends Results {
 	 */
 	public void doResultsCheck(WebDriver driver, Map testPlan, Reporter reporter) {
 		String successType = testPlan.get("success").toString();
-		System.out.println("test");
 		// WebDriverWait wait = new WebDriverWait(driver, 0);
-		WebDriverWait wait = new WebDriverWait(driver, 10);
+		WebDriverWait wait = new WebDriverWait(driver, 30);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[contains(text(), 'Subject Totals')]")));
 		// wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[contains(text(),// 'Subject Totals')]")));
 		switch (successType) {
@@ -94,6 +93,11 @@ public class SummaryStatisticsResults extends Results {
 		case "patientcountsubset2":
 			doVerifyPatientCountSubset2(driver, testPlan, reporter);
 			break;
+			
+		case "patientCountCommon":
+			doVerifypatientCountCommon(driver, testPlan, reporter);
+			break;
+			
 		}
 	}
 
@@ -142,7 +146,7 @@ public class SummaryStatisticsResults extends Results {
 		}
 		;
 
-		String actual = "test";
+		//String actual = "test";
 		Assert.assertEquals(resultBox, successVal);
 
 	}
@@ -151,8 +155,7 @@ public class SummaryStatisticsResults extends Results {
 	private void doVerifypatientCountCommon(WebDriver driver, Map testPlan, Reporter reporter) {
 		String successVal = testPlan.get("successvalue").toString();
 		String resultBox = driver.findElement(By.xpath(patientCountCommon)).getText();
-		System.out.println("%%%%%%%%%%%%%%%%%%%%"+successVal);
-		
+
 		if (resultBox.equals(successVal)) {
 			if (testPlan.containsKey("expected")) {
 				if (testPlan.get("expected").toString().equalsIgnoreCase("pass")) {
@@ -176,7 +179,7 @@ public class SummaryStatisticsResults extends Results {
 		}
 		;
 
-		String actual = "test";
+		
 		Assert.assertEquals(resultBox, successVal);
 
 	}

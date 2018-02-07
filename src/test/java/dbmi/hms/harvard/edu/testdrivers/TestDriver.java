@@ -25,14 +25,14 @@ public class TestDriver {
 	// public static void main(String[] args) throws YamlException {
 	// @Atul
 	public static Testplan testPlan1 = null;
-	public static Testplan testPlan2 = null;
-	public static Testplan testPlan3 = null;
+//	public static Testplan testPlan2 = null;
+	//public static Testplan testPlan3 = null;
 	static Reporter reporter = null;
-
-	public TestDriver() {
+	
+	/*public TestDriver() {
 		try {
 			YamlReader reader1 = new YamlReader(
-					new FileReader("resources/testConfigs/projects.yaml.subset12.template"));
+					new FileReader("resources/testConfigs/projects.yaml.template"));
 			// YamlReader reader2 = new YamlReader(new
 			// FileReader("resources/testConfigs/projects.yaml.template"));
 
@@ -41,6 +41,7 @@ public class TestDriver {
 			if (testConfig != null) {
 
 				testPlan1 = initTestPlan(testConfig.get("type").toString(), testConfig);
+				testPlan1.setTestPlan(testConfig);
 				reporter = initReporter(testConfig.get("reporter").toString());
 			}
 		} catch (FileNotFoundException e) {
@@ -61,7 +62,7 @@ public class TestDriver {
 			if (testConfig != null) {
 
 				testPlan2 = initTestPlan(testConfig.get("type").toString(), testConfig);
-				reporter = initReporter(testConfig.get("reporter").toString());
+				testPlan2.setTestPlan(testConfig);
 			}
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
@@ -82,7 +83,7 @@ public class TestDriver {
 			if (testConfig != null) {
 
 				testPlan3 = initTestPlan(testConfig.get("type").toString(), testConfig);
-				reporter = initReporter(testConfig.get("reporter").toString());
+				testPlan3.setTestPlan(testConfig);
 			}
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
@@ -92,14 +93,41 @@ public class TestDriver {
 			e.printStackTrace();
 		}
 
+	}*/
+	
+	public static void  readFile (String fileName) {
+		try {
+			YamlReader reader1 = new YamlReader(
+					new FileReader(fileName));
+			// YamlReader reader2 = new YamlReader(new
+			// FileReader("resources/testConfigs/projects.yaml.template"));
+
+			@SuppressWarnings("rawtypes")
+			Map testConfig = (Map) reader1.read();
+			if (testConfig != null) {
+
+				if(testPlan1 == null)
+				testPlan1 = initTestPlan(testConfig.get("type").toString(), testConfig);
+				testPlan1.setTestPlan(testConfig);
+				if(reporter == null)
+				reporter = initReporter(testConfig.get("reporter").toString());
+			}
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (YamlException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	@Test(priority = 1)
 	public static void verifyWinowTitle() throws YamlException, InterruptedException {
 
-		LOGGER.info("---------------------------The test case verifyWinowTitle is running-------------------------");
+		LOGGER.info("---------------------------------The test case verifyWinowTitle is running-------------------------");
+		readFile("resources/testConfigs/projects.yaml.onlysubset1.template");
 		testPlan1.checkWinodwTitle(reporter);
-		LOGGER.info("---------------------------The test case verifyWinowTitle is Finshed-------------------------");
+		LOGGER.info("---------------------------------The test case verifyWinowTitle is Finshed-------------------------");
 
 	}
 
@@ -107,11 +135,10 @@ public class TestDriver {
 
 	public static void verifySummaryStats() throws YamlException, InterruptedException {
 
-		LOGGER.info("---------------------------The test case verifySummaryStats is running-------------------------");
-
+		LOGGER.info("-------------------------------The test case verifySummaryStats is running-------------------------");
+		readFile("resources/testConfigs/projects.yaml.onlysubset1.template");
 		testPlan1.doPlan(reporter);
-
-		LOGGER.info("---------------------------The test case verifySummaryStats is Finshed-------------------------");
+		LOGGER.info("--------------------------------The test case verifySummaryStats is Finshed-------------------------");
 
 	}
 
@@ -119,13 +146,10 @@ public class TestDriver {
 
 	public static void verifySummaryStatsSubset2() throws YamlException, InterruptedException {
 
-		LOGGER.info(
-				"---------------------------The test case verifySummaryStatsSubset2 is running-------------------------");
-
-		testPlan2.doPlanSubset2(reporter);
-
-		LOGGER.info(
-				"---------------------------The test case verifySummaryStatsSubset2 is Finshed-------------------------");
+		LOGGER.info("---------------------------The test case verifySummaryStatsSubset2 is running-------------------------");
+		readFile("resources/testConfigs/projects.yaml.onlysubset2.template");
+		testPlan1.doPlanSubset2(reporter);
+		LOGGER.info("---------------------------The test case verifySummaryStatsSubset2 is Finshed-------------------------");
 
 	}
 
@@ -133,19 +157,17 @@ public class TestDriver {
 
 	public static void verifySummaryStatsSubsetOneTwo() throws YamlException, InterruptedException {
 
-		LOGGER.info(
-				"---------------------------The test case verifySummaryStatsSubset3 is running-------------------------");
-
-		testPlan3.doPlanSubset3(reporter);
-
+		LOGGER.info("---------------------------The test case verifySummaryStatsSubset3 is running-------------------------");
+		readFile("resources/testConfigs/projects.yaml.subset12.template");
+		testPlan1.doPlanSubset3(reporter);
 		LOGGER.info("---------------------------The test case verifySummaryStatsSubset3 is Finshed-------------------------");
 
 	}
 
-	// @AfterClass
-	public void closeApplication() {
-		// driver.quit();
-		System.out.println("===================Browser Session End======================");
+//	@AfterClass
+	public void closeApplication(WebDriver driver) {
+		 driver.quit();
+		System.out.println("=======================================Browser Session End=====================================");
 
 	}
 
@@ -156,7 +178,7 @@ public class TestDriver {
 			Class<?> resourceInterfaceClass = Class.forName(TESTPLANS + testType);
 
 			newInstance = (Testplan) resourceInterfaceClass.newInstance();
-			newInstance.setTestPlan(map);
+			//newInstance.setTestPlan(map);
 		} catch (SecurityException | InstantiationException | IllegalAccessException | ClassNotFoundException e) {
 			System.out.println(e);
 			e.printStackTrace();

@@ -1,14 +1,13 @@
 package dbmi.hms.harvard.edu.testplans;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.testng.Assert.assertEquals;
 
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.testng.Assert;
 
 import dbmi.hms.harvard.edu.authentication.AuthTypes;
 import dbmi.hms.harvard.edu.reporter.Reporter;
@@ -74,9 +73,9 @@ public class BasicStatisticsTestPlan extends Testplan {
 
 		authTypes.doAuth(driver, testPlan);
 		String winodwTitle = driver.getTitle();
-		System.out.println("Logged in successfully: Title of winodow is     "+winodwTitle);
+		System.out.println("Logged in successfully: Title of winodow is     " + winodwTitle);
 		assertThat(winodwTitle).contains("Dataset Explorer");
-	
+
 		try {
 			// SummaryStatistics.class.newInstance().runSummaryStatistics(driver);
 
@@ -123,171 +122,35 @@ public class BasicStatisticsTestPlan extends Testplan {
 		// driver.close();
 	}
 
-
 	public void doPlan(Reporter reporter) throws InterruptedException {
 		try {
 
-			// driver.findElement(By.linkText(authLink)).click(); This is
-			// invalid step
+			if (testPlan.get("subset1") != null && testPlan.get("subset1") != "") {
+				for (String path : java.util.Arrays.asList(testPlan.get("subset1").toString().split(","))) {
+					DatasetExplorer.class.newInstance().doNavigateByPath(driver, path);
 
-			// driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+					DatasetExplorer.class.newInstance().doDragAndDrop(driver, path, "subset1");
+					DatasetExplorer.class.newInstance().doReverseNavigateByPath(driver, path);
 
-			// Checking the title of loaded window after login
+				}
 
-			// Check if text present on the home page to confirm page is loaded
-
-			/*
-			 * WebElement bodyText = driver.findElement(By.xpath(
-			 * ".//*[@id='resultsTabPanel__queryPanel']")); String DatasetString
-			 * =bodyText.getText(); System.out.println(DatasetString);
-			 * Assert.assertEquals("Comparison", DatasetString,
-			 * "Home page is loaded");
-			 */
-
-			// Test Expanding/collapsing the concept tree
-
-			// WebElement conceptTreeDemo =
-			// driver.findElement(By.xpath(".//*[@id='extdd-3']/img[1]"));
-			/*
-			 * String ExamCollapse="blood"; WebElement conceptTreeDemo =
-			 * driver.findElement(By.xpath(".//*[@id='extdd-4']/img[1]"));
-			 * String conceptTreeDemoValue =conceptTreeDemo.getText();
-			 * //System.out.println("Examination     :" +conceptTreeDemoValue);
-			 * try { Thread.sleep(5000); } catch (InterruptedException e) { //
-			 * TODO Auto-generated catch block e.printStackTrace(); }
-			 * conceptTreeDemo.click();
-			 */
-			// Check the value of expanded concept Tree
-			/*
-			 * WebElement
-			 * examination=driver.findElement(By.xpath(".//*[@id='extdd-15']"));
-			 * String examcollpaseText =examination.getText();
-			 * System.out.println("Value after collapsing    "
-			 * +examcollpaseText); // Assert.assertEquals(
-			 * "blood pressure (37971)", examcollpaseText,
-			 * "Concept tree gets expanded"); //
-			 * assertTrue(examcollpaseText.contains(ExamCollapse));
-			 * //assertThat("FooBarBaz", matchesPattern("^Foo"));
-			 * System.out.println(
-			 * "---------------------------------------------------");
-			 * assertTrue(Pattern.compile(examcollpaseText).matcher(
-			 * "blood pressure").matches());
-			 * 
-			 */// Generate summary statstics with No subsets
-				// driver.findElement(By.xpath(".//*[@id='ext-gen49']")).click();
-				// String MainWindow=driver.getWindowHandle();
-				// System.out.println("Parent Window Title%%%% :"+MainWindow);
-				// To handle all new opened window.
-
-			/*
-			 * Set<String> s1=driver.getWindowHandles();
-			 * System.out.println(s1.size());
-			 * 
-			 * Iterator<String> i1=s1.iterator();
-			 * 
-			 * while(i1.hasNext()) { String ChildWindow=i1.next();
-			 * 
-			 * if(!MainWindow.equalsIgnoreCase(ChildWindow)) {
-			 * 
-			 * // Switching to Child window
-			 * driver.switchTo().window(ChildWindow);
-			 * 
-			 * } }
-			 */
-			// Thread.sleep(3000);
-			// WebElement
-			// Nosubset=driver.findElement(By.xpath(".//*[@id='ext-gen347']"));
-			// System.out.println("****************** No subset :"+Nosubset);
-			// driver.findElement(By.xpath(".//*[@id='ext-comp-1034']/tbody/tr/td[2]")).click();
-
-			/*
-			 * for (String winHandle : driver.getWindowHandles()) {
-			 * driver.switchTo().window(winHandle); // switch focus of WebDriver
-			 * to the next found window handle (that's your newly opened window)
-			 * } WebElement
-			 * noSubset=driver.findElement(By.xpath(".//*[@class='ext-mb-text']"
-			 * ));
-			 *//*
-				 * 
-				 * 
-				 * String childWinodwTitle = driver.getTitle();
-				 * System.out.println("childWinodwTitle is              "
-				 * +childWinodwTitle);
-				 * 
-				 */
-			// driver.findElement(By.xpath("//button[[@type, 'submit'] and
-			// [text()='New']]")).click();
-
-			// Result/Analysis without selecting any subset
-
-			// driver.findElement(By.xpath(".//*[@id='ext-gen49']")).click();
-			/*
-			 * driver.findElement(By.xpath(
-			 * ".//*[@id='resultsTabPanel__analysisPanel']/a[2]/em/span/span")).
-			 * click(); WebElement NoSubsetResult=driver.findElement(By.xpath(
-			 * ".//*[@id='ext-gen157']/div/table/tbody/tr/td")); String
-			 * NoSubsetResultText=NoSubsetResult.getText();
-			 * //assertTrue(Pattern.compile(NoSubsetResultText).matches(
-			 * "Drag Concept", input));
-			 * assertThat(NoSubsetResultText).contains("Drag");
-			 */
-
-			/*
-			 * System.setProperty(BROWSER,BROWSERDRIVER); driver = new
-			 * FirefoxDriver();
-			 * System.out.println("---------------------------------------");
-			 * driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-			 * driver.manage().window().maximize();
-			 * driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-			 * driver.get(testPlan.get("url").toString());
-			 * 
-			 * AuthTypes authTypes = new AuthTypes();
-			 * 
-			 * // Set authentication type String authLink;
-			 * 
-			 * if(authTypes.getAuthTypes().containsKey(testPlan.get("authmethod"
-			 * ).toString())){ authLink =
-			 * authTypes.getAuthTypes().get(testPlan.get("authmethod").toString(
-			 * )); } else { authLink = null; }
-			 * 
-			 * // driver.findElement(By.linkText(authLink)).click();
-			 * 
-			 * authTypes.doAuth(driver,testPlan); System.out.println("waiting");
-			 * 
-			 * driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-			 */
-
-			for (String path : java.util.Arrays.asList(testPlan.get("subset1").toString().split(","))) {
-				DatasetExplorer.class.newInstance().doNavigateByPath(driver, path);
-
-				String subset = "subset1";
-				
-
-				DatasetExplorer.class.newInstance().doDragAndDrop(driver, path, subset);
-				DatasetExplorer.class.newInstance().doReverseNavigateByPath(driver, path);
-
+				driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+				SummaryStatistics.class.newInstance().runSummaryStatistics(driver);
+				SummaryStatisticsResults.class.newInstance().doResults(driver, testPlan, reporter);
+				DatasetExplorer.class.newInstance().doClearAnalysis(driver);
+				DatasetExplorer.class.newInstance().doSelectComparison(driver);
 			}
-
-			driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-			SummaryStatistics.class.newInstance().runSummaryStatistics(driver);
-
-			SummaryStatisticsResults.class.newInstance().doResults(driver, testPlan, reporter);
-			// System.out.println("testing");
-			reporter.doReport();
-			driver.close();
+			//reporter.doReport();
 		} catch (InstantiationException | IllegalAccessException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
 	}
-	
-	
-	
+
 	public void doPlanSubset2(Reporter reporter) throws InterruptedException {
 		try {
 
-
 			for (String path : java.util.Arrays.asList(testPlan.get("subset2").toString().split(","))) {
 				DatasetExplorer.class.newInstance().doNavigateByPath(driver, path);
 				String subset = "subset2";
@@ -298,9 +161,9 @@ public class BasicStatisticsTestPlan extends Testplan {
 			driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 			SummaryStatistics.class.newInstance().runSummaryStatistics(driver);
 			SummaryStatisticsResults.class.newInstance().doResults(driver, testPlan, reporter);
-			//System.out.println(successv);
-		//	Assert.assertEquals(800 /*actual value*/, 700 /*expected value*/, "Correct status code returned");
-			reporter.doReport();
+			//reporter.doReport();
+			DatasetExplorer.class.newInstance().doClearAnalysis(driver);
+			DatasetExplorer.class.newInstance().doSelectComparison(driver);
 
 		} catch (InstantiationException | IllegalAccessException e) {
 			// TODO Auto-generated catch block
@@ -309,10 +172,8 @@ public class BasicStatisticsTestPlan extends Testplan {
 
 	}
 
-	
 	public void doPlanSubset3(Reporter reporter) throws InterruptedException {
 		try {
-
 
 			for (String path : java.util.Arrays.asList(testPlan.get("subset1").toString().split(","))) {
 				DatasetExplorer.class.newInstance().doNavigateByPath(driver, path);
@@ -327,17 +188,20 @@ public class BasicStatisticsTestPlan extends Testplan {
 				DatasetExplorer.class.newInstance().doDragAndDrop(driver, path, subset);
 				DatasetExplorer.class.newInstance().doReverseNavigateByPath(driver, path);
 			}
-			
+
 			driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 			SummaryStatistics.class.newInstance().runSummaryStatistics(driver);
 			SummaryStatisticsResults.class.newInstance().doResults(driver, testPlan, reporter);
 			reporter.doReport();
+			DatasetExplorer.class.newInstance().doClearAnalysis(driver);
+			DatasetExplorer.class.newInstance().doSelectComparison(driver);
 
 		} catch (InstantiationException | IllegalAccessException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
+
 	
 	public void doPlan() {
 		try {
@@ -376,15 +240,13 @@ public class BasicStatisticsTestPlan extends Testplan {
 			driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 			SummaryStatistics.class.newInstance().runSummaryStatistics(driver);
 			SummaryStatisticsResults.class.newInstance().doResults(driver, testPlan);
-			
-	//		assertThat(winodwTitle).contains("Dataset Explorer");
+
+			// assertThat(winodwTitle).contains("Dataset Explorer");
 			// driver.close();
 		} catch (InstantiationException | IllegalAccessException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
-
-
 
 }
