@@ -1,0 +1,14 @@
+ name: Verify Summary Stats for Subset1 ( Set value)
+ url: https://nhanes.hms.harvard.edu/transmart/login/forceAuth
+ authmethod: PUB
+ username: 
+ password: 
+ test: regression
+ type: BasicStatisticsTestPlan
+ reporter: ConsoleReporter
+ subset1: \examination\blood pressure\60 sec HR
+ subset2:
+ relational:
+ success: patientcountsubset1
+ successvalue: 21210
+ expected: pass 
