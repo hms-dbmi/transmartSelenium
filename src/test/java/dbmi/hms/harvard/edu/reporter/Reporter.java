@@ -20,6 +20,8 @@ public abstract class Reporter {
 	public List<Map> getTestResults() {
 		return testResults;
 	}
+	
+	
 
 	public void setTestResults(List<Map> testResults) {
 		this.testResults = testResults;

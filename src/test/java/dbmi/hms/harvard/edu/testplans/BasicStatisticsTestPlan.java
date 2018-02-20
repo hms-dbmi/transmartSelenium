@@ -6,6 +6,7 @@ import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.Alert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
@@ -58,7 +59,9 @@ public class BasicStatisticsTestPlan extends Testplan {
 		driver = new FirefoxDriver();
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		driver.manage().window().maximize();
-		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+		driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
+		// driver.manage().timeouts().implicitlyWait(1, TimeUnit.MINUTES);
+
 		driver.get(testPlan.get("url").toString());
 		AuthTypes authTypes = new AuthTypes();
 		// Set authentication type
@@ -72,6 +75,7 @@ public class BasicStatisticsTestPlan extends Testplan {
 		// driver.findElement(By.linkText(authLink)).click();
 
 		authTypes.doAuth(driver, testPlan);
+		// Thread.sleep(60000);
 		String winodwTitle = driver.getTitle();
 		System.out.println("Logged in successfully: Title of winodow is     " + winodwTitle);
 		assertThat(winodwTitle).contains("Dataset Explorer");
@@ -127,6 +131,7 @@ public class BasicStatisticsTestPlan extends Testplan {
 
 			if (testPlan.get("subset1") != null && testPlan.get("subset1") != "") {
 				for (String path : java.util.Arrays.asList(testPlan.get("subset1").toString().split(","))) {
+					// Thread.sleep(30000);
 					DatasetExplorer.class.newInstance().doNavigateByPath(driver, path);
 
 					DatasetExplorer.class.newInstance().doDragAndDrop(driver, path, "subset1");
@@ -140,7 +145,7 @@ public class BasicStatisticsTestPlan extends Testplan {
 				DatasetExplorer.class.newInstance().doClearAnalysis(driver);
 				DatasetExplorer.class.newInstance().doSelectComparison(driver);
 			}
-			//reporter.doReport();
+			// reporter.doReport();
 		} catch (InstantiationException | IllegalAccessException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -152,6 +157,7 @@ public class BasicStatisticsTestPlan extends Testplan {
 		try {
 
 			for (String path : java.util.Arrays.asList(testPlan.get("subset2").toString().split(","))) {
+				// Thread.sleep(30000);
 				DatasetExplorer.class.newInstance().doNavigateByPath(driver, path);
 				String subset = "subset2";
 				DatasetExplorer.class.newInstance().doDragAndDrop(driver, path, subset);
@@ -161,7 +167,7 @@ public class BasicStatisticsTestPlan extends Testplan {
 			driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 			SummaryStatistics.class.newInstance().runSummaryStatistics(driver);
 			SummaryStatisticsResults.class.newInstance().doResults(driver, testPlan, reporter);
-			//reporter.doReport();
+			// reporter.doReport();
 			DatasetExplorer.class.newInstance().doClearAnalysis(driver);
 			DatasetExplorer.class.newInstance().doSelectComparison(driver);
 
@@ -176,6 +182,7 @@ public class BasicStatisticsTestPlan extends Testplan {
 		try {
 
 			for (String path : java.util.Arrays.asList(testPlan.get("subset1").toString().split(","))) {
+				// Thread.sleep(30000);
 				DatasetExplorer.class.newInstance().doNavigateByPath(driver, path);
 				String subset = "subset1";
 				DatasetExplorer.class.newInstance().doDragAndDrop(driver, path, subset);
@@ -183,6 +190,7 @@ public class BasicStatisticsTestPlan extends Testplan {
 			}
 
 			for (String path : java.util.Arrays.asList(testPlan.get("subset2").toString().split(","))) {
+				// Thread.sleep(30000);
 				DatasetExplorer.class.newInstance().doNavigateByPath(driver, path);
 				String subset = "subset2";
 				DatasetExplorer.class.newInstance().doDragAndDrop(driver, path, subset);
@@ -192,9 +200,9 @@ public class BasicStatisticsTestPlan extends Testplan {
 			driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 			SummaryStatistics.class.newInstance().runSummaryStatistics(driver);
 			SummaryStatisticsResults.class.newInstance().doResults(driver, testPlan, reporter);
-			reporter.doReport();
 			DatasetExplorer.class.newInstance().doClearAnalysis(driver);
 			DatasetExplorer.class.newInstance().doSelectComparison(driver);
+			// Thread.sleep(40000);
 
 		} catch (InstantiationException | IllegalAccessException e) {
 			// TODO Auto-generated catch block
@@ -202,7 +210,40 @@ public class BasicStatisticsTestPlan extends Testplan {
 		}
 	}
 
-	
+	public void doPlanSetValue(Reporter reporter) throws InterruptedException {
+		try {
+
+			for (String path : java.util.Arrays.asList(testPlan.get("subset1").toString().split(","))) {
+				Thread.sleep(40000);
+				DatasetExplorer.class.newInstance().doNavigateByPath(driver, path);
+				String subset = "subset1";
+
+				DatasetExplorer.class.newInstance().doDragAndDrop(driver, path, subset);
+				// DatasetExplorer.class.newInstance().doReverseNavigateByPath(driver,
+				// path);
+			}
+
+			driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+			DatasetExplorer.class.newInstance().doclickSubsetValue(driver);
+			DatasetExplorer.class.newInstance().enterValue(driver);
+
+			SummaryStatistics.class.newInstance().runSummaryStatistics(driver);
+			SummaryStatisticsResults.class.newInstance().doResults(driver, testPlan, reporter);
+			// reporter.doReport();
+			System.out.println("Testing ********************");
+			DatasetExplorer.class.newInstance().doClearAnalysis(driver);
+			DatasetExplorer.class.newInstance().doSelectComparison(driver);
+			// Thread.sleep(40000);
+		} catch (InstantiationException | IllegalAccessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	public void closeDriver() {
+		driver.quit();
+	}
+
 	public void doPlan() {
 		try {
 

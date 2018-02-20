@@ -14,6 +14,9 @@ public class DatasetExplorer extends Module {
 	private String navigationTab = ".//*[@id='ontPanel__navigateTermsPanel']/a[2]/em/span/span";
 	private String clear = ".//*[@id='ext-gen89']";
 	private String comparisonTab = ".//*[@id='resultsTabPanel__queryPanel']/a[2]/em/span/span";
+	private String subsetValue = ".//*[@id='setValueLowValue']";
+	private String subset = "10";
+	private String subsetOKbutton=".//*[@id='ext-gen189']"; 
 	/*
 	 * public void doLoginLaunchBrowser(WebDriver driver) {
 	 * 
@@ -28,7 +31,15 @@ public class DatasetExplorer extends Module {
 		click(driver, driver.findElement(By.xpath(comparisonTab)));
 	}
 
-	
+	public void doclickSubsetValue(WebDriver driver) {
+		click(driver, driver.findElement(By.xpath(subsetValue)));
+	}
+
+	public void enterValue(WebDriver driver) {
+		driver.findElement(By.xpath(subsetValue)).sendKeys(subset);
+		driver.findElement(By.xpath(subsetOKbutton)).click();
+	}
+
 	public void doNavigateByPath(WebDriver driver, String path) {
 
 		List<String> nodes = getNodes(path);
@@ -47,6 +58,7 @@ public class DatasetExplorer extends Module {
 
 	public void doDragAndDrop(WebDriver driver, String path, String subset) {
 		List<String> nodes = getNodes(path);
+		try{
 		WebElement source = driver.findElement(By.partialLinkText(nodes.get(nodes.size() - 1)));
 		String targetStr = null;
 		if (subset.equalsIgnoreCase("subset1"))
@@ -57,6 +69,11 @@ public class DatasetExplorer extends Module {
 			targetStr = relationbox;
 		WebElement target = driver.findElement(By.xpath(targetStr));
 		dragDrop(driver, source, target);
+		}
+		catch(Exception e)
+		{
+			System.out.println("Unable to find the element" +e.getMessage());
+		}
 	}
 
 	public void doClearAnalysis(WebDriver driver) {
