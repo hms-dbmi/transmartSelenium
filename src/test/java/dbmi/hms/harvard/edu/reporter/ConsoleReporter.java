@@ -21,18 +21,14 @@ public class ConsoleReporter extends Reporter{
 public void doDelimitedReportToConsole(){
 		// Summary of results
 		Map<String, Integer> summaryResults = doCalcResults(getTestResults());
-		
 		LOGGER.info("\n");
 		LOGGER.info("=================================================Test Result Summary===========================================");
 		LOGGER.info("Total Passed: " + summaryResults.get("successes") + "\t\t" + "Total Failed: " + summaryResults.get("failures"));
-		//System.out.println("Total Passed: " + summaryResults.get("successes") + "\t\t" + "Total Failed: " + summaryResults.get("failures"));
-		//System.out.println("Test Results:");
 		LOGGER.info("\n");
 		LOGGER.info("--------------------------------------------------Test Results---------------------------------------------");
 		for(Map testResult:getTestResults()){
 			String sTestPlanName = testResult.get("name").toString();
 			String sTestPlanResult = testResult.get("TestResult").toString();
-	
 			//Object[] args = new Object[] {testResult.get("name").toString() + ":",testResult.get("TestResult").toString()};
 			LOGGER.info("TestCaseName:          "+sTestPlanName+"......................"+"Test case Result:            	"+sTestPlanResult);
 			LOGGER.info("\n");	

@@ -30,7 +30,7 @@ public abstract class Testplan{
 	
 	public void doPlan(){};
 
-	public void closeDriver() {};
+	
 	public void doPlan(Reporter reporter) throws InterruptedException{};
 	
 	public void doPlanSubset2(Reporter reporter) throws InterruptedException{};
@@ -42,7 +42,10 @@ public abstract class Testplan{
 	public void verifyExpandCollpase(Reporter reporter) throws InterruptedException{};
 	
 	public void doPlanSetValue(Reporter reporter) throws InterruptedException {	};
-		
+
+	public void verifyClear(Reporter reporter) throws Exception {}
+
+
 	public void validateTestPlan(Map testPlan) throws Exception{
 		for(String reqField : REQUIRED_FIELDS){
 			if(!testPlan.containsKey(reqField)) throw new Exception("Required field " + reqField + " is missing!");
@@ -69,4 +72,9 @@ public abstract class Testplan{
 		return false;
 	}
 
+	public void closeDriver() {};
+	
+
+
+	
 }

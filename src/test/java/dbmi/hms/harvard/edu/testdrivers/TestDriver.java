@@ -44,57 +44,10 @@ public class TestDriver {
 	
 	private static final Logger LOGGER = Logger.getLogger(TestDriver.class.getName());
 	WebDriver driver;
-	// public static void main(String[] args) throws YamlException {
+
 	// @Atul
 	public static Testplan testPlan = null;
 	static Reporter reporter = null;
-
-	/*
-	 * public TestDriver() { try { YamlReader reader1 = new YamlReader( new
-	 * FileReader("resources/testConfigs/projects.yaml.template")); //
-	 * YamlReader reader2 = new YamlReader(new //
-	 * FileReader("resources/testConfigs/projects.yaml.template"));
-	 * 
-	 * @SuppressWarnings("rawtypes") Map testConfig = (Map) reader1.read(); if
-	 * (testConfig != null) {
-	 * 
-	 * testPlan1 = initTestPlan(testConfig.get("type").toString(), testConfig);
-	 * testPlan1.setTestPlan(testConfig); reporter =
-	 * initReporter(testConfig.get("reporter").toString()); } } catch
-	 * (FileNotFoundException e) { // TODO Auto-generated catch block
-	 * e.printStackTrace(); } catch (YamlException e) { // TODO Auto-generated
-	 * catch block e.printStackTrace(); }
-	 * 
-	 * try { YamlReader reader2 = new YamlReader(new
-	 * FileReader("resources/testConfigs/projects.yaml.subset2.template")); //
-	 * YamlReader reader2 = new YamlReader(new //
-	 * FileReader("resources/testConfigs/projects.yaml.template"));
-	 * 
-	 * @SuppressWarnings("rawtypes") Map testConfig = (Map) reader2.read(); if
-	 * (testConfig != null) {
-	 * 
-	 * testPlan2 = initTestPlan(testConfig.get("type").toString(), testConfig);
-	 * testPlan2.setTestPlan(testConfig); } } catch (FileNotFoundException e) {
-	 * // TODO Auto-generated catch block e.printStackTrace(); } catch
-	 * (YamlException e) { // TODO Auto-generated catch block
-	 * e.printStackTrace(); }
-	 * 
-	 * try { YamlReader reader3 = new YamlReader( new
-	 * FileReader("resources/testConfigs/projects.yaml.subset12.template")); //
-	 * YamlReader reader2 = new YamlReader(new //
-	 * FileReader("resources/testConfigs/projects.yaml.template"));
-	 * 
-	 * @SuppressWarnings("rawtypes") Map testConfig = (Map) reader3.read(); if
-	 * (testConfig != null) {
-	 * 
-	 * testPlan3 = initTestPlan(testConfig.get("type").toString(), testConfig);
-	 * testPlan3.setTestPlan(testConfig); } } catch (FileNotFoundException e) {
-	 * // TODO Auto-generated catch block e.printStackTrace(); } catch
-	 * (YamlException e) { // TODO Auto-generated catch block
-	 * e.printStackTrace(); }
-	 * 
-	 * }
-	 */
 
 	public static void readFile(String fileName) {
 		try {
@@ -131,7 +84,7 @@ public class TestDriver {
 
 	}
 
-	@Test(priority = 2)
+@Test(priority = 2)
 
 	public static void verifySummaryStats() throws YamlException, InterruptedException {
 
@@ -144,7 +97,7 @@ public class TestDriver {
 				"--------------------------------The test case verifySummaryStats is Finshed-------------------------");
 
 	}
-//@Test(priority = 3)
+@Test(priority = 3)
 
 	public static void verifySummaryStatsSubset2() throws YamlException, InterruptedException {
 
@@ -158,7 +111,7 @@ public class TestDriver {
 
 	}
 
-//	@Test(priority = 4)
+@Test(priority = 4)
 
 	public static void verifySummaryStatsSetValue() throws YamlException, InterruptedException {
 
@@ -171,7 +124,7 @@ public class TestDriver {
 
 	}
 
-	//@Test(priority = 5)
+@Test(priority = 5)
 
 	public static void verifySummaryStatsSubsetOneTwo() throws YamlException, InterruptedException {
 
@@ -184,13 +137,24 @@ public class TestDriver {
 
 	}
 
-	@AfterClass
+@Test(priority = 6)
+
+		public static void verifyClearButton() throws Exception {
+
+			LOGGER.info(
+					"---------------------------The test case verifyClearButton is running-------------------------");
+			readFile(configProperties.getProperty("verify.window.title"));
+			testPlan.verifyClear(reporter);
+			LOGGER.info(
+					"---------------------------The test case verifyClearButton is Finshed-------------------------");
+		}
+	
+@AfterClass
 	public void closeApplication() {
 
  		reporter.doReport();
 		testPlan.closeDriver();
-		System.out.println(
-				"==================================Test Ends : Browser session closed =====================================");
+		LOGGER.info("==================================Test Ends : Browser session closed =====================================");
 
 	}
 

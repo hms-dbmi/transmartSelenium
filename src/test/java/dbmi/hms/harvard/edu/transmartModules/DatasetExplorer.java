@@ -17,11 +17,8 @@ public class DatasetExplorer extends Module {
 	private String subsetValue = ".//*[@id='setValueLowValue']";
 	private String subset = "10";
 	private String subsetOKbutton=".//*[@id='ext-gen189']"; 
-	/*
-	 * public void doLoginLaunchBrowser(WebDriver driver) {
-	 * 
-	 * }
-	 */
+
+
 	
 	public void doSelectNavigationTab(WebDriver driver) {
 		click(driver, driver.findElement(By.xpath(navigationTab)));

@@ -5,13 +5,16 @@ import static org.assertj.core.api.Assertions.assertThat;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
+import org.apache.log4j.Logger;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 import dbmi.hms.harvard.edu.authentication.AuthTypes;
 import dbmi.hms.harvard.edu.reporter.Reporter;
+import dbmi.hms.harvard.edu.testdrivers.TestDriver;
 import dbmi.hms.harvard.edu.testplans.results.SummaryStatisticsResults;
 import dbmi.hms.harvard.edu.transmartModules.DatasetExplorer;
 import dbmi.hms.harvard.edu.transmartModules.SummaryStatistics;
@@ -20,11 +23,12 @@ public class BasicStatisticsTestPlan extends Testplan {
 	private static final int TIMEOUT = 30;
 	private static final String BROWSER = "webdriver.firefox.marionette";
 	private static final String BROWSERDRIVER = "/Users/tom/Documents/workspace-ggts-3.6.4.RELEASE/transmartQA/drivers/geckodriver";
-
+	private String DragConcept=".//*[@id='ext-gen157']/div/table/tbody/tr/td"; 
 	private Set<String> subset1;
 	private Set<String> subset2;
 	private Set<String> relational;
 	private static WebDriver driver;
+	private static final Logger LOGGER = Logger.getLogger(BasicStatisticsTestPlan.class.getName());
 
 	public BasicStatisticsTestPlan() {
 	}
@@ -75,23 +79,18 @@ public class BasicStatisticsTestPlan extends Testplan {
 		// driver.findElement(By.linkText(authLink)).click();
 
 		authTypes.doAuth(driver, testPlan);
-		// Thread.sleep(60000);
+		
 		String winodwTitle = driver.getTitle();
-		System.out.println("Logged in successfully: Title of winodow is     " + winodwTitle);
+	//	System.out.println("Logged in successfully: Title of winodow is     " + winodwTitle);
+		LOGGER.info("Logged in successfully: Title of winodow is -------------------------"+winodwTitle);
+	
 		assertThat(winodwTitle).contains("Dataset Explorer");
 
 		try {
-			// SummaryStatistics.class.newInstance().runSummaryStatistics(driver);
-
-			// SummaryStatisticsResults.class.newInstance().doResults(driver,testPlan,reporter);
-			SummaryStatisticsResults.class.newInstance().doFirstResultCheck(driver, testPlan, reporter);
-			// System.out.println("testing");
-			// reporter.doReport();
+					SummaryStatisticsResults.class.newInstance().doFirstResultCheck(driver, testPlan, reporter);
 		} catch (InstantiationException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IllegalAccessException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -123,7 +122,7 @@ public class BasicStatisticsTestPlan extends Testplan {
 			}
 		}
 
-		// driver.close();
+	
 	}
 
 	public void doPlan(Reporter reporter) throws InterruptedException {
@@ -153,6 +152,36 @@ public class BasicStatisticsTestPlan extends Testplan {
 
 	}
 
+	
+	public void verifyClear(Reporter reporter) throws Exception {
+
+		try {
+
+			if (testPlan.get("subset1") != null && testPlan.get("subset1") != "") {
+				for (String path : java.util.Arrays.asList(testPlan.get("subset1").toString().split(","))) {
+					DatasetExplorer.class.newInstance().doNavigateByPath(driver, path);
+					DatasetExplorer.class.newInstance().doDragAndDrop(driver, path, "subset1");
+					DatasetExplorer.class.newInstance().doReverseNavigateByPath(driver, path);
+
+				}
+
+				driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+				SummaryStatistics.class.newInstance().runSummaryStatistics(driver);
+				SummaryStatisticsResults.class.newInstance().doResults(driver, testPlan, reporter);
+				DatasetExplorer.class.newInstance().doClearAnalysis(driver);
+
+			}
+		} catch (InstantiationException | IllegalAccessException e) {
+			e.printStackTrace();
+		}
+		WebElement clearButton=driver.findElement(By.xpath(DragConcept));
+		String testClearButton=clearButton.getText();
+		//System.out.println("*************" +testClearButton);
+	//	LOGGER.info("Cleared the report page successfully -------------------------"+testClearButton);
+		assertThat(testClearButton).contains("Drag concepts to this");
+		
+	}
+	
 	public void doPlanSubset2(Reporter reporter) throws InterruptedException {
 		try {
 
