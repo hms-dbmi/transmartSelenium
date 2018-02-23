@@ -10,18 +10,23 @@ import org.openqa.selenium.WebElement;
 public class DatasetExplorer extends Module {
 	private String subset1box = ".//*[@id='queryCriteriaDiv1_1']";
 	private String subset2box = ".//*[@id='queryCriteriaDiv2_1']";
+	private String subset1boxtwo = ".//*[@id='queryCriteriaDiv1_2']";
 	private String relationbox = ".//*[@id='queryCriteriaDiv3_1']";
 	private String navigationTab = ".//*[@id='ontPanel__navigateTermsPanel']/a[2]/em/span/span";
+	private String exclude = ".//*[@id='btnExcludeGroup1_1']";
 	private String clear = ".//*[@id='ext-gen89']";
 	private String comparisonTab = ".//*[@id='resultsTabPanel__queryPanel']/a[2]/em/span/span";
 	private String subsetValue = ".//*[@id='setValueLowValue']";
 	private String subset = "10";
 	private String subsetOKbutton=".//*[@id='ext-gen189']"; 
 
-
 	
 	public void doSelectNavigationTab(WebDriver driver) {
 		click(driver, driver.findElement(By.xpath(navigationTab)));
+	}
+
+	public void doSelectExclude(WebDriver driver) {
+		click(driver, driver.findElement(By.xpath(exclude)));
 	}
 
 	public void doSelectComparison(WebDriver driver) {
@@ -62,6 +67,8 @@ public class DatasetExplorer extends Module {
 			targetStr = subset1box;
 		if (subset.equalsIgnoreCase("subset2"))
 			targetStr = subset2box;
+		if (subset.equalsIgnoreCase("subset1mul"))
+			targetStr = subset1boxtwo;
 		if (subset.equalsIgnoreCase("relation"))
 			targetStr = relationbox;
 		WebElement target = driver.findElement(By.xpath(targetStr));

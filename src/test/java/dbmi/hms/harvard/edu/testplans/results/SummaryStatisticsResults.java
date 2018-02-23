@@ -157,7 +157,7 @@ public class SummaryStatisticsResults extends Results {
 	            System.out.println("Assertion error. ");
 	        }
 
-	        System.out.println("Test Completed.");
+	        //System.out.println("Test Completed.");
 
 
 	}

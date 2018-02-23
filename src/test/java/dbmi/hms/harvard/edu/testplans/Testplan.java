@@ -30,7 +30,8 @@ public abstract class Testplan{
 	
 	public void doPlan(){};
 
-	
+	public void closeDriver() {}
+
 	public void doPlan(Reporter reporter) throws InterruptedException{};
 	
 	public void doPlanSubset2(Reporter reporter) throws InterruptedException{};
@@ -43,7 +44,10 @@ public abstract class Testplan{
 	
 	public void doPlanSetValue(Reporter reporter) throws InterruptedException {	};
 
-	public void verifyClear(Reporter reporter) throws Exception {}
+	public void verifyClear(Reporter reporter) throws Exception {};
+	
+	public void doPlanMultipleSubset(Reporter reporter) throws InterruptedException, InstantiationException, IllegalAccessException{};
+
 
 
 	public void validateTestPlan(Map testPlan) throws Exception{
@@ -72,7 +76,17 @@ public abstract class Testplan{
 		return false;
 	}
 
-	public void closeDriver() {};
+	public void doPlanMultipleSubsetAnd(Reporter reporter) throws InterruptedException, InstantiationException, IllegalAccessException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void verifyExcludeFeature(Reporter reporter) throws InterruptedException {
+		// TODO Auto-generated method stub
+		
+	}
+
+
 	
 
 

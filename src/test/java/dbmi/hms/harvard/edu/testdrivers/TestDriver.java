@@ -9,7 +9,6 @@ import java.util.Map;
 import java.util.Properties;
 
 import org.apache.log4j.Logger;
-import org.assertj.core.configuration.ConfigurationProvider;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.Test;
@@ -27,21 +26,20 @@ public class TestDriver {
 	public static final String REPORTS = "dbmi.hms.harvard.edu.reporter.";
 	private static Properties configProperties = new Properties();
 
-	//Read data from Properties file using Java Selenium
-	
+	// Read data from Properties file using Java Selenium
+
 	static {
-		
+
 		try {
 			configProperties.load(new FileInputStream(new File("src/test/java/Config.properties")));
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
+		
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
-	
+
 	private static final Logger LOGGER = Logger.getLogger(TestDriver.class.getName());
 	WebDriver driver;
 
@@ -52,7 +50,7 @@ public class TestDriver {
 	public static void readFile(String fileName) {
 		try {
 			YamlReader reader1 = new YamlReader(new FileReader(fileName));
-			@SuppressWarnings("rawtypes")
+
 			Map testConfig = (Map) reader1.read();
 			if (testConfig != null) {
 
@@ -72,11 +70,9 @@ public class TestDriver {
 	@Test(priority = 1)
 	public static void verifyWinowTitle() throws YamlException, InterruptedException {
 
-		
-	    
 		LOGGER.info(
 				"---------------------------------The test case verifyWinowTitle is running-------------------------");
-		//readFile("resources/testConfigs/projects.yaml.onlysubset1.template");
+		// readFile("resources/testConfigs/projects.yaml.onlysubset1.template");
 		readFile(configProperties.getProperty("verify.window.title"));
 		testPlan.checkWinodwTitle(reporter);
 		LOGGER.info(
@@ -84,26 +80,25 @@ public class TestDriver {
 
 	}
 
-@Test(priority = 2)
+	 //@Test(priority = 2)
 
 	public static void verifySummaryStats() throws YamlException, InterruptedException {
 
 		LOGGER.info(
 				"-------------------------------The test case verifySummaryStats is running-------------------------");
-		
-		readFile("resources/testConfigs/projects.yaml.onlysubset1.template");
+		readFile(configProperties.getProperty("verify.summaryStats.subset1"));
 		testPlan.doPlan(reporter);
 		LOGGER.info(
 				"--------------------------------The test case verifySummaryStats is Finshed-------------------------");
 
 	}
-@Test(priority = 3)
+ //@Test(priority = 3)
 
 	public static void verifySummaryStatsSubset2() throws YamlException, InterruptedException {
 
 		LOGGER.info(
 				"---------------------------The test case verifySummaryStatsSubset2 is running-------------------------");
-		readFile("resources/testConfigs/projects.yaml.onlysubset2.template");
+		readFile(configProperties.getProperty("verify.summaryStats.subset2"));
 		testPlan.doPlanSubset2(reporter);
 
 		LOGGER.info(
@@ -111,50 +106,110 @@ public class TestDriver {
 
 	}
 
-@Test(priority = 4)
+	// @Test(priority = 4)
 
 	public static void verifySummaryStatsSetValue() throws YamlException, InterruptedException {
 
 		LOGGER.info(
 				"---------------------------The test case verifySummaryStatsSetValue is running-------------------------");
-		readFile("resources/testConfigs/projects.yaml.subset1.setvalue.template");
+		readFile(configProperties.getProperty("verify.summarystats.entersubset.value"));
+		//readFile("resources/testConfigs/projects.yaml.subset1.setvalue.template");
 		testPlan.doPlanSetValue(reporter);
 		LOGGER.info(
 				"---------------------------The test case verifySummaryStatsSetValue is Finshed-------------------------");
 
 	}
 
-@Test(priority = 5)
+// @Test(priority = 5)
 
-	public static void verifySummaryStatsSubsetOneTwo() throws YamlException, InterruptedException {
+public static void verifySummaryStatsSubsetOneTwo() throws YamlException, InterruptedException {
 
 		LOGGER.info(
-				"---------------------------The test case verifySummaryStatsSubset3 is running-------------------------");
-		readFile("resources/testConfigs/projects.yaml.subset12.template");
+				"---------------------------The test case verifySummarySta	tsSubset3 is running-------------------------");
+		readFile(configProperties.getProperty("verify.summarystats.subset1subset2"));
+		//readFile("resources/testConfigs/projects.yaml.subset12.template");
 		testPlan.doPlanSubset3(reporter);
 		LOGGER.info(
 				"---------------------------The test case verifySummaryStatsSubset3 is Finshed-------------------------");
 
 	}
 
-@Test(priority = 6)
+	// @Test(priority = 6)
 
-		public static void verifyClearButton() throws Exception {
+	public static void verifyClearButton() throws Exception {
 
-			LOGGER.info(
-					"---------------------------The test case verifyClearButton is running-------------------------");
-			readFile(configProperties.getProperty("verify.window.title"));
-			testPlan.verifyClear(reporter);
-			LOGGER.info(
-					"---------------------------The test case verifyClearButton is Finshed-------------------------");
-		}
+		LOGGER.info("---------------------------The test case verifyClearButton is running-------------------------");
+		readFile(configProperties.getProperty("verify.window.title"));
+		testPlan.verifyClear(reporter);
+		LOGGER.info("---------------------------The test case verifyClearButton is Finshed-------------------------");
+	}
 	
-@AfterClass
+//@Test(priority = 7)
+
+	public static void verifySummaryStatsMultipleSubset1OR()
+			throws YamlException, InterruptedException, InstantiationException, IllegalAccessException {
+
+		LOGGER.info(
+				"-------------------------------The test case verifySummaryStatsMultipleSubset1OR is running-------------------------");
+		readFile(configProperties.getProperty("verify.summarystats.multiplesubset1OR"));
+		testPlan.doPlanMultipleSubset(reporter);
+		LOGGER.info(
+				"--------------------------------The test case verifySummaryStatsMultipleSubset1OR is Finshed-------------------------");
+
+	}
+
+	
+//@Test(priority = 8)
+	public static void verifySummaryStatsMultipleSubset1AND()
+			throws YamlException, InterruptedException, InstantiationException, IllegalAccessException {
+
+		LOGGER.info(
+				"-------------------------------The test case verifySummaryStatsMultipleSubset1AND is running-------------------------");
+		readFile(configProperties.getProperty("verify.summarystats.multiplesubset1AND"));
+		//readFile("resources/testConfigs/projects.yaml.multiplesubset1withANDcondition.template");
+		testPlan.doPlanMultipleSubsetAnd(reporter);
+		LOGGER.info(
+				"--------------------------------The test case verifySummaryStatsMultipleSubset1AND is Finshed-------------------------");
+
+	}
+
+
+@Test(priority = 9)
+	public static void verifySummaryStatsExcludeFunctionality()
+			throws YamlException, InterruptedException, InstantiationException, IllegalAccessException {
+
+		LOGGER.info(
+				"-------------------------------The test case verifySummaryStatsExcludeFunctionality is running-------------------------");
+		readFile(configProperties.getProperty("verify.summaryStats.exclude"));
+		testPlan.verifyExcludeFeature(reporter);
+		LOGGER.info(
+				"--------------------------------The test case verifySummaryStatsExcludeFunctionality is Finshed-------------------------");
+
+	}
+
+//@Test(priority = 10)
+
+	public static void verifySummaryStatsSetValueOperator() throws YamlException, InterruptedException {
+
+		LOGGER.info(
+				"---------------------------The test case verifySummaryStatsSetValue is running-------------------------");
+		readFile(configProperties.getProperty("verify.summarystats.entersubset.value"));
+		//readFile("resources/testConfigs/projects.yaml.subset1.setvalue.template");
+		testPlan.doPlanSetValue(reporter);
+		LOGGER.info(
+				"---------------------------The test case verifySummaryStatsSetValue is Finshed-------------------------");
+
+	}
+
+
+	@AfterClass
 	public void closeApplication() {
 
- 		reporter.doReport();
+		reporter.doReport();
 		testPlan.closeDriver();
-		LOGGER.info("==================================Test Ends : Browser session closed =====================================");
+		System.out.println("Testing done");
+		LOGGER.info(
+				"==========================================Transmart Test Automation completed : Browser session closed =============================================");
 
 	}
 

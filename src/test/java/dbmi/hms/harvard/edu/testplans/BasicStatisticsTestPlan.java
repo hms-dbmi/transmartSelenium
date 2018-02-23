@@ -23,10 +23,11 @@ public class BasicStatisticsTestPlan extends Testplan {
 	private static final int TIMEOUT = 30;
 	private static final String BROWSER = "webdriver.firefox.marionette";
 	private static final String BROWSERDRIVER = "/Users/tom/Documents/workspace-ggts-3.6.4.RELEASE/transmartQA/drivers/geckodriver";
-	private String DragConcept=".//*[@id='ext-gen157']/div/table/tbody/tr/td"; 
+	private String DragConcept = ".//*[@id='ext-gen157']/div/table/tbody/tr/td";
 	private Set<String> subset1;
 	private Set<String> subset2;
 	private Set<String> relational;
+	private Set<String> subsetmul1;
 	private static WebDriver driver;
 	private static final Logger LOGGER = Logger.getLogger(BasicStatisticsTestPlan.class.getName());
 
@@ -41,6 +42,7 @@ public class BasicStatisticsTestPlan extends Testplan {
 		this.subset1 = subset1;
 	}
 
+	
 	public Set<String> getSubset2() {
 		return subset2;
 	}
@@ -49,6 +51,16 @@ public class BasicStatisticsTestPlan extends Testplan {
 		this.subset2 = subset2;
 	}
 
+	public Set<String> subsetmul1() {
+		return subsetmul1;
+	}
+
+	public void setSubset1Multiple(Set<String> subsetmul1) {
+		this.subsetmul1 = subsetmul1;
+	}
+
+	
+	
 	public Set<String> getRelational() {
 		return relational;
 	}
@@ -60,34 +72,35 @@ public class BasicStatisticsTestPlan extends Testplan {
 	public void checkWinodwTitle(Reporter reporter) throws InterruptedException {
 
 		System.setProperty(BROWSER, BROWSERDRIVER);
+		LOGGER.info(">>>>>>>>>>>>>>>>>>>>>Launching the Browser>>>>>>>>>>>>>>>>>>\n");
 		driver = new FirefoxDriver();
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		driver.manage().window().maximize();
 		driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
-		// driver.manage().timeouts().implicitlyWait(1, TimeUnit.MINUTES);
-
+		LOGGER.info("");
+		LOGGER.info("************************Loading the Harvard Website***************************\4n");
 		driver.get(testPlan.get("url").toString());
 		AuthTypes authTypes = new AuthTypes();
+	
 		// Set authentication type
 		String authLink;
-		if (authTypes.getAuthTypes().containsKey(testPlan.get("authmethod").toString())) {
+		if (authTypes.getAuthTypes().containsKey(testPlan.get("authmethod").toString())) 
+		{
 			authLink = authTypes.getAuthTypes().get(testPlan.get("authmethod").toString());
-		} else {
+		} 
+		else {
 			authLink = null;
 		}
 
 		// driver.findElement(By.linkText(authLink)).click();
 
 		authTypes.doAuth(driver, testPlan);
-		
 		String winodwTitle = driver.getTitle();
-	//	System.out.println("Logged in successfully: Title of winodow is     " + winodwTitle);
-		LOGGER.info("Logged in successfully: Title of winodow is -------------------------"+winodwTitle);
-	
+		LOGGER.info("-------------------Logged in successfully: Title of winodow is -------------------------" + winodwTitle);
 		assertThat(winodwTitle).contains("Dataset Explorer");
 
 		try {
-					SummaryStatisticsResults.class.newInstance().doFirstResultCheck(driver, testPlan, reporter);
+			SummaryStatisticsResults.class.newInstance().doFirstResultCheck(driver, testPlan, reporter);
 		} catch (InstantiationException e) {
 			e.printStackTrace();
 		} catch (IllegalAccessException e) {
@@ -95,44 +108,15 @@ public class BasicStatisticsTestPlan extends Testplan {
 		}
 	}
 
-	// Test Expanding/collapsing the concept tree
-
-	public void verifyExpandCollpase(Reporter reporter) {
-		for (String path : java.util.Arrays.asList(testPlan.get("subset1").toString().split(","))) {
-			try {
-				System.out.println(subset1);
-				DatasetExplorer.class.newInstance().doNavigateByPath(driver, path);
-			} catch (InstantiationException | IllegalAccessException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-
-			String subset = "subset1";
-			try {
-				DatasetExplorer.class.newInstance().doDragAndDrop(driver, path, subset);
-			} catch (InstantiationException | IllegalAccessException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			try {
-				DatasetExplorer.class.newInstance().doReverseNavigateByPath(driver, path);
-			} catch (InstantiationException | IllegalAccessException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
-
-	
-	}
-
 	public void doPlan(Reporter reporter) throws InterruptedException {
+		
 		try {
 
+			
 			if (testPlan.get("subset1") != null && testPlan.get("subset1") != "") {
 				for (String path : java.util.Arrays.asList(testPlan.get("subset1").toString().split(","))) {
-					// Thread.sleep(30000);
+					System.out.println("---------"+path);
 					DatasetExplorer.class.newInstance().doNavigateByPath(driver, path);
-
 					DatasetExplorer.class.newInstance().doDragAndDrop(driver, path, "subset1");
 					DatasetExplorer.class.newInstance().doReverseNavigateByPath(driver, path);
 
@@ -143,15 +127,136 @@ public class BasicStatisticsTestPlan extends Testplan {
 				SummaryStatisticsResults.class.newInstance().doResults(driver, testPlan, reporter);
 				DatasetExplorer.class.newInstance().doClearAnalysis(driver);
 				DatasetExplorer.class.newInstance().doSelectComparison(driver);
+				
 			}
-			// reporter.doReport();
+			
 		} catch (InstantiationException | IllegalAccessException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
+		//reporter.doReport();
 
 	}
 
+
+	
+	
+	public void verifyExcludeFeature(Reporter reporter) throws InterruptedException {
+		
+		try {
+
+			
+			if (testPlan.get("subset1") != null && testPlan.get("subset1") != "") {
+				for (String path : java.util.Arrays.asList(testPlan.get("subset1").toString().split(","))) {
+					DatasetExplorer.class.newInstance().doNavigateByPath(driver, path);
+					DatasetExplorer.class.newInstance().doDragAndDrop(driver, path, "subset1");
+					DatasetExplorer.class.newInstance().doReverseNavigateByPath(driver, path);
+					
+
+				}
+				DatasetExplorer.class.newInstance().doSelectExclude(driver);
+				driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+				SummaryStatistics.class.newInstance().runSummaryStatistics(driver);
+				SummaryStatisticsResults.class.newInstance().doResults(driver, testPlan, reporter);
+				DatasetExplorer.class.newInstance().doClearAnalysis(driver);
+				DatasetExplorer.class.newInstance().doSelectComparison(driver);
+				
+			}
+			
+		} catch (InstantiationException | IllegalAccessException e) {
+			
+			e.printStackTrace();
+		}
+		//reporter.doReport();
+
+	}
+
+
+	
+	
+	public void doPlanMultipleSubset(Reporter reporter) throws InterruptedException, InstantiationException, IllegalAccessException {
+		try {
+
+			if (testPlan.get("subset1") != null && testPlan.get("subset1") != "")
+			{
+				for (String path : java.util.Arrays.asList(testPlan.get("subset1").toString().split(","))) 
+				{
+				DatasetExplorer.class.newInstance().doNavigateByPath(driver, path);
+				DatasetExplorer.class.newInstance().doDragAndDrop(driver, path, "subset1");
+				DatasetExplorer.class.newInstance().doReverseNavigateByPath(driver, path);
+				}
+
+			}
+			
+			if (testPlan.get("subsetmul1") != null && testPlan.get("subsetmul1") != "")
+			{
+				for (String path : java.util.Arrays.asList(testPlan.get("subsetmul1").toString().split(","))) 
+				{
+				DatasetExplorer.class.newInstance().doNavigateByPath(driver, path);
+				DatasetExplorer.class.newInstance().doDragAndDrop(driver, path, "subset1");
+				DatasetExplorer.class.newInstance().doReverseNavigateByPath(driver, path);
+				}
+
+			}
+
+			
+		} 
+			catch (InstantiationException | IllegalAccessException e) {
+			
+			e.printStackTrace();
+		}
+		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+		SummaryStatistics.class.newInstance().runSummaryStatistics(driver);
+		SummaryStatisticsResults.class.newInstance().doResults(driver, testPlan, reporter);
+		DatasetExplorer.class.newInstance().doClearAnalysis(driver);
+		DatasetExplorer.class.newInstance().doSelectComparison(driver);
+
+	}
+
+
+	
+	public void doPlanMultipleSubsetAnd(Reporter reporter) throws InterruptedException, InstantiationException, IllegalAccessException {
+		try {
+
+			if (testPlan.get("subset1") != null && testPlan.get("subset1") != "")
+			{
+				for (String path : java.util.Arrays.asList(testPlan.get("subset1").toString().split(","))) 
+				{
+				DatasetExplorer.class.newInstance().doNavigateByPath(driver, path);
+				DatasetExplorer.class.newInstance().doDragAndDrop(driver, path, "subset1");
+				DatasetExplorer.class.newInstance().doReverseNavigateByPath(driver, path);
+				}
+
+			}
+			
+			if (testPlan.get("subsetmul1") != null && testPlan.get("subsetmul1") != "")
+			{
+				for (String path : java.util.Arrays.asList(testPlan.get("subsetmul1").toString().split(","))) 
+				{
+				DatasetExplorer.class.newInstance().doNavigateByPath(driver, path);
+				DatasetExplorer.class.newInstance().doDragAndDrop(driver, path, "subset1mul");
+				DatasetExplorer.class.newInstance().doReverseNavigateByPath(driver, path);
+				}
+
+			}
+
+			
+		} 
+			catch (InstantiationException | IllegalAccessException e) {
+			
+			e.printStackTrace();
+		}
+		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+		SummaryStatistics.class.newInstance().runSummaryStatistics(driver);
+		SummaryStatisticsResults.class.newInstance().doResults(driver, testPlan, reporter);
+		DatasetExplorer.class.newInstance().doClearAnalysis(driver);
+		DatasetExplorer.class.newInstance().doSelectComparison(driver);
+
+	}
+
+	
+	
+	
 	
 	public void verifyClear(Reporter reporter) throws Exception {
 
@@ -174,14 +279,12 @@ public class BasicStatisticsTestPlan extends Testplan {
 		} catch (InstantiationException | IllegalAccessException e) {
 			e.printStackTrace();
 		}
-		WebElement clearButton=driver.findElement(By.xpath(DragConcept));
-		String testClearButton=clearButton.getText();
-		//System.out.println("*************" +testClearButton);
-	//	LOGGER.info("Cleared the report page successfully -------------------------"+testClearButton);
+		WebElement clearButton = driver.findElement(By.xpath(DragConcept));
+		String testClearButton = clearButton.getText();
 		assertThat(testClearButton).contains("Drag concepts to this");
-		
+
 	}
-	
+
 	public void doPlanSubset2(Reporter reporter) throws InterruptedException {
 		try {
 
@@ -196,7 +299,7 @@ public class BasicStatisticsTestPlan extends Testplan {
 			driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 			SummaryStatistics.class.newInstance().runSummaryStatistics(driver);
 			SummaryStatisticsResults.class.newInstance().doResults(driver, testPlan, reporter);
-			// reporter.doReport();
+			//reporter.doReport();
 			DatasetExplorer.class.newInstance().doClearAnalysis(driver);
 			DatasetExplorer.class.newInstance().doSelectComparison(driver);
 
@@ -231,7 +334,7 @@ public class BasicStatisticsTestPlan extends Testplan {
 			SummaryStatisticsResults.class.newInstance().doResults(driver, testPlan, reporter);
 			DatasetExplorer.class.newInstance().doClearAnalysis(driver);
 			DatasetExplorer.class.newInstance().doSelectComparison(driver);
-			// Thread.sleep(40000);
+			
 
 		} catch (InstantiationException | IllegalAccessException e) {
 			// TODO Auto-generated catch block
@@ -246,10 +349,7 @@ public class BasicStatisticsTestPlan extends Testplan {
 				Thread.sleep(40000);
 				DatasetExplorer.class.newInstance().doNavigateByPath(driver, path);
 				String subset = "subset1";
-
 				DatasetExplorer.class.newInstance().doDragAndDrop(driver, path, subset);
-				// DatasetExplorer.class.newInstance().doReverseNavigateByPath(driver,
-				// path);
 			}
 
 			driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
@@ -258,11 +358,9 @@ public class BasicStatisticsTestPlan extends Testplan {
 
 			SummaryStatistics.class.newInstance().runSummaryStatistics(driver);
 			SummaryStatisticsResults.class.newInstance().doResults(driver, testPlan, reporter);
-			// reporter.doReport();
-			System.out.println("Testing ********************");
 			DatasetExplorer.class.newInstance().doClearAnalysis(driver);
 			DatasetExplorer.class.newInstance().doSelectComparison(driver);
-			// Thread.sleep(40000);
+		
 		} catch (InstantiationException | IllegalAccessException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -271,6 +369,35 @@ public class BasicStatisticsTestPlan extends Testplan {
 
 	public void closeDriver() {
 		driver.quit();
+	}
+
+	// Test Expanding/collapsing the concept tree
+
+	public void verifyExpandCollpase(Reporter reporter) {
+		for (String path : java.util.Arrays.asList(testPlan.get("subset1").toString().split(","))) {
+			try {
+				System.out.println(subset1);
+				DatasetExplorer.class.newInstance().doNavigateByPath(driver, path);
+			} catch (InstantiationException | IllegalAccessException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+			String subset = "subset1";
+			try {
+				DatasetExplorer.class.newInstance().doDragAndDrop(driver, path, subset);
+			} catch (InstantiationException | IllegalAccessException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			try {
+				DatasetExplorer.class.newInstance().doReverseNavigateByPath(driver, path);
+			} catch (InstantiationException | IllegalAccessException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+
 	}
 
 	public void doPlan() {
