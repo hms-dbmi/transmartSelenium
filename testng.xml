@@ -6,8 +6,8 @@
   </listeners>
   <test name="Method Test Cases" >
     <classes>
-       <class name="edu.harvard.hms.dbmi.bd2k.irct.TestResultService">
- 	  <!--       <methods>
+      <!--    <class name="edu.harvard.hms.dbmi.bd2k.irct.TestResultService">
+ 	      <methods>
  	      
  		<include name="verifyGetResultStatusCode" />
          <include name="verifyGetResultJsonResponse" />
@@ -18,9 +18,11 @@
         				
       </methods> 
       
-      -->
+      
  
-       </class>
+       </class>-->
+       
+       <class name="dbmi.hms.harvard.edu.testdrivers.TestDriver"></class>
        
        
     </classes>
