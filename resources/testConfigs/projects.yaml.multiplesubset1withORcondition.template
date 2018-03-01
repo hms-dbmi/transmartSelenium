@@ -1,0 +1,15 @@
+ name: Verify Summary Stats for Multiple Subset1 (AND) Condition
+ url: https://nhanes.hms.harvard.edu/transmart/login/forceAuth
+ authmethod: PUB
+ username: 
+ password: 
+ test: regression
+ type: BasicStatisticsTestPlan
+ reporter: ConsoleReporter
+ subset1: \demographics\RACE\white
+ subsetmul1: \demographics\SEX\female\
+ subset2:
+ relational:
+ success: patientcountsubset1
+ successvalue: 8197
+ expected: pass 

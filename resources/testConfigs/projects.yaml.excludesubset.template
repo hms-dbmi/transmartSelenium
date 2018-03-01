@@ -1,0 +1,14 @@
+ name: Verify Exclude functionality
+ url: https://nhanes.hms.harvard.edu/transmart/login/forceAuth
+ authmethod: PUB
+ username: 
+ password: 
+ test: regression
+ type: BasicStatisticsTestPlan
+ reporter: ConsoleReporter
+ subset1: \demographics\RACE\mexican
+ subset2:
+ relational:
+ success: patientcountsubset1
+ successvalue: 29939
+ expected: pass 
