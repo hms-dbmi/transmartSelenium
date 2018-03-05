@@ -2,6 +2,8 @@ package dbmi.hms.harvard.edu.testplans;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.util.Iterator;
+import java.util.List;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
@@ -72,13 +74,13 @@ public class BasicStatisticsTestPlan extends Testplan {
 	public void checkWinodwTitle(Reporter reporter) throws InterruptedException {
 
 		System.setProperty(BROWSER, BROWSERDRIVER);
-		LOGGER.info(">>>>>>>>>>>>>>>>>>>>>Launching the Browser>>>>>>>>>>>>>>>>>>\n");
+		LOGGER.info(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>Launching the Browser>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
 		driver = new FirefoxDriver();
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		driver.manage().window().maximize();
 		driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
 		LOGGER.info("");
-		LOGGER.info("************************Loading the Harvard Website***************************\4n");
+		LOGGER.info("********************************Loading the Harvard Website********************************");
 		driver.get(testPlan.get("url").toString());
 		AuthTypes authTypes = new AuthTypes();
 	
@@ -115,7 +117,7 @@ public class BasicStatisticsTestPlan extends Testplan {
 			
 			if (testPlan.get("subset1") != null && testPlan.get("subset1") != "") {
 				for (String path : java.util.Arrays.asList(testPlan.get("subset1").toString().split(","))) {
-					System.out.println("---------"+path);
+			//		System.out.println("---------"+path);
 					DatasetExplorer.class.newInstance().doNavigateByPath(driver, path);
 					DatasetExplorer.class.newInstance().doDragAndDrop(driver, path, "subset1");
 					DatasetExplorer.class.newInstance().doReverseNavigateByPath(driver, path);
@@ -400,6 +402,91 @@ public class BasicStatisticsTestPlan extends Testplan {
 
 	}
 
+		public void verifyGraphs(Reporter reporter) throws Exception {
+		
+		try {
+
+			
+			if (testPlan.get("subset1") != null && testPlan.get("subset1") != "") {
+				for (String path : java.util.Arrays.asList(testPlan.get("subset1").toString().split(","))) 
+				{
+					DatasetExplorer.class.newInstance().doNavigateByPath(driver, path);
+					DatasetExplorer.class.newInstance().doDragAndDrop(driver, path, "subset1");
+					DatasetExplorer.class.newInstance().doReverseNavigateByPath(driver, path);
+
+				}
+
+				driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+				SummaryStatistics.class.newInstance().runSummaryStatistics(driver);
+				//assertThat("").isEqualTo(By.xpath(xpathExpression));
+				
+				//List<Image> images;
+				//List<WebElement> imageElements = driver.findElements(By.xpath(".//img/@src"));
+				//System.out.println("count of images"+imageElements.size());
+				
+				//Verifying Graphs (Sex and Race)
+				
+				List<WebElement> graphs = driver.findElements(By.xpath(".//*[@id='ext-gen157']/div/table/tbody/tr/td[1]/img"));
+				if(graphs.size()!=0)
+					
+				{
+					
+					Iterator<WebElement> itr = graphs.iterator();
+					while(itr.hasNext()) 
+					{
+					    String graph=itr.next().getAttribute("src");
+					    //System.out.println("**************"+graph);
+					    assertThat(graph).contains("jfreechart");
+					    LOGGER.info("-------------------Sex and Race Graph are present on the reports -------------------------");
+					}
+
+									
+					
+				}
+								
+				//LOGGER.info("-------------------Logged in successfully: Title of winodow is -------------------------");
+				//assertThat(winodwTitle).contains("Dataset Explorer");
+
+				/*
+
+				
+				if(driver.findElements(By.xpath("value")).size() != 0){
+					System.out.println("Element is Present");
+					}else{
+					System.out.println("Element is Absent");
+					}
+				*/
+//				SummaryStatisticsResults.class.newInstance().doResults(driver, testPlan, reporter);
+				/*DatasetExplorer.class.newInstance().doClearAnalysis(driver);
+				DatasetExplorer.class.newInstance().doSelectComparison(driver);
+				*/
+				
+			}
+			
+		
+		
+		try {
+			SummaryStatisticsResults.class.newInstance().doResultCheckGraph(driver, testPlan, reporter);
+		} catch (InstantiationException e) {
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			e.printStackTrace();
+		}
+	}
+
+		catch (InstantiationException | IllegalAccessException e) {
+			
+			e.printStackTrace();
+		}
+		//reporter.doReport();
+
+	}
+
+
+	
+	
+	
+	
 	public void doPlan() {
 		try {
 

@@ -86,6 +86,11 @@ public abstract class Testplan{
 		
 	}
 
+	public void verifyGraphs(Reporter reporter) throws  Exception {
+		// TODO Auto-generated method stub
+		
+	}
+
 
 	
 

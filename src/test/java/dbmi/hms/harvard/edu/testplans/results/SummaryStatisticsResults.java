@@ -103,7 +103,6 @@ public class SummaryStatisticsResults extends Results {
 
 	public void doFirstResultCheck(WebDriver driver, Map testPlan, Reporter reporter) {
 		String successType = testPlan.get("success").toString();
-		//  WebDriverWait wait = new WebDriverWait(driver, 0);
 		reporter.appendTestResults(testPlan, "passed");
 	}
 
@@ -203,6 +202,11 @@ public class SummaryStatisticsResults extends Results {
 	        System.out.println("Test Completed.");
 
 
+	}
+
+	public void doResultCheckGraph(WebDriver driver, Map testPlan, Reporter reporter) {
+		// TODO Auto-generated method stub
+		
 	}
 
 	

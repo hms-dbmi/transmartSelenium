@@ -174,7 +174,7 @@ public static void verifySummaryStatsSubsetOneTwo() throws YamlException, Interr
 	}
 
 
-@Test(priority = 9)
+//@Test(priority = 9)
 	public static void verifySummaryStatsExcludeFunctionality()
 			throws YamlException, InterruptedException, InstantiationException, IllegalAccessException {
 
@@ -201,6 +201,19 @@ public static void verifySummaryStatsSubsetOneTwo() throws YamlException, Interr
 
 	}
 
+@Test(priority =12)
+
+		public static void verifySummaryStatsHistogram() throws Exception {
+
+			LOGGER.info(
+					"-------------------------------The test case verify graphs load is running-------------------------");
+			readFile(configProperties.getProperty("verify.summaryStats.subset1"));
+			testPlan.verifyGraphs(reporter);
+			LOGGER.info(
+					"--------------------------------The test case verifySummaryStats is Finshed-------------------------");
+
+
+		}
 
 	@AfterClass
 	public void closeApplication() {
@@ -247,78 +260,6 @@ public static void verifySummaryStatsSubsetOneTwo() throws YamlException, Interr
 			return null;
 		} finally {
 			return newInstance;
-		}
-	}
-
-	// @Test (priority=1)
-
-	public static void testLogin() throws YamlException, InterruptedException {
-
-		LOGGER.info("---------------------------The test case testLogin is running-------------------------");
-
-		Testplan testPlan = null;
-		Reporter reporter = null;
-		try {
-			YamlReader reader = new YamlReader(new FileReader("resources/testConfigs/projects.yaml.template"));
-			Map testConfig = (Map) reader.read();
-			while (testConfig != null) {
-				testPlan = initTestPlan(testConfig.get("type").toString(), testConfig);
-				reporter = initReporter(testConfig.get("reporter").toString());
-				testPlan.checkWinodwTitle(reporter);
-				testConfig = (Map) reader.read();
-			}
-
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			LOGGER.info(
-					"********************************* File Not Found Exception***************************************");
-			e.printStackTrace();
-
-		} catch (YAMLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} finally {
-			// return testplan;
-		}
-	}
-
-	// @Test
-
-	public void testExpandCollapse() throws YamlException, InterruptedException {
-
-		{
-
-			LOGGER.info(
-					"---------------------------The test case verify Expand and collpasing of concept teeeis running-------------------------");
-
-			Testplan testPlan = null;
-			Reporter reporter = null;
-
-			try {
-				YamlReader reader = new YamlReader(new FileReader("resources/testConfigs/projects.yaml.template"));
-				@SuppressWarnings("rawtypes")
-				Map testConfig = (Map) reader.read();
-				while (testConfig != null) {
-
-					testPlan = initTestPlan(testConfig.get("type").toString(), testConfig);
-					reporter = initReporter(testConfig.get("reporter").toString());
-					testPlan.verifyExpandCollpase(reporter);
-					System.out.println("Test Collapse");
-
-				}
-
-			} catch (FileNotFoundException e) {
-				// TODO Auto-generated catch block
-				LOGGER.info(
-						"********************************* File Not Found Exception***************************************");
-				e.printStackTrace();
-
-			} catch (YAMLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} finally {
-				// return testplan;
-			}
 		}
 	}
 

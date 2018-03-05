@@ -2,6 +2,7 @@ package dbmi.hms.harvard.edu.transmartModules;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
@@ -84,4 +85,16 @@ protected void dragDrop(WebDriver driver, WebElement source,WebElement target){
 		}
  		return nodes;
 	}
+	
+	protected boolean isElementPresent(WebDriver driver,By by){
+        try{
+            driver.findElement(by);
+            return true;
+        }
+        catch(NoSuchElementException e){
+            return false;
+        }
+    }
+	
+	
 }
