@@ -68,7 +68,7 @@ public class TestDriver {
 		}
 	}
 
-	@BeforeTest
+@BeforeTest
 		
 	public void setup() throws InterruptedException {
 
@@ -82,7 +82,7 @@ public class TestDriver {
     
 	}
 
-@Test(priority = 1, groups={"Sanity Regression"})
+@Test(priority = 1)
 	public static void verifyLoginWithWinowTitle() throws YamlException, InterruptedException {
 
 		LOGGER.info(
@@ -95,7 +95,7 @@ public class TestDriver {
 
 	}
 
-@Test(priority= 2,groups={"Sanity Regression"})
+@Test(priority= 2,groups={"Sanity"})
 
 	public static void verifySummaryStats() throws YamlException, InterruptedException {
 
@@ -150,17 +150,8 @@ public class TestDriver {
 
 	}
 
+
 @Test(priority = 6,groups={"Sanity Regression"})
-
-	public static void verifyClearButton() throws Exception {
-
-		LOGGER.info("---------------------------The test case verifyClearButton is running-------------------------");
-		readFile(configProperties.getProperty("verify.window.title"));
-		testPlan.verifyClear(reporter);
-		LOGGER.info("---------------------------The test case verifyClearButton is Finshed-------------------------");
-	}
-
-@Test(priority = 7,groups={"Sanity Regression"})
 
 	public static void verifySummaryStatsMultipleSubset1OR()
 			throws YamlException, InterruptedException, InstantiationException, IllegalAccessException {
@@ -174,7 +165,7 @@ public class TestDriver {
 
 	}
 
-@Test(priority = 8,groups={"Sanity Regression"})
+@Test(priority = 7,groups={"Sanity Regression"})
 	public static void verifySummaryStatsMultipleSubset1AND()
 			throws YamlException, InterruptedException, InstantiationException, IllegalAccessException {
 
@@ -187,7 +178,7 @@ public class TestDriver {
 
 	}
 
-@Test(priority = 9,groups={"Sanity Regression"})
+@Test(priority = 8,groups={"Sanity"})
 	public static void verifySummaryStatsExcludeFunctionality()
 			throws YamlException, InterruptedException, InstantiationException, IllegalAccessException {
 
@@ -200,7 +191,7 @@ public class TestDriver {
 
 	}
 
-@Test(priority = 10,groups={"Sanity Regression"})
+@Test(priority = 9,groups={"Sanity Regression"})
 
 	public static void verifySummaryStatsSetValueOperator() throws YamlException, InterruptedException {
 
@@ -214,7 +205,7 @@ public class TestDriver {
 
 	}
 
-@Test(priority = 12,groups={"Sanity Regression"})
+@Test(priority = 10,groups={"Sanity Regression"})
 
 	public static void verifySummaryStatsGraphs() throws Exception {
 
@@ -226,6 +217,16 @@ public class TestDriver {
 				"--------------------------------The test case verifySummaryStats is Finshed-------------------------");
 
 	}
+@Test(priority = 11,groups={"Sanity Regression"})
+
+public static void verifyClearButton() throws Exception {
+
+	LOGGER.info("---------------------------The test case verifyClearButton is running-------------------------");
+	readFile(configProperties.getProperty("verify.window.title"));
+	testPlan.verifyClear(reporter);
+	LOGGER.info("---------------------------The test case verifyClearButton is Finshed-------------------------");
+}
+
 
 @AfterClass
 	public void closeApplication() {
