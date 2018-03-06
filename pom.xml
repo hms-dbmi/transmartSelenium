@@ -23,11 +23,12 @@
     </dependency>
     
     <!-- https://mvnrepository.com/artifact/org.yaml/snakeyaml -->
-<dependency>
+<!-- <dependency>
     <groupId>org.yaml</groupId>
     <artifactId>snakeyaml</artifactId>
     <version>1.19</version>
-</dependency>
+</dependency>-->
+
         <dependency>
         <groupId>org.seleniumhq.selenium</groupId>
         <artifactId>selenium-java</artifactId>
@@ -255,7 +256,7 @@
           </execution>
         </executions>
       </plugin>
-      <plugin>
+   <!--   <plugin>
         <artifactId>maven-compiler-plugin</artifactId>
         <version>3.1</version>
         <executions>
@@ -274,15 +275,15 @@
             </goals>
           </execution>
         </executions>
-      </plugin>
+      </plugin> --> 
       <plugin>
         <artifactId>maven-surefire-plugin</artifactId>
         <version>2.12.4</version>
           <configuration>
-          <systemPropertyVariables>
+         <!--  <systemPropertyVariables>
             <basepath>https://nhanes.hms.harvard.edu/rest/v1</basepath>
 			<accessToken>"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ0ZXN0fGF2bGJvdEBkYm1pLmhtcy5oYXJ2YXJkLmVkdSIsImVtYWlsIjoiYXZsYm90QGRibWkuaG1zLmhhcnZhcmQuZWR1In0.51TYsm-uw2VtI8aGawdggbGdCSrPJvjtvzafd2Ii9NU"</accessToken>
-          </systemPropertyVariables>
+          </systemPropertyVariables> -->
           <suiteXmlFiles>
 				<!-- TestNG suite XML files -->
 					<suiteXmlFile>testng.xml</suiteXmlFile>
@@ -324,6 +325,7 @@
           </execution>
         </executions>
       </plugin>
+      
       <plugin>
         <artifactId>maven-site-plugin</artifactId>
         <version>3.3</version>
@@ -336,12 +338,12 @@
             </goals>
             <configuration>
               <outputDirectory>${project.basedir}\target\site</outputDirectory>
-              <reportPlugins>
+            <!--   <reportPlugins>
                 <reportPlugin>
                   <groupId>org.apache.maven.plugins</groupId>
                   <artifactId>maven-project-info-reports-plugin</artifactId>
                 </reportPlugin>
-              </reportPlugins>
+              </reportPlugins> -->
             </configuration>
           </execution>
           <execution>
@@ -350,7 +352,7 @@
             <goals>
               <goal>deploy</goal>
             </goals>
-            <configuration>
+           <!--   <configuration>
               <outputDirectory>${project.basedir}\target\site</outputDirectory>
               <reportPlugins>
                 <reportPlugin>
@@ -358,22 +360,25 @@
                   <artifactId>maven-project-info-reports-plugin</artifactId>
                 </reportPlugin>
               </reportPlugins>
-            </configuration>
+            </configuration>-->
           </execution>
         </executions>
-        <configuration>
-          <outputDirectory>${project.basedir}\target\site</outputDirectory>
-          <reportPlugins>
-            <reportPlugin>
-              <groupId>org.apache.maven.plugins</groupId>
-              <artifactId>maven-project-info-reports-plugin</artifactId>
-            </reportPlugin>
-          </reportPlugins>
-        </configuration>
+        
       </plugin>
     </plugins>
   </build>
   <reporting>
-    <outputDirectory>${project.basedir}\target\site</outputDirectory>
+    
+       <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <!-- <artifactId>maven-project-info-reports-plugin</artifactId>
+        <version>2.6</version>-->
+        <artifactId>maven-surefire-report-plugin</artifactId>
+        <version>2.20.1</version>
+      </plugin>
+    </plugins>
+    
+    
   </reporting>
 </project>
