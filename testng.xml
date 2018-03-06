@@ -7,7 +7,7 @@
 	<test name="i2b2 Sanity Test Cases">
 		<groups>
 			<run>
-			<include name="Sanity Regression" />
+		<!-- 	<include name="Sanity Regression" /> -->
 			</run>
 		</groups>
 		<classes>
