@@ -121,7 +121,7 @@ public class BasicStatisticsTestPlan extends Testplan {
 
 				}
 
-				driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+				driver.manage().timeouts().implicitlyWait(49, TimeUnit.SECONDS);
 				SummaryStatistics.class.newInstance().runSummaryStatistics(driver);
 				SummaryStatisticsResults.class.newInstance().doResults(driver, testPlan, reporter);
 				DatasetExplorer.class.newInstance().doClearAnalysis(driver);
@@ -149,7 +149,7 @@ public class BasicStatisticsTestPlan extends Testplan {
 
 				}
 				DatasetExplorer.class.newInstance().doSelectExclude(driver);
-				driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+				driver.manage().timeouts().implicitlyWait(49, TimeUnit.SECONDS);
 				SummaryStatistics.class.newInstance().runSummaryStatistics(driver);
 				SummaryStatisticsResults.class.newInstance().doResults(driver, testPlan, reporter);
 				DatasetExplorer.class.newInstance().doClearAnalysis(driver);
@@ -191,7 +191,7 @@ public class BasicStatisticsTestPlan extends Testplan {
 
 			e.printStackTrace();
 		}
-		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+		driver.manage().timeouts().implicitlyWait(49, TimeUnit.SECONDS);
 		SummaryStatistics.class.newInstance().runSummaryStatistics(driver);
 		SummaryStatisticsResults.class.newInstance().doResults(driver, testPlan, reporter);
 		DatasetExplorer.class.newInstance().doClearAnalysis(driver);
@@ -225,7 +225,7 @@ public class BasicStatisticsTestPlan extends Testplan {
 
 			e.printStackTrace();
 		}
-		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+		driver.manage().timeouts().implicitlyWait(49, TimeUnit.SECONDS);
 		SummaryStatistics.class.newInstance().runSummaryStatistics(driver);
 		SummaryStatisticsResults.class.newInstance().doResults(driver, testPlan, reporter);
 		DatasetExplorer.class.newInstance().doClearAnalysis(driver);
@@ -245,7 +245,7 @@ public class BasicStatisticsTestPlan extends Testplan {
 
 				}
 
-				driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+				driver.manage().timeouts().implicitlyWait(49, TimeUnit.SECONDS);
 				SummaryStatistics.class.newInstance().runSummaryStatistics(driver);
 				SummaryStatisticsResults.class.newInstance().doResults(driver, testPlan, reporter);
 				DatasetExplorer.class.newInstance().doClearAnalysis(driver);
@@ -264,17 +264,15 @@ public class BasicStatisticsTestPlan extends Testplan {
 		try {
 
 			for (String path : java.util.Arrays.asList(testPlan.get("subset2").toString().split(","))) {
-				// Thread.sleep(30000);
 				DatasetExplorer.class.newInstance().doNavigateByPath(driver, path);
 				String subset = "subset2";
 				DatasetExplorer.class.newInstance().doDragAndDrop(driver, path, subset);
 				DatasetExplorer.class.newInstance().doReverseNavigateByPath(driver, path);
 			}
 
-			driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+			driver.manage().timeouts().implicitlyWait(49, TimeUnit.SECONDS);
 			SummaryStatistics.class.newInstance().runSummaryStatistics(driver);
 			SummaryStatisticsResults.class.newInstance().doResults(driver, testPlan, reporter);
-			// reporter.doReport();
 			DatasetExplorer.class.newInstance().doClearAnalysis(driver);
 			DatasetExplorer.class.newInstance().doSelectComparison(driver);
 
@@ -289,7 +287,7 @@ public class BasicStatisticsTestPlan extends Testplan {
 		try {
 
 			for (String path : java.util.Arrays.asList(testPlan.get("subset1").toString().split(","))) {
-				// Thread.sleep(30000);
+				
 				DatasetExplorer.class.newInstance().doNavigateByPath(driver, path);
 				String subset = "subset1";
 				DatasetExplorer.class.newInstance().doDragAndDrop(driver, path, subset);
@@ -297,14 +295,14 @@ public class BasicStatisticsTestPlan extends Testplan {
 			}
 
 			for (String path : java.util.Arrays.asList(testPlan.get("subset2").toString().split(","))) {
-				// Thread.sleep(30000);
+				
 				DatasetExplorer.class.newInstance().doNavigateByPath(driver, path);
 				String subset = "subset2";
 				DatasetExplorer.class.newInstance().doDragAndDrop(driver, path, subset);
 				DatasetExplorer.class.newInstance().doReverseNavigateByPath(driver, path);
 			}
 
-			driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+			driver.manage().timeouts().implicitlyWait(49, TimeUnit.SECONDS);
 			SummaryStatistics.class.newInstance().runSummaryStatistics(driver);
 			SummaryStatisticsResults.class.newInstance().doResults(driver, testPlan, reporter);
 			DatasetExplorer.class.newInstance().doClearAnalysis(driver);
@@ -320,13 +318,13 @@ public class BasicStatisticsTestPlan extends Testplan {
 		try {
 
 			for (String path : java.util.Arrays.asList(testPlan.get("subset1").toString().split(","))) {
-				Thread.sleep(40000);
+				//Thread.sleep(40000);
 				DatasetExplorer.class.newInstance().doNavigateByPath(driver, path);
 				String subset = "subset1";
 				DatasetExplorer.class.newInstance().doDragAndDrop(driver, path, subset);
 			}
 
-			driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+			driver.manage().timeouts().implicitlyWait(49, TimeUnit.SECONDS);
 			DatasetExplorer.class.newInstance().doclickSubsetValue(driver);
 			DatasetExplorer.class.newInstance().enterValue(driver);
 

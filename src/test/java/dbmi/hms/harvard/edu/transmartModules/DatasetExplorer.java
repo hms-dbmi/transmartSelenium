@@ -18,9 +18,8 @@ public class DatasetExplorer extends Module {
 	private String comparisonTab = ".//*[@id='resultsTabPanel__queryPanel']/a[2]/em/span/span";
 	private String subsetValue = ".//*[@id='setValueLowValue']";
 	private String subset = "10";
-	private String subsetOKbutton=".//*[@id='ext-gen189']"; 
+	private String subsetOKbutton = ".//*[@id='ext-gen189']";
 
-	
 	public void doSelectNavigationTab(WebDriver driver) {
 		click(driver, driver.findElement(By.xpath(navigationTab)));
 	}
@@ -60,23 +59,21 @@ public class DatasetExplorer extends Module {
 
 	public void doDragAndDrop(WebDriver driver, String path, String subset) {
 		List<String> nodes = getNodes(path);
-		try{
-		WebElement source = driver.findElement(By.partialLinkText(nodes.get(nodes.size() - 1)));
-		String targetStr = null;
-		if (subset.equalsIgnoreCase("subset1"))
-			targetStr = subset1box;
-		if (subset.equalsIgnoreCase("subset2"))
-			targetStr = subset2box;
-		if (subset.equalsIgnoreCase("subset1mul"))
-			targetStr = subset1boxtwo;
-		if (subset.equalsIgnoreCase("relation"))
-			targetStr = relationbox;
-		WebElement target = driver.findElement(By.xpath(targetStr));
-		dragDrop(driver, source, target);
-		}
-		catch(Exception e)
-		{
-			System.out.println("Unable to find the element" +e.getMessage());
+		try {
+			WebElement source = driver.findElement(By.partialLinkText(nodes.get(nodes.size() - 1)));
+			String targetStr = null;
+			if (subset.equalsIgnoreCase("subset1"))
+				targetStr = subset1box;
+			if (subset.equalsIgnoreCase("subset2"))
+				targetStr = subset2box;
+			if (subset.equalsIgnoreCase("subset1mul"))
+				targetStr = subset1boxtwo;
+			if (subset.equalsIgnoreCase("relation"))
+				targetStr = relationbox;
+			WebElement target = driver.findElement(By.xpath(targetStr));
+			dragDrop(driver, source, target);
+		} catch (Exception e) {
+			System.out.println("Unable to find the element" + e.getMessage());
 		}
 	}
 
@@ -87,6 +84,4 @@ public class DatasetExplorer extends Module {
 
 	}
 
-	
-	
 }
