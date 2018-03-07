@@ -1,4 +1,4 @@
- name: Verify Subset2 Functionality
+ name: Verify Summary Stats for Subset2 
  url: https://nhanes.hms.harvard.edu/transmart/login/forceAuth
  authmethod: PUB
  username: 

@@ -6,8 +6,8 @@
  test: regression
  type: BasicStatisticsTestPlan
  reporter: ConsoleReporter
- subset1: \demographics\RACE\black
- subset3: \demographics\SEX\female\
+ subset1: \demographics\SEX\female\
+ subset3: 
  subset2:
  relational:
  success: patientcountsubset1

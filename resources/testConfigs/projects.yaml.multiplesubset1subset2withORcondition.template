@@ -1,4 +1,4 @@
- name: Verify Summary Stats for Multiple Subset1 (AND) Condition
+ name: Verify Summary Stats for Multiple Subset1 (OR) Condition
  url: https://nhanes.hms.harvard.edu/transmart/login/forceAuth
  authmethod: PUB
  username: 
@@ -8,8 +8,9 @@
  reporter: ConsoleReporter
  subset1: \demographics\RACE\white
  subsetmul1: \demographics\SEX\female\
- subset2:
+ subset2: \demographics\RACE\black
+ subsetmul2: \demographics\SEX\female\
  relational:
- success: patientcountsubset1
- successvalue: 8197
+ success: patientCountCommon
+ successvalue: 21210
  expected: pass 
