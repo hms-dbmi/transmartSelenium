@@ -7,11 +7,12 @@ import java.util.Map;
 public abstract class Reporter {
 	@SuppressWarnings("rawtypes")
 	private List<Map> testResults = new ArrayList<Map>();
-	
-	public void doReport(){};
-	
+
+	public void doReport() {
+	};
+
 	@SuppressWarnings({ "unchecked", "rawtypes" })
-	public Map appendTestResults(Map testPlan, String result){
+	public Map appendTestResults(Map testPlan, String result) {
 		testPlan.put("TestResult", result);
 		testResults.add(testPlan);
 		return testPlan;
@@ -20,11 +21,9 @@ public abstract class Reporter {
 	public List<Map> getTestResults() {
 		return testResults;
 	}
-	
-	
 
 	public void setTestResults(List<Map> testResults) {
 		this.testResults = testResults;
 	};
-	
+
 }

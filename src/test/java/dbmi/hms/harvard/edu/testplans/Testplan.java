@@ -56,7 +56,7 @@ public abstract class Testplan {
 	public void verifyClear(Reporter reporter) throws Exception {
 	};
 
-	public void doPlanMultipleSubset(Reporter reporter)
+	public void doPlanMultipleSubset1OR(Reporter reporter)
 			throws InterruptedException, InstantiationException, IllegalAccessException {
 	};
 
@@ -105,6 +105,21 @@ public abstract class Testplan {
 	}
 
 	public void loginSite() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void verifyMultipleSubset1and2OR(Reporter reporter) throws InterruptedException, InstantiationException, IllegalAccessException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void verifySummaryStatsLab(Reporter reporter) throws  Exception {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void verifySumStasQue(Reporter reporter) {
 		// TODO Auto-generated method stub
 		
 	}
