@@ -1,0 +1,16 @@
+ name: Verify Summary Stats for Subset1 Set value
+ url: https://nhanes.hms.harvard.edu/transmart/login/forceAuth
+ authmethod: PUB
+ username: 
+ password: 
+ test: regression
+ type: BasicStatisticsTestPlan
+ reporter: ConsoleReporter
+ subset1: \laboratory\blood\Hemoglobin
+ subset2: \demographics\RACE\other
+ relational:
+ success: patientCountCommon
+ successvalue: 599
+ expected: pass
+ subsetValue1: 13.5
+ 

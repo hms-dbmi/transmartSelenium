@@ -1,4 +1,4 @@
- name: Verify Summary Stats for Subset1
+ name: Verify Summary Stats and Search by Sub
  url: https://nhanes.hms.harvard.edu/transmart/login/forceAuth
  authmethod: PUB
  username: 
@@ -12,4 +12,6 @@
  relational:
  success: patientcountsubset1
  successvalue: 21210
- expected: pass 
+ expected: pass
+ searchTerm: Vitamin
+ expectedSearchResult: Found 15 results.

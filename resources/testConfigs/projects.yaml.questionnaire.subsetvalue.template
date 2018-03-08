@@ -1,0 +1,16 @@
+ name: Verify Summary Stats for Subset1 Set value
+ url: https://nhanes.hms.harvard.edu/transmart/login/forceAuth
+ authmethod: PUB
+ username: 
+ password: 
+ test: regression
+ type: BasicStatisticsTestPlan
+ reporter: ConsoleReporter
+ subset1: \questionnaire\housing\house age
+ subset2: \demographics\RACE\mexican
+ relational:
+ success: patientCountCommon
+ successvalue: 6657
+ expected: pass
+ subsetValue1: 15
+ 
