@@ -90,8 +90,7 @@ public class TestDriver {
 		LOGGER.info("---------------------------------The test case verifyWinowTitle is Finshed-------------------------");
 
 	}
-
-/*Verify that Laboratory terms loads the reports correctly */
+/*Verify that Laboratory terms loads the reports correctly*/ 
 
 
 @Test(priority = 2, groups = { "Sanity Regression" })
@@ -237,15 +236,15 @@ public static void verifySummaryStatsLaboratory()
 }
 
 
-@Test(priority = 14,groups={"Sanity Regression"})
+@Test(priority = 13,groups={"Sanity Regression"})
 
 public static void verifyQuiestionnaire() throws Exception {
 
-LOGGER.info("---------------------------The test case verifyMultipleSubsetValuesLab is running-------------------------------"); 
+LOGGER.info("---------------------------The test case verifyQuiestionnaire is running-------------------------------"); 
 //readFile(configProperties.getProperty("verify.summaryStats.labsubsetvalue"));
-readFile(configProperties.getProperty("verify.summarystats.entersubset.value"));
+readFile(configProperties.getProperty("verify.summaryStats.questionnaire"));
 testPlan.verifySumStasQue(reporter); 
-LOGGER.info( "---------------------------The test case verifyMultipleSubsetValuesLab is Finshed------------------------------"); 
+LOGGER.info( "---------------------------The test case verifyQuiestionnaire is Finshed------------------------------"); 
 }
 
 
@@ -257,7 +256,9 @@ LOGGER.info( "---------------------------The test case verifyMultipleSubsetValue
 	  readFile(configProperties.getProperty("verify.window.title"));
 	  testPlan.verifyClear(reporter); 
 	  LOGGER.info( "---------------------------The test case verifyClearButton is Finshed------------------------------"); 
-	  }
+
+
+}
 
 @AfterClass
 	public void closeApplication() {

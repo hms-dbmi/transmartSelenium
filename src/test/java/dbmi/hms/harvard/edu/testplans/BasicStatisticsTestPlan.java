@@ -433,6 +433,51 @@ public class BasicStatisticsTestPlan extends Testplan {
 		}
 	}
 
+	
+	/* This method checks Summary Stats for Questionnaire Terms */
+	public void verifySumStasQue(Reporter reporter) throws InterruptedException {
+
+		try {
+			
+			String subsetvalue=testPlan.get("subsetValue1").toString();
+			//double SubsetvalueLab=Double.parseDouble(subsetvalue);
+		
+			if (testPlan.get("subset1") != null && testPlan.get("subset1") != "") {
+				for (String path : java.util.Arrays.asList(testPlan.get("subset1").toString().split(","))) {
+					DatasetExplorer.class.newInstance().doNavigateByPath(driver, path);
+					DatasetExplorer.class.newInstance().doDragAndDrop(driver, path, "subset1");
+					DatasetExplorer.class.newInstance().doReverseNavigateByPath(driver, path);
+
+				}
+			}
+			driver.manage().timeouts().implicitlyWait(49, TimeUnit.SECONDS);
+			DatasetExplorer.class.newInstance().doclickSubsetValue(driver);
+			DatasetExplorer.class.newInstance().enterValue(driver, subsetvalue);
+
+			if (testPlan.get("subset2") != null && testPlan.get("subset2") != "") {
+				for (String path : java.util.Arrays.asList(testPlan.get("subset2").toString().split(","))) {
+					DatasetExplorer.class.newInstance().doNavigateByPath(driver, path);
+					DatasetExplorer.class.newInstance().doDragAndDrop(driver, path, "subset2");
+					DatasetExplorer.class.newInstance().doReverseNavigateByPath(driver, path);
+				}
+
+			}
+
+			SummaryStatistics.class.newInstance().runSummaryStatistics(driver);
+			SummaryStatisticsResults.class.newInstance().doResults(driver, testPlan, reporter);
+			DatasetExplorer.class.newInstance().doClearAnalysis(driver);
+			DatasetExplorer.class.newInstance().doSelectComparison(driver);
+
+		} catch (InstantiationException | IllegalAccessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	
+	
+	
+	
 	public void closeDriver() {
 		driver.quit();
 	}

@@ -119,7 +119,7 @@ public abstract class Testplan {
 		
 	}
 
-	public void verifySumStasQue(Reporter reporter) {
+	public void verifySumStasQue(Reporter reporter) throws InterruptedException {
 		// TODO Auto-generated method stub
 		
 	}
