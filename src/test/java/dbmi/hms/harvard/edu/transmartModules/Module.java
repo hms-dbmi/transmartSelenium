@@ -79,7 +79,7 @@ public abstract class Module {
 
 	protected List<String> getNodes(String path) {
 		List<String> nodes = new ArrayList<String>();
-		for (String node : path.split("\\\\")) {
+		for (String node:path.split("\\\\")) {
 			if (!node.isEmpty()) {
 				nodes.add(node);
 			}

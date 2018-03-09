@@ -17,8 +17,9 @@ public class DatasetExplorer extends Module {
 	private String clear = ".//*[@id='ext-gen89']";
 	private String comparisonTab = ".//*[@id='resultsTabPanel__queryPanel']/a[2]/em/span/span";
 	private String subsetValue = ".//*[@id='setValueLowValue']";
-	private String subset = "10";
+	//private String subset = "10";
 	private String subsetOKbutton = ".//*[@id='ext-gen189']";
+	private String searchedSubject =".//span[contains(text(),'mexican')]";
 	
 	public void doSelectNavigationTab(WebDriver driver) {
 		click(driver, driver.findElement(By.xpath(navigationTab)));
@@ -36,7 +37,7 @@ public class DatasetExplorer extends Module {
 		click(driver, driver.findElement(By.xpath(subsetValue)));
 	}
 
-	public void enterValue(WebDriver driver,String SubsetValue) {
+	public void enterValue(WebDriver driver, String SubsetValue) {
 		driver.findElement(By.xpath(subsetValue)).sendKeys(SubsetValue);
 		driver.findElement(By.xpath(subsetOKbutton)).click();
 	}
@@ -83,5 +84,23 @@ public class DatasetExplorer extends Module {
 		alert.accept();
 
 	}
+	
+	public void doSearchDoDragAndDrop(WebDriver driver, String path, String subset) 
+	{
+		
+		WebElement source = driver.findElement(By.xpath(searchedSubject));
+			String targetStr = null;
+			if (subset.equalsIgnoreCase("subset1"))
+				targetStr = subset1box;
+			if (subset.equalsIgnoreCase("subset2"))
+				targetStr = subset2box;
+			if (subset.equalsIgnoreCase("subset1mul"))
+				targetStr = subset1boxtwo;
+			if (subset.equalsIgnoreCase("relation"))
+				targetStr = relationbox;
+			WebElement target = driver.findElement(By.xpath(targetStr));
+			dragDrop(driver, source, target);
+		} 
+	
 
 }

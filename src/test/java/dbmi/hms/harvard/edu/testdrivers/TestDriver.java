@@ -79,7 +79,6 @@ public class TestDriver {
 		LOGGER.info("______________________________________Initial Setting up is Done______________________________________");
 
 	}
-
 @Test(priority = 1)
 	public static void verifyLoginWithWinowTitle() throws YamlException, InterruptedException {
 
@@ -90,6 +89,19 @@ public class TestDriver {
 		LOGGER.info("---------------------------------The test case verifyWinowTitle is Finshed-------------------------");
 
 	}
+
+//@Test(priority = 2, groups = { "Sanity Regression" })
+
+public static void verifySummaryStatSearch() throws YamlException, Exception {
+
+	LOGGER.info("-------------------------------The test case verifySummaryStatSearch is running-------------------------");
+	readFile(configProperties.getProperty("verify.window.title"));
+	testPlan.doPlanSummaryStatSearch(reporter);
+	LOGGER.info("--------------------------------The test case verifySummaryStatSearch is Finshed-------------------------");
+}
+
+
+
 /*Verify that Laboratory terms loads the reports correctly*/ 
 
 
@@ -152,17 +164,18 @@ public class TestDriver {
 
 	}
 
+
 @Test(priority = 7, groups = { "Sanity Regression" })
 
-	public static void verifySummaryStatsSetValue() throws YamlException, InterruptedException {
+public static void verifySummaryStatsSetValue() throws YamlException, InterruptedException {
 
-		LOGGER.info("---------------------------The test case verifySummaryStatsSetValue is running-------------------------");
-		readFile(configProperties.getProperty("verify.summarystats.entersubset.value"));
-		// readFile("resources/testConfigs/projects.yaml.subset1.setvalue.template");
-		testPlan.doPlanSetValue(reporter);
-		LOGGER.info("---------------------------The test case verifySummaryStatsSetValue is Finshed-------------------------");
+	LOGGER.info("---------------------------The test case verifySummaryStatsSetValue is running-------------------------");
+	readFile(configProperties.getProperty("verify.summarystats.entersubset.value"));
+	testPlan.doPlanSetValue(reporter);
+	LOGGER.info("---------------------------The test case verifySummaryStatsSetValue is Finshed-------------------------");
 
-	}
+}
+
 
 @Test(priority = 8, groups = { "Sanity Regression" })
 
@@ -198,19 +211,7 @@ public class TestDriver {
 	  
 	  }
 
-/*	  
-@Test(priority = 2, groups = { "Sanity Regression" })
-
-public static void verifySummaryStatsMultipleSubsetValue()
-		throws YamlException, InterruptedException, InstantiationException, IllegalAccessException {
-
-	LOGGER.info("-------------------------------The test case verifySummaryStatsMultipleSubset1OR is running-------------------------");
-	readFile(configProperties.getProperty("verify.summarystats.entersubset.value"));	
-	testPlan.doPlanMultipleSubsetValueLab(reporter);
-	LOGGER.info("--------------------------------The test case verifySummaryStatsMultipleSubset1OR is Finshed-------------------------");
-}
-*/
-
+	  
 
   @Test(priority = 11,groups={"Sanity Regression"})
 	 
@@ -259,6 +260,29 @@ LOGGER.info( "---------------------------The test case verifyQuiestionnaire is F
 
 
 }
+
+
+@Test(priority = 15, groups = { "Sanity Regression" })
+
+public static void verifySearch() throws YamlException, Exception {
+
+	LOGGER.info("-------------------------------The test case verifySearch  is running-------------------------");
+	readFile(configProperties.getProperty("verify.window.title"));
+	testPlan.doSearch(reporter);
+	LOGGER.info("--------------------------------The test case verifySearch is Finshed-------------------------");
+}
+
+/*@Test(priority = 2, groups = { "Sanity Regression" })
+
+public static void verifySummaryStatsMultipleSubsetValue()
+		throws YamlException, InterruptedException, InstantiationException, IllegalAccessException {
+
+	LOGGER.info("-------------------------------The test case verifySummaryStatsMultipleSubset1OR is running-------------------------");
+	readFile(configProperties.getProperty("verify.summarystats.entersubset.value"));	
+	testPlan.doPlanMultipleSubsetValueLab(reporter);
+	LOGGER.info("--------------------------------The test case verifySummaryStatsMultipleSubset1OR is Finshed-------------------------");
+}
+*/
 
 @AfterClass
 	public void closeApplication() {

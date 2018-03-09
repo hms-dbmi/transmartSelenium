@@ -85,7 +85,8 @@ public class SummaryStatisticsResults extends Results {
 		// WebDriverWait wait = new WebDriverWait(driver, 0);
 		WebDriverWait wait = new WebDriverWait(driver, 30);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[contains(text(), 'Subject Totals')]")));
-		// wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[contains(text(),// 'Subject Totals')]")));
+		// wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[contains(text(),//
+		// 'Subject Totals')]")));
 		switch (successType) {
 		case "patientcountsubset1":
 			doVerifyPatientCountSubset1(driver, testPlan, reporter);
@@ -93,11 +94,11 @@ public class SummaryStatisticsResults extends Results {
 		case "patientcountsubset2":
 			doVerifyPatientCountSubset2(driver, testPlan, reporter);
 			break;
-			
+
 		case "patientCountCommon":
 			doVerifypatientCountCommon(driver, testPlan, reporter);
 			break;
-			
+
 		}
 	}
 
@@ -117,7 +118,7 @@ public class SummaryStatisticsResults extends Results {
 		}
 		;
 	}
-	
+
 	private void doVerifyPatientCountSubset2(WebDriver driver, Map testPlan, Reporter reporter) {
 		String successVal = testPlan.get("successvalue").toString();
 		String resultBox = driver.findElement(By.xpath(patientCountSubset2)).getText();
@@ -145,24 +146,13 @@ public class SummaryStatisticsResults extends Results {
 		}
 		;
 
-		//String actual = "test";
-		//Assert.assertEquals(resultBox, successVal);
-		
-		try{
+		try {
 			Assert.assertEquals(resultBox, successVal);
-	        }
-			catch(AssertionError e)
-	        {
-	            System.out.println("Assertion error. ");
-	        }
-
-	        //System.out.println("Test Completed.");
-
+		} catch (AssertionError e) {
+			System.out.println("Assertion error. ");
+		}
 
 	}
-
-	
-
 
 	private void doVerifypatientCountCommon(WebDriver driver, Map testPlan, Reporter reporter) {
 		String successVal = testPlan.get("successvalue").toString();
@@ -189,33 +179,20 @@ public class SummaryStatisticsResults extends Results {
 				reporter.appendTestResults(testPlan, "failed");
 			}
 		}
-		
 
-		try{
+		try {
 			Assert.assertEquals(resultBox, successVal);
-	        }catch(AssertionError e)
-	        {
-	            System.out.println("Assertion error. ");
-	            //reporter.appendTestResults(testPlan, "failed");
-	        }
+		} catch (AssertionError e) {
+			System.out.println("Sub Totals on the report is not matching to expected ");
+			// reporter.appendTestResults(testPlan, "failed");
+		}
 
-	        System.out.println("Test Completed.");
-
+		// System.out.println("Test Completed.");
 
 	}
 
 	public void doResultCheckGraph(WebDriver driver, Map testPlan, Reporter reporter) {
 		// TODO Auto-generated method stub
-		
+
 	}
-
-	
-	
-	/**
-	 * to-do use reporting object to output to log4j
-	 */
-
-	/**
-	 * to-do use reporting object to output to html report?
-	 */
 }

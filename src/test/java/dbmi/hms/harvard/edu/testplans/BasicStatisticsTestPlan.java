@@ -13,10 +13,13 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
+import com.fasterxml.jackson.databind.ser.SerializerCache;
+
 import dbmi.hms.harvard.edu.authentication.AuthTypes;
 import dbmi.hms.harvard.edu.reporter.Reporter;
 import dbmi.hms.harvard.edu.testplans.results.SummaryStatisticsResults;
 import dbmi.hms.harvard.edu.transmartModules.DatasetExplorer;
+import dbmi.hms.harvard.edu.transmartModules.SearchBySubject;
 import dbmi.hms.harvard.edu.transmartModules.SummaryStatistics;
 
 public class BasicStatisticsTestPlan extends Testplan {
@@ -370,6 +373,7 @@ public class BasicStatisticsTestPlan extends Testplan {
 	}
 
 	public void doPlanSetValue(Reporter reporter) throws InterruptedException {
+		String subsetValue = testPlan.get("subsetValue").toString();
 		try {
 
 			for (String path : java.util.Arrays.asList(testPlan.get("subset1").toString().split(","))) {
@@ -377,10 +381,10 @@ public class BasicStatisticsTestPlan extends Testplan {
 				String subset = "subset1";
 				DatasetExplorer.class.newInstance().doDragAndDrop(driver, path, subset);
 			}
-
+			
 			driver.manage().timeouts().implicitlyWait(49, TimeUnit.SECONDS);
 			DatasetExplorer.class.newInstance().doclickSubsetValue(driver);
-			// DatasetExplorer.class.newInstance().enterValue(driver);
+			DatasetExplorer.class.newInstance().enterValue(driver, subsetValue);
 
 			SummaryStatistics.class.newInstance().runSummaryStatistics(driver);
 			SummaryStatisticsResults.class.newInstance().doResults(driver, testPlan, reporter);
@@ -397,10 +401,8 @@ public class BasicStatisticsTestPlan extends Testplan {
 	public void verifySummaryStatsLab(Reporter reporter) throws InterruptedException {
 
 		try {
-			
-			String subsetvalue=testPlan.get("subsetValue1").toString();
-			//double SubsetvalueLab=Double.parseDouble(subsetvalue);
-		
+
+			String subsetvalue = testPlan.get("subsetValue1").toString();
 			if (testPlan.get("subset1") != null && testPlan.get("subset1") != "") {
 				for (String path : java.util.Arrays.asList(testPlan.get("subset1").toString().split(","))) {
 					DatasetExplorer.class.newInstance().doNavigateByPath(driver, path);
@@ -433,15 +435,14 @@ public class BasicStatisticsTestPlan extends Testplan {
 		}
 	}
 
-	
 	/* This method checks Summary Stats for Questionnaire Terms */
 	public void verifySumStasQue(Reporter reporter) throws InterruptedException {
 
 		try {
-			
-			String subsetvalue=testPlan.get("subsetValue1").toString();
-			//double SubsetvalueLab=Double.parseDouble(subsetvalue);
-		
+
+			String subsetvalue = testPlan.get("subsetValue1").toString();
+			// double SubsetvalueLab=Double.parseDouble(subsetvalue);
+
 			if (testPlan.get("subset1") != null && testPlan.get("subset1") != "") {
 				for (String path : java.util.Arrays.asList(testPlan.get("subset1").toString().split(","))) {
 					DatasetExplorer.class.newInstance().doNavigateByPath(driver, path);
@@ -474,10 +475,70 @@ public class BasicStatisticsTestPlan extends Testplan {
 		}
 	}
 
-	
-	
-	
-	
+	public void doSearch(Reporter reporter) throws InterruptedException {
+
+		String searchTerm = testPlan.get("searchTerm").toString();
+		try {
+			SearchBySubject.class.newInstance().doSelectNavigationTab(driver);
+			SearchBySubject.class.newInstance().doSearch(driver, searchTerm);
+			Thread.sleep(20000);
+			SearchBySubject.class.newInstance().getSearchResult(driver);
+			String SearchResult1 = SearchBySubject.result;
+			String expected = testPlan.get("expectedSearchResult").toString();
+			assertThat(SearchResult1).contains(testPlan.get("expectedSearchResult").toString());
+		
+					try {
+						SummaryStatisticsResults.class.newInstance().doFirstResultCheck(driver, testPlan, reporter);
+					} 
+					catch (InstantiationException e) 
+					{
+						e.printStackTrace();
+					}
+		}
+			catch (IllegalAccessException e) 
+			{
+				e.printStackTrace();
+			} catch (InstantiationException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+	}	
+		
+public void doPlanSummaryStatSearch(Reporter reporter) throws InterruptedException {
+
+				String searchStats = testPlan.get("searchTermsum").toString();
+				try {
+					SearchBySubject.class.newInstance().doSelectNavigationTab(driver);
+					SearchBySubject.class.newInstance().doSearch(driver, searchStats);
+					Thread.sleep(10000);
+					SearchBySubject.class.newInstance().getSearchResult(driver);
+					String searchResult1 = SearchBySubject.result;
+					//System.out.println("Search result is ---------" +searchResult1.substring(6,7));
+								
+					if (searchResult1.substring(6,7).equals("1"))
+					{
+						
+					//TO -Do
+					}
+						
+					
+					//assertThat(SearchResult1).contains(testPlan.get("expectedSearchResult").toString());
+
+					try {
+						SummaryStatisticsResults.class.newInstance().doFirstResultCheck(driver, testPlan, reporter);
+					} catch (InstantiationException e) {
+						e.printStackTrace();
+					} catch (IllegalAccessException e) {
+						e.printStackTrace();
+					}
+
+		} catch (InstantiationException | IllegalAccessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
+
 	public void closeDriver() {
 		driver.quit();
 	}
