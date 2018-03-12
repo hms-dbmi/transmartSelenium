@@ -95,19 +95,39 @@ public class BasicStatisticsTestPlan extends Testplan {
 		authTypes.doAuth(driver, testPlan);
 	}
 
-	public void checkWinodwTitle(Reporter reporter) throws InterruptedException {
+	public void checkWinodwTitle(Reporter reporter) throws InterruptedException 
+	{
 		String winodwTitle = driver.getTitle();
 		LOGGER.info("-------------------Logged in successfully: Title of winodow is -------------------------"
 				+ winodwTitle);
-		assertThat(winodwTitle).contains("Dataset Explorer");
-
-		try {
-			SummaryStatisticsResults.class.newInstance().doFirstResultCheck(driver, testPlan, reporter);
-		} catch (InstantiationException e) {
-			e.printStackTrace();
-		} catch (IllegalAccessException e) {
-			e.printStackTrace();
+		
+		if (winodwTitle.equals("Dataset Explorer"))
+		{
+				try
+				{
+					SummaryStatisticsResults.class.newInstance().doAssertResultTrue(driver, testPlan, reporter);
+				}
+				catch (InstantiationException e) {
+					e.printStackTrace();
+				} 
+				catch (IllegalAccessException e) {
+					e.printStackTrace();
+				}
 		}
+		
+		else{
+			
+			try {
+				SummaryStatisticsResults.class.newInstance().doAssertResultFalse(driver, testPlan, reporter);
+			} catch (InstantiationException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IllegalAccessException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
 	}
 
 	public void doPlan(Reporter reporter) throws InterruptedException {
@@ -475,7 +495,7 @@ public class BasicStatisticsTestPlan extends Testplan {
 		}
 	}
 
-	public void doSearch(Reporter reporter) throws InterruptedException {
+	public void doSearch(Reporter reporter) throws InterruptedException, Exception {
 
 		String searchTerm = testPlan.get("searchTerm").toString();
 		try {
@@ -485,23 +505,29 @@ public class BasicStatisticsTestPlan extends Testplan {
 			SearchBySubject.class.newInstance().getSearchResult(driver);
 			String SearchResult1 = SearchBySubject.result;
 			String expected = testPlan.get("expectedSearchResult").toString();
-			assertThat(SearchResult1).contains(testPlan.get("expectedSearchResult").toString());
-		
-					try {
-						SummaryStatisticsResults.class.newInstance().doFirstResultCheck(driver, testPlan, reporter);
+			//assertThat(SearchResult1).contains(testPlan.get("expectedSearchResult").toString());
+		if (SearchResult1.equals(testPlan.get("expectedSearchResult").toString()))
+		{
+				try {
+					
+					SummaryStatisticsResults.class.newInstance().doAssertResultTrue(driver, testPlan, reporter);
 					} 
 					catch (InstantiationException e) 
 					{
 						e.printStackTrace();
 					}
 		}
+		
+		else{
+			SummaryStatisticsResults.class.newInstance().doAssertResultFalse(driver, testPlan, reporter);
+		}
+		}
 			catch (IllegalAccessException e) 
 			{
 				e.printStackTrace();
-			} catch (InstantiationException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
 			}
+		
+		SearchBySubject.class.newInstance().doClearSearchBox(driver);
 	}	
 		
 public void doPlanSummaryStatSearch(Reporter reporter) throws InterruptedException {
@@ -513,30 +539,36 @@ public void doPlanSummaryStatSearch(Reporter reporter) throws InterruptedExcepti
 					Thread.sleep(10000);
 					SearchBySubject.class.newInstance().getSearchResult(driver);
 					String searchResult1 = SearchBySubject.result;
-					//System.out.println("Search result is ---------" +searchResult1.substring(6,7));
 								
-					if (searchResult1.substring(6,7).equals("1"))
-					{
-						
-					//TO -Do
-					}
-						
-					
-					//assertThat(SearchResult1).contains(testPlan.get("expectedSearchResult").toString());
-
-					try {
-						SummaryStatisticsResults.class.newInstance().doFirstResultCheck(driver, testPlan, reporter);
-					} catch (InstantiationException e) {
-						e.printStackTrace();
-					} catch (IllegalAccessException e) {
-						e.printStackTrace();
-					}
+				if (searchResult1.substring(6,7).equals("1"))
+						{
+							
+							DatasetExplorer.class.newInstance().doSearchDoDragAndDrop(driver, searchResult1, "subset1");
+							SummaryStatistics.class.newInstance().runSummaryStatistics(driver);
+							SummaryStatisticsResults.class.newInstance().doAssertResultTrue(driver, testPlan, reporter);
+							DatasetExplorer.class.newInstance().doClearAnalysis(driver);
+							DatasetExplorer.class.newInstance().doSelectComparison(driver);
+						}
+				else
+				{
+					SummaryStatisticsResults.class.newInstance().doAssertResultFalse(driver, testPlan, reporter);
+				}
+							
 
 		} catch (InstantiationException | IllegalAccessException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
+	try {
+		SearchBySubject.class.newInstance().getSearchResult(driver);
+	} catch (InstantiationException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	} catch (IllegalAccessException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}			
 	}
 
 	public void closeDriver() {
@@ -604,10 +636,8 @@ public void doPlanSummaryStatSearch(Reporter reporter) throws InterruptedExcepti
 					Iterator<WebElement> itr = graphs.iterator();
 					while (itr.hasNext()) {
 						String graph = itr.next().getAttribute("src");
-						// System.out.println("**************"+graph);
 						assertThat(graph).contains("jfreechart");
-						LOGGER.info(
-								"-------------------Sex and Race Graph are present on the reports -------------------------");
+						LOGGER.info("-------------------Sex and Race Graph are present on the reports -------------------------");
 					}
 
 				}
@@ -646,7 +676,6 @@ public void doPlanSummaryStatSearch(Reporter reporter) throws InterruptedExcepti
 
 			e.printStackTrace();
 		}
-		// reporter.doReport();
 
 	}
 
@@ -687,9 +716,6 @@ public void doPlanSummaryStatSearch(Reporter reporter) throws InterruptedExcepti
 			driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 			SummaryStatistics.class.newInstance().runSummaryStatistics(driver);
 			SummaryStatisticsResults.class.newInstance().doResults(driver, testPlan);
-
-			// assertThat(winodwTitle).contains("Dataset Explorer");
-			// driver.close();
 		} catch (InstantiationException | IllegalAccessException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

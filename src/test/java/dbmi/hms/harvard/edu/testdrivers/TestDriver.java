@@ -32,7 +32,7 @@ public class TestDriver {
 	static {
 
 		try {
-			configProperties.load(new FileInputStream(new File("src/test/java/Config.properties")));
+			configProperties.load(new FileInputStream(new File("src/test/resources/Config.properties")));
 		} catch (FileNotFoundException e) {
 
 			e.printStackTrace();
@@ -83,27 +83,15 @@ public class TestDriver {
 	public static void verifyLoginWithWinowTitle() throws YamlException, InterruptedException {
 
 		LOGGER.info("---------------------------------The test case verifyWinowTitle is running-------------------------");
-		// readFile("resources/testConfigs/projects.yaml.onlysubset1.template");
 		readFile(configProperties.getProperty("verify.window.title"));
 		testPlan.checkWinodwTitle(reporter);
 		LOGGER.info("---------------------------------The test case verifyWinowTitle is Finshed-------------------------");
 
 	}
 
-//@Test(priority = 2, groups = { "Sanity Regression" })
-
-public static void verifySummaryStatSearch() throws YamlException, Exception {
-
-	LOGGER.info("-------------------------------The test case verifySummaryStatSearch is running-------------------------");
-	readFile(configProperties.getProperty("verify.window.title"));
-	testPlan.doPlanSummaryStatSearch(reporter);
-	LOGGER.info("--------------------------------The test case verifySummaryStatSearch is Finshed-------------------------");
-}
-
 
 
 /*Verify that Laboratory terms loads the reports correctly*/ 
-
 
 @Test(priority = 2, groups = { "Sanity Regression" })
 
@@ -272,7 +260,16 @@ public static void verifySearch() throws YamlException, Exception {
 	LOGGER.info("--------------------------------The test case verifySearch is Finshed-------------------------");
 }
 
-/*@Test(priority = 2, groups = { "Sanity Regression" })
+@Test(priority = 16, groups = { "Sanity Regression" },dependsOnMethods = { "verifySearch" })
+public static void verifySummaryStatSearch() throws YamlException, Exception {
+
+	LOGGER.info("-------------------------------The test case verifySummaryStatSearch is running-------------------------");
+	readFile(configProperties.getProperty("verify.summaryStats.searchbysubject"));
+	testPlan.doPlanSummaryStatSearch(reporter);
+	LOGGER.info("--------------------------------The test case verifySummaryStatSearch is Finshed-------------------------");
+}
+
+/*//*@Test(priority = 2, groups = { "Sanity Regression" })
 
 public static void verifySummaryStatsMultipleSubsetValue()
 		throws YamlException, InterruptedException, InstantiationException, IllegalAccessException {
@@ -284,6 +281,27 @@ public static void verifySummaryStatsMultipleSubsetValue()
 }
 */
 
+
+
+//@Test(priority = 17)
+public static void verifyDeleteFun() throws YamlException, InterruptedException {
+
+	LOGGER.info("---------------------------------The test case verifyDelete is running-------------------------");
+	readFile(configProperties.getProperty("verify.window.title"));
+	testPlan.verifyDelete(reporter);
+	LOGGER.info("---------------------------------The test case verifyDelete is Finshed-------------------------");
+
+}
+
+//@Test(priority = 18)
+public static void verifyToolTips() throws YamlException, InterruptedException {
+
+	LOGGER.info("---------------------------------The test case verifyDelete is running-------------------------");
+	readFile(configProperties.getProperty("verify.window.title"));
+	testPlan.doTooltip(reporter);
+	LOGGER.info("---------------------------------The test case verifyDelete is Finshed-------------------------");
+
+}
 @AfterClass
 	public void closeApplication() {
 

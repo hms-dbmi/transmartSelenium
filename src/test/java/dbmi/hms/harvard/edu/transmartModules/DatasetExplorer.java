@@ -62,6 +62,7 @@ public class DatasetExplorer extends Module {
 		List<String> nodes = getNodes(path);
 		try {
 			WebElement source = driver.findElement(By.partialLinkText(nodes.get(nodes.size() - 1)));
+			//WebElement source = driver.findElement(By.linkText(nodes.get(nodes.size() - 1)));
 			String targetStr = null;
 			if (subset.equalsIgnoreCase("subset1"))
 				targetStr = subset1box;

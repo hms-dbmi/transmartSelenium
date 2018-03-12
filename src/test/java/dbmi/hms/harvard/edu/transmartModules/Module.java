@@ -43,28 +43,21 @@ public abstract class Module {
 	protected void navigateByNode(WebDriver driver, String node) {
 		if (!node.isEmpty()) {
 			try {
-				// doubleClick(driver,
-				// driver.findElement(By.partialLinkText(node)));
-				doubleClick(driver, new WebDriverWait(driver, 60)
-						.until(ExpectedConditions.presenceOfElementLocated(By.partialLinkText(node))));
+				
+				doubleClick(driver, new WebDriverWait(driver, 60).until(ExpectedConditions.presenceOfElementLocated(By.partialLinkText(node))));
+//				doubleClick(driver, new WebDriverWait(driver, 60).until(ExpectedConditions.presenceOfElementLocated(By.linkText(node))));
+				//doubleClick(driver, new WebDriverWait(driver, 60).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[text()= '"+node+"']"))));		
+				
 			}
-			// doubleClick(driver,new
-			// WebDriverWait(driver,30).until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[contains(text(),
+			// doubleClick(driver,new // WebDriverWait(driver,30).until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[contains(text(),
 			// '"+node+"')]"))));
 
-			// doubleClick(driver,
-			// driver.findElement(By.xpath(".//*[contains(text(),
-			// '"+node+"')]")));
-
-			// doubleClick(driver, driver.findElement(By.name(node)));
-
+			
 			catch (Exception e) {
 				System.err.println("Element not found: " + e.getMessage());
 				LOGGER.error(e.getMessage());
 
 			} finally {
-				// driver.findElement(By.xpath(".//table[@id='wishlist-table']/tbody/tr/td[5]/div/button")).click();
-				// System.out.println("Test");
 			}
 		}
 

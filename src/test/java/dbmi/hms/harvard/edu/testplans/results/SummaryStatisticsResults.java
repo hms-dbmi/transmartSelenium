@@ -102,11 +102,17 @@ public class SummaryStatisticsResults extends Results {
 		}
 	}
 
-	public void doFirstResultCheck(WebDriver driver, Map testPlan, Reporter reporter) {
-		String successType = testPlan.get("success").toString();
+	public void doAssertResultTrue(WebDriver driver, Map testPlan, Reporter reporter) {
+		//String successType = testPlan.get("success").toString();
 		reporter.appendTestResults(testPlan, "passed");
 	}
 
+	public void doAssertResultFalse(WebDriver driver, Map testPlan, Reporter reporter) {
+		//String successType = testPlan.get("success").toString();
+		reporter.appendTestResults(testPlan, "failed");
+	}
+
+	
 	private void doVerifyPatientCountSubset1(WebDriver driver, Map testPlan, Reporter reporter) {
 		String successVal = testPlan.get("successvalue").toString();
 		String resultBox = driver.findElement(By.xpath(patientCountSubset1)).getText();

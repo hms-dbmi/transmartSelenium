@@ -59,35 +59,7 @@ public abstract class Testplan {
 	public void doPlanMultipleSubset1OR(Reporter reporter)
 			throws InterruptedException, InstantiationException, IllegalAccessException {
 	};
-
-	public void validateTestPlan(Map testPlan) throws Exception {
-		for (String reqField : REQUIRED_FIELDS) {
-			if (!testPlan.containsKey(reqField))
-				throw new Exception("Required field " + reqField + " is missing!");
-		}
-		if (testPlan.get("name") == null) {
-			throw new Exception("Invalid Test Plan - Name field is null");
-		} else if (testPlan.get("url") == null) {
-			throw new Exception("Invalid Test Plan - url field is null");
-		} else if (testPlan.get("authmethod") == null) {
-			throw new Exception("Invalid Test Plan - authMethod field is null");
-		} else if (testPlan.get("successtype") != null && testPlan.get("successval") == null) {
-			throw new Exception("Invalid Test Plan - if success is expected a success value must be given");
-		} else if (validateSuccessType(testPlan.get("success").toString()) != true) {
-			throw new Exception("Invalid Test Plan - Success Type: " + testPlan.get("success") + " is not valid");
-		}
-		;
-	}
-
-	protected Boolean validateSuccessType(String success) {
-		for (SuccessTypes successType : SuccessTypes.values()) {
-			if (successType.toString().equals(success)) {
-				return true;
-			}
-		}
-		return false;
-	}
-
+	
 	public void doPlanMultipleSubsetAnd(Reporter reporter)
 			throws InterruptedException, InstantiationException, IllegalAccessException {
 		// TODO Auto-generated method stub
@@ -124,4 +96,54 @@ public abstract class Testplan {
 		
 	}
 
+	public void doSearch(Reporter reporter) throws InterruptedException, Exception {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	public void validateTestPlan(Map testPlan) throws Exception {
+		for (String reqField : REQUIRED_FIELDS) {
+			if (!testPlan.containsKey(reqField))
+				throw new Exception("Required field " + reqField + " is missing!");
+		}
+		if (testPlan.get("name") == null) {
+			throw new Exception("Invalid Test Plan - Name field is null");
+		} else if (testPlan.get("url") == null) {
+			throw new Exception("Invalid Test Plan - url field is null");
+		} else if (testPlan.get("authmethod") == null) {
+			throw new Exception("Invalid Test Plan - authMethod field is null");
+		} else if (testPlan.get("successtype") != null && testPlan.get("successval") == null) {
+			throw new Exception("Invalid Test Plan - if success is expected a success value must be given");
+		} else if (validateSuccessType(testPlan.get("success").toString()) != true) {
+			throw new Exception("Invalid Test Plan - Success Type: " + testPlan.get("success") + " is not valid");
+		}
+		;
+	}
+
+	protected Boolean validateSuccessType(String success) {
+		for (SuccessTypes successType : SuccessTypes.values()) {
+			if (successType.toString().equals(success)) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	public void doPlanSummaryStatSearch(Reporter reporter) throws InterruptedException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void verifyDelete(Reporter reporter) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void doTooltip(Reporter reporter) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	
 }

@@ -12,6 +12,7 @@ public class SearchBySubject extends Module {
 	private String typeDropDown = ".//*[@id='tagtype']";
 	private String searchButton = ".//*[@id='ontSearchButton']";
 	private String searchResult = ".//*[@id='searchresultstext']";
+	private String searchClearButton = ".//input[@class='searchform' and @value='CLEAR']";
 	public static String result;
 
 	public void doSelectNavigationTab(WebDriver driver) {
@@ -29,6 +30,11 @@ public class SearchBySubject extends Module {
 		WebElement resultSearchSub = driver.findElement(By.xpath(searchResult));
 		result = resultSearchSub.getText();
 		
+	}
+	public void doClearSearchBox(WebDriver driver)
+
+	{
+		click(driver, driver.findElement(By.xpath(searchClearButton)));
 	}
 
 }
