@@ -59,7 +59,7 @@ public abstract class Testplan {
 	public void doPlanMultipleSubset1OR(Reporter reporter)
 			throws InterruptedException, InstantiationException, IllegalAccessException {
 	};
-	
+
 	public void doPlanMultipleSubsetAnd(Reporter reporter)
 			throws InterruptedException, InstantiationException, IllegalAccessException {
 		// TODO Auto-generated method stub
@@ -78,29 +78,44 @@ public abstract class Testplan {
 
 	public void loginSite() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
-	public void verifyMultipleSubset1and2OR(Reporter reporter) throws InterruptedException, InstantiationException, IllegalAccessException {
+	public void verifyMultipleSubset1and2OR(Reporter reporter)
+			throws InterruptedException, InstantiationException, IllegalAccessException {
 		// TODO Auto-generated method stub
-		
+
 	}
 
-	public void verifySummaryStatsLab(Reporter reporter) throws  Exception {
+	public void verifySummaryStatsLab(Reporter reporter) throws Exception {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	public void verifySumStasQue(Reporter reporter) throws InterruptedException {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	public void doSearch(Reporter reporter) throws InterruptedException, Exception {
 		// TODO Auto-generated method stub
-		
+
 	}
 
+	public void doPlanSummaryStatSearch(Reporter reporter) throws InterruptedException {
+		// TODO Auto-generated method stub
+
+	}
+
+	public void verifyDelete(Reporter reporter) throws InterruptedException {
+		// TODO Auto-generated method stub
+
+	}
+
+	public void doTooltip(Reporter reporter) {
+		// TODO Auto-generated method stub
+
+	}
 
 	public void validateTestPlan(Map testPlan) throws Exception {
 		for (String reqField : REQUIRED_FIELDS) {
@@ -130,20 +145,4 @@ public abstract class Testplan {
 		return false;
 	}
 
-	public void doPlanSummaryStatSearch(Reporter reporter) throws InterruptedException {
-		// TODO Auto-generated method stub
-		
-	}
-
-	public void verifyDelete(Reporter reporter) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	public void doTooltip(Reporter reporter) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	
 }

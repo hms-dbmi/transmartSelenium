@@ -12,6 +12,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.testng.util.Strings;
 
 import com.fasterxml.jackson.databind.ser.SerializerCache;
 
@@ -95,28 +96,23 @@ public class BasicStatisticsTestPlan extends Testplan {
 		authTypes.doAuth(driver, testPlan);
 	}
 
-	public void checkWinodwTitle(Reporter reporter) throws InterruptedException 
-	{
+	public void checkWinodwTitle(Reporter reporter) throws InterruptedException {
 		String winodwTitle = driver.getTitle();
 		LOGGER.info("-------------------Logged in successfully: Title of winodow is -------------------------"
 				+ winodwTitle);
-		
-		if (winodwTitle.equals("Dataset Explorer"))
-		{
-				try
-				{
-					SummaryStatisticsResults.class.newInstance().doAssertResultTrue(driver, testPlan, reporter);
-				}
-				catch (InstantiationException e) {
-					e.printStackTrace();
-				} 
-				catch (IllegalAccessException e) {
-					e.printStackTrace();
-				}
+
+		if (winodwTitle.equals("Dataset Explorer")) {
+			try {
+				SummaryStatisticsResults.class.newInstance().doAssertResultTrue(driver, testPlan, reporter);
+			} catch (InstantiationException e) {
+				e.printStackTrace();
+			} catch (IllegalAccessException e) {
+				e.printStackTrace();
+			}
 		}
-		
-		else{
-			
+
+		else {
+
 			try {
 				SummaryStatisticsResults.class.newInstance().doAssertResultFalse(driver, testPlan, reporter);
 			} catch (InstantiationException e) {
@@ -127,7 +123,7 @@ public class BasicStatisticsTestPlan extends Testplan {
 				e.printStackTrace();
 			}
 		}
-		
+
 	}
 
 	public void doPlan(Reporter reporter) throws InterruptedException {
@@ -401,7 +397,7 @@ public class BasicStatisticsTestPlan extends Testplan {
 				String subset = "subset1";
 				DatasetExplorer.class.newInstance().doDragAndDrop(driver, path, subset);
 			}
-			
+
 			driver.manage().timeouts().implicitlyWait(49, TimeUnit.SECONDS);
 			DatasetExplorer.class.newInstance().doclickSubsetValue(driver);
 			DatasetExplorer.class.newInstance().enterValue(driver, subsetValue);
@@ -505,70 +501,61 @@ public class BasicStatisticsTestPlan extends Testplan {
 			SearchBySubject.class.newInstance().getSearchResult(driver);
 			String SearchResult1 = SearchBySubject.result;
 			String expected = testPlan.get("expectedSearchResult").toString();
-			//assertThat(SearchResult1).contains(testPlan.get("expectedSearchResult").toString());
-		if (SearchResult1.equals(testPlan.get("expectedSearchResult").toString()))
-		{
+			// assertThat(SearchResult1).contains(testPlan.get("expectedSearchResult").toString());
+			if (SearchResult1.equals(testPlan.get("expectedSearchResult").toString())) {
 				try {
-					
-					SummaryStatisticsResults.class.newInstance().doAssertResultTrue(driver, testPlan, reporter);
-					} 
-					catch (InstantiationException e) 
-					{
-						e.printStackTrace();
-					}
-		}
-		
-		else{
-			SummaryStatisticsResults.class.newInstance().doAssertResultFalse(driver, testPlan, reporter);
-		}
-		}
-			catch (IllegalAccessException e) 
-			{
-				e.printStackTrace();
-			}
-		
-		SearchBySubject.class.newInstance().doClearSearchBox(driver);
-	}	
-		
-public void doPlanSummaryStatSearch(Reporter reporter) throws InterruptedException {
 
-				String searchStats = testPlan.get("searchTermsum").toString();
-				try {
-					SearchBySubject.class.newInstance().doSelectNavigationTab(driver);
-					SearchBySubject.class.newInstance().doSearch(driver, searchStats);
-					Thread.sleep(10000);
-					SearchBySubject.class.newInstance().getSearchResult(driver);
-					String searchResult1 = SearchBySubject.result;
-								
-				if (searchResult1.substring(6,7).equals("1"))
-						{
-							
-							DatasetExplorer.class.newInstance().doSearchDoDragAndDrop(driver, searchResult1, "subset1");
-							SummaryStatistics.class.newInstance().runSummaryStatistics(driver);
-							SummaryStatisticsResults.class.newInstance().doAssertResultTrue(driver, testPlan, reporter);
-							DatasetExplorer.class.newInstance().doClearAnalysis(driver);
-							DatasetExplorer.class.newInstance().doSelectComparison(driver);
-						}
-				else
-				{
-					SummaryStatisticsResults.class.newInstance().doAssertResultFalse(driver, testPlan, reporter);
+					SummaryStatisticsResults.class.newInstance().doAssertResultTrue(driver, testPlan, reporter);
+				} catch (InstantiationException e) {
+					e.printStackTrace();
 				}
-							
+			}
+
+			else {
+				SummaryStatisticsResults.class.newInstance().doAssertResultFalse(driver, testPlan, reporter);
+			}
+		} catch (IllegalAccessException e) {
+			e.printStackTrace();
+		}
+
+		SearchBySubject.class.newInstance().doClearSearchBox(driver);
+	}
+
+	public void doPlanSummaryStatSearch(Reporter reporter) throws InterruptedException {
+
+		String searchStats = testPlan.get("searchTermsum").toString();
+		try {
+			SearchBySubject.class.newInstance().doSelectNavigationTab(driver);
+			SearchBySubject.class.newInstance().doSearch(driver, searchStats);
+			Thread.sleep(10000);
+			SearchBySubject.class.newInstance().getSearchResult(driver);
+			String searchResult1 = SearchBySubject.result;
+
+			if (searchResult1.substring(6, 7).equals("1")) {
+
+				DatasetExplorer.class.newInstance().doSearchDoDragAndDrop(driver, searchResult1, "subset1");
+				SummaryStatistics.class.newInstance().runSummaryStatistics(driver);
+				SummaryStatisticsResults.class.newInstance().doAssertResultTrue(driver, testPlan, reporter);
+				DatasetExplorer.class.newInstance().doClearAnalysis(driver);
+				DatasetExplorer.class.newInstance().doSelectComparison(driver);
+			} else {
+				SummaryStatisticsResults.class.newInstance().doAssertResultFalse(driver, testPlan, reporter);
+			}
 
 		} catch (InstantiationException | IllegalAccessException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
-	try {
-		SearchBySubject.class.newInstance().getSearchResult(driver);
-	} catch (InstantiationException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-	} catch (IllegalAccessException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-	}			
+		try {
+			SearchBySubject.class.newInstance().getSearchResult(driver);
+		} catch (InstantiationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	public void closeDriver() {
@@ -637,7 +624,8 @@ public void doPlanSummaryStatSearch(Reporter reporter) throws InterruptedExcepti
 					while (itr.hasNext()) {
 						String graph = itr.next().getAttribute("src");
 						assertThat(graph).contains("jfreechart");
-						LOGGER.info("-------------------Sex and Race Graph are present on the reports -------------------------");
+						LOGGER.info(
+								"-------------------Sex and Race Graph are present on the reports -------------------------");
 					}
 
 				}
@@ -678,6 +666,76 @@ public void doPlanSummaryStatSearch(Reporter reporter) throws InterruptedExcepti
 		}
 
 	}
+
+	public void verifyDelete(Reporter reporter) throws InterruptedException {
+
+		try {
+
+			if (testPlan.get("subset1") != null && testPlan.get("subset1") != "") {
+				for (String path : java.util.Arrays.asList(testPlan.get("subset1").toString().split(","))) {
+					DatasetExplorer.class.newInstance().doNavigateByPath(driver, path);
+					DatasetExplorer.class.newInstance().doDragAndDrop(driver, path, "subset1");
+					DatasetExplorer.class.newInstance().doReverseNavigateByPath(driver, path);
+				}
+
+			}
+
+			if (testPlan.get("subsetmul1") != null && testPlan.get("subsetmul1") != "") {
+				for (String path : java.util.Arrays.asList(testPlan.get("subsetmul1").toString().split(","))) {
+					DatasetExplorer.class.newInstance().doNavigateByPath(driver, path);
+					DatasetExplorer.class.newInstance().doDragAndDrop(driver, path, "subset1");
+					DatasetExplorer.class.newInstance().doReverseNavigateByPath(driver, path);
+				}
+
+			}
+			DatasetExplorer.class.newInstance().doCheckSubsetBox(driver);
+			DatasetExplorer.class.newInstance().doDelete(driver);
+			DatasetExplorer.class.newInstance().doCheckSubsetBox(driver);
+			// System.out.println("the value of
+			// SubsetBox"+DatasetExplorer.textSubsetBoxValue);
+
+			if (Strings.isNullOrEmpty(DatasetExplorer.textSubsetBoxValue)) {
+				SummaryStatisticsResults.class.newInstance().doAssertResultTrue(driver, testPlan, reporter);
+			} else {
+
+				SummaryStatisticsResults.class.newInstance().doAssertResultFalse(driver, testPlan, reporter);
+			}
+
+			/*
+			 * 
+			 * if ((DatasetExplorer.textSubsetBoxValue!=null) &&
+			 * DatasetExplorer.textSubsetBoxValue != "") {
+			 * System.out.println("print");
+			 * SummaryStatisticsResults.class.newInstance().doAssertResultFalse(
+			 * driver, testPlan, reporter); } else {
+			 * 
+			 * SummaryStatisticsResults.class.newInstance().doAssertResultFalse(
+			 * driver, testPlan, reporter); }
+			 * //DatasetExplorer.class.newInstance().doDelete(driver);
+			 */
+		} catch (InstantiationException | IllegalAccessException e) {
+
+			e.printStackTrace();
+		}
+
+	}
+
+	/*
+	 * if (winodwTitle.equals("Dataset Explorer")) { try {
+	 * SummaryStatisticsResults.class.newInstance().doAssertResultTrue(driver,
+	 * testPlan, reporter); } catch (InstantiationException e) {
+	 * e.printStackTrace(); } catch (IllegalAccessException e) {
+	 * e.printStackTrace(); } }
+	 * 
+	 * else{
+	 * 
+	 * try {
+	 * SummaryStatisticsResults.class.newInstance().doAssertResultFalse(driver,
+	 * testPlan, reporter); } catch (InstantiationException e) { // TODO
+	 * Auto-generated catch block e.printStackTrace(); } catch
+	 * (IllegalAccessException e) { // TODO Auto-generated catch block
+	 * e.printStackTrace(); } }
+	 */
 
 	public void doPlan() {
 		try {
