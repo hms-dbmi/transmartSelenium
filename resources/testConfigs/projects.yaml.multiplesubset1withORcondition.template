@@ -8,8 +8,3 @@
  reporter: ConsoleReporter
  subset1: \demographics\RACE\white
  subsetmul1: \demographics\SEX\female\
- subset2:
- relational:
- success: patientcountsubset1
- successvalue: 29047
- expected: pass 

@@ -1,0 +1,6 @@
+ name: Verify Deleting Functionality
+ url: https://nhanes.hms.harvard.edu/transmart/login/forceAuth
+ authmethod: PUB
+ subset1: \demographics\RACE\white
+ subsetmul1: \demographics\SEX\female\
+ success: patientcountsubset1
