@@ -132,7 +132,6 @@ public class BasicStatisticsTestPlan extends Testplan {
 
 			if (testPlan.get("subset1") != null && testPlan.get("subset1") != "") {
 				for (String path : java.util.Arrays.asList(testPlan.get("subset1").toString().split(","))) {
-					// System.out.println("---------"+path);
 					DatasetExplorer.class.newInstance().doNavigateByPath(driver, path);
 					DatasetExplorer.class.newInstance().doDragAndDrop(driver, path, "subset1");
 					DatasetExplorer.class.newInstance().doReverseNavigateByPath(driver, path);
@@ -151,7 +150,6 @@ public class BasicStatisticsTestPlan extends Testplan {
 
 			e.printStackTrace();
 		}
-		// reporter.doReport();
 
 	}
 
@@ -179,7 +177,6 @@ public class BasicStatisticsTestPlan extends Testplan {
 
 			e.printStackTrace();
 		}
-		// reporter.doReport();
 
 	}
 
@@ -501,7 +498,6 @@ public class BasicStatisticsTestPlan extends Testplan {
 			SearchBySubject.class.newInstance().getSearchResult(driver);
 			String SearchResult1 = SearchBySubject.result;
 			String expected = testPlan.get("expectedSearchResult").toString();
-			// assertThat(SearchResult1).contains(testPlan.get("expectedSearchResult").toString());
 			if (SearchResult1.equals(testPlan.get("expectedSearchResult").toString())) {
 				try {
 
@@ -521,6 +517,36 @@ public class BasicStatisticsTestPlan extends Testplan {
 		SearchBySubject.class.newInstance().doClearSearchBox(driver);
 	}
 
+	public void doSearchSpecialChar(Reporter reporter) throws InterruptedException, Exception {
+
+		String searchTermSpecialCharacter = testPlan.get("searchTermSpecialChar").toString();
+		try {
+			SearchBySubject.class.newInstance().doSelectNavigationTab(driver);
+			SearchBySubject.class.newInstance().doSearch(driver, searchTermSpecialCharacter);
+			Thread.sleep(20000);
+			SearchBySubject.class.newInstance().getSearchResult(driver);
+			String SearchResult1 = SearchBySubject.result;
+			String expected = testPlan.get("expectedSearchResult").toString();
+			if (SearchResult1.equals(testPlan.get("expectedSearchResult").toString())) {
+				try {
+
+					SummaryStatisticsResults.class.newInstance().doAssertResultTrue(driver, testPlan, reporter);
+				} catch (InstantiationException e) {
+					e.printStackTrace();
+				}
+			}
+
+			else {
+				SummaryStatisticsResults.class.newInstance().doAssertResultFalse(driver, testPlan, reporter);
+			}
+		} catch (IllegalAccessException e) {
+			e.printStackTrace();
+		}
+
+		SearchBySubject.class.newInstance().doClearSearchBox(driver);
+	}
+
+	
 	public void doPlanSummaryStatSearch(Reporter reporter) throws InterruptedException {
 
 		String searchStats = testPlan.get("searchTermsum").toString();
@@ -605,15 +631,6 @@ public class BasicStatisticsTestPlan extends Testplan {
 
 				driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 				SummaryStatistics.class.newInstance().runSummaryStatistics(driver);
-				// assertThat("").isEqualTo(By.xpath(xpathExpression));
-
-				// List<Image> images;
-				// List<WebElement> imageElements =
-				// driver.findElements(By.xpath(".//img/@src"));
-				// System.out.println("count of images"+imageElements.size());
-
-				// Verifying Graphs (Sex and Race)
-
 				List<WebElement> graphs = driver
 						.findElements(By.xpath(".//*[@id='ext-gen157']/div/table/tbody/tr/td[1]/img"));
 				if (graphs.size() != 0)
@@ -629,25 +646,6 @@ public class BasicStatisticsTestPlan extends Testplan {
 					}
 
 				}
-
-				// LOGGER.info("-------------------Logged in successfully: Title
-				// of winodow is -------------------------");
-				// assertThat(winodwTitle).contains("Dataset Explorer");
-
-				/*
-				 * 
-				 * 
-				 * if(driver.findElements(By.xpath("value")).size() != 0){
-				 * System.out.println("Element is Present"); }else{
-				 * System.out.println("Element is Absent"); }
-				 */
-				// SummaryStatisticsResults.class.newInstance().doResults(driver,
-				// testPlan, reporter);
-				/*
-				 * DatasetExplorer.class.newInstance().doClearAnalysis(driver);
-				 * DatasetExplorer.class.newInstance().doSelectComparison(driver
-				 * );
-				 */
 
 			}
 
@@ -691,51 +689,19 @@ public class BasicStatisticsTestPlan extends Testplan {
 			DatasetExplorer.class.newInstance().doCheckSubsetBox(driver);
 			DatasetExplorer.class.newInstance().doDelete(driver);
 			DatasetExplorer.class.newInstance().doCheckSubsetBox(driver);
-			// System.out.println("the value of
-			// SubsetBox"+DatasetExplorer.textSubsetBoxValue);
-
 			if (Strings.isNullOrEmpty(DatasetExplorer.textSubsetBoxValue)) {
 				SummaryStatisticsResults.class.newInstance().doAssertResultTrue(driver, testPlan, reporter);
 			} else {
-
+ 
 				SummaryStatisticsResults.class.newInstance().doAssertResultFalse(driver, testPlan, reporter);
 			}
 
-			/*
-			 * 
-			 * if ((DatasetExplorer.textSubsetBoxValue!=null) &&
-			 * DatasetExplorer.textSubsetBoxValue != "") {
-			 * System.out.println("print");
-			 * SummaryStatisticsResults.class.newInstance().doAssertResultFalse(
-			 * driver, testPlan, reporter); } else {
-			 * 
-			 * SummaryStatisticsResults.class.newInstance().doAssertResultFalse(
-			 * driver, testPlan, reporter); }
-			 * //DatasetExplorer.class.newInstance().doDelete(driver);
-			 */
 		} catch (InstantiationException | IllegalAccessException e) {
 
 			e.printStackTrace();
 		}
 
 	}
-
-	/*
-	 * if (winodwTitle.equals("Dataset Explorer")) { try {
-	 * SummaryStatisticsResults.class.newInstance().doAssertResultTrue(driver,
-	 * testPlan, reporter); } catch (InstantiationException e) {
-	 * e.printStackTrace(); } catch (IllegalAccessException e) {
-	 * e.printStackTrace(); } }
-	 * 
-	 * else{
-	 * 
-	 * try {
-	 * SummaryStatisticsResults.class.newInstance().doAssertResultFalse(driver,
-	 * testPlan, reporter); } catch (InstantiationException e) { // TODO
-	 * Auto-generated catch block e.printStackTrace(); } catch
-	 * (IllegalAccessException e) { // TODO Auto-generated catch block
-	 * e.printStackTrace(); } }
-	 */
 
 	public void doPlan() {
 		try {

@@ -145,4 +145,9 @@ public abstract class Testplan {
 		return false;
 	}
 
+	public void doSearchSpecialChar(Reporter reporter) throws InterruptedException, Exception {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

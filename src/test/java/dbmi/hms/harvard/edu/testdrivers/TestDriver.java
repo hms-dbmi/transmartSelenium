@@ -273,8 +273,19 @@ public class TestDriver {
 		testPlan.doSearch(reporter);
 		LOGGER.info("--------------------------------The test case verifySearch is Finshed-------------------------");
 	}
+	
+	//@Test(priority = 16, groups = { "Sanity Regression" })
 
-	@Test(priority = 16, groups = { "Sanity Regression" }, dependsOnMethods = { "verifySearch" })
+	public static void verifySearchSpecialCharacters() throws YamlException, Exception {
+
+		LOGGER.info("-------------------------------The test case verifySearch with SpecialCharacter  is running-------------------------");
+		readFile(configProperties.getProperty("verify.window.title"));
+		testPlan.doSearchSpecialChar(reporter);
+		LOGGER.info("--------------------------------The test case verifySearch with SpecialCharacter is Finshed-------------------------");
+	}
+
+
+	@Test(priority = 17, groups = { "Sanity Regression" }, dependsOnMethods = { "verifySearch" })
 
 	public static void verifySummaryStatSearch() throws YamlException, Exception {
 
@@ -286,7 +297,7 @@ public class TestDriver {
 				"--------------------------------The test case verifySummaryStatSearch is Finshed-------------------------");
 	}
 
-	@Test(priority = 17)
+	@Test(priority = 18)
 	public static void verifyDeleteFunction() throws YamlException, InterruptedException {
 
 		LOGGER.info("---------------------------------The test case verifyDelete is running-------------------------");
@@ -315,7 +326,7 @@ public class TestDriver {
 		testPlan.closeDriver();
 		System.out.println("Testing done");
 		LOGGER.info(
-				"=================================i2b2/Transmart Test Automation completed : Browser session closed ================================");
+				"===========================i2b2/TranSmart Test Automation is completed :Browse is closed ===========================");
 
 	}
 
