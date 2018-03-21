@@ -1,5 +1,6 @@
 package dbmi.hms.harvard.edu.transmartModules;
 
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -37,4 +38,12 @@ public class SearchBySubject extends Module {
 		click(driver, driver.findElement(By.xpath(searchClearButton)));
 	}
 
+	
+	/*public void docheckAlertText(WebDriver driver) {
+		Alert alert = driver.switchTo().alert();
+		
+		alert.accept();
+
+	}
+*/
 }

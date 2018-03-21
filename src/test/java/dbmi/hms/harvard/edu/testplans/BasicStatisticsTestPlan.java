@@ -8,7 +8,9 @@ import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 import org.apache.log4j.Logger;
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -517,6 +519,34 @@ public class BasicStatisticsTestPlan extends Testplan {
 		SearchBySubject.class.newInstance().doClearSearchBox(driver);
 	}
 
+	
+	
+	public void doSearchLength(Reporter reporter) throws InterruptedException, Exception {
+
+		String searchTerm = testPlan.get("searchTerm1").toString();
+		SearchBySubject.class.newInstance().doSelectNavigationTab(driver);
+		SearchBySubject.class.newInstance().doSearch(driver, searchTerm);
+				try{
+					Alert alert = driver.switchTo().alert();
+					if(alert!=null && !"".equals(alert)){
+						String searchTermCharLength=alert.getText();
+						System.out.println("The Text Message is "  +searchTermCharLength);
+						alert.accept();
+						SummaryStatisticsResults.class.newInstance().doAssertResultTrue(driver, testPlan, reporter);
+					}
+			}
+				catch(NoAlertPresentException e){
+	  //      e.printStackTrace();
+	        System.out.println("no alert");
+	        SummaryStatisticsResults.class.newInstance().doAssertResultFalse(driver, testPlan, reporter);
+	    }	
+		
+		SearchBySubject.class.newInstance().doClearSearchBox(driver);
+	}
+
+	
+	
+	
 	public void doSearchSpecialChar(Reporter reporter) throws InterruptedException, Exception {
 
 		String searchTermSpecialCharacter = testPlan.get("searchTermSpecialChar").toString();

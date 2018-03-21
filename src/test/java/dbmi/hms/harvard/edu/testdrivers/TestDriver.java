@@ -85,6 +85,7 @@ public class TestDriver {
 				"______________________________________Initial Setting up is Done______________________________________");
 
 	}
+	
 
 	@Test(priority = 1)
 	public static void verifyLoginWithWinowTitle() throws YamlException, InterruptedException {
@@ -98,7 +99,7 @@ public class TestDriver {
 
 	}
 
-	/* Verify that Laboratory terms loads the reports correctly */
+
 
 	@Test(priority = 2, groups = { "Sanity Regression" })
 
@@ -216,6 +217,7 @@ public class TestDriver {
 
 	}
 
+/*	 Verify that the Stats reports page displays the graphs*/ 
 	@Test(priority = 11, groups = { "Sanity Regression" })
 
 	public static void verifySummaryStatsGraphs() throws Exception {
@@ -227,6 +229,7 @@ public class TestDriver {
 				"--------------------------------The test case verifySummaryStats is Finshed-------------------------");
 	}
 
+	/* Verify that Laboratory terms loads the reports correctly*/ 
 	@Test(priority = 12, groups = { "Sanity Regression" })
 
 	public static void verifySummaryStatsLaboratory() throws Exception {
@@ -283,9 +286,17 @@ public class TestDriver {
 		testPlan.doSearchSpecialChar(reporter);
 		LOGGER.info("--------------------------------The test case verifySearch with SpecialCharacter is Finshed-------------------------");
 	}
+//@Test(priority = 17, groups = { "Sanity Regression" })
+	public static void verifySearchCaseSensitivity() throws YamlException, Exception {
+
+		LOGGER.info("-------------------------------The test case  verifySearch Case sensitivity  is running-------------------------");
+		readFile(configProperties.getProperty("verify.window.title"));
+		testPlan.doSearchCaseSensitivity(reporter);
+		LOGGER.info("--------------------------------The test case verifySearch CaseSensitivity is Finshed-------------------------");
+	}
 
 
-	@Test(priority = 17, groups = { "Sanity Regression" }, dependsOnMethods = { "verifySearch" })
+//	@Test(priority = 18, groups = { "Sanity Regression" }, dependsOnMethods = { "verifySearch" })
 
 	public static void verifySummaryStatSearch() throws YamlException, Exception {
 
@@ -297,7 +308,7 @@ public class TestDriver {
 				"--------------------------------The test case verifySummaryStatSearch is Finshed-------------------------");
 	}
 
-	@Test(priority = 18)
+	//@Test(priority = 19)
 	public static void verifyDeleteFunction() throws YamlException, InterruptedException {
 
 		LOGGER.info("---------------------------------The test case verifyDelete is running-------------------------");
@@ -307,18 +318,34 @@ public class TestDriver {
 
 	}
 
-	// @Test(priority = 18) public static void verifyToolTips() throws
-	// YamlException,InterruptedException
+	// @Test(priority = 20) 
+	public static void verifyToolTips() throws  YamlException,InterruptedException
 
 	{
 
 		LOGGER.info("---------------------------------The test case verifyDelete is running-------------------------");
-		readFile(configProperties.getProperty("verify.window.title"));
+		readFile(configProperties.getProperty("verify.window.t"
+				+ "itle"));
 		testPlan.doTooltip(reporter);
 		LOGGER.info("---------------------------------The test case verifyDelete is Finshed-------------------------");
 
 	}
 
+	@Test(priority = 21) 
+	public static void verifySearchTermLengthMessage() throws  Exception
+
+	{
+
+		LOGGER.info("---------------------------------The test case verify SearchTerm LengthMessage is running-------------------------");
+		readFile(configProperties.getProperty("verify.summaryStats.searchbysubject.messages"));
+		testPlan.doSearchLength(reporter);
+		LOGGER.info("---------------------------------The test case verify verify SearchTerm LengthMessage is Finshed-------------------------");
+
+	}
+
+
+	
+	
 	@AfterClass
 	public void closeApplication() {
 
