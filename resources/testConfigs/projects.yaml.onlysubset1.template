@@ -1,4 +1,4 @@
- name: Verify Summary Stats and Search by Sub
+ name: Verify Summary Stats / Search by Sub/ Graphs
  url: https://nhanes.hms.harvard.edu/transmart/login/forceAuth
  authmethod: PUB
  username: 
