@@ -671,22 +671,26 @@ public class BasicStatisticsTestPlan extends Testplan {
 					while (itr.hasNext()) {
 						String graph = itr.next().getAttribute("src");
 						assertThat(graph).contains("jfreechart");
-						LOGGER.info(
-								"-------------------Sex and Race Graph are present on the reports -------------------------");
+							
+						
 					}
+					LOGGER.info(
+							"-------------------Sex and Race Graph are present on the reports -------------------------");
+					SummaryStatisticsResults.class.newInstance().doAssertResultTrue(driver, testPlan, reporter);
 
-				}
 
-			}
-
-			try {
-				SummaryStatisticsResults.class.newInstance().doResultCheckGraph(driver, testPlan, reporter);
-			} catch (InstantiationException e) {
-				e.printStackTrace();
-			} catch (IllegalAccessException e) {
-				e.printStackTrace();
-			}
+				}	
+					else
+					{
+						
+						SummaryStatisticsResults.class.newInstance().doAssertResultFalse(driver, testPlan, reporter);
+						
+				}					
 		}
+	}
+
+
+		
 
 		catch (InstantiationException | IllegalAccessException e) {
 

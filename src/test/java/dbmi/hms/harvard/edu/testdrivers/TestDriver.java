@@ -1,4 +1,4 @@
-package dbmi.hms.harvard.edu.testdrivers;
+	package dbmi.hms.harvard.edu.testdrivers;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -87,6 +87,11 @@ public class TestDriver {
 	}
 	
 
+	
+	
+
+	
+	
 	@Test(priority = 1)
 	public static void verifyLoginWithWinowTitle() throws YamlException, InterruptedException {
 
@@ -190,6 +195,7 @@ public class TestDriver {
 
 	}
 
+	
 	@Test(priority = 9, groups = { "Sanity" })
 	public static void
 
@@ -204,6 +210,8 @@ public class TestDriver {
 
 	}
 
+	
+	
 	@Test(priority = 10, groups = { "Sanity Regression" })
 
 	public static void verifySummaryStatsSetValueOperator() throws YamlException, InterruptedException {
@@ -217,7 +225,12 @@ public class TestDriver {
 
 	}
 
-/*	 Verify that the Stats reports page displays the graphs*/ 
+	
+	
+	
+	/* Verify that the Stats reports page displays the graphs*/ 
+
+	
 	@Test(priority = 11, groups = { "Sanity Regression" })
 
 	public static void verifySummaryStatsGraphs() throws Exception {
@@ -229,7 +242,8 @@ public class TestDriver {
 				"--------------------------------The test case verifySummaryStats is Finshed-------------------------");
 	}
 
-	/* Verify that Laboratory terms loads the reports correctly*/ 
+	
+/*	 Verify that Laboratory terms loads the reports correctly*/ 
 	@Test(priority = 12, groups = { "Sanity Regression" })
 
 	public static void verifySummaryStatsLaboratory() throws Exception {
@@ -242,6 +256,11 @@ public class TestDriver {
 				"--------------------------------The test case verifySummaryStatsMultipleSubset1OR is Finshed-------------------------");
 	}
 
+	
+	
+	
+	
+	
 	@Test(priority = 13, groups = { "Sanity Regression" })
 
 	public static void verifyQuiestionnaire() throws Exception {
@@ -254,6 +273,11 @@ public class TestDriver {
 				"---------------------------The test case verifyQuiestionnaire is Finshed------------------------------");
 	}
 
+	
+	
+	
+	
+	
 	@Test(priority = 14, groups = { "Sanity Regression" })
 
 	public static void verifyClearButton() throws Exception {
@@ -276,6 +300,10 @@ public class TestDriver {
 		testPlan.doSearch(reporter);
 		LOGGER.info("--------------------------------The test case verifySearch is Finshed-------------------------");
 	}
+
+	
+	
+	
 	
 	//@Test(priority = 16, groups = { "Sanity Regression" })
 
@@ -286,6 +314,9 @@ public class TestDriver {
 		testPlan.doSearchSpecialChar(reporter);
 		LOGGER.info("--------------------------------The test case verifySearch with SpecialCharacter is Finshed-------------------------");
 	}
+	
+	
+	
 //@Test(priority = 17, groups = { "Sanity Regression" })
 	public static void verifySearchCaseSensitivity() throws YamlException, Exception {
 
@@ -296,7 +327,9 @@ public class TestDriver {
 	}
 
 
-//	@Test(priority = 18, groups = { "Sanity Regression" }, dependsOnMethods = { "verifySearch" })
+	
+	
+@Test(priority = 18, groups = { "Sanity Regression" }, dependsOnMethods = { "verifySearch" })
 
 	public static void verifySummaryStatSearch() throws YamlException, Exception {
 
@@ -308,7 +341,7 @@ public class TestDriver {
 				"--------------------------------The test case verifySummaryStatSearch is Finshed-------------------------");
 	}
 
-	//@Test(priority = 19)
+@Test(priority = 19)
 	public static void verifyDeleteFunction() throws YamlException, InterruptedException {
 
 		LOGGER.info("---------------------------------The test case verifyDelete is running-------------------------");
@@ -331,7 +364,7 @@ public class TestDriver {
 
 	}
 
-	@Test(priority = 21) 
+@Test(priority = 21) 
 	public static void verifySearchTermLengthMessage() throws  Exception
 
 	{
@@ -343,9 +376,32 @@ public class TestDriver {
 
 	}
 
+//	@Test(priority = 22) 
+	public static void verifySubsetBoxAutoIncrement() throws  Exception
+
+	{
+
+		LOGGER.info("---------------------------------The test case verify SearchTerm LengthMessage is running-------------------------");
+		readFile(configProperties.getProperty("verify.summaryStats.searchbysubject.messages"));
+		testPlan.docheckSubsetBoxAutoIncrement(reporter);
+		LOGGER.info("---------------------------------The test case verify verify SearchTerm LengthMessage is Finshed-------------------------");
+
+	}
 
 	
-	
+//	@Test(priority = 23) 
+	public static void verifyTooltipsSummaryStatsGraphs() throws  Exception
+
+	{
+
+		LOGGER.info("---------------------------------The test case verify TooltipsSummaryStatsGraphs is running-------------------------");
+		readFile(configProperties.getProperty("verify.summaryStats.searchbysubject.messages"));
+		testPlan.docheckTooltipResultGraph(reporter);
+		LOGGER.info("---------------------------------The test case verify TooltipsSummaryStatsGraphsis Finshed-------------------------");
+
+	}
+
+		
 	@AfterClass
 	public void closeApplication() {
 

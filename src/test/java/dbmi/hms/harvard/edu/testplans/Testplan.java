@@ -76,6 +76,21 @@ public abstract class Testplan {
 
 	}
 
+	public void doSearchSpecialChar(Reporter reporter) throws InterruptedException, Exception {
+		// TODO Auto-generated method stub
+
+	}
+
+	public void doSearchCaseSensitivity(Reporter reporter) {
+		// TODO Auto-generated method stub
+
+	}
+
+	public void doSearchLength(Reporter reporter) throws InterruptedException, Exception {
+		// TODO Auto-generated method stub
+
+	}
+
 	public void loginSite() {
 		// TODO Auto-generated method stub
 
@@ -117,6 +132,16 @@ public abstract class Testplan {
 
 	}
 
+	public void docheckSubsetBoxAutoIncrement(Reporter reporter) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void docheckTooltipResultGraph(Reporter reporter) {
+		// TODO Auto-generated method stub
+		
+	}
+
 	public void validateTestPlan(Map testPlan) throws Exception {
 		for (String reqField : REQUIRED_FIELDS) {
 			if (!testPlan.containsKey(reqField))
@@ -145,9 +170,6 @@ public abstract class Testplan {
 		return false;
 	}
 
-	public void doSearchSpecialChar(Reporter reporter) throws InterruptedException, Exception {
-		// TODO Auto-generated method stub
-		
-	}
-
+	
+	
 }
