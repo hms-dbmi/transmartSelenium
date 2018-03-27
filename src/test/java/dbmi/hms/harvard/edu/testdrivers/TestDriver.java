@@ -401,7 +401,33 @@ public class TestDriver {
 
 	}
 
+//	@Test(priority = 24) 
+	public static void verifyShowNode() throws  Exception
+
+	{
+
+		LOGGER.info("---------------------------------The test case verify Show Node  is running-------------------------");
+		readFile(configProperties.getProperty("verify.summaryStats.searchbysubject.messages"));
+		testPlan.docheckShowNode(reporter);
+		LOGGER.info("---------------------------------The test case verify Show Node is Finshed-------------------------");
+
+	}
 		
+	@Test(priority = 25) 
+	public static void verifyLinkExtenalKnowledge() throws  Exception
+
+	{
+
+		LOGGER.info("---------------------------------The test case verify Show Node  is running-------------------------");
+		readFile(configProperties.getProperty("verify.summaryStats.searchbysubject.messages"));
+		testPlan.docheckExternalLink(reporter);
+		LOGGER.info("---------------------------------The test case verify Show Node is Finshed-------------------------");
+
+	}
+
+	
+	
+	
 	@AfterClass
 	public void closeApplication() {
 

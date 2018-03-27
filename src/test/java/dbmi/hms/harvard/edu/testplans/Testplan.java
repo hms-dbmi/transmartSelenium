@@ -170,6 +170,16 @@ public abstract class Testplan {
 		return false;
 	}
 
+	public void docheckShowNode(Reporter reporter) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void docheckExternalLink(Reporter reporter) {
+		// TODO Auto-generated method stub
+		
+	}
+
 	
 	
 }
