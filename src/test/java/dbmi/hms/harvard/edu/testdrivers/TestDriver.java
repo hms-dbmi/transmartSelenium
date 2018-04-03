@@ -413,7 +413,7 @@ public class TestDriver {
 
 	}
 		
-	@Test(priority = 25) 
+//	@Test(priority = 25) 
 	public static void verifyLinkExtenalKnowledge() throws  Exception
 
 	{
@@ -425,6 +425,17 @@ public class TestDriver {
 
 	}
 
+//	@Test(priority = 25) 
+	public static void enableDisableVariantPanel() throws  Exception
+
+	{
+
+		LOGGER.info("---------------------------------The test case verify Show Node  is running-------------------------");
+		readFile(configProperties.getProperty("verify.summaryStats.searchbysubject.messages"));
+		testPlan.docheckenableDisableVarPanel(reporter);
+		LOGGER.info("---------------------------------The test case verify Show Node is Finshed-------------------------");
+
+	}
 	
 	
 	

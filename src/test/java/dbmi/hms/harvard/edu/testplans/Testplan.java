@@ -180,6 +180,11 @@ public abstract class Testplan {
 		
 	}
 
+	public void docheckenableDisableVarPanel(Reporter reporter) {
+		// TODO Auto-generated method stub
+		
+	}
+
 	
 	
 }
