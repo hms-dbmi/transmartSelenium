@@ -1,0 +1,10 @@
+ name: Verify Summary Stats for Multiple Subset1 (OR) Condition
+ url: https://grdr.hms.harvard.edu/transmart/login/auth
+ authmethod: GOOGLELOGIN
+ username: atul.sanagar@gmail.com
+ password: Krishna!234
+ test: regression
+ type: BasicStatisticsTestPlan
+ reporter: ConsoleReporter
+ subset1: \demographics\RACE\white
+ subsetmul1: \demographics\SEX\female\

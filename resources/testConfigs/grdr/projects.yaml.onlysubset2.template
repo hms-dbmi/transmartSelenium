@@ -1,0 +1,14 @@
+ name: Verify Summary Stats for Subset2 
+ url: https://grdr.hms.harvard.edu/transmart/login/auth
+ authmethod: GOOGLELOGIN
+ username: atul.sanagar@gmail.com
+ password: Krishna!234
+ test: regression
+ type: BasicStatisticsTestPlan
+ reporter: ConsoleReporter
+ subset1: 
+ subset2: \demographics\SEX\female
+ relational:
+ success: patientcountsubset2
+ successvalue: 21210
+ expected: pass

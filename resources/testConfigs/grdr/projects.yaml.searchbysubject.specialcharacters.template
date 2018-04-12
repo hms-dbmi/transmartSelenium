@@ -1,0 +1,9 @@
+ name: Verify Search by Subject term having special characters
+ url: https://grdr.hms.harvard.edu/transmart/login/auth
+ authmethod: GOOGLELOGIN
+ type: BasicStatisticsTestPlan
+ success: patientcountsubset1
+ searchTermSpec1: Insulin:
+ searchTermSpec2: Nitrate, water
+ searchTermSpec3: 1,1,2-Trich
+ searchTermSpec3: industry_ 

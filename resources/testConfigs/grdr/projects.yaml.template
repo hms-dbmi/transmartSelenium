@@ -1,0 +1,14 @@
+ name: grdr patient count1
+ url: https://grdr.hms.harvard.edu/transmart/login/auth
+ authmethod: GOOGLELOGIN
+ username: atul.sanagar@gmail.com
+ password: Krishna!234
+ test: regression
+ type: BasicStatisticsTestPlan
+ reporter: ConsoleReporter
+ subset1: \demographics\SEX\female\
+ subset2:
+ relational:
+ success: patientcountsubset1
+ successvalue: 21210
+ expected: pass 
