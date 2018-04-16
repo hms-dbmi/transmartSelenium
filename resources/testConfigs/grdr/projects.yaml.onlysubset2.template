@@ -7,8 +7,8 @@
  type: BasicStatisticsTestPlan
  reporter: ConsoleReporter
  subset1: 
- subset2: \demographics\SEX\female
+ subset2: \Clinical Registry Investigating Bardet-Biedl Syndrome\1 Socio-demographic data\Sex\Female 
  relational:
  success: patientcountsubset2
- successvalue: 21210
+ successvalue: 127
  expected: pass

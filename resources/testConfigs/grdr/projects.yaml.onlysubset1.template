@@ -6,12 +6,12 @@
  test: regression
  type: BasicStatisticsTestPlan
  reporter: ConsoleReporter
- subset1: \demographics\SEX\male\
+ subset1: \Clinical Registry Investigating Bardet-Biedl Syndrome\1 Socio-demographic data\Race\White
  subset3: 
  subset2:
  relational:
  success: patientcountsubset1
- successvalue: 21210
+ successvalue: 194
  expected: pass
  searchTerm: Vitamin
  expectedSearchResult: Found 15 results. 
