@@ -6,5 +6,8 @@
  test: regression
  type: BasicStatisticsTestPlan
  reporter: ConsoleReporter
- subset1: \demographics\RACE\white
- subsetmul1: \demographics\SEX\female\
+ subset1: \Clinical Registry Investigating Bardet-Biedl Syndrome\1 Socio-demographic data\Race\White
+ subsetmul1: \Clinical Registry Investigating Bardet-Biedl Syndrome\1 Socio-demographic data\Sex\Female
+ success: patientcountsubset1
+ successvalue: 216
+ expected: pass 
