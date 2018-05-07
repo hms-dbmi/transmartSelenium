@@ -6,7 +6,7 @@
  test: regression
  type: BasicStatisticsTestPlan
  reporter: ConsoleReporter
- subset1: \Clinical Registry Investigating Bardet-Biedl Syndrome\1 Socio-demographic data\Race\Other/Unknown/refuse to Answer\
+ subset1: \Clinical Registry Investigating Bardet-Biedl Syndrome\1 Socio-demographic data\Race\Other/Unknown/refuse To Answer\
  subsetmul1: \Clinical Registry Investigating Bardet-Biedl Syndrome\1 Socio-demographic data\Sex\Female
  subset2: \Clinical Registry Investigating Bardet-Biedl Syndrome\1 Socio-demographic data\Race\White
  subsetmul2: \Clinical Registry Investigating Bardet-Biedl Syndrome\1 Socio-demographic data\Sex\Female
