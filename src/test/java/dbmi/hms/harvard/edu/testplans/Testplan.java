@@ -29,7 +29,7 @@ public abstract class Testplan {
 		}
 	}
 
-	public void doPlan() {
+	public void doPlan() throws InterruptedException {
 	};
 
 	public void closeDriver() {
@@ -91,7 +91,7 @@ public abstract class Testplan {
 
 	}
 
-	public void loginSite() {
+	public void loginSite() throws InterruptedException {
 		// TODO Auto-generated method stub
 
 	}

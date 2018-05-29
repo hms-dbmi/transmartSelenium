@@ -72,7 +72,7 @@ public class BasicStatisticsTestPlan extends Testplan {
 		this.relational = relational;
 	}
 
-	public void loginSite() {
+	public void loginSite() throws InterruptedException {
 
 		System.setProperty(BROWSER, BROWSERDRIVER);
 		LOGGER.info(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>Launching the Browser>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
@@ -81,7 +81,7 @@ public class BasicStatisticsTestPlan extends Testplan {
 		driver.manage().window().maximize();
 		driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
 		LOGGER.info("");
-		LOGGER.info("********************************Loading the Harvard Website********************************");
+		LOGGER.info("********************************Loading the site****"+testPlan.get("url").toString()+"********************************");
 		driver.get(testPlan.get("url").toString());
 		AuthTypes authTypes = new AuthTypes();
 
@@ -97,8 +97,10 @@ public class BasicStatisticsTestPlan extends Testplan {
 
 		authTypes.doAuth(driver, testPlan);
 	}
-
+	
+	
 	public void checkWinodwTitle(Reporter reporter) throws InterruptedException {
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		String winodwTitle = driver.getTitle();
 		LOGGER.info("-------------------Logged in successfully: Title of winodow is -------------------------"
 				+ winodwTitle);
@@ -737,7 +739,7 @@ public class BasicStatisticsTestPlan extends Testplan {
 
 	}
 
-	public void doPlan() {
+	public void doPlan() throws InterruptedException {
 		try {
 
 			System.setProperty(BROWSER, BROWSERDRIVER);
