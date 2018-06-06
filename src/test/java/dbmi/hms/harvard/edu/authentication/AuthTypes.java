@@ -38,10 +38,14 @@ public class AuthTypes {
 			String usernamebox = ".//*[@id='j_username']";
 			String passwordbox = ".//*[@id='j_password']";
 			String submitbutton = ".//*[@id='loginButton']";
+			String analyzeMenu = ".//*[@id='menuLinks']/tbody/tr/th[3]";
 			driver.findElement(By.xpath(usernamebox)).sendKeys(testPlan.get("username").toString());
 			driver.findElement(By.xpath(passwordbox)).sendKeys(testPlan.get("password").toString());
 			//Thread.sleep(10000);
 			driver.findElement(By.xpath(submitbutton)).click();
+			Thread.sleep(10000);
+			driver.findElement(By.xpath(analyzeMenu)).click();
+			
 		} catch (SecurityException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

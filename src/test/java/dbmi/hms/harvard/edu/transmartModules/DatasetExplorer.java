@@ -1,4 +1,4 @@
-package dbmi.hms.harvard.edu.transmartModules;
+	package dbmi.hms.harvard.edu.transmartModules;
 
 import java.util.List;
 
@@ -8,7 +8,18 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 public class DatasetExplorer extends Module {
-	private String subset1box = ".//*[@id='queryCriteriaDiv1_1']";
+	//private String subset1box = ".//*[@id='queryCriteriaDiv1_1']";
+	//private String subset1box = ".//*[@id='panelBoxList_2']";
+	
+	//private String subset1box=".//*[@id='queryTable']/tbody/tr[2]/td[1]/dv/div/div[1]/div/span";
+	//private String subset1box=".//*[@id='queryTable']/tbody/tr[2]/td[1]/div";
+	//private String subset1box=".//*[@id='queryTable']/tbody/tr[2]/td[1]/div/div";
+	//private String subset1box=".//*[@id='queryTable']/tbody/tr[2]/td[1]/div/div/div[1]";
+	//private String subset1box=".//*[@id='queryTable']/tbody/tr[2]/td[1]/div/div/div[1]/div";
+	//private String subset1box=".//*[@id='queryTable']/tbody/tr[2]/td[1]/div/div/div/div[1]";
+	//private String subset1box=".//div[@subset='1']/div[@class='panelBox']";
+	//private String subset1box=".//div[@subset='1']/descendant::div[@class='wrap']/span";
+	private String subset1box=".//div[@subset='1']/descendant::div[@class='panelBoxList']";
 	private String subset2box = ".//*[@id='queryCriteriaDiv2_1']";
 	private String subset1boxtwo = ".//*[@id='queryCriteriaDiv1_2']";
 	private String relationbox = ".//*[@id='queryCriteriaDiv3_1']";

@@ -1,0 +1,14 @@
+ name: Verify Exclude functionality
+ url: https://grdr.hms.harvard.edu/transmart/login/auth
+ authmethod: GOOGLELOGIN
+ username: atul.sanagar@gmail.com
+ password: Krishna!234
+ test: regression
+ type: BasicStatisticsTestPlan
+ reporter: ConsoleReporter
+ subset1: \demographics\RACE\mexican
+ subset2:
+ relational:
+ success: patientcountsubset1
+ successvalue: 29939
+ expected: pass 

@@ -99,8 +99,8 @@ public class TestDriver {
 
 	}
 
-/*	
-
+	
+/*
 	@Test(priority = 2, groups = { "Sanity Regression" })
 
 	public static void verifySummaryStatsMultipleSubset1OR()
@@ -113,6 +113,7 @@ public class TestDriver {
 				"--------------------------------The test case verifySummaryStatsMultipleSubset1OR is Finshed-------------------------");
 	}
 
+*/
 @Test(priority = 5, groups = { "Sanity" })
 
 	public static void verifySummaryStats() throws YamlException, InterruptedException {
@@ -123,8 +124,9 @@ public class TestDriver {
 		testPlan.doPlan(reporter);
 		LOGGER.info(
 				"--------------------------------The test case verifySummaryStats is Finshed-------------------------");
-	}
 
+}
+/*
 @Test(priority = 6, groups = { "Sanity Regression" })
 
 	public static void verifySummaryStatsSubset2() throws YamlException, InterruptedException {

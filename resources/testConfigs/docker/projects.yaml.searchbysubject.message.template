@@ -1,0 +1,9 @@
+ name: Verify Search by Subject term Error/info Messages
+ url: https://grdr.hms.harvard.edu/transmart/login/auth
+ authmethod: GOOGLELOGIN
+ type: BasicStatisticsTestPlan
+ success: patientcountsubset1
+ searchTerm1: Vim
+ searchTermSpec2: Nitrate, water
+ searchTermSpec3: 1,1,2-Trich
+ searchTermSpec3: industry_ 

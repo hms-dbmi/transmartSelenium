@@ -1,0 +1,16 @@
+ name: Verify Summary Stats for Multiple Subset1 (OR) Condition
+ url: https://grdr.hms.harvard.edu/transmart/login/auth
+ authmethod: GOOGLELOGIN
+ username: atul.sanagar@gmail.com
+ password: Krishna!234
+ test: regression
+ type: BasicStatisticsTestPlan
+ reporter: ConsoleReporter
+ subset1: \Clinical Registry Investigating Bardet-Biedl Syndrome\1 Socio-demographic data\Race\Other/Unknown/refuse To Answer\
+ subsetmul1: \Clinical Registry Investigating Bardet-Biedl Syndrome\1 Socio-demographic data\Sex\Female
+ subset2: \Clinical Registry Investigating Bardet-Biedl Syndrome\1 Socio-demographic data\Race\White
+ subsetmul2: \Clinical Registry Investigating Bardet-Biedl Syndrome\1 Socio-demographic data\Sex\Female
+ relational:
+ success: patientCountCommon
+ successvalue: 127
+ expected: pass

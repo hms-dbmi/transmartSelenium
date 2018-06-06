@@ -1,17 +1,17 @@
  name: Verify Summary Stats / Search by Sub/ Graphs
- url: https://nhanes.hms.harvard.edu/transmart/login/forceAuth
- authmethod: PUB
- username: 
- password: 
+ url: https://grdr.hms.harvard.edu/transmart/login/auth
+ authmethod: GOOGLELOGIN
+ username: atul.sanagar@gmail.com
+ password: Krishna!234
  test: regression
  type: BasicStatisticsTestPlan
  reporter: ConsoleReporter
- subset1: \demographics\SEX\female\
+ subset1: \Clinical Registry Investigating Bardet-Biedl Syndrome\1 Socio-demographic data\Race\White
  subset3: 
  subset2:
  relational:
  success: patientcountsubset1
- successvalue: 21210
+ successvalue: 194
  expected: pass
  searchTerm: Vitamin
  expectedSearchResult: Found 15 results. 

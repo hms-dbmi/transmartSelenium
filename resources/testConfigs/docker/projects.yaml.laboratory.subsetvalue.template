@@ -1,0 +1,16 @@
+ name: Verify Summary Stats for Subset1 Set value
+ url: https://grdr.hms.harvard.edu/transmart/login/auth
+ authmethod: GOOGLELOGIN
+ username: atul.sanagar@gmail.com
+ password: Krishna!234
+ test: regression
+ type: BasicStatisticsTestPlan
+ reporter: ConsoleReporter
+ subset1: \laboratory\blood\Hemoglobin
+ subset2: \demographics\RACE\other
+ relational:
+ success: patientCountCommon
+ successvalue: 599
+ expected: pass
+ subsetValue1: 13.5
+ 

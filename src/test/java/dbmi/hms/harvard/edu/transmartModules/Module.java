@@ -65,8 +65,10 @@ public abstract class Module {
 
 	protected void dragDrop(WebDriver driver, WebElement source, WebElement target) {
 		Actions action = new Actions(driver);
+		//System.out.println("Test Action....");
 		action.dragAndDrop(source, target).perform();
-		
+	//**	action.moveByOffset(-1, -1).dragAndDrop(source, target).perform();
+		//action.moveToElement(source).build().perform();
 
 	}
 

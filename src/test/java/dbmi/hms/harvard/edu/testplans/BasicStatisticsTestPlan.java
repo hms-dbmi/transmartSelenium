@@ -7,6 +7,8 @@ import java.util.List;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
+import javax.xml.xpath.XPath;
+
 import org.apache.log4j.Logger;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
@@ -131,13 +133,17 @@ public class BasicStatisticsTestPlan extends Testplan {
 	}
 
 	public void doPlan(Reporter reporter) throws InterruptedException {
-
+		//String save=".//*[@id='ext-gen59']/div[1]/button[1]";
+		//String include=".//*[@id='queryTable']/tbody/tr[2]/td[1]/div/div/div[4]/span[1]/label[2]/span";
 		try {
 
 			if (testPlan.get("subset1") != null && testPlan.get("subset1") != "") {
 				for (String path : java.util.Arrays.asList(testPlan.get("subset1").toString().split(","))) {
 					DatasetExplorer.class.newInstance().doNavigateByPath(driver, path);
 					DatasetExplorer.class.newInstance().doDragAndDrop(driver, path, "subset1");
+			//		System.out.println("Test Drag and Drop");
+					//driver.findElement(By.xpath(save)).click();
+					//driver.findElement(By.xpath(include)).click();
 					DatasetExplorer.class.newInstance().doReverseNavigateByPath(driver, path);
 
 				}
