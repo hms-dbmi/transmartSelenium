@@ -53,7 +53,7 @@ public class BasicStatisticsTestPlan extends Testplan {
 		this.subset1 = subset1;
 	}
 
-	public Set<String> getSubset2() {
+	public Set<String> getSubset2()   {
 		return subset2;
 	}
 
@@ -82,7 +82,7 @@ public class BasicStatisticsTestPlan extends Testplan {
 		System.setProperty(BROWSER, BROWSERDRIVER);
 		LOGGER.info(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>Launching the Browser>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
 		//driver = new FirefoxDriver();
-		WebDriver driver =new ChromeDriver();
+	    driver =new ChromeDriver();
 		System.out.println("Launching Chrome Driver");
 		
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
@@ -108,10 +108,13 @@ public class BasicStatisticsTestPlan extends Testplan {
 	}
 
 	public void checkWinodwTitle(Reporter reporter) throws InterruptedException {
-		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		System.out.println("Test123");
+//		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		System.out.println("Test1234");
 		String winodwTitle = driver.getTitle();
 		LOGGER.info("-------------------Logged in successfully: Title of winodow is -------------------------"
 				+ winodwTitle);
+		System.out.println("Testing .....");
 
 		if (winodwTitle.equals("Dataset Explorer")) {
 			try {
