@@ -72,7 +72,7 @@ public class TestDriver {
 		}
 	}
 
-	@BeforeTest
+@BeforeTest
 
 	public void setup() throws InterruptedException {
 

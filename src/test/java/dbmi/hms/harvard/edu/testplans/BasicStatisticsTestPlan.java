@@ -15,6 +15,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.util.Strings;
 
@@ -29,8 +30,10 @@ import dbmi.hms.harvard.edu.transmartModules.SummaryStatistics;
 
 public class BasicStatisticsTestPlan extends Testplan {
 	private static final int TIMEOUT = 30;
-	private static final String BROWSER = "webdriver.firefox.marionette";
-	private static final String BROWSERDRIVER = "/Users/tom/Documents/workspace-ggts-3.6.4.RELEASE/transmartQA/drivers/geckodriver";
+//	private static final String BROWSER = "webdriver.firefox.marionette";
+	private static final String BROWSER = "webdriver.chrome.driver";
+	//private static final String BROWSERDRIVER = "D:\\chromedriver.exe";
+	private static String BROWSERDRIVER = System.getProperty("googlechromepath");
 	private String DragConcept = ".//*[@id='ext-gen157']/div/table/tbody/tr/td";
 	private Set<String> subset1;
 	private Set<String> subset2;
@@ -78,12 +81,16 @@ public class BasicStatisticsTestPlan extends Testplan {
 
 		System.setProperty(BROWSER, BROWSERDRIVER);
 		LOGGER.info(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>Launching the Browser>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
-		driver = new FirefoxDriver();
+		//driver = new FirefoxDriver();
+		WebDriver driver =new ChromeDriver();
+		System.out.println("Launching Chrome Driver");
+		
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		driver.manage().window().maximize();
 		driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
 		LOGGER.info("");
-		LOGGER.info("********************************Loading the site****"+testPlan.get("url").toString()+"********************************");
+		LOGGER.info("********************************Loading the site****" + testPlan.get("url").toString()
+				+ "********************************");
 		driver.get(testPlan.get("url").toString());
 		AuthTypes authTypes = new AuthTypes();
 
@@ -99,8 +106,7 @@ public class BasicStatisticsTestPlan extends Testplan {
 
 		authTypes.doAuth(driver, testPlan);
 	}
-	
-	
+
 	public void checkWinodwTitle(Reporter reporter) throws InterruptedException {
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		String winodwTitle = driver.getTitle();
@@ -133,17 +139,18 @@ public class BasicStatisticsTestPlan extends Testplan {
 	}
 
 	public void doPlan(Reporter reporter) throws InterruptedException {
-		//String save=".//*[@id='ext-gen59']/div[1]/button[1]";
-		//String include=".//*[@id='queryTable']/tbody/tr[2]/td[1]/div/div/div[4]/span[1]/label[2]/span";
+		// String save=".//*[@id='ext-gen59']/div[1]/button[1]";
+		// String
+		// include=".//*[@id='queryTable']/tbody/tr[2]/td[1]/div/div/div[4]/span[1]/label[2]/span";
 		try {
 
 			if (testPlan.get("subset1") != null && testPlan.get("subset1") != "") {
 				for (String path : java.util.Arrays.asList(testPlan.get("subset1").toString().split(","))) {
 					DatasetExplorer.class.newInstance().doNavigateByPath(driver, path);
 					DatasetExplorer.class.newInstance().doDragAndDrop(driver, path, "subset1");
-			//		System.out.println("Test Drag and Drop");
-					//driver.findElement(By.xpath(save)).click();
-					//driver.findElement(By.xpath(include)).click();
+					// System.out.println("Test Drag and Drop");
+					// driver.findElement(By.xpath(save)).click();
+					// driver.findElement(By.xpath(include)).click();
 					DatasetExplorer.class.newInstance().doReverseNavigateByPath(driver, path);
 
 				}
@@ -527,34 +534,28 @@ public class BasicStatisticsTestPlan extends Testplan {
 		SearchBySubject.class.newInstance().doClearSearchBox(driver);
 	}
 
-	
-	
 	public void doSearchLength(Reporter reporter) throws InterruptedException, Exception {
 
 		String searchTerm = testPlan.get("searchTerm1").toString();
 		SearchBySubject.class.newInstance().doSelectNavigationTab(driver);
 		SearchBySubject.class.newInstance().doSearch(driver, searchTerm);
-				try{
-					Alert alert = driver.switchTo().alert();
-					if(alert!=null && !"".equals(alert)){
-						String searchTermCharLength=alert.getText();
-						System.out.println("The Text Message is "  +searchTermCharLength);
-						alert.accept();
-						SummaryStatisticsResults.class.newInstance().doAssertResultTrue(driver, testPlan, reporter);
-					}
+		try {
+			Alert alert = driver.switchTo().alert();
+			if (alert != null && !"".equals(alert)) {
+				String searchTermCharLength = alert.getText();
+				System.out.println("The Text Message is " + searchTermCharLength);
+				alert.accept();
+				SummaryStatisticsResults.class.newInstance().doAssertResultTrue(driver, testPlan, reporter);
 			}
-				catch(NoAlertPresentException e){
-	  //      e.printStackTrace();
-	        System.out.println("no alert");
-	        SummaryStatisticsResults.class.newInstance().doAssertResultFalse(driver, testPlan, reporter);
-	    }	
-		
+		} catch (NoAlertPresentException e) {
+			// e.printStackTrace();
+			System.out.println("no alert");
+			SummaryStatisticsResults.class.newInstance().doAssertResultFalse(driver, testPlan, reporter);
+		}
+
 		SearchBySubject.class.newInstance().doClearSearchBox(driver);
 	}
 
-	
-	
-	
 	public void doSearchSpecialChar(Reporter reporter) throws InterruptedException, Exception {
 
 		String searchTermSpecialCharacter = testPlan.get("searchTermSpecialChar").toString();
@@ -584,7 +585,6 @@ public class BasicStatisticsTestPlan extends Testplan {
 		SearchBySubject.class.newInstance().doClearSearchBox(driver);
 	}
 
-	
 	public void doPlanSummaryStatSearch(Reporter reporter) throws InterruptedException {
 
 		String searchStats = testPlan.get("searchTermsum").toString();
@@ -679,26 +679,19 @@ public class BasicStatisticsTestPlan extends Testplan {
 					while (itr.hasNext()) {
 						String graph = itr.next().getAttribute("src");
 						assertThat(graph).contains("jfreechart");
-							
-						
+
 					}
 					LOGGER.info(
 							"-------------------Sex and Race Graph are present on the reports -------------------------");
 					SummaryStatisticsResults.class.newInstance().doAssertResultTrue(driver, testPlan, reporter);
 
+				} else {
 
-				}	
-					else
-					{
-						
-						SummaryStatisticsResults.class.newInstance().doAssertResultFalse(driver, testPlan, reporter);
-						
-				}					
+					SummaryStatisticsResults.class.newInstance().doAssertResultFalse(driver, testPlan, reporter);
+
+				}
+			}
 		}
-	}
-
-
-		
 
 		catch (InstantiationException | IllegalAccessException e) {
 
@@ -734,7 +727,7 @@ public class BasicStatisticsTestPlan extends Testplan {
 			if (Strings.isNullOrEmpty(DatasetExplorer.textSubsetBoxValue)) {
 				SummaryStatisticsResults.class.newInstance().doAssertResultTrue(driver, testPlan, reporter);
 			} else {
- 
+
 				SummaryStatisticsResults.class.newInstance().doAssertResultFalse(driver, testPlan, reporter);
 			}
 
