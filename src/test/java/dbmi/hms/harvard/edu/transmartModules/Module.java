@@ -23,14 +23,14 @@ public abstract class Module {
 		Actions action = new Actions(driver);
 		//action.click(element)..perform();
 		action.click(new WebDriverWait(driver, 60).until(ExpectedConditions.visibilityOf(element))).perform();
-		
-	
+
+
 	}
 
 	protected void clickEnter(WebDriver driver, WebElement element, int value) {
 		Actions action = new Actions(driver);
 		action.click(element).perform();
-		
+
 
 	}
 
@@ -43,16 +43,16 @@ public abstract class Module {
 	protected void navigateByNode(WebDriver driver, String node) {
 		if (!node.isEmpty()) {
 			try {
-				
+
 				doubleClick(driver, new WebDriverWait(driver, 60).until(ExpectedConditions.presenceOfElementLocated(By.partialLinkText(node))));
 //				doubleClick(driver, new WebDriverWait(driver, 60).until(ExpectedConditions.presenceOfElementLocated(By.linkText(node))));
 				//doubleClick(driver, new WebDriverWait(driver, 60).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[text()= '"+node+"']"))));		
-				
+
 			}
 			// doubleClick(driver,new // WebDriverWait(driver,30).until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//*[contains(text(),
 			// '"+node+"')]"))));
 
-			
+
 			catch (Exception e) {
 				System.err.println("Element not found: " + e.getMessage());
 				LOGGER.error(e.getMessage());
@@ -65,9 +65,9 @@ public abstract class Module {
 
 	protected void dragDrop(WebDriver driver, WebElement source, WebElement target) {
 		Actions action = new Actions(driver);
-		//System.out.println("Test Action....");
-		action.dragAndDrop(source, target).perform();
-	//**	action.moveByOffset(-1, -1).dragAndDrop(source, target).perform();
+		action.moveToElement(source).moveByOffset(-20,0).clickAndHold().release(target).perform();
+
+		//**	action.moveByOffset(-1, -1).dragAndDrop(source, target).perform();
 		//action.moveToElement(source).build().perform();
 
 	}
