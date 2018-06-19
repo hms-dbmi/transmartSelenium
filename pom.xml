@@ -267,6 +267,7 @@
 					<systemPropertyVariables>
 						<pathtoconfig>src/test/resources/</pathtoconfig>
 						<googlechromepath>D://chromedriver.exe</googlechromepath>
+					<geckodriverpath>D://geckodriver.exe</geckodriverpath>
 					</systemPropertyVariables>
 					<systemProperties>
 						<!-- <property> <name>someSystemProperty</name> <value>src/test/resources/</value> 
