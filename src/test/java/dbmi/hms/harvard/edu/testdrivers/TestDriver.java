@@ -83,7 +83,7 @@ public class TestDriver {
 		testPlan.loginSite();
 		LOGGER.info(
 				"______________________________________Initial Setting up is Done______________________________________");
-		System.out.println("Testing Setup");
+
 	}
 	
 

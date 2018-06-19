@@ -17,6 +17,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.util.Strings;
 
 import com.fasterxml.jackson.databind.ser.SerializerCache;
@@ -30,10 +31,12 @@ import dbmi.hms.harvard.edu.transmartModules.SummaryStatistics;
 
 public class BasicStatisticsTestPlan extends Testplan {
 	private static final int TIMEOUT = 30;
-//	private static final String BROWSER = "webdriver.firefox.marionette";
-	private static final String BROWSER = "webdriver.chrome.driver";
+	//private static final String BROWSER = "webdriver.firefox.marionette";
+	private static final String BROWSER ="webdriver.gecko.driver";
+//	private static final String BROWSER = "webdriver.chrome.driver";
 	//private static final String BROWSERDRIVER = "D:\\chromedriver.exe";
-	private static String BROWSERDRIVER = System.getProperty("googlechromepath");
+//	private static String BROWSERDRIVER = System.getProperty("googlechromepath");
+	private static String BROWSERDRIVER = System.getProperty("geckodriverpath");
 	private String DragConcept = ".//*[@id='ext-gen157']/div/table/tbody/tr/td";
 	private Set<String> subset1;
 	private Set<String> subset2;
@@ -81,9 +84,14 @@ public class BasicStatisticsTestPlan extends Testplan {
 
 		System.setProperty(BROWSER, BROWSERDRIVER);
 		LOGGER.info(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>Launching the Browser>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
-		//driver = new FirefoxDriver();
-	    driver =new ChromeDriver();
-		System.out.println("Launching Chrome Driver");
+		driver = new FirefoxDriver();
+	//    driver =new ChromeDriver();
+		
+	/*	DesiredCapabilities capabilities = DesiredCapabilities.firefox();
+		capabilities.setCapability("marionette", true);
+		WebDriver driver = new FirefoxDriver(capabilities);
+	*/	
+		
 		
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		driver.manage().window().maximize();
@@ -108,13 +116,13 @@ public class BasicStatisticsTestPlan extends Testplan {
 	}
 
 	public void checkWinodwTitle(Reporter reporter) throws InterruptedException {
-		System.out.println("Test123");
+
 //		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-		System.out.println("Test1234");
+
 		String winodwTitle = driver.getTitle();
 		LOGGER.info("-------------------Logged in successfully: Title of winodow is -------------------------"
 				+ winodwTitle);
-		System.out.println("Testing .....");
+
 
 		if (winodwTitle.equals("Dataset Explorer")) {
 			try {

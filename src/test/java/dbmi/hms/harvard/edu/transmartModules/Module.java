@@ -45,6 +45,7 @@ public abstract class Module {
 			try {
 
 				doubleClick(driver, new WebDriverWait(driver, 60).until(ExpectedConditions.presenceOfElementLocated(By.partialLinkText(node))));
+				//doubleClick(driver, new WebDriverWait(driver, 60).until(ExpectedConditions.presenceOfElementLocated(By.partialLinkText(node))));
 //				doubleClick(driver, new WebDriverWait(driver, 60).until(ExpectedConditions.presenceOfElementLocated(By.linkText(node))));
 				//doubleClick(driver, new WebDriverWait(driver, 60).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[text()= '"+node+"']"))));		
 
