@@ -114,7 +114,7 @@ public class TestDriver {
 	}
 
 */
-@Test(priority = 5, groups = { "Sanity" })
+//@Test(priority = 5, groups = { "Sanity" })
 
 	public static void verifySummaryStats() throws YamlException, InterruptedException {
 
@@ -430,7 +430,7 @@ public class TestDriver {
 		LOGGER.info("---------------------------------The test case verify Show Node is Finshed-------------------------");
 
 	}
-		
+*/		
 	@AfterClass
 	public void closeApplication() {
 
@@ -441,7 +441,7 @@ public class TestDriver {
 				"===========================i2b2/TranSmart Test Automation is completed :Browse is closed ===========================");
 
 	}
-*/
+
 	@SuppressWarnings("finally")
 	private static Testplan initTestPlan(String testType, @SuppressWarnings("rawtypes") Map map) {
 		Testplan newInstance = null;

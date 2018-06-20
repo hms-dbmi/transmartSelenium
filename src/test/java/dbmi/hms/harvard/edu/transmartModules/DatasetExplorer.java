@@ -1,4 +1,4 @@
-	package dbmi.hms.harvard.edu.transmartModules;
+package dbmi.hms.harvard.edu.transmartModules;
 
 import java.util.List;
 
@@ -8,25 +8,19 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 public class DatasetExplorer extends Module {
-	//private String subset1box = ".//*[@id='queryCriteriaDiv1_1']";
-	//private String subset1box = ".//*[@id='panelBoxList_2']";
-	
-	//private String subset1box=".//*[@id='queryTable']/tbody/tr[2]/td[1]/dv/div/div[1]/div/span";
-	//private String subset1box=".//*[@id='queryTable']/tbody/tr[2]/td[1]/div";
-	//private String subset1box=".//*[@id='queryTable']/tbody/tr[2]/td[1]/div/div";
-	//private String subset1box=".//*[@id='queryTable']/tbody/tr[2]/td[1]/div/div/div[1]";
-	//private String subset1box=".//*[@id='queryTable']/tbody/tr[2]/td[1]/div/div/div[1]/div";
-	//private String subset1box=".//*[@id='queryTable']/tbody/tr[2]/td[1]/div/div/div/div[1]";
-	//private String subset1box=".//div[@subset='1']/div[@class='panelBox']";
-	//private String subset1box=".//div[@subset='1']/descendant::div[@class='wrap']/span";
-	private String subset1box=".//div[@subset='1']/descendant::div[@class='panelBoxList']";
+	// private String subset1box = ".//*[@id='queryCriteriaDiv1_1']";
+	// private String subset1box = ".//*[@id='panelBoxList_2']";
+
+	private String subset1box = ".//div[@subset='1']/descendant::div[@class='panelBoxList']";
 	private String subset2box = ".//*[@id='queryCriteriaDiv2_1']";
 	private String subset1boxtwo = ".//*[@id='queryCriteriaDiv1_2']";
 	private String relationbox = ".//*[@id='queryCriteriaDiv3_1']";
 	private String navigationTab = ".//*[@id='ontPanel__navigateTermsPanel']/a[2]/em/span/span";
 	private String exclude = ".//*[@id='btnExcludeGroup1_1']";
-	private String clear = ".//*[@id='ext-gen89']";
-	private String comparisonTab = ".//*[@id='resultsTabPanel__queryPanel']/a[2]/em/span/span";
+	//private String clear = ".//*[@id='ext-gen89']";
+	private String clear ="//button[@class='flatbutton clearbutton'][contains(text(),'Clear All Panels and Analysis')]";
+	//private String comparisonTab = ".//*[@id='resultsTabPanel__queryPanel']/a[2]/em/span/span";
+	private String comparisonTab =	"//span[contains(@class,'x-tab-strip-text')][contains(text(),'Comparison')]";
 	private String subsetValue = ".//*[@id='setValueLowValue']";
 	private String subsetOKbutton = ".//*[@id='ext-gen189']";
 	private String searchedSubject = ".//span[contains(text(),'mexican')]";
@@ -103,14 +97,15 @@ public class DatasetExplorer extends Module {
 	}
 
 	public void doClearAnalysis(WebDriver driver) {
+		click(driver, driver.findElement(By.xpath(comparisonTab)));
 		click(driver, driver.findElement(By.xpath(clear)));
+		
 		Alert alert = driver.switchTo().alert();
 		alert.accept();
 
 	}
 
 	public void doSearchDoDragAndDrop(WebDriver driver, String path, String subset) {
-
 		WebElement source = driver.findElement(By.xpath(searchedSubject));
 		String targetStr = null;
 		if (subset.equalsIgnoreCase("subset1"))
