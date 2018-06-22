@@ -31,11 +31,12 @@ import dbmi.hms.harvard.edu.transmartModules.SummaryStatistics;
 
 public class BasicStatisticsTestPlan extends Testplan {
 	private static final int TIMEOUT = 30;
-	//private static final String BROWSER = "webdriver.firefox.marionette";
-	private static final String BROWSER ="webdriver.gecko.driver";
-//	private static final String BROWSER = "webdriver.chrome.driver";
-	//private static final String BROWSERDRIVER = "D:\\chromedriver.exe";
-//	private static String BROWSERDRIVER = System.getProperty("googlechromepath");
+	// private static final String BROWSER = "webdriver.firefox.marionette";
+	private static final String BROWSER = "webdriver.gecko.driver";
+	// private static final String BROWSER = "webdriver.chrome.driver";
+	// private static final String BROWSERDRIVER = "D:\\chromedriver.exe";
+	// private static String BROWSERDRIVER =
+	// System.getProperty("googlechromepath");
 	private static String BROWSERDRIVER = System.getProperty("geckodriverpath");
 	private String DragConcept = ".//*[@id='ext-gen157']/div/table/tbody/tr/td";
 	private Set<String> subset1;
@@ -56,7 +57,7 @@ public class BasicStatisticsTestPlan extends Testplan {
 		this.subset1 = subset1;
 	}
 
-	public Set<String> getSubset2()   {
+	public Set<String> getSubset2() {
 		return subset2;
 	}
 
@@ -85,14 +86,14 @@ public class BasicStatisticsTestPlan extends Testplan {
 		System.setProperty(BROWSER, BROWSERDRIVER);
 		LOGGER.info(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>Launching the Browser>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
 		driver = new FirefoxDriver();
-	//    driver =new ChromeDriver();
-		
-	/*	DesiredCapabilities capabilities = DesiredCapabilities.firefox();
-		capabilities.setCapability("marionette", true);
-		WebDriver driver = new FirefoxDriver(capabilities);
-	*/	
-		
-		
+		// driver =new ChromeDriver();
+
+		/*
+		 * DesiredCapabilities capabilities = DesiredCapabilities.firefox();
+		 * capabilities.setCapability("marionette", true); WebDriver driver =
+		 * new FirefoxDriver(capabilities);
+		 */
+
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		driver.manage().window().maximize();
 		driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
@@ -117,12 +118,11 @@ public class BasicStatisticsTestPlan extends Testplan {
 
 	public void checkWinodwTitle(Reporter reporter) throws InterruptedException {
 
-//		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		// driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
 		String winodwTitle = driver.getTitle();
 		LOGGER.info("-------------------Logged in successfully: Title of winodow is -------------------------"
 				+ winodwTitle);
-
 
 		if (winodwTitle.equals("Dataset Explorer")) {
 			try {
@@ -147,10 +147,8 @@ public class BasicStatisticsTestPlan extends Testplan {
 				e.printStackTrace();
 			}
 		}
-	
-		
+
 	}
-	
 
 	public void doPlan(Reporter reporter) throws InterruptedException {
 		try {
@@ -167,7 +165,7 @@ public class BasicStatisticsTestPlan extends Testplan {
 				SummaryStatistics.class.newInstance().runSummaryStatistics(driver);
 				SummaryStatisticsResults.class.newInstance().doResults(driver, testPlan, reporter);
 				DatasetExplorer.class.newInstance().doClearAnalysis(driver);
-			//	DatasetExplorer.class.newInstance().doSelectComparison(driver);
+				// DatasetExplorer.class.newInstance().doSelectComparison(driver);
 
 			}
 
