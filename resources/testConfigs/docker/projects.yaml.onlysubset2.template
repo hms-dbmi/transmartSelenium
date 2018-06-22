@@ -1,14 +1,14 @@
  name: Verify Summary Stats for Subset2 
- url: https://grdr.hms.harvard.edu/transmart/login/auth
- authmethod: GOOGLELOGIN
- username: atul.sanagar@gmail.com
- password: Krishna!234
+ url: https://54.91.2.63/transmart/login/auth
+ authmethod: ADMINLOGIN
+ username: admin
+ password: admin
  test: regression
  type: BasicStatisticsTestPlan
  reporter: ConsoleReporter
  subset1: 
- subset2: \Clinical Registry Investigating Bardet-Biedl Syndrome\1 Socio-demographic data\Sex\Female 
+ subset2: \demographics\SEX\female 
  relational:
  success: patientcountsubset2
- successvalue: 127
+ successvalue: 211
  expected: pass

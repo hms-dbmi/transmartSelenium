@@ -11,7 +11,7 @@
  subset2:
  relational:
  success: patientcountsubset1
- successvalue: 21210
+ successvalue: 16034
  expected: pass
  searchTerm: Vitamin
  expectedSearchResult: Found 15 results.
