@@ -1,8 +1,8 @@
  name: Verify Summary Stats for Multiple Subset1 (OR)
  url: https://grdr.hms.harvard.edu/transmart/login/auth
- authmethod: GOOGLELOGIN
- username: atul.sanagar@gmail.com
- password: Krishna!234
+ authmethod: ADMINLOGIN
+ username: admin
+ password: admin
  test: regression
  type: BasicStatisticsTestPlan
  reporter: ConsoleReporter
