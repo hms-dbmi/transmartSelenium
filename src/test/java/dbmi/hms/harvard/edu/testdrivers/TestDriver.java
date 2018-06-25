@@ -1,4 +1,4 @@
-	package dbmi.hms.harvard.edu.testdrivers;
+package dbmi.hms.harvard.edu.testdrivers;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -99,9 +99,7 @@ public class TestDriver {
 
 	}
 
-	
-/*
-	@Test(priority = 2, groups = { "Sanity Regression" })
+	//@Test(priority = 2, groups = { "Sanity Regression" })
 
 	public static void verifySummaryStatsMultipleSubset1OR()
 			throws YamlException, InterruptedException, InstantiationException, IllegalAccessException {
@@ -113,7 +111,6 @@ public class TestDriver {
 				"--------------------------------The test case verifySummaryStatsMultipleSubset1OR is Finshed-------------------------");
 	}
 
-*/
 //@Test(priority = 5, groups = { "Sanity" })
 
 	public static void verifySummaryStats() throws YamlException, InterruptedException {
@@ -126,8 +123,8 @@ public class TestDriver {
 				"--------------------------------The test case verifySummaryStats is Finshed-------------------------");
 
 }
-/*
-@Test(priority = 6, groups = { "Sanity Regression" })
+
+//	@Test(priority = 6, groups = { "Sanity Regression" })
 
 	public static void verifySummaryStatsSubset2() throws YamlException, InterruptedException {
 
@@ -139,6 +136,7 @@ public class TestDriver {
 				"---------------------------The test case verifySummaryStatsSubset2 is Finshed-------------------------");
 
 	}
+/*
 @Test(priority = 3, groups = { "Sanity Regression" })
 
 	public static void verifyMultipleSubset1Subset2OR() throws Exception {
@@ -151,6 +149,7 @@ public class TestDriver {
 				"---------------------------The test case verifyMultipleSubset1Subset2OR is Finshed-------------------------");
 	}
 
+*/
 	@Test(priority = 4, groups = { "Sanity Regression" })
 	public static void verifySummaryStatsMultipleSubset1AND()
 			throws YamlException, InterruptedException, InstantiationException, IllegalAccessException {
@@ -163,6 +162,7 @@ public class TestDriver {
 				"--------------------------------The test case verifySummaryStatsMultipleSubset1AND is Finshed-------------------------");
 
 	}
+	/*	
 	@Test(priority = 7, groups = { "Sanity Regression" })
 
 	public static void verifySummaryStatsSetValue() throws YamlException, InterruptedException {
@@ -436,9 +436,9 @@ public class TestDriver {
 
 		reporter.doReport();
 		testPlan.closeDriver();
-		System.out.println("Testing done");
+		//System.out.println("Testing done");
 		LOGGER.info(
-				"===========================i2b2/TranSmart Test Automation is completed :Browse is closed ===========================");
+				"===========================i2b2/TranSMART Test Automation is completed :Closing the Browser ===========================");
 
 	}
 
