@@ -1,4 +1,4 @@
- name: Verify Summary Stats / Search by Sub/ Graphs
+ name: Verify Summary Stats for Subset1 ( Set value)
  url: https://54.91.2.63/transmart/login/auth
  authmethod: ADMINLOGIN
  username: admin
@@ -6,12 +6,11 @@
  test: regression
  type: BasicStatisticsTestPlan
  reporter: ConsoleReporter
- subset1: \demographics\RACE\white
- subset3: 
+ subset1: \demographics\SEX\female
+ subsetmul1: \laboratory\blood\Lead
  subset2:
  relational:
  success: patientcountsubset1
- successvalue: 16034
+ successvalue: 21210
  expected: pass
- searchTerm: Vitamin
- expectedSearchResult: Found 15 results.
+ subsetValue: 11

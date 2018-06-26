@@ -13,4 +13,4 @@
  success: patientcountsubset1
  successvalue: 154
  expected: pass
- subsetValue: 11
+ subsetValue: 10
