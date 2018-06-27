@@ -1,12 +1,13 @@
  name: Verify Exclude functionality
- url: https://grdr.hms.harvard.edu/transmart/login/auth
- authmethod: GOOGLELOGIN
- username: atul.sanagar@gmail.com
- password: Krishna!234
+ url: https://54.91.2.63/transmart/login/auth
+ authmethod: ADMINLOGIN
+ username: admin
+ password: admin
  test: regression
  type: BasicStatisticsTestPlan
  reporter: ConsoleReporter
  subset1: \demographics\RACE\mexican
+ subsetmul1: \demographics\SEX\female
  subset2:
  relational:
  success: patientcountsubset1
