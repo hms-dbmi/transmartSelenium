@@ -1,4 +1,4 @@
- name: Verify Exclude functionality
+ name: Verify Exclude Subset Message 
  url: https://54.91.2.63/transmart/login/auth
  authmethod: ADMINLOGIN
  username: admin
@@ -7,7 +7,6 @@
  type: BasicStatisticsTestPlan
  reporter: ConsoleReporter
  subset1: \demographics\RACE\mexican
- subsetmul1: \demographics\SEX\female
  subset2:
  relational:
  success: patientcountsubset1
