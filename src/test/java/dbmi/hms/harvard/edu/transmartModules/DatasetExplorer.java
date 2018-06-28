@@ -11,18 +11,25 @@ public class DatasetExplorer extends Module {
 	// private String subset1box = ".//*[@id='queryCriteriaDiv1_1']";
 	// private String subset1box = ".//*[@id='panelBoxList_2']";
 
-	private String subset1box = ".//div[@subset='1']/descendant::div[@class='panelBoxList']";
-	private String subset2box = ".//*[@id='queryCriteriaDiv2_1']";
-	private String subset1boxtwo = ".//*[@id='queryCriteriaDiv1_2']";
-	private String relationbox = ".//*[@id='queryCriteriaDiv3_1']";
-	private String navigationTab = ".//*[@id='ontPanel__navigateTermsPanel']/a[2]/em/span/span";
-	private String exclude = ".//*[@id='btnExcludeGroup1_1']";
+	//private String subset2box = ".//*[@id='queryCriteriaDiv2_1']";
+	//private String subset1boxtwo = ".//*[@id='queryCriteriaDiv1_2']";
+	//private String subset1boxtwo = ".//div[@subset='1']//descendant::div[@id='panelBoxList_2']";
+	//private String relationbox = ".//*[@id='queryCriteriaDiv3_1']";
+	//private String exclude = ".//*[@id='btnExcludeGroup1_1']";
 	//private String clear = ".//*[@id='ext-gen89']";
-	private String clear ="//button[@class='flatbutton clearbutton'][contains(text(),'Clear All Panels and Analysis')]";
 	//private String comparisonTab = ".//*[@id='resultsTabPanel__queryPanel']/a[2]/em/span/span";
+	//private String subsetOKbutton = ".//*[@id='ext-gen189']";
+	private String subset1box = ".//div[@subset='1']/descendant::div[@class='panelBoxList']";
+	private String subset2box = ".//div[@subset='2']/descendant::div[@class='panelBoxList']";
+	private String subset1boxtwo =".//div[@class='panelModel' and @subset='1'] //div[@class='panelBox' and @style='height: 49px;']";
+	private String navigationTab = ".//*[@id='ontPanel__navigateTermsPanel']/a[2]/em/span/span";
+	private String exclude =".//*[@id='queryTable']/tbody/tr[2]/td[1]/div[1]/div/div[4]/span[1]/label[2]/span";
+	private String clear ="//button[@class='flatbutton clearbutton'][contains(text(),'Clear All Panels and Analysis')]";
 	private String comparisonTab =	"//span[contains(@class,'x-tab-strip-text')][contains(text(),'Comparison')]";
-	private String subsetValue = ".//*[@id='setValueLowValue']";
-	private String subsetOKbutton = ".//*[@id='ext-gen189']";
+	private String setValueNumeric = ".//*[@id='ext-gen151']/div[1]/table/tbody/tr[2]/td[1]/input[3]";
+	private String setValueTextBox = ".//*[@id='setValueLowValue']";
+
+	private String subsetOKbutton = ".//*[@id='ext-gen129']";
 	private String searchedSubject = ".//span[contains(text(),'mexican')]";
 	private String deleteButton = ".//*[@id='clearGroup1_1']";
 	public static String textSubsetBoxValue;
@@ -49,12 +56,12 @@ public class DatasetExplorer extends Module {
 		click(driver, driver.findElement(By.xpath(comparisonTab)));
 	}
 
-	public void doclickSubsetValue(WebDriver driver) {
-		click(driver, driver.findElement(By.xpath(subsetValue)));
+	public void doSelectByNumericValue(WebDriver driver) {
+		click(driver, driver.findElement(By.xpath(setValueNumeric)));
 	}
 
-	public void enterValue(WebDriver driver, String SubsetValue) {
-		driver.findElement(By.xpath(subsetValue)).sendKeys(SubsetValue);
+	public void enterValue(WebDriver driver, String subsetValue) {
+		driver.findElement(By.xpath(setValueTextBox)).sendKeys(subsetValue);
 		driver.findElement(By.xpath(subsetOKbutton)).click();
 	}
 
@@ -87,8 +94,8 @@ public class DatasetExplorer extends Module {
 				targetStr = subset2box;
 			if (subset.equalsIgnoreCase("subset1mul"))
 				targetStr = subset1boxtwo;
-			if (subset.equalsIgnoreCase("relation"))
-				targetStr = relationbox;
+			/*if (subset.equalsIgnoreCase("relation"))
+				targetStr = relationbox;*/
 			WebElement target = driver.findElement(By.xpath(targetStr));
 			dragDrop(driver, source, target);
 		} catch (Exception e) {
@@ -114,8 +121,8 @@ public class DatasetExplorer extends Module {
 			targetStr = subset2box;
 		if (subset.equalsIgnoreCase("subset1mul"))
 			targetStr = subset1boxtwo;
-		if (subset.equalsIgnoreCase("relation"))
-			targetStr = relationbox;
+		/*if (subset.equalsIgnoreCase("relation"))
+			targetStr = relationbox;*/
 		WebElement target = driver.findElement(By.xpath(targetStr));
 		dragDrop(driver, source, target);
 	}
