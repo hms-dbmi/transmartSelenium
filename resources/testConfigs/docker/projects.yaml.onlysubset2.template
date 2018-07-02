@@ -10,5 +10,5 @@
  subset2: \demographics\SEX\female 
  relational:
  success: patientcountsubset2
- successvalue: 211
+ successvalue: 21210
  expected: pass
