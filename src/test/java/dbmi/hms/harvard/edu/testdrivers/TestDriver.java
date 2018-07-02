@@ -72,13 +72,16 @@ public class TestDriver {
 		}
 	}
 
+	
+//If BeforeTest method fails, all other cases won't execute...	
+	
+	
 @BeforeTest
 
 	public void setup() throws InterruptedException {
 
 		LOGGER.info(
 				"______________________________________Setting up the application______________________________________");
-		// readFile("resources/testConfigs/projects.yaml.onlysubset1.template");
 		readFile(configProperties.getProperty("verify.window.title"));
 		testPlan.loginSite();
 		LOGGER.info(
@@ -95,11 +98,11 @@ public class TestDriver {
 		readFile(configProperties.getProperty("verify.window.title"));
 		testPlan.checkWinodwTitle(reporter);
 		LOGGER.info(
-				"---------------------------------The test case verifyWinowTitle is Finshed-------------------------");
+				"---------------------------------The test case verifyWinowTitle is Finished-------------------------");
 
 	}
 
-	//@Test(priority = 2, groups = { "Sanity Regression" })
+//@Test(priority = 28, groups = { "Sanity Regression" })
 
 	public static void verifySummaryStatsMultipleSubset1OR()
 			throws YamlException, InterruptedException, InstantiationException, IllegalAccessException {
@@ -108,10 +111,10 @@ public class TestDriver {
 		readFile(configProperties.getProperty("verify.summarystats.multiplesubset1OR"));
 		testPlan.doPlanMultipleSubset1OR(reporter);
 		LOGGER.info(
-				"--------------------------------The test case verifySummaryStatsMultipleSubset1OR is Finshed-------------------------");
+				"--------------------------------The test case verifySummaryStatsMultipleSubset1OR is Finished-------------------------");
 	}
 
-//@Test(priority = 5, groups = { "Sanity" })
+@Test(priority = 4, groups = { "Sanity" })
 
 	public static void verifySummaryStats() throws YamlException, InterruptedException {
 
@@ -120,11 +123,11 @@ public class TestDriver {
 		readFile(configProperties.getProperty("verify.summaryStats.subset1"));
 		testPlan.doPlan(reporter);
 		LOGGER.info(
-				"--------------------------------The test case verifySummaryStats is Finshed-------------------------");
+				"--------------------------------The test case verifySummaryStats is Finished-------------------------");
 
 }
-
-//	@Test(priority = 6, groups = { "Sanity Regression" })
+/*
+@Test(priority = 6, groups = { "Sanity Regression" })
 
 	public static void verifySummaryStatsSubset2() throws YamlException, InterruptedException {
 
@@ -133,10 +136,10 @@ public class TestDriver {
 		readFile(configProperties.getProperty("verify.summaryStats.subset2"));
 		testPlan.doPlanSubset2(reporter);
 		LOGGER.info(
-				"---------------------------The test case verifySummaryStatsSubset2 is Finshed-------------------------");
+				"---------------------------The test case verifySummaryStatsSubset2 is Finished-------------------------");
 
 	}
-/*
+
 @Test(priority = 3, groups = { "Sanity Regression" })
 
 	public static void verifyMultipleSubset1Subset2OR() throws Exception {
@@ -146,11 +149,11 @@ public class TestDriver {
 		readFile(configProperties.getProperty("verify.summarystats.multiplesubset1subset2OR"));
 		testPlan.verifyMultipleSubset1and2OR(reporter);
 		LOGGER.info(
-				"---------------------------The test case verifyMultipleSubset1Subset2OR is Finshed-------------------------");
+				"---------------------------The test case verifyMultipleSubset1Subset2OR is Finished-------------------------");
 	}
 
-*/
-	@Test(priority = 4, groups = { "Sanity Regression" })
+
+@Test(priority = 5, groups = { "Sanity Regression" })
 	public static void verifySummaryStatsMultipleSubset1AND()
 			throws YamlException, InterruptedException, InstantiationException, IllegalAccessException {
 
@@ -159,11 +162,10 @@ public class TestDriver {
 		readFile(configProperties.getProperty("verify.summarystats.multiplesubset1AND"));
 		testPlan.doPlanMultipleSubsetAnd(reporter);
 		LOGGER.info(
-				"--------------------------------The test case verifySummaryStatsMultipleSubset1AND is Finshed-------------------------");
+				"--------------------------------The test case verifySummaryStatsMultipleSubset1AND is Finished-------------------------");
 
 	}
-	/*	
-	@Test(priority = 7, groups = { "Sanity Regression" })
+@Test(priority = 7, groups = { "Sanity Regression" })
 
 	public static void verifySummaryStatsSetValue() throws YamlException, InterruptedException {
 
@@ -172,11 +174,11 @@ public class TestDriver {
 		readFile(configProperties.getProperty("verify.summarystats.entersubset.value"));
 		testPlan.doPlanSetValue(reporter);
 		LOGGER.info(
-				"---------------------------The test case verifySummaryStatsSetValue is Finshed-------------------------");
+				"---------------------------The test case verifySummaryStatsSetValue is Finished-------------------------");
 
 	}
-
-	@Test(priority = 8, groups = { "Sanity Regression" })
+*/
+@Test(priority = 8, groups = { "Sanity Regression" })
 
 	public static void verifySummaryStatsSubsetOneTwo() throws YamlException, InterruptedException {
 
@@ -185,28 +187,37 @@ public class TestDriver {
 		readFile(configProperties.getProperty("verify.summarystats.subset1subset2"));
 		testPlan.doPlanSubsetOneTwo(reporter);
 		LOGGER.info(
-				"---------------------------The test case verifySummaryStatsSubsetOneTwo is Finshed-------------------------");
+				"---------------------------The test case verifySummaryStatsSubsetOneTwo is Finished-------------------------");
 
 	}
 
-	
-	@Test(priority = 9, groups = { "Sanity" })
-	public static void
-
-			verifySummaryStatsExcludeFunctionality()
+/*
+@Test(priority = 9, groups = { "Sanity" })
+	public static void verifySummaryStatsExcludeFunctionality()
 					throws YamlException, InterruptedException, InstantiationException, IllegalAccessException {
 		LOGGER.info(
 				"-------------------------------The test case verifySummaryStatsExcludeFunctionality is running-------------------------");
 		readFile(configProperties.getProperty("verify.summaryStats.exclude"));
 		testPlan.verifyExcludeFeature(reporter);
 		LOGGER.info(
-				"--------------------------------The test case verifySummaryStatsExcludeFunctionality is Finshed-------------------------");
+				"--------------------------------The test case verifySummaryStatsExcludeFunctionality is Finished-------------------------");
 
 	}
 
-	
-	
-	@Test(priority = 10, groups = { "Sanity Regression" })
+
+@Test(priority = 30, groups = { "Sanity" })
+		public static void verifyMessageExcludeOnlySubset()
+						throws YamlException, InterruptedException, InstantiationException, IllegalAccessException {
+			LOGGER.info(
+					"-------------------------------The test case verifySummaryStatsExcludeFunctionality is running-------------------------");
+			readFile(configProperties.getProperty("verify.summaryStats.exclude.message"));
+			testPlan.verifyMessageExclude(reporter);
+			LOGGER.info(
+					"--------------------------------The test case verifySummaryStatsExcludeFunctionality is Finshed-------------------------");
+
+		}
+
+@Test(priority = 10, groups = { "Sanity Regression" })
 
 	public static void verifySummaryStatsSetValueOperator() throws YamlException, InterruptedException {
 
@@ -215,17 +226,16 @@ public class TestDriver {
 		readFile(configProperties.getProperty("verify.summarystats.entersubset.value"));
 		testPlan.doPlanSetValue(reporter);
 		LOGGER.info(
-				"---------------------------The test case verifySummaryStatsSetValue is Finshed-------------------------");
+				"---------------------------The test case verifySummaryStatsSetValue is Finished-------------------------");
 
 	}
 
 	
 	
-	
-	 Verify that the Stats reports page displays the graphs 
+ //Verify that the Stats reports page displays the graphs 
 
 	
-	@Test(priority = 11, groups = { "Sanity Regression" })
+@Test(priority = 11, groups = { "Sanity Regression" })
 
 	public static void verifySummaryStatsGraphs() throws Exception {
 		LOGGER.info(
@@ -235,10 +245,10 @@ public class TestDriver {
 		LOGGER.info(
 				"--------------------------------The test case verifySummaryStats is Finshed-------------------------");
 	}
-
-	
-	 Verify that Laboratory terms loads the reports correctly 
-	@Test(priority = 12, groups = { "Sanity Regression" })
+*/
+/*	
+//	 Verify that Laboratory terms loads the reports correctly 
+@Test(priority = 12, groups = { "Sanity Regression" })
 
 	public static void verifySummaryStatsLaboratory() throws Exception {
 
@@ -251,11 +261,7 @@ public class TestDriver {
 	}
 
 	
-	
-	
-	
-	
-	@Test(priority = 13, groups = { "Sanity Regression" })
+@Test(priority = 13, groups = { "Sanity Regression" })
 
 	public static void verifyQuiestionnaire() throws Exception {
 
@@ -266,13 +272,10 @@ public class TestDriver {
 		LOGGER.info(
 				"---------------------------The test case verifyQuiestionnaire is Finshed------------------------------");
 	}
+*/
 
-	
-	
-	
-	
-	
-	@Test(priority = 14, groups = { "Sanity Regression" })
+/*	
+@Test(priority = 14, groups = { "Sanity Regression" })
 
 	public static void verifyClearButton() throws Exception {
 
@@ -284,8 +287,8 @@ public class TestDriver {
 				"---------------------------The test case verifyClearButton is Finshed------------------------------");
 
 	}
-
-	@Test(priority = 15, groups = { "Sanity Regression" })
+*/
+/*@Test(priority = 15, groups = { "Sanity Regression" })
 
 	public static void verifySearch() throws YamlException, Exception {
 
@@ -295,11 +298,7 @@ public class TestDriver {
 		LOGGER.info("--------------------------------The test case verifySearch is Finshed-------------------------");
 	}
 
-	
-	
-	
-	
-	//@Test(priority = 16, groups = { "Sanity Regression" })
+@Test(priority = 16, groups = { "Sanity Regression" })
 
 	public static void verifySearchSpecialCharacters() throws YamlException, Exception {
 
@@ -311,7 +310,7 @@ public class TestDriver {
 	
 	
 	
-//@Test(priority = 17, groups = { "Sanity Regression" })
+@Test(priority = 17, groups = { "Sanity Regression" })
 	public static void verifySearchCaseSensitivity() throws YamlException, Exception {
 
 		LOGGER.info("-------------------------------The test case  verifySearch Case sensitivity  is running-------------------------");
@@ -320,8 +319,6 @@ public class TestDriver {
 		LOGGER.info("--------------------------------The test case verifySearch CaseSensitivity is Finshed-------------------------");
 	}
 
-
-	
 	
 @Test(priority = 18, groups = { "Sanity Regression" }, dependsOnMethods = { "verifySearch" })
 
@@ -345,7 +342,7 @@ public class TestDriver {
 
 	}
 
-	// @Test(priority = 20) 
+ @Test(priority = 20) 
 	public static void verifyToolTips() throws  YamlException,InterruptedException
 
 	{
@@ -370,7 +367,7 @@ public class TestDriver {
 
 	}
 
-//	@Test(priority = 22) 
+@Test(priority = 22) 
 	public static void verifySubsetBoxAutoIncrement() throws  Exception
 
 	{
@@ -383,7 +380,7 @@ public class TestDriver {
 	}
 
 	
-//	@Test(priority = 23) 
+@Test(priority = 23) 
 	public static void verifyTooltipsSummaryStatsGraphs() throws  Exception
 
 	{
@@ -395,7 +392,7 @@ public class TestDriver {
 
 	}
 
-//	@Test(priority = 24) 
+@Test(priority = 24) 
 	public static void verifyShowNode() throws  Exception
 
 	{
@@ -407,7 +404,7 @@ public class TestDriver {
 
 	}
 		
-//	@Test(priority = 25) 
+@Test(priority = 25) 
 	public static void verifyLinkExtenalKnowledge() throws  Exception
 
 	{
@@ -419,7 +416,7 @@ public class TestDriver {
 
 	}
 
-//	@Test(priority = 25) 
+@Test(priority = 25) 
 	public static void enableDisableVariantPanel() throws  Exception
 
 	{
@@ -429,8 +426,8 @@ public class TestDriver {
 		testPlan.docheckenableDisableVarPanel(reporter);
 		LOGGER.info("---------------------------------The test case verify Show Node is Finshed-------------------------");
 
-	}
-*/		
+	}*/
+		
 	@AfterClass
 	public void closeApplication() {
 

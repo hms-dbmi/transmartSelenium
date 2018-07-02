@@ -2,6 +2,7 @@ package dbmi.hms.harvard.edu.testplans;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
@@ -18,6 +19,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.util.Strings;
 
 import com.fasterxml.jackson.databind.ser.SerializerCache;
@@ -32,16 +35,18 @@ import dbmi.hms.harvard.edu.transmartModules.SummaryStatistics;
 public class BasicStatisticsTestPlan extends Testplan {
 	private static final int TIMEOUT = 30;
 	// private static final String BROWSER = "webdriver.firefox.marionette";
-	private static final String BROWSER = "webdriver.gecko.driver";
 	// private static final String BROWSER = "webdriver.chrome.driver";
 	// private static final String BROWSERDRIVER = "D:\\chromedriver.exe";
 	// private static String BROWSERDRIVER =
 	// System.getProperty("googlechromepath");
+	private static final String BROWSER = "webdriver.gecko.driver";
 	private static String BROWSERDRIVER = System.getProperty("geckodriverpath");
 	private String DragConcept = ".//*[@id='ext-gen157']/div/table/tbody/tr/td";
+	private String patientCountSubset2 = "//td[@colspan='2']//table[@width='100%']//tbody//tr//td[@align='center']//table[@class='analysis']//tbody//tr//td[3]";
+
 	private Set<String> subset1;
 	private Set<String> subset2;
-	private Set<String> relational;
+	// private Set<String> relational;
 	private Set<String> subsetmul1;
 	private static WebDriver driver;
 	private static final Logger LOGGER = Logger.getLogger(BasicStatisticsTestPlan.class.getName());
@@ -73,14 +78,12 @@ public class BasicStatisticsTestPlan extends Testplan {
 		this.subsetmul1 = subsetmul1;
 	}
 
-	public Set<String> getRelational() {
-		return relational;
-	}
-
-	public void setRelational(Set<String> relational) {
-		this.relational = relational;
-	}
-
+	/*
+	 * public Set<String> getRelational() { return relational; }
+	 * 
+	 * public void setRelational(Set<String> relational) { this.relational =
+	 * relational; }
+	 */
 	public void loginSite() throws InterruptedException {
 
 		System.setProperty(BROWSER, BROWSERDRIVER);
@@ -127,7 +130,7 @@ public class BasicStatisticsTestPlan extends Testplan {
 		if (winodwTitle.equals("Dataset Explorer")) {
 			try {
 				SummaryStatisticsResults.class.newInstance().doAssertResultTrue(driver, testPlan, reporter);
-				System.out.println("Trueeee");
+
 			} catch (InstantiationException e) {
 				e.printStackTrace();
 			} catch (IllegalAccessException e) {
@@ -187,12 +190,79 @@ public class BasicStatisticsTestPlan extends Testplan {
 					DatasetExplorer.class.newInstance().doReverseNavigateByPath(driver, path);
 
 				}
+
+				if (testPlan.get("subsetmul1") != null && testPlan.get("subsetmul1") != "") {
+					for (String path : java.util.Arrays.asList(testPlan.get("subsetmul1").toString().split(","))) {
+						DatasetExplorer.class.newInstance().doNavigateByPath(driver, path);
+						DatasetExplorer.class.newInstance().doDragAndDrop(driver, path, "subset1mul");
+						DatasetExplorer.class.newInstance().doReverseNavigateByPath(driver, path);
+					}
+
+				}
+
 				DatasetExplorer.class.newInstance().doSelectExclude(driver);
 				driver.manage().timeouts().implicitlyWait(49, TimeUnit.SECONDS);
 				SummaryStatistics.class.newInstance().runSummaryStatistics(driver);
 				SummaryStatisticsResults.class.newInstance().doResults(driver, testPlan, reporter);
 				DatasetExplorer.class.newInstance().doClearAnalysis(driver);
 				DatasetExplorer.class.newInstance().doSelectComparison(driver);
+
+			}
+
+		} catch (InstantiationException | IllegalAccessException e) {
+
+			e.printStackTrace();
+		}
+
+	}
+
+	public void verifyMessageExclude(Reporter reporter) throws InterruptedException {
+
+		try {
+
+			if (testPlan.get("subset1") != null && testPlan.get("subset1") != "") {
+				for (String path : java.util.Arrays.asList(testPlan.get("subset1").toString().split(","))) {
+					DatasetExplorer.class.newInstance().doNavigateByPath(driver, path);
+					DatasetExplorer.class.newInstance().doDragAndDrop(driver, path, "subset1");
+					DatasetExplorer.class.newInstance().doReverseNavigateByPath(driver, path);
+
+				}
+
+				DatasetExplorer.class.newInstance().doSelectExclude(driver);
+				// driver.manage().timeouts().implicitlyWait(49,
+				// TimeUnit.SECONDS);
+				SummaryStatistics.class.newInstance().runSummaryStatistics(driver);
+				Thread.sleep(10000);
+				driver.switchTo().activeElement();
+				driver.findElement(By
+						.xpath("html/body/div[28]/div[2]/div[2]/div/div/div/div/div/table/tbody/tr/td[1]/table/tbody/tr/td[2]"))
+						.click();
+				// ArrayList tabs = new ArrayList (driver.getWindowHandles());
+				// System.out.println(tabs.size());
+				// driver.manage().timeouts().implicitlyWait(49,
+				// TimeUnit.SECONDS);
+
+				// WebDriverWait wait = new WebDriverWait(driver, 10);
+				// Alert alert =
+				// wait.until(ExpectedConditions.alertIsPresent());
+
+				// Accepting alert.
+				// alert.accept();
+
+				// DatasetExplorer.class.newInstance().doClickOK(driver);
+
+				WebElement exludeSubset = driver
+						.findElement(By.xpath("//div[@id='ext-gen266']/span[@id='ext-gen308']"));
+				String subsetOnlyMessage;
+
+				// Alert alert = driver.switchTo().alert();
+				subsetOnlyMessage = exludeSubset.getText();
+				System.out.println("Title of the warning message is " + subsetOnlyMessage);
+				// alert.accept();`
+				// SummaryStatisticsResults.class.newInstance().doResults(driver,
+				// testPlan, reporter);
+				// DatasetExplorer.class.newInstance().doClearAnalysis(driver);
+				// DatasetExplorer.class.newInstance().doSelectComparison(driver);
 
 			}
 
@@ -233,7 +303,7 @@ public class BasicStatisticsTestPlan extends Testplan {
 		SummaryStatistics.class.newInstance().runSummaryStatistics(driver);
 		SummaryStatisticsResults.class.newInstance().doResults(driver, testPlan, reporter);
 		DatasetExplorer.class.newInstance().doClearAnalysis(driver);
-		DatasetExplorer.class.newInstance().doSelectComparison(driver);
+		// DatasetExplorer.class.newInstance().doSelectComparison(driver);
 
 	}
 
@@ -367,6 +437,8 @@ public class BasicStatisticsTestPlan extends Testplan {
 			driver.manage().timeouts().implicitlyWait(49, TimeUnit.SECONDS);
 			SummaryStatistics.class.newInstance().runSummaryStatistics(driver);
 			SummaryStatisticsResults.class.newInstance().doResults(driver, testPlan, reporter);
+			String resultBox = driver.findElement(By.xpath(patientCountSubset2)).getText();
+			System.out.println("The value of Subset 2 is " + resultBox);
 			DatasetExplorer.class.newInstance().doClearAnalysis(driver);
 			DatasetExplorer.class.newInstance().doSelectComparison(driver);
 
@@ -419,7 +491,7 @@ public class BasicStatisticsTestPlan extends Testplan {
 			}
 
 			driver.manage().timeouts().implicitlyWait(49, TimeUnit.SECONDS);
-			DatasetExplorer.class.newInstance().doclickSubsetValue(driver);
+			DatasetExplorer.class.newInstance().doSelectByNumericValue(driver);
 			DatasetExplorer.class.newInstance().enterValue(driver, subsetValue);
 
 			SummaryStatistics.class.newInstance().runSummaryStatistics(driver);
@@ -448,7 +520,7 @@ public class BasicStatisticsTestPlan extends Testplan {
 				}
 			}
 			driver.manage().timeouts().implicitlyWait(49, TimeUnit.SECONDS);
-			DatasetExplorer.class.newInstance().doclickSubsetValue(driver);
+			DatasetExplorer.class.newInstance().doSelectByNumericValue(driver);
 			DatasetExplorer.class.newInstance().enterValue(driver, subsetvalue);
 
 			if (testPlan.get("subset2") != null && testPlan.get("subset2") != "") {
@@ -488,7 +560,7 @@ public class BasicStatisticsTestPlan extends Testplan {
 				}
 			}
 			driver.manage().timeouts().implicitlyWait(49, TimeUnit.SECONDS);
-			DatasetExplorer.class.newInstance().doclickSubsetValue(driver);
+			DatasetExplorer.class.newInstance().doSelectByNumericValue(driver);
 			DatasetExplorer.class.newInstance().enterValue(driver, subsetvalue);
 
 			if (testPlan.get("subset2") != null && testPlan.get("subset2") != "") {

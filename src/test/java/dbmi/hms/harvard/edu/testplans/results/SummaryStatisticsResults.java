@@ -14,9 +14,11 @@ public class SummaryStatisticsResults extends Results {
 	// private String patientCountSubset1 =
 	// ".//*[@class='analysis']/table[1]/tbody/tr[3]/td/table/tbody/tr/td/table/tbody/tr[2]/td[1]";
 	//public String patientCountSubset1 = ".//*[@id='ext-gen157']/div/table/tbody/tr[4]/td/table/tbody/tr/td/table/tbody/tr[2]/td[1]";
+	//private String patientCountSubset2 = ".//*[@class='analysis']/table[1]/tbody/tr[3]/td/table/tbody/tr/td/table/tbody/tr[2]/td[3]";
+	//private String patientCountCommon = ".//*[@id='ext-gen157']/div/table/tbody/tr[4]/td/table/tbody/tr/td/table/tbody/tr[2]/td[2]";
 	public String patientCountSubset1 ="//td[@colspan='2']//table[@width='100%']//tbody//tr//td[@align='center']//table[@class='analysis']//tbody//tr//td[1]";
-	private String patientCountSubset2 = ".//*[@class='analysis']/table[1]/tbody/tr[3]/td/table/tbody/tr/td/table/tbody/tr[2]/td[3]";
-	private String patientCountCommon = ".//*[@id='ext-gen157']/div/table/tbody/tr[4]/td/table/tbody/tr/td/table/tbody/tr[2]/td[2]";
+	private String patientCountSubset2 = "//td[@colspan='2']//table[@width='100%']//tbody//tr//td[@align='center']//table[@class='analysis']//tbody//tr//td[3]";
+	private String patientCountCommon =".//*[@id='ext-gen62']/div/table[1]/tbody/tr[3]/td/table/tbody/tr/td/table/tbody/tr[2]/td[2]";
 
 	public void test()
 	{
@@ -26,7 +28,7 @@ public class SummaryStatisticsResults extends Results {
 	 * Simple console output
 	 */
 	public void doResultsCheck(WebDriver driver, String successType, String successVal) {
-		System.out.println("Check the doResultCheck");
+	
 		WebDriverWait wait = new WebDriverWait(driver, 30);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[contains(text(), 'Subject Totals')]")));
 		// wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[contains(text(),
@@ -48,7 +50,7 @@ public class SummaryStatisticsResults extends Results {
 
 	private void doVerifyPatientCountSubset1(WebDriver driver, String successVal) {
 		String resultBox = driver.findElement(By.xpath(patientCountSubset1)).getText();
-		System.out.println("Check the PatientCountSubset1");
+	//	System.out.println("Check the PatientCountSubset1");
 		if (resultBox.equals(successVal)) {
 			System.out.println("Success!");
 		} else {
@@ -60,7 +62,7 @@ public class SummaryStatisticsResults extends Results {
 
 	private void doVerifyPatientCountSubset2(WebDriver driver, String successVal) {
 		String resultBox = driver.findElement(By.xpath(patientCountSubset2)).getText();
-
+		
 		if (resultBox.equals(successVal)) {
 			System.out.println("Success!");
 		} else {

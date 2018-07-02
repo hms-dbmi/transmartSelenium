@@ -185,6 +185,11 @@ public abstract class Testplan {
 		
 	}
 
+	public void verifyMessageExclude(Reporter reporter) throws InterruptedException {
+		// TODO Auto-generated method stub
+		
+	}
+
 	
 	
 }

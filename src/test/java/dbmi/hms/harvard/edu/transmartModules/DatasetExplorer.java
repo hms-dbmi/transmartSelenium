@@ -32,10 +32,15 @@ public class DatasetExplorer extends Module {
 	private String subsetOKbutton = ".//*[@id='ext-gen129']";
 	private String searchedSubject = ".//span[contains(text(),'mexican')]";
 	private String deleteButton = ".//*[@id='clearGroup1_1']";
+	String okexlude="html/body/div[28]/div[2]/div[2]/div/div/div/div/div/table/tbody/tr/td[1]/table/tbody/tr/td[2]";
 	public static String textSubsetBoxValue;
 
 	public void doSelectNavigationTab(WebDriver driver) {
 		click(driver, driver.findElement(By.xpath(navigationTab)));
+	}
+
+	public void doClickOK(WebDriver driver) {
+		click(driver, driver.findElement(By.xpath(okexlude)));
 	}
 
 	public void doDelete(WebDriver driver) {
@@ -94,8 +99,8 @@ public class DatasetExplorer extends Module {
 				targetStr = subset2box;
 			if (subset.equalsIgnoreCase("subset1mul"))
 				targetStr = subset1boxtwo;
-			/*if (subset.equalsIgnoreCase("relation"))
-				targetStr = relationbox;*/
+			//if (subset.equalsIgnoreCase("relation"))
+				//targetStr = relationbox;
 			WebElement target = driver.findElement(By.xpath(targetStr));
 			dragDrop(driver, source, target);
 		} catch (Exception e) {
