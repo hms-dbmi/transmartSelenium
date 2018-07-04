@@ -1,4 +1,4 @@
- name: Verify Summary Stats for Subset2 
+ name: Verify Summary Stats for Multiple Subset1Subset2(AND)
  url: https://54.91.2.63/transmart/login/auth
  authmethod: ADMINLOGIN
  username: admin
@@ -8,8 +8,9 @@
  reporter: ConsoleReporter
  subset1: \demographics\RACE\white
  subsetmul1: \demographics\SEX\female
- subset2: \demographics\SEX\female
+ subset2: \demographics\RACE\mexican
+ subsetmul2: \demographics\RACE\black
  relational:
- success: patientcountsubset2
- successvalue: 21210
+ success: patientCountCommon
+ successvalue: 11083
  expected: pass

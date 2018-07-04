@@ -7,6 +7,7 @@
  type: BasicStatisticsTestPlan
  reporter: ConsoleReporter
  subset1: \demographics\RACE\white
+ subsetmul1: \demographics\SEX\female
  subset2: \demographics\SEX\female
  relational:
  success: patientCountCommon
