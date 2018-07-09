@@ -22,6 +22,7 @@ public class DatasetExplorer extends Module {
 	private String subset1box = ".//div[@subset='1']/descendant::div[@class='panelBoxList']";
 	private String subset2box = ".//div[@subset='2']/descendant::div[@class='panelBoxList']";
 	private String subset1boxtwo =".//div[@class='panelModel' and @subset='1'] //div[@class='panelBox' and @style='height: 49px;']";
+	private String subset2boxtwo =".//div[@class='panelModel' and @subset='2'] //div[@class='panelBox' and @style='height: 49px;']";
 	private String navigationTab = ".//*[@id='ontPanel__navigateTermsPanel']/a[2]/em/span/span";
 	private String exclude =".//*[@id='queryTable']/tbody/tr[2]/td[1]/div[1]/div/div[4]/span[1]/label[2]/span";
 	private String clear ="//button[@class='flatbutton clearbutton'][contains(text(),'Clear All Panels and Analysis')]";
@@ -97,8 +98,11 @@ public class DatasetExplorer extends Module {
 				targetStr = subset1box;
 			if (subset.equalsIgnoreCase("subset2"))
 				targetStr = subset2box;
-			if (subset.equalsIgnoreCase("subset1mul"))
+			if (subset.equalsIgnoreCase("subsetmul1"))
 				targetStr = subset1boxtwo;
+			if (subset.equalsIgnoreCase("subsetmul2"))
+				targetStr = subset2boxtwo;
+			
 			//if (subset.equalsIgnoreCase("relation"))
 				//targetStr = relationbox;
 			WebElement target = driver.findElement(By.xpath(targetStr));

@@ -70,9 +70,14 @@ public class BasicStatisticsTestPlan extends Testplan {
 		this.subset2 = subset2;
 	}
 
-	public Set<String> subsetmul1() {
+	public Set<String> getSubsetmul1() {
 		return subsetmul1;
 	}
+
+	/*
+	 * public void setSubset1Multiple(Set<String> subsetmul1) { this.subsetmul1
+	 * = subsetmul1; }
+	 */
 
 	public void setSubset1Multiple(Set<String> subsetmul1) {
 		this.subsetmul1 = subsetmul1;
@@ -312,14 +317,170 @@ public class BasicStatisticsTestPlan extends Testplan {
 	 * condition
 	 */
 
-	public void verifyMultipleSubset1and2OR(Reporter reporter)
+	public void doPlanMultipleSubset1Subset2And(Reporter reporter)
 			throws InterruptedException, InstantiationException, IllegalAccessException {
+
+		// Thread.sleep(6000);
+		/*
+		 * try {
+		 * 
+		 * if (testPlan.get("subset2") != null && testPlan.get("subset2") != "")
+		 * { for (String path :
+		 * java.util.Arrays.asList(testPlan.get("subset2").toString().split(",")
+		 * )) { DatasetExplorer.class.newInstance().doNavigateByPath(driver,
+		 * path); DatasetExplorer.class.newInstance().doDragAndDrop(driver,
+		 * path, "subset2");
+		 * DatasetExplorer.class.newInstance().doReverseNavigateByPath(driver,
+		 * path); }
+		 * 
+		 * } Thread.sleep(10000); if (testPlan.get("subsetmul2") != null &&
+		 * testPlan.get("subsetmul2") != "") { for (String path :
+		 * java.util.Arrays.asList(testPlan.get("subsetmul2").toString().split(
+		 * ","))) { DatasetExplorer.class.newInstance().doNavigateByPath(driver,
+		 * path); DatasetExplorer.class.newInstance().doDragAndDrop(driver,
+		 * path, "subsetmul2");
+		 * DatasetExplorer.class.newInstance().doReverseNavigateByPath(driver,
+		 * path); }
+		 * 
+		 * }
+		 * 
+		 * } catch (InstantiationException | IllegalAccessException e) {
+		 * 
+		 * e.printStackTrace(); }
+		 * 
+		 * try {
+		 * 
+		 * if (testPlan.get("subset1") != null && testPlan.get("subset1") != "")
+		 * { for (String path :
+		 * java.util.Arrays.asList(testPlan.get("subset1").toString().split(",")
+		 * )) { DatasetExplorer.class.newInstance().doNavigateByPath(driver,
+		 * path); DatasetExplorer.class.newInstance().doDragAndDrop(driver,
+		 * path, "subset1");
+		 * DatasetExplorer.class.newInstance().doReverseNavigateByPath(driver,
+		 * path); }
+		 * 
+		 * }
+		 * 
+		 * if (testPlan.get("subsetmul1") != null && testPlan.get("subsetmul1")
+		 * != "") { for (String path :
+		 * java.util.Arrays.asList(testPlan.get("subsetmul1").toString().split(
+		 * ","))) { DatasetExplorer.class.newInstance().doNavigateByPath(driver,
+		 * path); DatasetExplorer.class.newInstance().doDragAndDrop(driver,
+		 * path, "subset1mul");
+		 * DatasetExplorer.class.newInstance().doReverseNavigateByPath(driver,
+		 * path); }
+		 * 
+		 * }
+		 * 
+		 * } catch (InstantiationException | IllegalAccessException e) {
+		 * 
+		 * e.printStackTrace(); }
+		 * 
+		 * 
+		 */
+
+		try {
+
+			for (String path : java.util.Arrays.asList(testPlan.get("subset2").toString().split(","))) {
+				DatasetExplorer.class.newInstance().doNavigateByPath(driver, path);
+				DatasetExplorer.class.newInstance().doDragAndDrop(driver, path, "subset2");
+				DatasetExplorer.class.newInstance().doReverseNavigateByPath(driver, path);
+			}
+
+			Thread.sleep(5000);
+
+		}
+
+		catch (InstantiationException | IllegalAccessException e) {
+
+			e.printStackTrace();
+		}
+
+		Thread.sleep(4000);
 		try {
 
 			if (testPlan.get("subset1") != null && testPlan.get("subset1") != "") {
 				for (String path : java.util.Arrays.asList(testPlan.get("subset1").toString().split(","))) {
 					DatasetExplorer.class.newInstance().doNavigateByPath(driver, path);
 					DatasetExplorer.class.newInstance().doDragAndDrop(driver, path, "subset1");
+					DatasetExplorer.class.newInstance().doReverseNavigateByPath(driver, path);
+				}
+
+			}
+
+			Thread.sleep(5000);
+			if (testPlan.get("subsetmul2") != null && testPlan.get("subsetmul2") != "") {
+				for (String path : java.util.Arrays.asList(testPlan.get("subsetmul2").toString().split(","))) {
+					DatasetExplorer.class.newInstance().doNavigateByPath(driver, path);
+					Thread.sleep(7000);
+
+					DatasetExplorer.class.newInstance().doDragAndDrop(driver, path, "subsetmul2");
+					DatasetExplorer.class.newInstance().doReverseNavigateByPath(driver, path);
+				}
+
+			}
+
+			if (testPlan.get("subsetmul1") != null && testPlan.get("subsetmul1") != "") {
+				for (String path : java.util.Arrays.asList(testPlan.get("subsetmul1").toString().split(","))) {
+					DatasetExplorer.class.newInstance().doNavigateByPath(driver, path);
+					DatasetExplorer.class.newInstance().doDragAndDrop(driver, path, "subsetmul1");
+					DatasetExplorer.class.newInstance().doReverseNavigateByPath(driver, path);
+				}
+
+			}
+
+		} catch (InstantiationException | IllegalAccessException e) {
+
+			e.printStackTrace();
+		}
+
+		driver.manage().timeouts().implicitlyWait(49, TimeUnit.SECONDS);
+		SummaryStatistics.class.newInstance().runSummaryStatistics(driver);
+		SummaryStatisticsResults.class.newInstance().doResults(driver, testPlan, reporter);
+		DatasetExplorer.class.newInstance().doClearAnalysis(driver);
+		DatasetExplorer.class.newInstance().doSelectComparison(driver);
+
+	}
+
+	public void verifyMultipleSubset1and2OR(Reporter reporter)
+			throws InterruptedException, InstantiationException, IllegalAccessException {
+
+		try {
+
+			for (String path : java.util.Arrays.asList(testPlan.get("subset2").toString().split(","))) {
+				DatasetExplorer.class.newInstance().doNavigateByPath(driver, path);
+				String subset = "subset2";
+				DatasetExplorer.class.newInstance().doDragAndDrop(driver, path, subset);
+				DatasetExplorer.class.newInstance().doReverseNavigateByPath(driver, path);
+			}
+
+			Thread.sleep(5000);
+
+		}
+
+		catch (InstantiationException | IllegalAccessException e) {
+
+			e.printStackTrace();
+		}
+
+		Thread.sleep(10000);
+		try {
+
+			if (testPlan.get("subset1") != null && testPlan.get("subset1") != "") {
+				for (String path : java.util.Arrays.asList(testPlan.get("subset1").toString().split(","))) {
+					DatasetExplorer.class.newInstance().doNavigateByPath(driver, path);
+					DatasetExplorer.class.newInstance().doDragAndDrop(driver, path, "subset1");
+					DatasetExplorer.class.newInstance().doReverseNavigateByPath(driver, path);
+				}
+
+			}
+
+			Thread.sleep(10000);
+			if (testPlan.get("subsetmul2") != null && testPlan.get("subsetmul2") != "") {
+				for (String path : java.util.Arrays.asList(testPlan.get("subsetmul2").toString().split(","))) {
+					DatasetExplorer.class.newInstance().doNavigateByPath(driver, path);
+					Thread.sleep(15000);
+					DatasetExplorer.class.newInstance().doDragAndDrop(driver, path, "subset2");
 					DatasetExplorer.class.newInstance().doReverseNavigateByPath(driver, path);
 				}
 
@@ -332,29 +493,13 @@ public class BasicStatisticsTestPlan extends Testplan {
 					DatasetExplorer.class.newInstance().doReverseNavigateByPath(driver, path);
 				}
 
-				if (testPlan.get("subset2") != null && testPlan.get("subset2") != "") {
-					for (String path : java.util.Arrays.asList(testPlan.get("subset2").toString().split(","))) {
-
-						DatasetExplorer.class.newInstance().doNavigateByPath(driver, path);
-						DatasetExplorer.class.newInstance().doDragAndDrop(driver, path, "subset2");
-						DatasetExplorer.class.newInstance().doReverseNavigateByPath(driver, path);
-					}
-				}
-
-				if (testPlan.get("subsetmul2") != null && testPlan.get("subsetmul2") != "") {
-					for (String path : java.util.Arrays.asList(testPlan.get("subsetmul2").toString().split(","))) {
-						DatasetExplorer.class.newInstance().doNavigateByPath(driver, path);
-						DatasetExplorer.class.newInstance().doDragAndDrop(driver, path, "subset2");
-						DatasetExplorer.class.newInstance().doReverseNavigateByPath(driver, path);
-					}
-				}
-
 			}
 
 		} catch (InstantiationException | IllegalAccessException e) {
 
 			e.printStackTrace();
 		}
+
 		driver.manage().timeouts().implicitlyWait(49, TimeUnit.SECONDS);
 		SummaryStatistics.class.newInstance().runSummaryStatistics(driver);
 		SummaryStatisticsResults.class.newInstance().doResults(driver, testPlan, reporter);
@@ -379,7 +524,7 @@ public class BasicStatisticsTestPlan extends Testplan {
 			if (testPlan.get("subsetmul1") != null && testPlan.get("subsetmul1") != "") {
 				for (String path : java.util.Arrays.asList(testPlan.get("subsetmul1").toString().split(","))) {
 					DatasetExplorer.class.newInstance().doNavigateByPath(driver, path);
-					DatasetExplorer.class.newInstance().doDragAndDrop(driver, path, "subset1mul");
+					DatasetExplorer.class.newInstance().doDragAndDrop(driver, path, "subsetmul1");
 					DatasetExplorer.class.newInstance().doReverseNavigateByPath(driver, path);
 				}
 
@@ -480,7 +625,7 @@ public class BasicStatisticsTestPlan extends Testplan {
 		}
 	}
 
-	public void doPlanSetValue(Reporter reporter) throws InterruptedException {
+	public void doPlanSetValueEqual(Reporter reporter) throws InterruptedException {
 		String subsetValue = testPlan.get("subsetValue").toString();
 		try {
 

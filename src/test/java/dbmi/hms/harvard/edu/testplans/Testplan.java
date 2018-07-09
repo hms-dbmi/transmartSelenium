@@ -50,7 +50,7 @@ public abstract class Testplan {
 	public void verifyExpandCollpase(Reporter reporter) throws InterruptedException {
 	};
 
-	public void doPlanSetValue(Reporter reporter) throws InterruptedException {
+	public void doPlanSetValueEqual(Reporter reporter) throws InterruptedException {
 	};
 
 	public void verifyClear(Reporter reporter) throws Exception {
@@ -186,6 +186,38 @@ public abstract class Testplan {
 	}
 
 	public void verifyMessageExclude(Reporter reporter) throws InterruptedException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void doPlanMultipleSubset1Subset2And(Reporter reporter) throws InterruptedException, InstantiationException, IllegalAccessException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void doPlanSetValueLessThan(Reporter reporter) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void doPlanSetValueLessThanEqual(Reporter reporter) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void doPlanSetValueBetween(Reporter reporter) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+
+	public void doPlanSetValueGreaterThan(Reporter reporter) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void doPlanSetValueGreaterThanEqual(Reporter reporter) {
 		// TODO Auto-generated method stub
 		
 	}
