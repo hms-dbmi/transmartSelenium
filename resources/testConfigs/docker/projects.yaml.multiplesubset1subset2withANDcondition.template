@@ -8,9 +8,9 @@
  reporter: ConsoleReporter
  subset1: \demographics\RACE\white
  subsetmul1: \demographics\SEX\female
- subset2: \demographics\RACE\mexican
- subsetmul2: \demographics\RACE\black
+ subset2: \demographics\area\1_10
+ subsetmul2: \demographics\SEX\female
  relational:
  success: patientCountCommon
- successvalue: 11083
+ successvalue: 65
  expected: pass

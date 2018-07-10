@@ -1,0 +1,16 @@
+ name: Verify Summ Stats for Less than Equal operator Functionality 
+ url: https://54.91.2.63/transmart/login/auth
+ authmethod: ADMINLOGIN
+ username: admin
+ password: admin
+ test: regression
+ type: BasicStatisticsTestPlan
+ reporter: ConsoleReporter
+ subset1: \examination\blood pressure\mean diastolic
+ subsetmul1: \laboratory\blood\Lead
+ subset2:
+ relational:
+ success: patientcountsubset1
+ successvalue: 140
+ expected: pass
+ subsetValue: 5
