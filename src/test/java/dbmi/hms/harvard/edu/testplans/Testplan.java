@@ -195,29 +195,44 @@ public abstract class Testplan {
 		
 	}
 
-	public void doPlanSetValueLessThan(Reporter reporter) {
+	public void doPlanSetValueLessThan(Reporter reporter) throws InterruptedException {
 		// TODO Auto-generated method stub
 		
 	}
 
-	public void doPlanSetValueLessThanEqual(Reporter reporter) {
+	public void doPlanSetValueLessThanEqual(Reporter reporter) throws InterruptedException {
 		// TODO Auto-generated method stub
 		
 	}
 
-	public void doPlanSetValueBetween(Reporter reporter) {
+	public void doPlanSetValueBetween(Reporter reporter) throws InterruptedException {
 		// TODO Auto-generated method stub
 		
 	}
 
 
 
-	public void doPlanSetValueGreaterThan(Reporter reporter) {
+	public void doPlanSetValueGreaterThan(Reporter reporter) throws InterruptedException {
 		// TODO Auto-generated method stub
 		
 	}
 
-	public void doPlanSetValueGreaterThanEqual(Reporter reporter) {
+	public void doPlanSetValueGreaterThanEqual(Reporter reporter) throws InterruptedException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void doPlanSetNoValue(Reporter reporter) throws InterruptedException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void doPlanSetLowFlagRange(Reporter reporter) throws InterruptedException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void doPlanSaveSubset(Reporter reporter) throws InterruptedException {
 		// TODO Auto-generated method stub
 		
 	}
