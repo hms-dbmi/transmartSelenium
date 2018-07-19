@@ -9,6 +9,9 @@
  subset1: \demographics\SEX\female\
  subset3: 
  subset2:
+ fractConCate1: \demographics\SEX\black\
+ fractConCate2: \demographics\SEX\female\
+ fractConNum1: \demographics\SEX\female\
  relational:
  success: patientcountsubset1
  successvalue: 21210
