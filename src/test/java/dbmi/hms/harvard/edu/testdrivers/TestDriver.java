@@ -309,8 +309,8 @@ public static void verifySavingSubset() throws YamlException, InterruptedExcepti
 
 
 
-/*
-@Test(priority = 8, groups = { "Sanity Regression" })
+
+//@Test(priority = 8, groups = { "Sanity Regression" })
 
 	public static void verifySummaryStatsSubsetOneTwo() throws YamlException, InterruptedException {
 
@@ -366,7 +366,7 @@ public static void verifySavingSubset() throws YamlException, InterruptedExcepti
 // Verify that the Stats reports page displays the graphs 
 
 	
-@Test(priority = 11, groups = { "Sanity Regression" })
+//@Test(priority = 11, groups = { "Sanity Regression" })
 
 	public static void verifySummaryStatsGraphs() throws Exception {
 		LOGGER.info(
@@ -377,6 +377,41 @@ public static void verifySavingSubset() throws YamlException, InterruptedExcepti
 				"--------------------------------The test case verifySummaryStats is Finshed-------------------------");
 	}
 
+	@Test(priority = 11, groups = { "Sanity Regression" })
+
+	public static void verifyFractalisCorrelationAnalysis() throws Exception {
+		LOGGER.info(
+				"-------------------------------The test case to verify Correation Analysis  is running-------------------------------");
+		readFile(configProperties.getProperty("verify.fractalis.correlation.analysis"));
+		testPlan.verifyFractlisIntergrationCorrelationAnalysis(reporter);
+		LOGGER.info(
+				"--------------------------------The test case to verify Correation Analysis is Finshed-------------------------");
+	}
+
+	@Test(priority = 12, groups = { "Sanity Regression" })
+
+	public static void verifyFractalisBoxPlotAnalysis() throws Exception {
+		LOGGER.info(
+				"-------------------------------The test case verify FractalisBoxPlotAnalysis  is running-------------------------------");
+		readFile(configProperties.getProperty("verify.fractalis.boxplot.analysis"));
+		testPlan.verifyFractlisIntergrationBoxPlotAnalysis(reporter);
+		LOGGER.info(
+				"--------------------------------The test case verify FractalisBoxPlotAnalysis is Finshed-------------------------");
+	}
+
+
+	@Test(priority = 13, groups = { "Sanity Regression" })
+
+	public static void verifyFractalisPrincipleComponentAnalysis() throws Exception {
+		LOGGER.info(
+				"-------------------------------The test case verify FractalisBoxPlotAnalysis  is running-------------------------------");
+		readFile(configProperties.getProperty("verify.fractalis.principlecomponent.analysis"));
+		testPlan.verifyFractlisIntergrationPrincipleComponentAnalysis(reporter);
+		LOGGER.info(
+				"--------------------------------The test case verify FractalisBoxPlotAnalysis is Finshed-------------------------");
+	}
+
+	
 /*	
 //	 Verify that Laboratory terms loads the reports correctly 
 @Test(priority = 12, groups = { "Sanity Regression" })

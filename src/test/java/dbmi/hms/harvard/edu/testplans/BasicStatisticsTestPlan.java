@@ -866,9 +866,9 @@ public class BasicStatisticsTestPlan extends Testplan {
 	}
 
 	public void doPlanSaveSubset(Reporter reporter) throws InterruptedException {
-		String subsetName = testPlan.get("subsetName").toString(); 
-		long TimeStamp=new Date().getTime();
-		String FinalSubset=subsetName+TimeStamp;
+		String subsetName = testPlan.get("subsetName").toString();
+		long TimeStamp = new Date().getTime();
+		String FinalSubset = subsetName + TimeStamp;
 
 		System.out.println("%%%%%%Final subsetName is" + FinalSubset);
 		try {
@@ -880,20 +880,23 @@ public class BasicStatisticsTestPlan extends Testplan {
 
 			}
 
-
 			driver.manage().timeouts().implicitlyWait(49, TimeUnit.SECONDS);
 			DatasetExplorer.class.newInstance().doSaveComparison(driver);
 			DatasetExplorer.class.newInstance().doEnterSubsetName(driver, FinalSubset);
 			DatasetExplorer.class.newInstance().saveSubsets(driver);
 			// SummaryStatisticsResults.class.newInstance().doResults(driver,
 			// testPlan, reporter);
-			//DatasetExplorer.class.newInstance().doClearAnalysis(driver);
-			/*for (String path : java.util.Arrays.asList(testPlan.get("subset1").toString().split(","))) {
-				DatasetExplorer.class.newInstance().doReverseNavigateByPath(driver, path);
-			}*/
+			// DatasetExplorer.class.newInstance().doClearAnalysis(driver);
+			/*
+			 * for (String path :
+			 * java.util.Arrays.asList(testPlan.get("subset1").toString().split(
+			 * ","))) {
+			 * DatasetExplorer.class.newInstance().doReverseNavigateByPath(
+			 * driver, path); }
+			 */
 
 			WebElement workSpaceSubsetHeading = driver.findElement(By.xpath(".//*[@id='subset_manager_name']/label"));
-			
+
 			System.out.println("Workspace Subset heading is " + workSpaceSubsetHeading.getText());
 
 			if (workSpaceSubsetHeading.getText().equals("Subset Manager")) {
@@ -919,8 +922,6 @@ public class BasicStatisticsTestPlan extends Testplan {
 					e.printStackTrace();
 				}
 			}
-
-
 
 		} catch (InstantiationException | IllegalAccessException e) {
 			// TODO Auto-generated catch block
@@ -1170,40 +1171,50 @@ public class BasicStatisticsTestPlan extends Testplan {
 
 				driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 				SummaryStatistics.class.newInstance().runSummaryStatistics(driver);
-				//WebElement graph=driver.findElement(By.xpath(".//*[@id='ext-gen62']/div/table[1]/tbody/tr[4]/td/table/tbody/tr/td[1]"));
-				
-				if(driver.findElements(By.xpath(".//*[@id='ext-gen62']/div/table[1]/tbody/tr[4]/td/table/tbody/tr/td[1]")).size() != 0 && driver.findElement(By.xpath(".//*[@id='ext-gen62']/div/table[1]/tbody/tr[4]/td/table/tbody/tr/td[3]"))!= null ){
-					LOGGER.info("***************************Graph is present on the Summary reports ****************************");
+				// WebElement
+				// graph=driver.findElement(By.xpath(".//*[@id='ext-gen62']/div/table[1]/tbody/tr[4]/td/table/tbody/tr/td[1]"));
 
-					
-					SummaryStatisticsResults.class.newInstance().doAssertResultTrue(driver, testPlan, reporter);
-					
-					}else{
-						
-						LOGGER.info("-------------------Graph has issue it is not generated on the Summary reports -------------------------");
-						SummaryStatisticsResults.class.newInstance().doAssertResultFalse(driver, testPlan, reporter);
-					}
-				//List<WebElement> graphs = driver
-					//	.findElements(By.xpath(".//*[@id='ext-gen157']/div/table/tbody/tr/td[1]/img"));
-				/*if (graphs.size() != 0)
-
-				{
-
-					Iterator<WebElement> itr = graphs.iterator();
-					while (itr.hasNext()) {
-						String graph = itr.next().getAttribute("src");
-						assertThat(graph).contains("jfreechart");
-
-					}
+				if (driver
+						.findElements(
+								By.xpath(".//*[@id='ext-gen62']/div/table[1]/tbody/tr[4]/td/table/tbody/tr/td[1]"))
+						.size() != 0
+						&& driver.findElement(By.xpath(
+								".//*[@id='ext-gen62']/div/table[1]/tbody/tr[4]/td/table/tbody/tr/td[3]")) != null) {
 					LOGGER.info(
-							"-------------------Sex and Race Graph are present on the reports -------------------------");
+							"***************************Graph is present on the Summary reports ****************************");
+
 					SummaryStatisticsResults.class.newInstance().doAssertResultTrue(driver, testPlan, reporter);
 
 				} else {
 
+					LOGGER.info(
+							"-------------------Graph has issue it is not generated on the Summary reports -------------------------");
 					SummaryStatisticsResults.class.newInstance().doAssertResultFalse(driver, testPlan, reporter);
-
-				}*/
+				}
+				// List<WebElement> graphs = driver
+				// .findElements(By.xpath(".//*[@id='ext-gen157']/div/table/tbody/tr/td[1]/img"));
+				/*
+				 * if (graphs.size() != 0)
+				 * 
+				 * {
+				 * 
+				 * Iterator<WebElement> itr = graphs.iterator(); while
+				 * (itr.hasNext()) { String graph =
+				 * itr.next().getAttribute("src");
+				 * assertThat(graph).contains("jfreechart");
+				 * 
+				 * } LOGGER.info(
+				 * "-------------------Sex and Race Graph are present on the reports -------------------------"
+				 * ); SummaryStatisticsResults.class.newInstance().
+				 * doAssertResultTrue(driver, testPlan, reporter);
+				 * 
+				 * } else {
+				 * 
+				 * SummaryStatisticsResults.class.newInstance().
+				 * doAssertResultFalse(driver, testPlan, reporter);
+				 * 
+				 * }
+				 */
 			}
 		}
 
@@ -1212,6 +1223,155 @@ public class BasicStatisticsTestPlan extends Testplan {
 			e.printStackTrace();
 		}
 
+	}
+
+	public void verifyFractlisIntergrationCorrelationAnalysis(Reporter reporter) throws Exception {
+
+		try {
+
+			if (testPlan.get("subset1") != null && testPlan.get("subset1") != "") {
+				for (String path : java.util.Arrays.asList(testPlan.get("subset1").toString().split(","))) {
+					DatasetExplorer.class.newInstance().doNavigateByPath(driver, path);
+					DatasetExplorer.class.newInstance().doDragAndDrop(driver, path, "subset1");
+					DatasetExplorer.class.newInstance().doReverseNavigateByPath(driver, path);
+
+				}
+			}
+
+		} catch (InstantiationException | IllegalAccessException e) {
+
+			e.printStackTrace();
+		}
+
+		DatasetExplorer.class.newInstance().doSelectFractlis(driver);
+		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+		DatasetExplorer.class.newInstance().doSelectFractalisAnalysis(driver, 1);
+		DatasetExplorer.class.newInstance().addAnalysis(driver);
+		Thread.sleep(7000);
+
+		try {
+			System.out.println("testing *****4444");
+			if (testPlan.get("fractConNum2") != null && testPlan.get("fractConNum2") != "") {
+				for (String path : java.util.Arrays.asList(testPlan.get("fractConNum2").toString().split(","))) {
+					DatasetExplorer.class.newInstance().doNavigateByPath(driver, path);
+					DatasetExplorer.class.newInstance().doDragAndDrop(driver, path, "fractConNum2");
+					DatasetExplorer.class.newInstance().doReverseNavigateByPath(driver, path);
+
+				}
+			}
+
+		} catch (InstantiationException | IllegalAccessException e) {
+
+			e.printStackTrace();
+		}
+
+		Thread.sleep(12000);
+
+		try {
+			System.out.println("testing *****3333");
+			if (testPlan.get("fractConNum1") != null && testPlan.get("fractConNum1") != "") {
+				for (String path : java.util.Arrays.asList(testPlan.get("fractConNum1").toString().split(","))) {
+					DatasetExplorer.class.newInstance().doNavigateByPath(driver, path);
+					DatasetExplorer.class.newInstance().doDragAndDrop(driver, path, "fractConNum1");
+					DatasetExplorer.class.newInstance().doReverseNavigateByPath(driver, path);
+
+				}
+			}
+
+		} catch (InstantiationException | IllegalAccessException e) {
+
+			e.printStackTrace();
+		}
+
+		Thread.sleep(13000);
+		try {
+			System.out.println("testing *****22");
+			if (testPlan.get("fractConCate2") != null && testPlan.get("fractConCate2") != "") {
+				for (String path : java.util.Arrays.asList(testPlan.get("fractConCate2").toString().split(","))) {
+					DatasetExplorer.class.newInstance().doNavigateByPath(driver, path);
+					DatasetExplorer.class.newInstance().doDragAndDrop(driver, path, "fractConCate2");
+					DatasetExplorer.class.newInstance().doReverseNavigateByPath(driver, path);
+
+				}
+			}
+
+		} catch (InstantiationException | IllegalAccessException e) {
+
+			e.printStackTrace();
+		}
+
+		Thread.sleep(10000);
+		try {
+			System.out.println("testing ");
+			if (testPlan.get("fractConCate1") != null && testPlan.get("fractConCate1") != "") {
+				for (String path : java.util.Arrays.asList(testPlan.get("fractConCate1").toString().split(","))) {
+					DatasetExplorer.class.newInstance().doNavigateByPath(driver, path);
+					DatasetExplorer.class.newInstance().doDragAndDrop(driver, path, "fractConCate1");
+					DatasetExplorer.class.newInstance().doReverseNavigateByPath(driver, path);
+
+				}
+			}
+
+		} catch (InstantiationException | IllegalAccessException e) {
+
+			e.printStackTrace();
+		}
+
+		Thread.sleep(70000);
+
+		List<WebElement> els = driver.findElements(By.xpath("//input[@data-v-074d016a='' and @type='checkbox']"));
+		for (WebElement el : els) {
+			if (!el.isSelected()) {
+				el.click();
+			}
+		}
+
+		Thread.sleep(60000);
+
+		if (driver
+				.findElements(
+						// By.xpath(".//*[@id='fjs-chart-0']/div/svg/g/g[7]/rect[1]")).size()
+						// != 0) {
+
+						By.xpath(".//div[@id='fjs-chart-0']/div/*[name()='svg']/*[name()='g']/*[name()='rect'][1]"))
+				.size() != 0) {
+
+			LOGGER.info(
+					"***************************Correlation Analysis Graph is generated through Fractalis ****************************");
+
+			SummaryStatisticsResults.class.newInstance().doAssertResultTrue(driver, testPlan, reporter);
+
+		} else {
+
+			LOGGER.info(
+					"***************************Correlation Analysis Graph is *NOT* generated through Fractalis***************************");
+			SummaryStatisticsResults.class.newInstance().doAssertResultFalse(driver, testPlan, reporter);
+		}
+
+		// SummaryStatistics.class.newInstance().runSummaryStatistics(driver);
+		// WebElement
+		// graph=driver.findElement(By.xpath(".//*[@id='ext-gen62']/div/table[1]/tbody/tr[4]/td/table/tbody/tr/td[1]"));
+
+		/*
+		 * if (driver.findElements(By.xpath(
+		 * ".//*[@id='ext-gen62']/div/table[1]/tbody/tr[4]/td/table/tbody/tr/td[1]"
+		 * )) .size() != 0 && driver.findElement( By.xpath(
+		 * ".//*[@id='ext-gen62']/div/table[1]/tbody/tr[4]/td/table/tbody/tr/td[3]"
+		 * )) != null) { LOGGER.info(
+		 * "***************************Graph is present on the Summary reports ****************************"
+		 * );
+		 * 
+		 * SummaryStatisticsResults.class.newInstance().doAssertResultTrue(
+		 * driver, testPlan, reporter);
+		 * 
+		 * } else {
+		 * 
+		 * LOGGER.info(
+		 * "-------------------Graph has issue it is not generated on the Summary reports -------------------------"
+		 * ); SummaryStatisticsResults.class.newInstance().doAssertResultFalse(
+		 * driver, testPlan, reporter); }
+		 */
+		DatasetExplorer.class.newInstance().resetReview(driver);
 	}
 
 	public void verifyDelete(Reporter reporter) throws InterruptedException {

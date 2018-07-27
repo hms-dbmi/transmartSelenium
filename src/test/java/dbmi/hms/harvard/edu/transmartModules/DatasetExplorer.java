@@ -43,9 +43,13 @@ public class DatasetExplorer extends Module {
 	private String saveSubSetButton = ".//*[@id='ext-gen59']/div[1]/button[1]";
 	private String txtBoxSaveSubset = ".//*[@id='txtSubsetDescription']";
 	private String saveSubSets = ".//*[@value='Save Subsets']";
+	private String fractalisTab=".//*[@id='resultsTabPanel__fractalisPanel']/a[2]/em";
 	String okexlude = "html/body/div[28]/div[2]/div[2]/div/div/div/div/div/table/tbody/tr/td[1]/table/tbody/tr/td[2]";
 	public static String textSubsetBoxValue;
-
+	private String selectAnalysisType = ".//*[@id='ext-gen244']/div[2]/div[2]/div[1]/select";
+	private String addAnalysisType =".//*[@id='ext-gen244']/div[2]/div[2]/div[1]/input";
+	private String fractalisBox  =".//*[@id='ext-gen250']";
+	private String resetView  =".//input[@value='Reset View']";
 	public void doSelectNavigationTab(WebDriver driver) {
 		click(driver, driver.findElement(By.xpath(navigationTab)));
 	}
@@ -107,6 +111,12 @@ public class DatasetExplorer extends Module {
 		oSelect.selectByIndex(i);
 	}
 
+  // 
+	
+	public void doSelectFractalisAnalysis(WebDriver driver, Integer i) {
+		Select oSelect = new Select(driver.findElement(By.xpath(selectAnalysisType)));
+		oSelect.selectByIndex(i);
+	}
 	public void enterValue(WebDriver driver, String subsetValue) {
 		driver.findElement(By.xpath(setValueTextBox)).sendKeys(subsetValue);
 		driver.findElement(By.xpath(subsetOKbutton)).click();
@@ -150,7 +160,14 @@ public class DatasetExplorer extends Module {
 				targetStr = subset1boxtwo;
 			if (subset.equalsIgnoreCase("subsetmul2"))
 				targetStr = subset2boxtwo;
-
+			if (subset.equalsIgnoreCase("fractConCate1"))
+				targetStr = fractalisBox;
+			if (subset.equalsIgnoreCase("fractConCate2"))
+				targetStr = fractalisBox;
+			if (subset.equalsIgnoreCase("fractConNum1"))
+				targetStr = fractalisBox;
+			if (subset.equalsIgnoreCase("fractConNum2"))
+				targetStr = fractalisBox;
 			// if (subset.equalsIgnoreCase("relation"))
 			// targetStr = relationbox;
 			WebElement target = driver.findElement(By.xpath(targetStr));
@@ -185,4 +202,16 @@ public class DatasetExplorer extends Module {
 		dragDrop(driver, source, target);
 	}
 
+	
+	public void doSelectFractlis(WebDriver driver) {
+		driver.findElement(By.xpath(fractalisTab)).click();
+	}
+
+	public void addAnalysis(WebDriver driver) {
+		click(driver, driver.findElement(By.xpath(addAnalysisType)));
+	}
+
+	public void resetReview(WebDriver driver) {
+		click(driver, driver.findElement(By.xpath(resetView)));
+	}
 }
