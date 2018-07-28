@@ -323,7 +323,7 @@ public static void verifySavingSubset() throws YamlException, InterruptedExcepti
 
 	}
 
-/*
+
 @Test(priority = 9, groups = { "Sanity" })
 	public static void verifySummaryStatsExcludeFunctionality()
 					throws YamlException, InterruptedException, InstantiationException, IllegalAccessException {
@@ -336,7 +336,7 @@ public static void verifySavingSubset() throws YamlException, InterruptedExcepti
 
 	}
 
-
+/*
 @Test(priority = 30, groups = { "Sanity" })
 		public static void verifyMessageExcludeOnlySubset()
 						throws YamlException, InterruptedException, InstantiationException, IllegalAccessException {
@@ -377,7 +377,7 @@ public static void verifySavingSubset() throws YamlException, InterruptedExcepti
 				"--------------------------------The test case verifySummaryStats is Finshed-------------------------");
 	}
 
-	@Test(priority = 11, groups = { "Sanity Regression" })
+//	@Test(priority = 11, groups = { "Sanity Regression" })
 
 	public static void verifyFractalisCorrelationAnalysis() throws Exception {
 		LOGGER.info(
@@ -388,7 +388,7 @@ public static void verifySavingSubset() throws YamlException, InterruptedExcepti
 				"--------------------------------The test case to verify Correation Analysis is Finshed-------------------------");
 	}
 
-	@Test(priority = 12, groups = { "Sanity Regression" })
+	//@Test(priority = 12, groups = { "Sanity Regression" })
 
 	public static void verifyFractalisBoxPlotAnalysis() throws Exception {
 		LOGGER.info(
@@ -400,7 +400,7 @@ public static void verifySavingSubset() throws YamlException, InterruptedExcepti
 	}
 
 
-	@Test(priority = 13, groups = { "Sanity Regression" })
+	//@Test(priority = 13, groups = { "Sanity Regression" })
 
 	public static void verifyFractalisPrincipleComponentAnalysis() throws Exception {
 		LOGGER.info(

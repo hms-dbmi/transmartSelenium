@@ -200,7 +200,7 @@ public class BasicStatisticsTestPlan extends Testplan {
 				if (testPlan.get("subsetmul1") != null && testPlan.get("subsetmul1") != "") {
 					for (String path : java.util.Arrays.asList(testPlan.get("subsetmul1").toString().split(","))) {
 						DatasetExplorer.class.newInstance().doNavigateByPath(driver, path);
-						DatasetExplorer.class.newInstance().doDragAndDrop(driver, path, "subset1mul");
+						DatasetExplorer.class.newInstance().doDragAndDrop(driver, path, "subsetmul1");
 						DatasetExplorer.class.newInstance().doReverseNavigateByPath(driver, path);
 					}
 
