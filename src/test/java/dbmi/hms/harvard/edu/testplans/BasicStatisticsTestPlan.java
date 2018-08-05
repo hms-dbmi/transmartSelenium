@@ -235,41 +235,16 @@ public class BasicStatisticsTestPlan extends Testplan {
 				}
 
 				DatasetExplorer.class.newInstance().doSelectExclude(driver);
-				// driver.manage().timeouts().implicitlyWait(49,
-				// TimeUnit.SECONDS);
 				SummaryStatistics.class.newInstance().runSummaryStatistics(driver);
-				Thread.sleep(10000);
-				driver.switchTo().activeElement();
-				driver.findElement(By
-						.xpath("html/body/div[28]/div[2]/div[2]/div/div/div/div/div/table/tbody/tr/td[1]/table/tbody/tr/td[2]"))
-						.click();
-				// ArrayList tabs = new ArrayList (driver.getWindowHandles());
-				// System.out.println(tabs.size());
-				// driver.manage().timeouts().implicitlyWait(49,
-				// TimeUnit.SECONDS);
-
-				// WebDriverWait wait = new WebDriverWait(driver, 10);
-				// Alert alert =
-				// wait.until(ExpectedConditions.alertIsPresent());
-
-				// Accepting alert.
-				// alert.accept();
-
-				// DatasetExplorer.class.newInstance().doClickOK(driver);
-
-				WebElement exludeSubset = driver
-						.findElement(By.xpath("//div[@id='ext-gen266']/span[@id='ext-gen308']"));
-				String subsetOnlyMessage;
-
-				// Alert alert = driver.switchTo().alert();
-				subsetOnlyMessage = exludeSubset.getText();
-				System.out.println("Title of the warning message is " + subsetOnlyMessage);
-				// alert.accept();`
-				// SummaryStatisticsResults.class.newInstance().doResults(driver,
-				// testPlan, reporter);
-				// DatasetExplorer.class.newInstance().doClearAnalysis(driver);
-				// DatasetExplorer.class.newInstance().doSelectComparison(driver);
-
+				if (driver.findElements(By.xpath(".//*[@class='x-window x-window-plain x-window-dlg']")).size() != 0) {
+					LOGGER.info(
+							"***************************It will NOT generate the Summary Stats - Exlude Message displays ****************************");
+					SummaryStatisticsResults.class.newInstance().doAssertResultTrue(driver, testPlan, reporter);
+				} else {
+					LOGGER.info(
+							"-------------------It is  generating the Summary Stats - Issue with Exlude Message display-------------------------");
+					SummaryStatisticsResults.class.newInstance().doAssertResultFalse(driver, testPlan, reporter);
+				}
 			}
 
 		} catch (InstantiationException | IllegalAccessException e) {
@@ -1268,7 +1243,7 @@ public class BasicStatisticsTestPlan extends Testplan {
 		Thread.sleep(12000);
 
 		try {
-			System.out.println("testing *****3333");
+
 			if (testPlan.get("fractConNum1") != null && testPlan.get("fractConNum1") != "") {
 				for (String path : java.util.Arrays.asList(testPlan.get("fractConNum1").toString().split(","))) {
 					DatasetExplorer.class.newInstance().doNavigateByPath(driver, path);
@@ -1285,7 +1260,7 @@ public class BasicStatisticsTestPlan extends Testplan {
 
 		Thread.sleep(13000);
 		try {
-			System.out.println("testing *****22");
+
 			if (testPlan.get("fractConCate2") != null && testPlan.get("fractConCate2") != "") {
 				for (String path : java.util.Arrays.asList(testPlan.get("fractConCate2").toString().split(","))) {
 					DatasetExplorer.class.newInstance().doNavigateByPath(driver, path);
@@ -1302,7 +1277,7 @@ public class BasicStatisticsTestPlan extends Testplan {
 
 		Thread.sleep(10000);
 		try {
-			System.out.println("testing ");
+
 			if (testPlan.get("fractConCate1") != null && testPlan.get("fractConCate1") != "") {
 				for (String path : java.util.Arrays.asList(testPlan.get("fractConCate1").toString().split(","))) {
 					DatasetExplorer.class.newInstance().doNavigateByPath(driver, path);
@@ -1330,9 +1305,6 @@ public class BasicStatisticsTestPlan extends Testplan {
 
 		if (driver
 				.findElements(
-						// By.xpath(".//*[@id='fjs-chart-0']/div/svg/g/g[7]/rect[1]")).size()
-						// != 0) {
-
 						By.xpath(".//div[@id='fjs-chart-0']/div/*[name()='svg']/*[name()='g']/*[name()='rect'][1]"))
 				.size() != 0) {
 

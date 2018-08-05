@@ -101,89 +101,22 @@ public class TestDriver {
 				"---------------------------------The test case verifyWinowTitle is Finished-------------------------");
 
 	}
+@Test(priority = 2, groups = { "Sanity" })
 
-//@Test(priority = 28, groups = { "Sanity Regression" })
+public static void verifySummaryStats() throws YamlException, InterruptedException {
 
-	public static void verifySummaryStatsMultipleSubset1OR()
-			throws YamlException, InterruptedException, InstantiationException, IllegalAccessException {
-		LOGGER.info(
-				"-------------------------------The test case verifySummaryStatsMultipleSubset1OR is running-------------------------");
-		readFile(configProperties.getProperty("verify.summarystats.multiplesubset1OR"));
-		testPlan.doPlanMultipleSubset1OR(reporter);
-		LOGGER.info(
-				"--------------------------------The test case verifySummaryStatsMultipleSubset1OR is Finished-------------------------");
-	}
-
-@Test(priority = 3, groups = { "Sanity" })
-
-	public static void verifySummaryStats() throws YamlException, InterruptedException {
-
-		LOGGER.info(
-				"-------------------------------The test case verifySummaryStats is running-------------------------");
-		readFile(configProperties.getProperty("verify.summaryStats.subset1"));
-		testPlan.doPlan(reporter);
-		LOGGER.info(
-				"--------------------------------The test case verifySummaryStats is Finished-------------------------");
+	LOGGER.info(
+			"-------------------------------The test case verifySummaryStats is running-------------------------");
+	readFile(configProperties.getProperty("verify.summaryStats.subset1"));
+	testPlan.doPlan(reporter);
+	LOGGER.info(
+			"--------------------------------The test case verifySummaryStats is Finished-------------------------");
 
 }
 
-//@Test(priority = 9, groups = { "Sanity Regression" })
-
-	public static void verifySummaryStatsSubset2() throws YamlException, InterruptedException {
-
-		LOGGER.info(
-				"---------------------------The test case verifySummaryStatsSubset2 is running-------------------------");
-		readFile(configProperties.getProperty("verify.summaryStats.subset2"));
-		testPlan.doPlanSubset2(reporter);
-		LOGGER.info(
-				"---------------------------The test case verifySummaryStatsSubset2 is Finished-------------------------");
-
-	}
-	
-
-//@Test(priority = 5, groups = { "Sanity Regression" })
-		public static void verifySummaryStatsMultipleSubset1Subset2AND()
-				throws YamlException, InterruptedException, InstantiationException, IllegalAccessException {
-
-			LOGGER.info(
-					"-------------------------------The test case verifySummaryStatsMultipleSubset1Subset2AND is running-------------------------");
-			readFile(configProperties.getProperty("verify.summarystats.multiplesubset1subset2AND"));
-			//readFile(configProperties.getProperty("verify.summarystats.multiplesubset1subset2OR"));
-			testPlan.doPlanMultipleSubset1Subset2And(reporter);
-			LOGGER.info(
-					"--------------------------------The test case verifySummaryStatsMultipleSubset1Subset2AND is Finished-------------------------");
-
-		}
-
-
-/*@Test(priority = 4, groups = { "Sanity Regression" })
-
-	public static void verifyMultipleSubset1Subset2OR() throws Exception {
-
-		LOGGER.info(
-				"---------------------------The test case verifyMultipleSubset1Subset2OR is running-------------------------");
-		readFile(configProperties.getProperty("verify.summarystats.multiplesubset1subset2OR"));
-		testPlan.verifyMultipleSubset1and2OR(reporter);
-		LOGGER.info(
-				"---------------------------The test case verifyMultipleSubset1Subset2OR is Finished-------------------------");
-	}
-*/
-
-//@Test(priority = 5, groups = { "Sanity Regression" })
-	public static void verifySummaryStatsMultipleSubset1AND()
-			throws YamlException, InterruptedException, InstantiationException, IllegalAccessException {
-
-		LOGGER.info(
-				"-------------------------------The test case verifySummaryStatsMultipleSubset1AND is running-------------------------");
-		readFile(configProperties.getProperty("verify.summarystats.multiplesubset1AND"));
-		testPlan.doPlanMultipleSubsetAnd(reporter);
-		LOGGER.info(
-				"--------------------------------The test case verifySummaryStatsMultipleSubset1AND is Finished-------------------------");
-		
-	}
 
 	
-//@Test(priority = 14, groups = { "Sanity Regression" })
+@Test(priority = 7, groups = { "Sanity Regression" })
 
 	public static void verifySummaryStatsSetNoValue() throws YamlException, InterruptedException {
 
@@ -200,19 +133,46 @@ public class TestDriver {
 	
 	//@Test(priority = 14, groups = { "Sanity Regression" })
 
-		public static void verifySummaryStatsSetLowFlag() throws YamlException, InterruptedException {
+		public static void verifySummaryStatsSetLowHighFlagLowRange() throws YamlException, InterruptedException {
 
 			LOGGER.info(
-					"---------------------------The test case verifySummaryStatsSetLowFlag is running-------------------------");
-			readFile(configProperties.getProperty("verify.summarystats.subset.lowflagvalue"));
+					"---------------------------The test case verifySummaryStatsSetLowHighFlagLowRange is running-------------------------");
+			readFile(configProperties.getProperty("verify.summarystats.subset.lowHighflagNormal"));
 			testPlan.doPlanSetLowFlagRange(reporter);
 			LOGGER.info(
-					"---------------------------The test case verifySuverifySummaryStatsSetLowFlagmmaryStatsSetNoValue is Finished-------------------------");
+					"---------------------------The test case verifySummaryStatsSetLowHighFlagLowRange is Finished-------------------------");
 
 		}
 
 
-//@Test(priority = 9, groups = { "Sanity Regression" })
+		//@Test(priority = 14, groups = { "Sanity Regression" })
+
+		public static void verifySummaryStatsSetLowHighFlagMediumRange() throws YamlException, InterruptedException {
+
+			LOGGER.info(
+					"---------------------------The test case verifySummaryStatsSetLowHighFlagMediumRange is running-------------------------");
+			readFile(configProperties.getProperty("verify.summarystats.subset.lowHighflagMedium"));
+			testPlan.doPlanSetLowFlagRange(reporter);
+			LOGGER.info(
+					"---------------------------The test case verifySummaryStatsSetLowHighFlagMediumRange is Finished-------------------------");
+
+		}
+
+		//@Test(priority = 14, groups = { "Sanity Regression" })
+
+		public static void verifySummaryStatsSetLowHighFlagHighRange() throws YamlException, InterruptedException {
+
+			LOGGER.info(
+					"---------------------------The test case verifySummaryStatsSetLowFlag is running-------------------------");
+			readFile(configProperties.getProperty("verify.summarystats.subset.lowhighflagHigh"));
+			testPlan.doPlanSetLowFlagRange(reporter);
+			LOGGER.info(
+					"---------------------------The test case verifySummaryStatsSetLowHighFlagHighRange is Finished-------------------------");
+
+		}
+
+		
+@Test(priority = 3, groups = { "Sanity Regression" })
 
 	public static void verifySummaryStatsSetValueByNumericEqual() throws YamlException, InterruptedException {
 
@@ -226,7 +186,7 @@ public class TestDriver {
 	}
 
 
-//@Test(priority = 7, groups = { "Sanity Regression" })
+@Test(priority = 4, groups = { "Sanity Regression" })
 
 public static void verifySummaryStatsSetValueByNumericLessThan() throws YamlException, InterruptedException {
 
@@ -241,7 +201,7 @@ public static void verifySummaryStatsSetValueByNumericLessThan() throws YamlExce
 
 
 
-//@Test(priority = 8, groups = { "Sanity Regression" })
+@Test(priority = 5, groups = { "Sanity Regression" })
 
 public static void verifySummaryStatsSetValueByNumericLessThanEqual() throws YamlException, InterruptedException {
 
@@ -251,10 +211,10 @@ public static void verifySummaryStatsSetValueByNumericLessThanEqual() throws Yam
 	testPlan.doPlanSetValueLessThanEqual(reporter);
 	LOGGER.info(
 			"---------------------------The test case verifySummaryStatsSetValueByNumericLessThanEqual is Finished-------------------------");
-	Thread.sleep(20000);
+	//Thread.sleep(20000);
 }
 
-//@Test(priority = 10, groups = { "Sanity Regression" })
+@Test(priority = 6, groups = { "Sanity Regression" })
 
 public static void verifySummaryStatsSetValueByNumericBetween() throws YamlException, InterruptedException {
 
@@ -267,7 +227,7 @@ public static void verifySummaryStatsSetValueByNumericBetween() throws YamlExcep
 
 }
 	
-//@Test(priority = 11, groups = { "Sanity Regression" })
+@Test(priority = 7, groups = { "Sanity Regression" })
 
 public static void verifySummaryStatsSetValueByNumericGreaterThan() throws YamlException, InterruptedException {
 
@@ -280,7 +240,7 @@ public static void verifySummaryStatsSetValueByNumericGreaterThan() throws YamlE
 
 }
 
-//@Test(priority = 13, groups = { "Sanity Regression" })
+@Test(priority = 8, groups = { "Sanity Regression" })
 
 public static void verifySummaryStatsSetValueByNumericGreaterThanEqual() throws YamlException, InterruptedException {
 
@@ -291,6 +251,76 @@ public static void verifySummaryStatsSetValueByNumericGreaterThanEqual() throws 
 	LOGGER.info(
 			"---------------------------The test case verifySummaryStatsSetValueByNumericGreaterThanEqual is Finished-------------------------");
 
+}
+
+
+
+@Test(priority = 9, groups = { "Sanity Regression" })
+
+public static void verifySummaryStatsMultipleSubset1OR()
+		throws YamlException, InterruptedException, InstantiationException, IllegalAccessException {
+	LOGGER.info(
+			"-------------------------------The test case verifySummaryStatsMultipleSubset1OR is running-------------------------");
+	readFile(configProperties.getProperty("verify.summarystats.multiplesubset1OR"));
+	testPlan.doPlanMultipleSubset1OR(reporter);
+	LOGGER.info(
+			"--------------------------------The test case verifySummaryStatsMultipleSubset1OR is Finished-------------------------");
+}
+
+
+@Test(priority = 10, groups = { "Sanity Regression" })
+
+public static void verifySummaryStatsSubset2() throws YamlException, InterruptedException {
+
+	LOGGER.info(
+			"---------------------------The test case verifySummaryStatsSubset2 is running-------------------------");
+	readFile(configProperties.getProperty("verify.summaryStats.subset2"));
+	testPlan.doPlanSubset2(reporter);
+	LOGGER.info(
+			"---------------------------The test case verifySummaryStatsSubset2 is Finished-------------------------");
+
+}
+
+
+@Test(priority = 11, groups = { "Sanity Regression" })
+	public static void verifySummaryStatsMultipleSubset1Subset2AND()
+			throws YamlException, InterruptedException, InstantiationException, IllegalAccessException {
+
+		LOGGER.info(
+				"-------------------------------The test case verifySummaryStatsMultipleSubset1Subset2AND is running-------------------------");
+		readFile(configProperties.getProperty("verify.summarystats.multiplesubset1subset2AND"));
+		//readFile(configProperties.getProperty("verify.summarystats.multiplesubset1subset2OR"));
+		testPlan.doPlanMultipleSubset1Subset2And(reporter);
+		LOGGER.info(
+				"--------------------------------The test case verifySummaryStatsMultipleSubset1Subset2AND is Finished-------------------------");
+
+	}
+
+
+@Test(priority = 12, groups = { "Sanity Regression" })
+
+public static void verifyMultipleSubset1Subset2OR() throws Exception {
+
+	LOGGER.info(
+			"---------------------------The test case verifyMultipleSubset1Subset2OR is running-------------------------");
+	readFile(configProperties.getProperty("verify.summarystats.multiplesubset1subset2OR"));
+	testPlan.verifyMultipleSubset1and2OR(reporter);
+	LOGGER.info(
+			"---------------------------The test case verifyMultipleSubset1Subset2OR is Finished-------------------------");
+}
+
+
+@Test(priority = 13, groups = { "Sanity Regression" })
+public static void verifySummaryStatsMultipleSubset1AND()
+		throws YamlException, InterruptedException, InstantiationException, IllegalAccessException {
+
+	LOGGER.info(
+			"-------------------------------The test case verifySummaryStatsMultipleSubset1AND is running-------------------------");
+	readFile(configProperties.getProperty("verify.summarystats.multiplesubset1AND"));
+	testPlan.doPlanMultipleSubsetAnd(reporter);
+	LOGGER.info(
+			"--------------------------------The test case verifySummaryStatsMultipleSubset1AND is Finished-------------------------");
+	
 }
 
 
@@ -324,7 +354,7 @@ public static void verifySavingSubset() throws YamlException, InterruptedExcepti
 	}
 
 
-@Test(priority = 9, groups = { "Sanity" })
+//@Test(priority = 9, groups = { "Sanity" })
 	public static void verifySummaryStatsExcludeFunctionality()
 					throws YamlException, InterruptedException, InstantiationException, IllegalAccessException {
 		LOGGER.info(
@@ -336,19 +366,19 @@ public static void verifySavingSubset() throws YamlException, InterruptedExcepti
 
 	}
 
-/*
-@Test(priority = 30, groups = { "Sanity" })
+
+//@Test(priority = 30, groups = { "Sanity" })
 		public static void verifyMessageExcludeOnlySubset()
 						throws YamlException, InterruptedException, InstantiationException, IllegalAccessException {
 			LOGGER.info(
-					"-------------------------------The test case verifySummaryStatsExcludeFunctionality is running-------------------------");
+					"-------------------------------The test case verify SummaryStatsExcludeMessage is running-------------------------");
 			readFile(configProperties.getProperty("verify.summaryStats.exclude.message"));
 			testPlan.verifyMessageExclude(reporter);
 			LOGGER.info(
-					"--------------------------------The test case verifySummaryStatsExcludeFunctionality is Finshed-------------------------");
+					"--------------------------------The test case verify SummaryStatsExcludeMessage is Finshed-------------------------");
 
 		}
-
+/*
 @Test(priority = 10, groups = { "Sanity Regression" })
 
 	public static void verifySummaryStatsSetValueOperator() throws YamlException, InterruptedException {
@@ -598,7 +628,7 @@ public static void verifySavingSubset() throws YamlException, InterruptedExcepti
 	public void closeApplication() {
 
 		reporter.doReport();
-//		testPlan.closeDriver();
+		testPlan.closeDriver();
 		//System.out.println("Testing done");
 		LOGGER.info(
 				"===========================i2b2/TranSMART Test Automation is completed :Closing the Browser ===========================");
