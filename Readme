@@ -1,0 +1,20 @@
+To run the regression of i2b2/transmart , we should have some prerequisite, please check the below steps.
+
+
+1.Create Config.properties file, it has mapping of property value with  test data files path 
+which is going to run against  test methods.
+
+
+2.All the test data files have input and expected parameters - name, url,authmethod etc.
+
+3.Path to Config.properties can be configurable; while running mvn test you can pass path to Config.properties
+  from command prompt.
+  
+  E.g. mvn test -Dpathtoconfig="/path/to/configfile/"
+
+4.For each environment like Nhanes, grdr the values like url, username, password,patient count etc.
+  differs, so before we run the test automation code please make sure these value should get updated correctly, else the test result will be "failed".
+
+4.You can check the result and test run logs under root/transmartSelenium/i2b2transmartLogFile.log. 
+  You can change the logfile name and logging level (e.g. INFO,DEBUG,ALL etc) as you wish by updating
+  log4j.properties file.
