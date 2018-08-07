@@ -18,3 +18,5 @@
  successvalue: 21210
  expected: pass
  subsetValue: 11
+ searchTerm: Vitamin
+ expectedSearchResult: 15

@@ -1,4 +1,4 @@
- name: Verify Fractlis generates the correlation Analysis Report
+ name: Verify that Search works fine in AutoComplete Search TextBox
  url: https://54.91.2.63/transmart/login/auth
  authmethod: ADMINLOGIN
  username: admin
@@ -9,7 +9,7 @@
  subset1: \demographics\SEX\female
  subsetmul1: \laboratory\blood\Lead
  subset2:
- fractConCate1: \demographics\RACE\white
+ fractConCate1: \demographics\RACE\black
  fractConCate2: \demographics\SEX\female
  fractConNum1: \demographics\AGE
  fractConNum2: \demographics\DMDBORN
@@ -18,3 +18,5 @@
  successvalue: 21210
  expected: pass
  subsetValue: 11
+ searchTerm: Vitamin
+ expectedSearchResult: 15
