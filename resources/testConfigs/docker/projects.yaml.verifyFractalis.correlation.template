@@ -1,0 +1,20 @@
+ name: Verify Fractlis generates the correlation Analysis Report
+ url: https://54.91.2.63/transmart/login/auth
+ authmethod: ADMINLOGIN
+ username: admin
+ password: admin
+ test: regression
+ type: BasicStatisticsTestPlan
+ reporter: ConsoleReporter
+ subset1: \demographics\SEX\female
+ subsetmul1: \laboratory\blood\Lead
+ subset2:
+ fractConCate1: \demographics\RACE\white
+ fractConCate2: \demographics\SEX\female
+ fractConNum1: \demographics\AGE
+ fractConNum2: \demographics\DMDBORN
+ relational:
+ success: patientcountsubset1
+ successvalue: 21210
+ expected: pass
+ subsetValue: 11
