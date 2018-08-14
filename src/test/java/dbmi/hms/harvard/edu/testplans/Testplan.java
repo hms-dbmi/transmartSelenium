@@ -81,7 +81,7 @@ public abstract class Testplan {
 
 	}
 
-	public void doSearchCaseSensitivity(Reporter reporter) {
+	public void doSearchCaseSensitivity(Reporter reporter) throws InterruptedException, Exception {
 		// TODO Auto-generated method stub
 
 	}
@@ -249,16 +249,18 @@ public abstract class Testplan {
 
 	/**
 	 * @param reporter
+	 * @throws Exception 
 	 */
-	 public void verifyFractlisIntergrationBoxPlotAnalysis(Reporter reporter) {
+	 public void verifyFractlisIntergrationBoxPlotAnalysis(Reporter reporter) throws Exception {
 		// TODO Auto-generated method stub
 		
 	}
 
 	/**
 	 * @param reporter
+	 * @throws Exception 
 	 */
-	public void verifyFractlisIntergrationPrincipleComponentAnalysis(Reporter reporter) {
+	public void verifyFractlisIntergrationPrincipleComponentAnalysis(Reporter reporter) throws Exception {
 		// TODO Auto-generated method stub
 		
 	}

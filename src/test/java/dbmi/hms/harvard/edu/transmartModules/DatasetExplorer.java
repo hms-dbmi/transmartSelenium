@@ -11,7 +11,6 @@ import org.openqa.selenium.support.ui.Select;
 public class DatasetExplorer extends Module {
 	// private String subset1box = ".//*[@id='queryCriteriaDiv1_1']";
 	// private String subset1box = ".//*[@id='panelBoxList_2']";
-
 	// private String subset2box = ".//*[@id='queryCriteriaDiv2_1']";
 	// private String subset1boxtwo = ".//*[@id='queryCriteriaDiv1_2']";
 	// private String subset1boxtwo =
@@ -50,6 +49,7 @@ public class DatasetExplorer extends Module {
 	private String addAnalysisType =".//*[@id='ext-gen244']/div[2]/div[2]/div[1]/input";
 	private String fractalisBox  =".//*[@id='ext-gen250']";
 	private String resetView  =".//input[@value='Reset View']";
+	private String clearAnalysisCache  =".//input[@value='Clear analysis cach']";
 	public void doSelectNavigationTab(WebDriver driver) {
 		click(driver, driver.findElement(By.xpath(navigationTab)));
 	}
@@ -110,8 +110,6 @@ public class DatasetExplorer extends Module {
 		Select oSelect = new Select(driver.findElement(By.xpath(selectSetOperator)));
 		oSelect.selectByIndex(i);
 	}
-
-  // 
 	
 	public void doSelectFractalisAnalysis(WebDriver driver, Integer i) {
 		Select oSelect = new Select(driver.findElement(By.xpath(selectAnalysisType)));
@@ -213,5 +211,9 @@ public class DatasetExplorer extends Module {
 
 	public void resetReview(WebDriver driver) {
 		click(driver, driver.findElement(By.xpath(resetView)));
+	}
+	
+	public void clearAnalysisCache(WebDriver driver) {
+		click(driver, driver.findElement(By.xpath(clearAnalysisCache)));
 	}
 }

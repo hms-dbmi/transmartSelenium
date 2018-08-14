@@ -115,7 +115,7 @@ public static void verifySummaryStats() throws YamlException, InterruptedExcepti
 }
 
 
-	
+/*		
 @Test(priority = 7, groups = { "Sanity Regression" })
 
 	public static void verifySummaryStatsSetNoValue() throws YamlException, InterruptedException {
@@ -324,6 +324,7 @@ public static void verifySummaryStatsMultipleSubset1AND()
 }
 
 
+*/	
 //@Test(priority = 13, groups = { "Sanity Regression" })
 
 public static void verifySavingSubset() throws YamlException, InterruptedException {
@@ -484,38 +485,39 @@ public static void verifySavingSubset() throws YamlException, InterruptedExcepti
 
 	}
 */
-/*@Test(priority = 15, groups = { "Sanity Regression" })
+//@Test(priority = 15, groups = { "Sanity Regression" })
 
 	public static void verifySearch() throws YamlException, Exception {
 
 		LOGGER.info("-------------------------------The test case verifySearch  is running-------------------------");
-		readFile(configProperties.getProperty("verify.window.title"));
+		readFile(configProperties.getProperty("verify.search.feature"));
 		testPlan.doSearch(reporter);
 		LOGGER.info("--------------------------------The test case verifySearch is Finshed-------------------------");
 	}
 
-@Test(priority = 16, groups = { "Sanity Regression" })
+
+//@Test(priority = 16, groups = { "Sanity Regression" })
 
 	public static void verifySearchSpecialCharacters() throws YamlException, Exception {
 
 		LOGGER.info("-------------------------------The test case verifySearch with SpecialCharacter  is running-------------------------");
-		readFile(configProperties.getProperty("verify.window.title"));
+		readFile(configProperties.getProperty("verify.search.feature.casesensitivity"));
 		testPlan.doSearchSpecialChar(reporter);
 		LOGGER.info("--------------------------------The test case verifySearch with SpecialCharacter is Finshed-------------------------");
 	}
 	
 	
 	
-@Test(priority = 17, groups = { "Sanity Regression" })
+//@Test(priority = 17, groups = { "Sanity Regression" })
 	public static void verifySearchCaseSensitivity() throws YamlException, Exception {
 
 		LOGGER.info("-------------------------------The test case  verifySearch Case sensitivity  is running-------------------------");
-		readFile(configProperties.getProperty("verify.window.title"));
+		readFile(configProperties.getProperty("verify.search.feature.casesensitivity"));
 		testPlan.doSearchCaseSensitivity(reporter);
 		LOGGER.info("--------------------------------The test case verifySearch CaseSensitivity is Finshed-------------------------");
 	}
 
-	
+/*	
 @Test(priority = 18, groups = { "Sanity Regression" }, dependsOnMethods = { "verifySearch" })
 
 	public static void verifySummaryStatSearch() throws YamlException, Exception {

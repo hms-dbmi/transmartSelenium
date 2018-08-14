@@ -99,6 +99,16 @@ public class BasicStatisticsTestPlan extends Testplan {
 
 		/*
 		 * DesiredCapabilities capabilities = DesiredCapabilities.firefox();
+
+		 * 
+		 * 
+		 * 
+		 * 
+		 * 
+		 * 
+		 * 
+		 * 
+		 * 
 		 * capabilities.setCapability("marionette", true); WebDriver driver =
 		 * new FirefoxDriver(capabilities);
 		 */
@@ -859,17 +869,7 @@ public class BasicStatisticsTestPlan extends Testplan {
 			DatasetExplorer.class.newInstance().doSaveComparison(driver);
 			DatasetExplorer.class.newInstance().doEnterSubsetName(driver, FinalSubset);
 			DatasetExplorer.class.newInstance().saveSubsets(driver);
-			// SummaryStatisticsResults.class.newInstance().doResults(driver,
-			// testPlan, reporter);
-			// DatasetExplorer.class.newInstance().doClearAnalysis(driver);
-			/*
-			 * for (String path :
-			 * java.util.Arrays.asList(testPlan.get("subset1").toString().split(
-			 * ","))) {
-			 * DatasetExplorer.class.newInstance().doReverseNavigateByPath(
-			 * driver, path); }
-			 */
-
+			
 			WebElement workSpaceSubsetHeading = driver.findElement(By.xpath(".//*[@id='subset_manager_name']/label"));
 
 			System.out.println("Workspace Subset heading is " + workSpaceSubsetHeading.getText());
@@ -985,14 +985,23 @@ public class BasicStatisticsTestPlan extends Testplan {
 	public void doSearch(Reporter reporter) throws InterruptedException, Exception {
 
 		String searchTerm = testPlan.get("searchTerm").toString();
+		
+		
 		try {
-			SearchBySubject.class.newInstance().doSelectNavigationTab(driver);
+//			SearchBySubject.class.newInstance().doSelectNavigationTab(driver);
 			SearchBySubject.class.newInstance().doSearch(driver, searchTerm);
-			Thread.sleep(20000);
-			SearchBySubject.class.newInstance().getSearchResult(driver);
-			String SearchResult1 = SearchBySubject.result;
-			String expected = testPlan.get("expectedSearchResult").toString();
-			if (SearchResult1.equals(testPlan.get("expectedSearchResult").toString())) {
+			List<WebElement> optionsToSelect = driver.findElements(By.xpath(".//li[@class='ui-menu-item']"));
+			int serachResul=optionsToSelect.size();
+			String serachResultcount=new Integer(serachResul).toString();
+			//System.out.println("NO.dfdfdf"+count);
+			//driver.findElement(By.id("your searchBox")).sendKeys("your partial keyword");
+		//	List <WebElement> listItems = driver.findElements(By.xpath("your list item locator"));	
+			Thread.sleep(5000);
+			//SearchBySubject.class.newInstance().getSearchResult(driver);
+			//String SearchResult1 = SearchBySubject.result;
+		//	int expected = (int) testPlan.get("expectedSearchResult");
+			//System.out.println("Expected result is " +expected);
+			if (serachResultcount.equals(testPlan.get("expectedSearchResult").toString())) {
 				try {
 
 					SummaryStatisticsResults.class.newInstance().doAssertResultTrue(driver, testPlan, reporter);
@@ -1010,6 +1019,38 @@ public class BasicStatisticsTestPlan extends Testplan {
 
 		SearchBySubject.class.newInstance().doClearSearchBox(driver);
 	}
+	
+	
+	public void doSearchCaseSensitivity(Reporter reporter) throws InterruptedException, Exception {
+
+		String searchTerm = testPlan.get("searchTermCapital").toString();
+		
+		try {
+
+			SearchBySubject.class.newInstance().doSearch(driver, searchTerm);
+			List<WebElement> optionsToSelect = driver.findElements(By.xpath(".//li[@class='ui-menu-item']"));
+			int serachResul=optionsToSelect.size();
+			String serachResultcount=new Integer(serachResul).toString();
+			Thread.sleep(5000);
+			if (serachResultcount.equals(testPlan.get("expectedSearchResult").toString())) {
+				try {
+
+					SummaryStatisticsResults.class.newInstance().doAssertResultTrue(driver, testPlan, reporter);
+				} catch (InstantiationException e) {
+					e.printStackTrace();
+				}
+			}
+
+			else {
+				SummaryStatisticsResults.class.newInstance().doAssertResultFalse(driver, testPlan, reporter);
+			}
+		} catch (IllegalAccessException e) {
+			e.printStackTrace();
+		}
+
+		SearchBySubject.class.newInstance().doClearSearchBox(driver);
+	}
+
 
 	public void doSearchLength(Reporter reporter) throws InterruptedException, Exception {
 
@@ -1069,10 +1110,10 @@ public class BasicStatisticsTestPlan extends Testplan {
 			SearchBySubject.class.newInstance().doSelectNavigationTab(driver);
 			SearchBySubject.class.newInstance().doSearch(driver, searchStats);
 			Thread.sleep(10000);
-			SearchBySubject.class.newInstance().getSearchResult(driver);
-			String searchResult1 = SearchBySubject.result;
+			//SearchBySubject.class.newInstance().getSearchResult(driver);
+			//String searchResult1 = SearchBySubject.result;
 
-			if (searchResult1.substring(6, 7).equals("1")) {
+			/*if (searchResult1.substring(6, 7).equals("1")) {
 
 				DatasetExplorer.class.newInstance().doSearchDoDragAndDrop(driver, searchResult1, "subset1");
 				SummaryStatistics.class.newInstance().runSummaryStatistics(driver);
@@ -1082,12 +1123,12 @@ public class BasicStatisticsTestPlan extends Testplan {
 			} else {
 				SummaryStatisticsResults.class.newInstance().doAssertResultFalse(driver, testPlan, reporter);
 			}
-
+*/
 		} catch (InstantiationException | IllegalAccessException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
+/*
 		try {
 			SearchBySubject.class.newInstance().getSearchResult(driver);
 		} catch (InstantiationException e) {
@@ -1097,13 +1138,8 @@ public class BasicStatisticsTestPlan extends Testplan {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	}
+*/	}
 
-	public void closeDriver() {
-		driver.quit();
-	}
-
-	// Test Expanding/collapsing the concept tree
 
 	public void verifyExpandCollpase(Reporter reporter) {
 		for (String path : java.util.Arrays.asList(testPlan.get("subset1").toString().split(","))) {
@@ -1166,31 +1202,7 @@ public class BasicStatisticsTestPlan extends Testplan {
 							"-------------------Graph has issue it is not generated on the Summary reports -------------------------");
 					SummaryStatisticsResults.class.newInstance().doAssertResultFalse(driver, testPlan, reporter);
 				}
-				// List<WebElement> graphs = driver
-				// .findElements(By.xpath(".//*[@id='ext-gen157']/div/table/tbody/tr/td[1]/img"));
-				/*
-				 * if (graphs.size() != 0)
-				 * 
-				 * {
-				 * 
-				 * Iterator<WebElement> itr = graphs.iterator(); while
-				 * (itr.hasNext()) { String graph =
-				 * itr.next().getAttribute("src");
-				 * assertThat(graph).contains("jfreechart");
-				 * 
-				 * } LOGGER.info(
-				 * "-------------------Sex and Race Graph are present on the reports -------------------------"
-				 * ); SummaryStatisticsResults.class.newInstance().
-				 * doAssertResultTrue(driver, testPlan, reporter);
-				 * 
-				 * } else {
-				 * 
-				 * SummaryStatisticsResults.class.newInstance().
-				 * doAssertResultFalse(driver, testPlan, reporter);
-				 * 
-				 * }
-				 */
-			}
+				}
 		}
 
 		catch (InstantiationException | IllegalAccessException e) {
@@ -1225,7 +1237,7 @@ public class BasicStatisticsTestPlan extends Testplan {
 		Thread.sleep(7000);
 
 		try {
-			System.out.println("testing *****4444");
+	
 			if (testPlan.get("fractConNum2") != null && testPlan.get("fractConNum2") != "") {
 				for (String path : java.util.Arrays.asList(testPlan.get("fractConNum2").toString().split(","))) {
 					DatasetExplorer.class.newInstance().doNavigateByPath(driver, path);
@@ -1344,8 +1356,259 @@ public class BasicStatisticsTestPlan extends Testplan {
 		 * driver, testPlan, reporter); }
 		 */
 		DatasetExplorer.class.newInstance().resetReview(driver);
+		DatasetExplorer.class.newInstance().clearAnalysisCache(driver);
 	}
 
+	
+	public void verifyFractlisIntergrationBoxPlotAnalysis(Reporter reporter) throws Exception {
+
+		try {
+
+			if (testPlan.get("subset1") != null && testPlan.get("subset1") != "") {
+				for (String path : java.util.Arrays.asList(testPlan.get("subset1").toString().split(","))) {
+					DatasetExplorer.class.newInstance().doNavigateByPath(driver, path);
+					DatasetExplorer.class.newInstance().doDragAndDrop(driver, path, "subset1");
+					DatasetExplorer.class.newInstance().doReverseNavigateByPath(driver, path);
+
+				}
+			}
+
+		} catch (InstantiationException | IllegalAccessException e) {
+
+			e.printStackTrace();
+		}
+
+		DatasetExplorer.class.newInstance().doSelectFractlis(driver);
+		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+		DatasetExplorer.class.newInstance().doSelectFractalisAnalysis(driver, 2);
+		DatasetExplorer.class.newInstance().addAnalysis(driver);
+		Thread.sleep(7000);
+
+		try {
+			
+			if (testPlan.get("fractConNum2") != null && testPlan.get("fractConNum2") != "") {
+				for (String path : java.util.Arrays.asList(testPlan.get("fractConNum2").toString().split(","))) {
+					DatasetExplorer.class.newInstance().doNavigateByPath(driver, path);
+					DatasetExplorer.class.newInstance().doDragAndDrop(driver, path, "fractConNum2");
+					DatasetExplorer.class.newInstance().doReverseNavigateByPath(driver, path);
+
+				}
+			}
+
+		} catch (InstantiationException | IllegalAccessException e) {
+
+			e.printStackTrace();
+		}
+
+		Thread.sleep(12000);
+
+		try {
+
+			if (testPlan.get("fractConNum1") != null && testPlan.get("fractConNum1") != "") {
+				for (String path : java.util.Arrays.asList(testPlan.get("fractConNum1").toString().split(","))) {
+					DatasetExplorer.class.newInstance().doNavigateByPath(driver, path);
+					DatasetExplorer.class.newInstance().doDragAndDrop(driver, path, "fractConNum1");
+					DatasetExplorer.class.newInstance().doReverseNavigateByPath(driver, path);
+
+				}
+			}
+
+		} catch (InstantiationException | IllegalAccessException e) {
+
+			e.printStackTrace();
+		}
+
+		Thread.sleep(13000);
+		try {
+
+			if (testPlan.get("fractConCate2") != null && testPlan.get("fractConCate2") != "") {
+				for (String path : java.util.Arrays.asList(testPlan.get("fractConCate2").toString().split(","))) {
+					DatasetExplorer.class.newInstance().doNavigateByPath(driver, path);
+					DatasetExplorer.class.newInstance().doDragAndDrop(driver, path, "fractConCate2");
+					DatasetExplorer.class.newInstance().doReverseNavigateByPath(driver, path);
+
+				}
+			}
+
+		} catch (InstantiationException | IllegalAccessException e) {
+
+			e.printStackTrace();
+		}
+
+		Thread.sleep(10000);
+		try {
+
+			if (testPlan.get("fractConCate1") != null && testPlan.get("fractConCate1") != "") {
+				for (String path : java.util.Arrays.asList(testPlan.get("fractConCate1").toString().split(","))) {
+					DatasetExplorer.class.newInstance().doNavigateByPath(driver, path);
+					DatasetExplorer.class.newInstance().doDragAndDrop(driver, path, "fractConCate1");
+					DatasetExplorer.class.newInstance().doReverseNavigateByPath(driver, path);
+
+				}
+			}
+
+		} catch (InstantiationException | IllegalAccessException e) {
+
+			e.printStackTrace();
+		}
+
+		Thread.sleep(70000);
+
+		List<WebElement> els = driver.findElements(By.xpath("//input[@data-v-074d016a='' and @type='checkbox']"));
+		for (WebElement el : els) {
+			if (!el.isSelected()) {
+				el.click();
+			}
+		}
+
+		Thread.sleep(60000);
+
+		if (driver
+				.findElements(
+						By.xpath(".//div[@id='fjs-chart-0']/div/*[name()='svg']/*[name()='g']/*[name()='rect'][1]"))
+				.size() != 0) {
+
+			LOGGER.info(
+					"***************************BoxPlot Anlaysis  Graph is generated through Fractalis ****************************");
+
+			SummaryStatisticsResults.class.newInstance().doAssertResultTrue(driver, testPlan, reporter);
+
+		} else {
+
+			LOGGER.info(
+					"***************************BoxPlot Anlaysis Graph is *NOT* generated through Fractalis***************************");
+			SummaryStatisticsResults.class.newInstance().doAssertResultFalse(driver, testPlan, reporter);
+		}
+
+		DatasetExplorer.class.newInstance().resetReview(driver);
+		DatasetExplorer.class.newInstance().clearAnalysisCache(driver);
+	}
+
+	public void verifyFractlisIntergrationPrincipleComponentAnalysis(Reporter reporter) throws Exception {
+
+		try {
+
+			if (testPlan.get("subset1") != null && testPlan.get("subset1") != "") {
+				for (String path : java.util.Arrays.asList(testPlan.get("subset1").toString().split(","))) {
+					DatasetExplorer.class.newInstance().doNavigateByPath(driver, path);
+					DatasetExplorer.class.newInstance().doDragAndDrop(driver, path, "subset1");
+					DatasetExplorer.class.newInstance().doReverseNavigateByPath(driver, path);
+
+				}
+			}
+
+		} catch (InstantiationException | IllegalAccessException e) {
+
+			e.printStackTrace();
+		}
+
+		DatasetExplorer.class.newInstance().doSelectFractlis(driver);
+		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+		DatasetExplorer.class.newInstance().doSelectFractalisAnalysis(driver, 2);
+		DatasetExplorer.class.newInstance().addAnalysis(driver);
+		Thread.sleep(7000);
+
+		try {
+			
+			if (testPlan.get("fractConNum2") != null && testPlan.get("fractConNum2") != "") {
+				for (String path : java.util.Arrays.asList(testPlan.get("fractConNum2").toString().split(","))) {
+					DatasetExplorer.class.newInstance().doNavigateByPath(driver, path);
+					DatasetExplorer.class.newInstance().doDragAndDrop(driver, path, "fractConNum2");
+					DatasetExplorer.class.newInstance().doReverseNavigateByPath(driver, path);
+
+				}
+			}
+
+		} catch (InstantiationException | IllegalAccessException e) {
+
+			e.printStackTrace();
+		}
+
+		Thread.sleep(12000);
+
+		try {
+
+			if (testPlan.get("fractConNum1") != null && testPlan.get("fractConNum1") != "") {
+				for (String path : java.util.Arrays.asList(testPlan.get("fractConNum1").toString().split(","))) {
+					DatasetExplorer.class.newInstance().doNavigateByPath(driver, path);
+					DatasetExplorer.class.newInstance().doDragAndDrop(driver, path, "fractConNum1");
+					DatasetExplorer.class.newInstance().doReverseNavigateByPath(driver, path);
+
+				}
+			}
+
+		} catch (InstantiationException | IllegalAccessException e) {
+
+			e.printStackTrace();
+		}
+
+		Thread.sleep(13000);
+		try {
+
+			if (testPlan.get("fractConCate2") != null && testPlan.get("fractConCate2") != "") {
+				for (String path : java.util.Arrays.asList(testPlan.get("fractConCate2").toString().split(","))) {
+					DatasetExplorer.class.newInstance().doNavigateByPath(driver, path);
+					DatasetExplorer.class.newInstance().doDragAndDrop(driver, path, "fractConCate2");
+					DatasetExplorer.class.newInstance().doReverseNavigateByPath(driver, path);
+
+				}
+			}
+
+		} catch (InstantiationException | IllegalAccessException e) {
+
+			e.printStackTrace();
+		}
+
+		Thread.sleep(10000);
+		try {
+
+			if (testPlan.get("fractConCate1") != null && testPlan.get("fractConCate1") != "") {
+				for (String path : java.util.Arrays.asList(testPlan.get("fractConCate1").toString().split(","))) {
+					DatasetExplorer.class.newInstance().doNavigateByPath(driver, path);
+					DatasetExplorer.class.newInstance().doDragAndDrop(driver, path, "fractConCate1");
+					DatasetExplorer.class.newInstance().doReverseNavigateByPath(driver, path);
+
+				}
+			}
+
+		} catch (InstantiationException | IllegalAccessException e) {
+
+			e.printStackTrace();
+		}
+
+		Thread.sleep(70000);
+
+		List<WebElement> els = driver.findElements(By.xpath("//input[@data-v-074d016a='' and @type='checkbox']"));
+		for (WebElement el : els) {
+			if (!el.isSelected()) {
+				el.click();
+			}
+		}
+
+		Thread.sleep(60000);
+
+		if (driver
+				.findElements(
+						By.xpath(".//div[@id='fjs-chart-0']/div/*[name()='svg']/*[name()='g']/*[name()='rect'][1]"))
+				.size() != 0) {
+
+			LOGGER.info(
+					"***************************Principle ComponentAnalysis  Graph is generated through Fractalis ****************************");
+
+			SummaryStatisticsResults.class.newInstance().doAssertResultTrue(driver, testPlan, reporter);
+
+		} else {
+
+			LOGGER.info(
+					"***************************Principle ComponentAnalysis Graph is *NOT* generated through Fractalis***************************");
+			SummaryStatisticsResults.class.newInstance().doAssertResultFalse(driver, testPlan, reporter);
+		}
+
+		DatasetExplorer.class.newInstance().resetReview(driver);
+		DatasetExplorer.class.newInstance().clearAnalysisCache(driver);
+	}
+	
+	
 	public void verifyDelete(Reporter reporter) throws InterruptedException {
 
 		try {
@@ -1384,7 +1647,7 @@ public class BasicStatisticsTestPlan extends Testplan {
 
 	}
 
-	public void doPlan() throws InterruptedException {
+/*	public void doPlan() throws InterruptedException {
 		try {
 
 			System.setProperty(BROWSER, BROWSERDRIVER);
@@ -1426,5 +1689,12 @@ public class BasicStatisticsTestPlan extends Testplan {
 			e.printStackTrace();
 		}
 	}
+*/
+	
+	public void closeDriver() {
+		driver.quit();
+	}
+
+	// Test Expanding/collapsing the concept tree
 
 }

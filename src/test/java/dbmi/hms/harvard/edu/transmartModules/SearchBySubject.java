@@ -9,11 +9,14 @@ public class SearchBySubject extends Module {
 	// private String searchBySubjectTab =
 	// ".//*[@id='ontPanel__ontFilterPanel']/a[2]/em/span/span";
 	private String searchBySubjectTab = "//*[contains(text(), 'Search by Subject')]";
-	private String searchBox = ".//*[@id='ontsearchterm']";
+	//private String searchBox = ".//*[@id='ontsearchterm']";
+	private String searchBox =".//*[@id='search-ac']";
 	private String typeDropDown = ".//*[@id='tagtype']";
-	private String searchButton = ".//*[@id='ontSearchButton']";
+	//private String searchButton = ".//*[@id='ontSearchButton']";
+	
+	private String clearSearch=".//*[@id='clearbutton']/a";
 	private String searchResult = ".//*[@id='searchresultstext']";
-	private String searchClearButton = ".//input[@class='searchform' and @value='CLEAR']";
+	//private String searchClearButton = ".//input[@class='searchform' and @value='CLEAR']";
 	public static String result;
 
 	public void doSelectNavigationTab(WebDriver driver) {
@@ -22,7 +25,7 @@ public class SearchBySubject extends Module {
 
 	public void doSearch(WebDriver driver, String searchTerm) {
 		enterText(driver, searchBox, searchTerm);
-		click(driver, driver.findElement(By.xpath(searchButton)));
+		//click(driver, driver.findElement(By.xpath(searchButton)));
 	}
 
 	public void getSearchResult(WebDriver driver)
@@ -35,7 +38,7 @@ public class SearchBySubject extends Module {
 	public void doClearSearchBox(WebDriver driver)
 
 	{
-		click(driver, driver.findElement(By.xpath(searchClearButton)));
+		click(driver, driver.findElement(By.xpath(clearSearch)));
 	}
 
 	
