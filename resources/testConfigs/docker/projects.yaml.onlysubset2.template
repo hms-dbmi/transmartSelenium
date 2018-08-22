@@ -1,5 +1,5 @@
  name: Verify Summary Stats for Subset2 
- url: https://54.91.2.63/transmart/login/auth
+ url: https://54.224.84.131/transmart/login/auth
  authmethod: ADMINLOGIN
  username: admin
  password: admin
