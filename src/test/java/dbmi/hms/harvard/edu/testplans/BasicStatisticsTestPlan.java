@@ -1,6 +1,7 @@
 package dbmi.hms.harvard.edu.testplans;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.testng.Assert.assertTrue;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -18,6 +19,7 @@ import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -40,8 +42,10 @@ public class BasicStatisticsTestPlan extends Testplan {
 	// private static final String BROWSERDRIVER = "D:\\chromedriver.exe";
 	// private static String BROWSERDRIVER =
 	// System.getProperty("googlechromepath");
-	private static final String BROWSER = "webdriver.gecko.driver";
-	private static String BROWSERDRIVER = System.getProperty("geckodriverpath");
+	
+	
+	//private static final String BROWSER = "webdriver.gecko.driver";
+	//private static String BROWSERDRIVER = System.getProperty("geckodriverpath");
 	private String DragConcept = ".//*[@id='ext-gen157']/div/table/tbody/tr/td";
 	private String patientCountSubset2 = "//td[@colspan='2']//table[@width='100%']//tbody//tr//td[@align='center']//table[@class='analysis']//tbody//tr//td[3]";
 
@@ -90,32 +94,64 @@ public class BasicStatisticsTestPlan extends Testplan {
 	 * public void setRelational(Set<String> relational) { this.relational =
 	 * relational; }
 	 */
+	
 	public void loginSite() throws InterruptedException {
 
-		System.setProperty(BROWSER, BROWSERDRIVER);
+		String browserName=(String) testPlan.get("browser");
+		//System.out.println("The launched browser is " +browser);
+		String browser=browserName.toLowerCase();
+		switch (browser)
+        {
+            case "chrome":
+            	
+        //    	System.setProperty("webdriver.chrome.driver", System.getProperty("googlechromepath"));
+          //  	driver =new ChromeDriver();
+            //	break;
+             
+            
+            case "safari":
+                   	
+            	// TO -DO
+            case "firefox":
+        
+            	System.setProperty("webdriver.gecko.driver", System.getProperty("geckodriverpath"));
+            	driver = new FirefoxDriver();
+            	break;
+         	
+         	case "chromeheadless":
+         	System.setProperty("webdriver.chrome.driver", System.getProperty("googlechromepath"));
+			ChromeOptions chromeOptions = new ChromeOptions();
+	       //chromeOptions.addArguments("--headless");
+		  chromeOptions.addArguments("--disable-gpu");
+		  chromeOptions.addArguments("--window-size=1280,800");
+		  chromeOptions.addArguments("--allow-insecure-localhost");
+//	      chromeOptions.addArguments("window-size=1200x600");
+		  chromeOptions.setCapability("acceptInsecureCerts", true);
+	      driver = new ChromeDriver(chromeOptions);
+	      driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+	      driver.manage().window().maximize();
+	      break;
+        } 	
+		
+         /*System.setProperty("webdriver.chrome.driver", System.getProperty("googlechromepath"));
+		ChromeOptions chromeOptions = new ChromeOptions();
+	      //chromeOptions.setBinary("D://chromedriver.exe");
+		  chromeOptions.addArguments("--headless");
+		  chromeOptions.addArguments("--disable-gpu");
+		  chromeOptions.addArguments("--window-size=1280,800");
+		  chromeOptions.addArguments("--allow-insecure-localhost");
+//	      chromeOptions.addArguments("window-size=1200x600");
+		  chromeOptions.setCapability("acceptInsecureCerts", true);
+	      WebDriver driver = new ChromeDriver(chromeOptions);
+	      driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+	      driver.manage().window().maximize();
+*/
+		//System.setProperty(BROWSER, BROWSERDRIVER);
 		LOGGER.info(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>Launching the Browser>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
-		driver = new FirefoxDriver();
-		// driver =new ChromeDriver();
-
-		/*
-		 * DesiredCapabilities capabilities = DesiredCapabilities.firefox();
-
-		 * 
-		 * 
-		 * 
-		 * 
-		 * 
-		 * 
-		 * 
-		 * 
-		 * 
-		 * capabilities.setCapability("marionette", true); WebDriver driver =
-		 * new FirefoxDriver(capabilities);
-		 */
-
-		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		System.out.println("testing");
+		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 		driver.manage().window().maximize();
-		driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		LOGGER.info("");
 		LOGGER.info("********************************Loading the site****" + testPlan.get("url").toString()
 				+ "********************************");
@@ -130,7 +166,7 @@ public class BasicStatisticsTestPlan extends Testplan {
 			authLink = null;
 		}
 
-		// driver.findElement(By.linkText(authLink)).click();
+		//(Old)// driver.findElement(By.linkText(authLink)).click();
 
 		authTypes.doAuth(driver, testPlan);
 	}

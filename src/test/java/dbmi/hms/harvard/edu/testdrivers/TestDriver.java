@@ -76,13 +76,13 @@ public class TestDriver {
 //If BeforeTest method fails, all other cases won't execute...	
 	
 	
-@BeforeTest
-
+//@BeforeTest
+	@Test(priority = 1)
 	public void setup() throws InterruptedException {
 
 		LOGGER.info(
 				"______________________________________Setting up the application______________________________________");
-		readFile(configProperties.getProperty("verify.window.title"));
+		readFile(configProperties.getProperty("intial.setup.transmart"));
 		testPlan.loginSite();
 		LOGGER.info(
 				"______________________________________Initial Setting up is Done______________________________________");
@@ -90,7 +90,7 @@ public class TestDriver {
 	}
 	
 
-@Test(priority = 1)
+//@Test(priority = 1)
 	public static void verifyLoginWithWinowTitle() throws YamlException, InterruptedException {
 
 		LOGGER.info(
@@ -101,7 +101,7 @@ public class TestDriver {
 				"---------------------------------The test case verifyWinowTitle is Finished-------------------------");
 
 	}
-@Test(priority = 2, groups = { "Sanity" })
+//@Test(priority = 2, groups = { "Sanity" })
 
 public static void verifySummaryStats() throws YamlException, InterruptedException {
 
@@ -626,11 +626,11 @@ public static void verifySavingSubset() throws YamlException, InterruptedExcepti
 
 	}*/
 		
-	@AfterClass
+//	@AfterClass
 	public void closeApplication() {
 
 		reporter.doReport();
-		testPlan.closeDriver();
+//		testPlan.closeDriver();
 		//System.out.println("Testing done");
 		LOGGER.info(
 				"===========================i2b2/TranSMART Test Automation is completed :Closing the Browser ===========================");
