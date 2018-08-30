@@ -15,18 +15,22 @@ import javax.xml.xpath.XPath;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.htmlunit.HtmlUnitDriver;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.util.Strings;
 
 import com.fasterxml.jackson.databind.ser.SerializerCache;
+import com.gargoylesoftware.htmlunit.BrowserVersion;
 
 import dbmi.hms.harvard.edu.authentication.AuthTypes;
 import dbmi.hms.harvard.edu.reporter.Reporter;
@@ -99,14 +103,15 @@ public class BasicStatisticsTestPlan extends Testplan {
 
 		String browserName=(String) testPlan.get("browser");
 		//System.out.println("The launched browser is " +browser);
-		String browser=browserName.toLowerCase();
+		String browser=browserName.toLowerCase().replaceAll(" ", "");
 		switch (browser)
         {
             case "chrome":
             	
-        //    	System.setProperty("webdriver.chrome.driver", System.getProperty("googlechromepath"));
-          //  	driver =new ChromeDriver();
-            //	break;
+         System.setProperty("webdriver.chrome.driver", System.getProperty("googlechromepath"));
+         driver =new ChromeDriver();
+         driver.manage().window().maximize();
+         break;
              
             
             case "safari":
@@ -116,41 +121,42 @@ public class BasicStatisticsTestPlan extends Testplan {
         
             	System.setProperty("webdriver.gecko.driver", System.getProperty("geckodriverpath"));
             	driver = new FirefoxDriver();
+            	driver.manage().window().maximize();
             	break;
          	
          	case "chromeheadless":
-         	System.setProperty("webdriver.chrome.driver", System.getProperty("googlechromepath"));
-			ChromeOptions chromeOptions = new ChromeOptions();
-	       //chromeOptions.addArguments("--headless");
-		  chromeOptions.addArguments("--disable-gpu");
-		  chromeOptions.addArguments("--window-size=1280,800");
-		  chromeOptions.addArguments("--allow-insecure-localhost");
-//	      chromeOptions.addArguments("window-size=1200x600");
-		  chromeOptions.setCapability("acceptInsecureCerts", true);
-	      driver = new ChromeDriver(chromeOptions);
-	      driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-	      driver.manage().window().maximize();
-	      break;
-        } 	
-		
-         /*System.setProperty("webdriver.chrome.driver", System.getProperty("googlechromepath"));
-		ChromeOptions chromeOptions = new ChromeOptions();
-	      //chromeOptions.setBinary("D://chromedriver.exe");
+          System.setProperty("webdriver.chrome.driver", System.getProperty("googlechromepath"));
+		  ChromeOptions chromeOptions = new ChromeOptions();
 		  chromeOptions.addArguments("--headless");
 		  chromeOptions.addArguments("--disable-gpu");
 		  chromeOptions.addArguments("--window-size=1280,800");
 		  chromeOptions.addArguments("--allow-insecure-localhost");
-//	      chromeOptions.addArguments("window-size=1200x600");
+		  chromeOptions.addArguments("window-size=1980,1080");
 		  chromeOptions.setCapability("acceptInsecureCerts", true);
-	      WebDriver driver = new ChromeDriver(chromeOptions);
+	      driver = new ChromeDriver(chromeOptions);
 	      driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-	      driver.manage().window().maximize();
-*/
+	    //  driver.manage().window().maximize();
+	      break;
+        } 	
 		//System.setProperty(BROWSER, BROWSERDRIVER);
+		//WebDriver driver = new HtmlUnitDriver();
+		//HtmlUnitDriver unitDriver = new HtmlUnitDriver(BrowserVersion.CHROME);
+		
+		/*driver.get("https://www.google.com");
+		WebElement element = driver.findElement(By.name("q"));
+		element.sendKeys("softwaretestingmaterial.com");
+		element.submit();
+		*///Click on Software Testing Material link
+		//driver.findElement(By.linkText("Software Testing Material")).click();
+		// Get the title of the site and store it in the variable Title
+		/*String Title = driver.getTitle();
+		// Print the title
+		System.out.println("I am at " +Title);
+	
+	*/
 		LOGGER.info(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>Launching the Browser>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
-		System.out.println("testing");
 		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-		driver.manage().window().maximize();
+		
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		LOGGER.info("");
 		LOGGER.info("********************************Loading the site****" + testPlan.get("url").toString()
@@ -169,8 +175,8 @@ public class BasicStatisticsTestPlan extends Testplan {
 		//(Old)// driver.findElement(By.linkText(authLink)).click();
 
 		authTypes.doAuth(driver, testPlan);
-	}
-
+	
+}
 	public void checkWinodwTitle(Reporter reporter) throws InterruptedException {
 
 		// driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
@@ -220,7 +226,7 @@ public class BasicStatisticsTestPlan extends Testplan {
 				SummaryStatistics.class.newInstance().runSummaryStatistics(driver);
 				SummaryStatisticsResults.class.newInstance().doResults(driver, testPlan, reporter);
 				DatasetExplorer.class.newInstance().doClearAnalysis(driver);
-				// DatasetExplorer.class.newInstance().doSelectComparison(driver);
+				// DatasetExplrer.class.newInstance().doSelectComparison(driver);
 
 			}
 
@@ -228,7 +234,14 @@ public class BasicStatisticsTestPlan extends Testplan {
 
 			e.printStackTrace();
 		}
+		
+		Thread.sleep(4000);
+		driver.navigate().refresh();
+		//Actions actionObject = new Actions(driver);
+		 
+		//actionObject.keyDown(Keys.CONTROL).sendKeys(Keys.F5).keyUp(Keys.CONTROL).perform();
 
+		System.out.println("page gets refreshed.....");
 	}
 
 	public void verifyExcludeFeature(Reporter reporter) throws InterruptedException {

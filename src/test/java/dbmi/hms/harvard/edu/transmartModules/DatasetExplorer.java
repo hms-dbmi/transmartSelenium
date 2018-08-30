@@ -31,11 +31,13 @@ public class DatasetExplorer extends Module {
 	private String comparisonTab = "//span[contains(@class,'x-tab-strip-text')][contains(text(),'Comparison')]";
 	private String setNoValue = ".//*[@id='ext-gen151']/div[1]/table/tbody/tr[2]/td[1]/input[1]";
 	private String setLowHighFlagValue = ".//*[@id='ext-gen151']/div[1]/table/tbody/tr[2]/td[1]/input[2]";
-	private String setValueNumeric = ".//*[@id='ext-gen151']/div[1]/table/tbody/tr[2]/td[1]/input[3]";
+	//private String setValueNumeric = ".//*[@id='ext-gen151']/div[1]/table/tbody/tr[2]/td[1]/input[3]";
+	private String setValueNumeric =".//*[@id='ext-gen139']/div[1]/table/tbody/tr[2]/td[1]/input[3]";
 	private String setValueTextBox = ".//*[@id='setValueLowValue']";
 	private String selectSetOperator = ".//*[@id='setValueOperator']";
 	private String selectLowHighRange = ".//*[@id='setValueHighLowSelect']";
-	private String subsetOKbutton = ".//*[@id='ext-gen129']";
+	//private String subsetOKbutton = ".//*[@id='ext-gen129']";
+	private String subsetOKbutton =".//*[@class='x-btn-text'  and @id='ext-gen117']";
 	private String setValueTextBoxHigh = ".//*[@id='setValueHighValue']";
 	private String searchedSubject = ".//span[contains(text(),'mexican')]";
 	private String deleteButton = ".//*[@id='clearGroup1_1']";

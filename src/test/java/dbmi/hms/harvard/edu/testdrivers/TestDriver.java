@@ -75,9 +75,8 @@ public class TestDriver {
 	
 //If BeforeTest method fails, all other cases won't execute...	
 	
-	
-//@BeforeTest
-	@Test(priority = 1)
+@BeforeTest
+//@Test(priority = 1)
 	public void setup() throws InterruptedException {
 
 		LOGGER.info(
@@ -90,7 +89,7 @@ public class TestDriver {
 	}
 	
 
-//@Test(priority = 1)
+@Test(priority = 1)
 	public static void verifyLoginWithWinowTitle() throws YamlException, InterruptedException {
 
 		LOGGER.info(
@@ -101,7 +100,7 @@ public class TestDriver {
 				"---------------------------------The test case verifyWinowTitle is Finished-------------------------");
 
 	}
-//@Test(priority = 2, groups = { "Sanity" })
+@Test(priority = 2, groups = { "Sanity" })
 
 public static void verifySummaryStats() throws YamlException, InterruptedException {
 
@@ -113,9 +112,46 @@ public static void verifySummaryStats() throws YamlException, InterruptedExcepti
 			"--------------------------------The test case verifySummaryStats is Finished-------------------------");
 
 }
+@Test(priority = 3, groups = { "Sanity Regression" })
 
+public static void verifySummaryStatsSetValueByNumericEqual() throws YamlException, InterruptedException {
 
-/*		
+	LOGGER.info(
+			"---------------------------The test case verifySummaryStatsSetValueByNumericEqual is running-------------------------");
+	readFile(configProperties.getProperty("verify.summarystats.equal.subset"));
+	testPlan.doPlanSetValueEqual(reporter);
+	LOGGER.info(
+			"---------------------------The test case verifySummaryStatsSetValueByNumericEqual is Finished-------------------------");
+
+}
+
+//@Test(priority = 8, groups = { "Sanity Regression" })
+
+public static void verifySummaryStatsSetValueByNumericGreaterThanEqual() throws YamlException, InterruptedException {
+
+	LOGGER.info(
+			"---------------------------The test case verifySummaryStatsSetValueByNumericGreaterThanEqual is running-------------------------");
+	readFile(configProperties.getProperty("verify.summarystats.greaterthanequal.subset.value"));
+	testPlan.doPlanSetValueGreaterThanEqual(reporter);
+	LOGGER.info(
+			"---------------------------The test case verifySummaryStatsSetValueByNumericGreaterThanEqual is Finished-------------------------");
+
+}
+
+@Test(priority = 10, groups = { "Sanity Regression" })
+
+public static void verifySummaryStatsSubset2() throws YamlException, InterruptedException {
+
+	LOGGER.info(
+			"---------------------------The test case verifySummaryStatsSubset2 is running-------------------------");
+	readFile(configProperties.getProperty("verify.summaryStats.subset2"));
+	testPlan.doPlanSubset2(reporter);
+	LOGGER.info(
+			"---------------------------The test case verifySummaryStatsSubset2 is Finished-------------------------");
+
+}
+
+		
 @Test(priority = 7, groups = { "Sanity Regression" })
 
 	public static void verifySummaryStatsSetNoValue() throws YamlException, InterruptedException {
@@ -130,7 +166,7 @@ public static void verifySummaryStats() throws YamlException, InterruptedExcepti
 	}
 
 	
-	
+/*	
 	//@Test(priority = 14, groups = { "Sanity Regression" })
 
 		public static void verifySummaryStatsSetLowHighFlagLowRange() throws YamlException, InterruptedException {
@@ -626,7 +662,7 @@ public static void verifySavingSubset() throws YamlException, InterruptedExcepti
 
 	}*/
 		
-//	@AfterClass
+@AfterClass
 	public void closeApplication() {
 
 		reporter.doReport();
