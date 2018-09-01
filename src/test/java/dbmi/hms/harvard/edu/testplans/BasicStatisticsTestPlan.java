@@ -21,7 +21,9 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.firefox.FirefoxBinary;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.remote.DesiredCapabilities;
@@ -102,42 +104,53 @@ public class BasicStatisticsTestPlan extends Testplan {
 	public void loginSite() throws InterruptedException {
 
 		String browserName=(String) testPlan.get("browser");
-		//System.out.println("The launched browser is " +browser);
+		System.out.println("The launched browser is " +browserName);
 		String browser=browserName.toLowerCase().replaceAll(" ", "");
 		switch (browser)
         {
             case "chrome":
             	
-         System.setProperty("webdriver.chrome.driver", System.getProperty("googlechromepath"));
-         driver =new ChromeDriver();
-         driver.manage().window().maximize();
-         break;
-             
+				         System.setProperty("webdriver.chrome.driver", System.getProperty("googlechromepath"));
+				         driver =new ChromeDriver();
+				         driver.manage().window().maximize();
+				         break;
+				             
             
             case "safari":
                    	
             	// TO -DO
             case "firefox":
         
-            	System.setProperty("webdriver.gecko.driver", System.getProperty("geckodriverpath"));
-            	driver = new FirefoxDriver();
-            	driver.manage().window().maximize();
-            	break;
+		            	System.setProperty("webdriver.gecko.driver", System.getProperty("geckodriverpath"));
+		            	driver = new FirefoxDriver();
+		            	driver.manage().window().maximize();
+		            	break;
          	
          	case "chromeheadless":
-          System.setProperty("webdriver.chrome.driver", System.getProperty("googlechromepath"));
-		  ChromeOptions chromeOptions = new ChromeOptions();
-		  chromeOptions.addArguments("--headless");
-		  chromeOptions.addArguments("--disable-gpu");
-		  chromeOptions.addArguments("--window-size=1280,800");
-		  chromeOptions.addArguments("--allow-insecure-localhost");
-		  chromeOptions.addArguments("window-size=1980,1080");
-		  chromeOptions.setCapability("acceptInsecureCerts", true);
-	      driver = new ChromeDriver(chromeOptions);
-	      driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-	    //  driver.manage().window().maximize();
-	      break;
+			          System.setProperty("webdriver.chrome.driver", System.getProperty("googlechromepath"));
+					  ChromeOptions chromeOptions = new ChromeOptions();
+					  chromeOptions.addArguments("--headless");
+					  chromeOptions.addArguments("--disable-gpu");
+					  chromeOptions.addArguments("--window-size=1280,800");
+					  chromeOptions.addArguments("--allow-insecure-localhost");
+					  chromeOptions.addArguments("window-size=1980,1080");
+					  chromeOptions.setCapability("acceptInsecureCerts", true);
+				      driver = new ChromeDriver(chromeOptions);
+				      driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+				    //  driver.manage().window().maximize();
+				      break;
+         	case "firefoxheadless":
+      
+		         		FirefoxBinary firefoxBinary = new FirefoxBinary();
+		         	    firefoxBinary.addCommandLineOptions("--headless");
+		         	    System.setProperty("webdriver.gecko.driver", System.getProperty("geckodriverpath"));
+		         	    FirefoxOptions firefoxOptions = new FirefoxOptions();
+		         	    firefoxOptions.setBinary(firefoxBinary);
+		         	   driver = new FirefoxDriver(firefoxOptions);
+		         	 //   FirefoxDriver driver = new FirefoxDriver(firefoxOptions);
+		         	    break;
         } 	
+		
 		//System.setProperty(BROWSER, BROWSERDRIVER);
 		//WebDriver driver = new HtmlUnitDriver();
 		//HtmlUnitDriver unitDriver = new HtmlUnitDriver(BrowserVersion.CHROME);
@@ -154,6 +167,18 @@ public class BasicStatisticsTestPlan extends Testplan {
 		System.out.println("I am at " +Title);
 	
 	*/
+		/*System.setProperty("webdriver.gecko.driver", System.getProperty("geckodriverpath"));
+		FirefoxOptions options = new FirefoxOptions();
+		options.setHeadless(false);
+		
+		//Instantiate Web Driver
+		WebDriver driver = new FirefoxDriver(options);
+		*///driver.get("http://www.google.com");
+		//System.out.println("Page title is - " + driver.getTitle());
+		
+		//Search on Google
+		//driver.findElement(By.name("q")).sendKeys("selenium webdriver");
+		//driver.findElement(By.name("q")).sendKeys(Keys.ENTER);/*
 		LOGGER.info(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>Launching the Browser>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
 		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 		
@@ -175,7 +200,7 @@ public class BasicStatisticsTestPlan extends Testplan {
 		//(Old)// driver.findElement(By.linkText(authLink)).click();
 
 		authTypes.doAuth(driver, testPlan);
-	
+
 }
 	public void checkWinodwTitle(Reporter reporter) throws InterruptedException {
 

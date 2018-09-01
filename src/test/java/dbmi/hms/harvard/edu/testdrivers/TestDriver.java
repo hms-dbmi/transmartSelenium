@@ -76,7 +76,7 @@ public class TestDriver {
 //If BeforeTest method fails, all other cases won't execute...	
 	
 @BeforeTest
-//@Test(priority = 1)
+
 	public void setup() throws InterruptedException {
 
 		LOGGER.info(
@@ -89,7 +89,7 @@ public class TestDriver {
 	}
 	
 
-@Test(priority = 1)
+@Test(priority = 2,groups = { "Sanity" })
 	public static void verifyLoginWithWinowTitle() throws YamlException, InterruptedException {
 
 		LOGGER.info(
@@ -100,7 +100,7 @@ public class TestDriver {
 				"---------------------------------The test case verifyWinowTitle is Finished-------------------------");
 
 	}
-@Test(priority = 2, groups = { "Sanity" })
+@Test(priority = 3, groups = { "Sanity" })
 
 public static void verifySummaryStats() throws YamlException, InterruptedException {
 
@@ -112,7 +112,7 @@ public static void verifySummaryStats() throws YamlException, InterruptedExcepti
 			"--------------------------------The test case verifySummaryStats is Finished-------------------------");
 
 }
-@Test(priority = 3, groups = { "Sanity Regression" })
+@Test(priority = 4, groups = { "Sanity Regression" })
 
 public static void verifySummaryStatsSetValueByNumericEqual() throws YamlException, InterruptedException {
 
@@ -138,7 +138,7 @@ public static void verifySummaryStatsSetValueByNumericGreaterThanEqual() throws 
 
 }
 
-@Test(priority = 10, groups = { "Sanity Regression" })
+//@Test(priority = 10, groups = { "Sanity Regression" })
 
 public static void verifySummaryStatsSubset2() throws YamlException, InterruptedException {
 
@@ -152,7 +152,7 @@ public static void verifySummaryStatsSubset2() throws YamlException, Interrupted
 }
 
 		
-@Test(priority = 7, groups = { "Sanity Regression" })
+//@Test(priority = 7, groups = { "Sanity Regression" })
 
 	public static void verifySummaryStatsSetNoValue() throws YamlException, InterruptedException {
 
