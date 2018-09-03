@@ -122,7 +122,8 @@ public class BasicStatisticsTestPlan extends Testplan {
             	// TO -DO
             case "firefox":
         
-		            	System.setProperty("webdriver.gecko.driver", System.getProperty("geckodriverpath"));
+		            //	System.setProperty("webdriver.gecko.driver", System.getProperty("geckodriverpath"));
+		            	System.setProperty("webdriver.firebox.bin", System.getProperty("geckodriverpath"));
 		            	String path=System.getProperty("geckodriverpath");
 		            	System.out.println("Path of Firefox is "+path);
 		            	driver = new FirefoxDriver();
@@ -146,7 +147,8 @@ public class BasicStatisticsTestPlan extends Testplan {
       
 		         		FirefoxBinary firefoxBinary = new FirefoxBinary();
 		         	    firefoxBinary.addCommandLineOptions("--headless");
-		         	    System.setProperty("webdriver.gecko.driver", System.getProperty("geckodriverpath"));
+		         	    //System.setProperty("webdriver.gecko.driver", System.getProperty("geckodriverpath"));
+		         	   System.setProperty("webdriver.gecko.driver", System.getProperty("geckodriverpath"));
 		         	    FirefoxOptions firefoxOptions = new FirefoxOptions();
 		         	    firefoxOptions.setBinary(firefoxBinary);
 		         	   driver = new FirefoxDriver(firefoxOptions);
