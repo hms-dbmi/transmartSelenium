@@ -24,7 +24,7 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxBinary;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
-import org.openqa.selenium.htmlunit.HtmlUnitDriver;
+//import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -32,7 +32,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.util.Strings;
 
 import com.fasterxml.jackson.databind.ser.SerializerCache;
-import com.gargoylesoftware.htmlunit.BrowserVersion;
+//import com.gargoylesoftware.htmlunit.BrowserVersion;
 
 import dbmi.hms.harvard.edu.authentication.AuthTypes;
 import dbmi.hms.harvard.edu.reporter.Reporter;
