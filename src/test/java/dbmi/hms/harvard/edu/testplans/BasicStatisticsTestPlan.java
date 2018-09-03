@@ -102,7 +102,7 @@ public class BasicStatisticsTestPlan extends Testplan {
 	 */
 	
 	public void loginSite() throws InterruptedException {
-
+		
 		String browserName=(String) testPlan.get("browser");
 		System.out.println("The launched browser is " +browserName);
 		String browser=browserName.toLowerCase().replaceAll(" ", "");
@@ -111,6 +111,7 @@ public class BasicStatisticsTestPlan extends Testplan {
             case "chrome":
             	
 				         System.setProperty("webdriver.chrome.driver", System.getProperty("googlechromepath"));
+				         
 				         driver =new ChromeDriver();
 				         driver.manage().window().maximize();
 				         break;
@@ -122,6 +123,8 @@ public class BasicStatisticsTestPlan extends Testplan {
             case "firefox":
         
 		            	System.setProperty("webdriver.gecko.driver", System.getProperty("geckodriverpath"));
+		            	String path=System.getProperty("geckodriverpath");
+		            	System.out.println("Path of Firefox is "+path);
 		            	driver = new FirefoxDriver();
 		            	driver.manage().window().maximize();
 		            	break;
