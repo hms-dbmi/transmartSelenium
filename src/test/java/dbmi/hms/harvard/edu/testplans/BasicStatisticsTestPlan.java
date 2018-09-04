@@ -3,6 +3,7 @@ package dbmi.hms.harvard.edu.testplans;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.testng.Assert.assertTrue;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
@@ -17,6 +18,7 @@ import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.NoAlertPresentException;
+import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -122,10 +124,10 @@ public class BasicStatisticsTestPlan extends Testplan {
             	// TO -DO
             case "firefox":
         
-		            //	System.setProperty("webdriver.gecko.driver", System.getProperty("geckodriverpath"));
-		            	System.setProperty("webdriver.firebox.bin", System.getProperty("geckodriverpath"));
-		            	String path=System.getProperty("geckodriverpath");
-		            	System.out.println("Path of Firefox is "+path);
+		            	System.setProperty("webdriver.gecko.driver", System.getProperty("geckodriverpath"));
+		            	//System.setProperty("webdriver.firebox.bin", System.getProperty("geckodriverpath"));
+//		            	String path=System.getProperty("geckodriverpath");
+		            	//System.out.println("Path of Firefox is "+path);
 		            	driver = new FirefoxDriver();
 		            	driver.manage().window().maximize();
 		            	break;
@@ -145,15 +147,33 @@ public class BasicStatisticsTestPlan extends Testplan {
 				      break;
          	case "firefoxheadless":
       
-		         		FirefoxBinary firefoxBinary = new FirefoxBinary();
-		         	    firefoxBinary.addCommandLineOptions("--headless");
+		         	/*	FirefoxBinary firefoxBinary = new FirefoxBinary(new File("D://geckodriver.exe"));
+         				//FirefoxBinary firefoxBinary = new FirefoxBinary();
+		         	    //firefoxBinary.addCommandLineOptions("--headless");
+		         	    System.setProperty("webdriver.gecko.driver", System.getProperty("geckodriverpath"));
 		         	    //System.setProperty("webdriver.gecko.driver", System.getProperty("geckodriverpath"));
-		         	   System.setProperty("webdriver.gecko.driver", System.getProperty("geckodriverpath"));
 		         	    FirefoxOptions firefoxOptions = new FirefoxOptions();
+		         	    firefoxOptions.setCapability("marionette", false);
 		         	    firefoxOptions.setBinary(firefoxBinary);
+		         	    
+		         	   // firefoxOptions.setBinary("D://geckodriver.exe");
 		         	   driver = new FirefoxDriver(firefoxOptions);
-		         	 //   FirefoxDriver driver = new FirefoxDriver(firefoxOptions);
-		         	    break;
+		         	*/ //   FirefoxDriver driver = new FirefoxDriver(firefoxOptions);
+         		
+         		
+         		
+         		 DesiredCapabilities capabilities = new DesiredCapabilities();
+         		 //capabilities = DesiredCapabilities.firefox();
+         		 capabilities.setBrowserName("firefox");
+         		 //capabilities.setVersion("your firefox version");
+         		 capabilities.setPlatform(Platform.WINDOWS);
+         		//capabilities.setPlatform(Platform.LINUX);
+         	//	 capabilities.setCapability("marionette", false);
+         		System.setProperty("webdriver.gecko.driver", System.getProperty("geckodriverpath"));
+         		FirefoxOptions firefoxOptions = new FirefoxOptions(capabilities);
+         	    firefoxOptions.setCapability("marionette", true);
+         	   firefoxOptions.setCapability("acceptInsecureCerts", true);
+         	    driver = new FirefoxDriver(firefoxOptions);
         } 	
 		
 		//System.setProperty(BROWSER, BROWSERDRIVER);
