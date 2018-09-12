@@ -161,6 +161,9 @@ public class BasicStatisticsTestPlan extends Testplan {
 		         	*/ //   FirefoxDriver driver = new FirefoxDriver(firefoxOptions);
          		
          		
+         	//	FirefoxBinary firefoxBinary = new FirefoxBinary();
+ 				FirefoxBinary firefoxBinary = new FirefoxBinary();
+ 				//firefoxBinary.addCommandLineOptions("--headless");
          		
          		 DesiredCapabilities capabilities = new DesiredCapabilities();
          		 //capabilities = DesiredCapabilities.firefox();
@@ -168,11 +171,13 @@ public class BasicStatisticsTestPlan extends Testplan {
          		 //capabilities.setVersion("your firefox version");
          		 capabilities.setPlatform(Platform.WINDOWS);
          		//capabilities.setPlatform(Platform.LINUX);
-         	//	 capabilities.setCapability("marionette", false);
+         		 capabilities.setCapability("marionette", true);
+         		 capabilities.setCapability("acceptInsecureCerts", true);
          		System.setProperty("webdriver.gecko.driver", System.getProperty("geckodriverpath"));
          		FirefoxOptions firefoxOptions = new FirefoxOptions(capabilities);
-         	    firefoxOptions.setCapability("marionette", true);
-         	   firefoxOptions.setCapability("acceptInsecureCerts", true);
+         	    //firefoxOptions.setCapability("marionette", true);
+         	   //firefoxOptions.setCapability("acceptInsecureCerts", true);
+         	  firefoxOptions.setBinary(firefoxBinary);
          	    driver = new FirefoxDriver(firefoxOptions);
         } 	
 		

@@ -44,7 +44,7 @@ public class AuthTypes {
 			driver.findElement(By.xpath(passwordbox)).sendKeys(testPlan.get("password").toString());
 			//Thread.sleep(10000);
 			driver.findElement(By.xpath(submitbutton)).click();
-			Thread.sleep(10000);
+			Thread.sleep(20000);
 			if (driver.findElements(By.xpath(".//span[text()='Comparison']")).size() != 0) {
 				System.out.println("The default page is Dataset Explorer");
 							}
