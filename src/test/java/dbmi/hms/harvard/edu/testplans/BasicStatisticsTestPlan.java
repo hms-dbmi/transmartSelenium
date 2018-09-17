@@ -210,9 +210,10 @@ public class BasicStatisticsTestPlan extends Testplan {
 		//driver.findElement(By.name("q")).sendKeys("selenium webdriver");
 		//driver.findElement(By.name("q")).sendKeys(Keys.ENTER);/*
 		LOGGER.info(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>Launching the Browser>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
-		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+		//driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 		
-		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		//driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		LOGGER.info(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>MIssing type>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
 		LOGGER.info("");
 		LOGGER.info("********************************Loading the site****" + testPlan.get("url").toString()
 				+ "********************************");
