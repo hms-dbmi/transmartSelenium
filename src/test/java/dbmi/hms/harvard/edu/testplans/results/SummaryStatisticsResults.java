@@ -18,8 +18,8 @@ public class SummaryStatisticsResults extends Results {
 	//private String patientCountCommon = ".//*[@id='ext-gen157']/div/table/tbody/tr[4]/td/table/tbody/tr/td/table/tbody/tr[2]/td[2]";
 	public String patientCountSubset1 ="//td[@colspan='2']//table[@width='100%']//tbody//tr//td[@align='center']//table[@class='analysis']//tbody//tr//td[1]";
 	private String patientCountSubset2 = "//td[@colspan='2']//table[@width='100%']//tbody//tr//td[@align='center']//table[@class='analysis']//tbody//tr//td[3]";
-	private String patientCountCommon =".//*[@id='ext-gen62']/div/table[1]/tbody/tr[3]/td/table/tbody/tr/td/table/tbody/tr[2]/td[2]";
-
+	//private String patientCountCommon =".//*[@id='ext-gen62']/div/table[1]/tbody/tr[3]/td/table/tbody/tr/td/table/tbody/tr[2]/td[2]";
+	private String patientCountCommon =".//*[@id='ext-gen56']/div/table[1]/tbody/tr[3]/td/table/tbody/tr/td/table/tbody/tr[2]/td[2]";
 	public void test()
 	{
 		System.out.println();

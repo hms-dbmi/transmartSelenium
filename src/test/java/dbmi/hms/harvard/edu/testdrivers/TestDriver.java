@@ -112,7 +112,7 @@ public static void verifySummaryStats() throws YamlException, InterruptedExcepti
 			"--------------------------------The test case verifySummaryStats is Finished-------------------------");
 
 }
-@Test(priority = 4, groups = { "Sanity Regression" })
+//@Test(priority = 4, groups = { "Sanity Regression" })
 
 public static void verifySummaryStatsSetValueByNumericEqual() throws YamlException, InterruptedException {
 
@@ -135,6 +135,33 @@ public static void verifySummaryStatsSetValueByNumericGreaterThanEqual() throws 
 	testPlan.doPlanSetValueGreaterThanEqual(reporter);
 	LOGGER.info(
 			"---------------------------The test case verifySummaryStatsSetValueByNumericGreaterThanEqual is Finished-------------------------");
+
+}
+
+
+//@Test(priority = 9, groups = { "Sanity Regression" })
+
+public static void verifySummaryStatsMultipleSubset1OR()
+		throws YamlException, InterruptedException, InstantiationException, IllegalAccessException {
+	LOGGER.info(
+			"-------------------------------The test case verifySummaryStatsMultipleSubset1OR is running-------------------------");
+	readFile(configProperties.getProperty("verify.summarystats.multiplesubset1OR"));
+	testPlan.doPlanMultipleSubset1OR(reporter);
+	LOGGER.info(
+			"--------------------------------The test case verifySummaryStatsMultipleSubset1OR is Finished-------------------------");
+}
+
+@Test(priority = 11, groups = { "Sanity Regression" })
+public static void verifySummaryStatsMultipleSubset1Subset2AND()
+		throws YamlException, InterruptedException, InstantiationException, IllegalAccessException {
+
+	LOGGER.info(
+			"-------------------------------The test case verifySummaryStatsMultipleSubset1Subset2AND is running-------------------------");
+	readFile(configProperties.getProperty("verify.summarystats.multiplesubset1subset2AND"));
+	//readFile(configProperties.getProperty("verify.summarystats.multiplesubset1subset2OR"));
+	testPlan.doPlanMultipleSubset1Subset2And(reporter);
+	LOGGER.info(
+			"--------------------------------The test case verifySummaryStatsMultipleSubset1Subset2AND is Finished-------------------------");
 
 }
 
@@ -563,7 +590,7 @@ public static void verifySavingSubset() throws YamlException, InterruptedExcepti
 		readFile(configProperties.getProperty("verify.summaryStats.searchbysubject"));
 		testPlan.doPlanSummaryStatSearch(reporter);
 		LOGGER.info(
-				"--------------------------------The test case verifySummaryStatSearch is Finshed-------------------------");
+				"--------------------------------The test case verifySummaryStatSearch is Finished-------------------------");
 	}
 
 @Test(priority = 19)
@@ -572,7 +599,7 @@ public static void verifySavingSubset() throws YamlException, InterruptedExcepti
 		LOGGER.info("---------------------------------The test case verifyDelete is running-------------------------");
 		readFile(configProperties.getProperty("verify.summaryStats.deletesubset"));
 		testPlan.verifyDelete(reporter);
-		LOGGER.info("---------------------------------The test case verifyDelete is Finshed-------------------------");
+		LOGGER.info("---------------------------------The test case verifyDelete is Finished-------------------------");
 
 	}
 
@@ -666,7 +693,7 @@ public static void verifySavingSubset() throws YamlException, InterruptedExcepti
 	public void closeApplication() {
 
 		reporter.doReport();
-//		testPlan.closeDriver();
+		testPlan.closeDriver();
 		//System.out.println("Testing done");
 		LOGGER.info(
 				"===========================i2b2/TranSMART Test Automation is completed :Closing the Browser ===========================");
