@@ -193,8 +193,8 @@ public static void verifySummaryStatsSubset2() throws YamlException, Interrupted
 	}
 
 	
-/*	
-	//@Test(priority = 14, groups = { "Sanity Regression" })
+	
+@Test(priority = 14, groups = { "Sanity Regression" })
 
 		public static void verifySummaryStatsSetLowHighFlagLowRange() throws YamlException, InterruptedException {
 
@@ -206,7 +206,7 @@ public static void verifySummaryStatsSubset2() throws YamlException, Interrupted
 					"---------------------------The test case verifySummaryStatsSetLowHighFlagLowRange is Finished-------------------------");
 
 		}
-
+		/*
 
 		//@Test(priority = 14, groups = { "Sanity Regression" })
 
