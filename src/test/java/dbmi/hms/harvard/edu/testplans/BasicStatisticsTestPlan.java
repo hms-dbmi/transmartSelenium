@@ -1337,8 +1337,8 @@ public class BasicStatisticsTestPlan extends Testplan {
 
 		DatasetExplorer.class.newInstance().doSelectFractlis(driver);
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-		DatasetExplorer.class.newInstance().doSelectFractalisAnalysis(driver, 1);
-		DatasetExplorer.class.newInstance().addAnalysis(driver);
+//		DatasetExplorer.class.newInstance().doSelectFractalisAnalysis(driver, 1);
+	//	DatasetExplorer.class.newInstance().addAnalysis(driver);
 		Thread.sleep(7000);
 
 		try {
@@ -1485,8 +1485,8 @@ public class BasicStatisticsTestPlan extends Testplan {
 
 		DatasetExplorer.class.newInstance().doSelectFractlis(driver);
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-		DatasetExplorer.class.newInstance().doSelectFractalisAnalysis(driver, 2);
-		DatasetExplorer.class.newInstance().addAnalysis(driver);
+	//	DatasetExplorer.class.newInstance().doSelectFractalisAnalysis(driver, 2);
+		//DatasetExplorer.class.newInstance().addAnalysis(driver);
 		Thread.sleep(7000);
 
 		try {
@@ -1609,8 +1609,8 @@ public class BasicStatisticsTestPlan extends Testplan {
 
 		DatasetExplorer.class.newInstance().doSelectFractlis(driver);
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-		DatasetExplorer.class.newInstance().doSelectFractalisAnalysis(driver, 2);
-		DatasetExplorer.class.newInstance().addAnalysis(driver);
+//		DatasetExplorer.class.newInstance().doSelectFractalisAnalysis(driver, 2);
+	//	DatasetExplorer.class.newInstance().addAnalysis(driver);
 		Thread.sleep(7000);
 
 		try {
