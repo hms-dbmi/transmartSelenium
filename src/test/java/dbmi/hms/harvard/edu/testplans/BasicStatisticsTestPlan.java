@@ -1337,9 +1337,11 @@ public class BasicStatisticsTestPlan extends Testplan {
 
 		DatasetExplorer.class.newInstance().doSelectFractlis(driver);
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-//		DatasetExplorer.class.newInstance().doSelectFractalisAnalysis(driver, 1);
+		
+		//		DatasetExplorer.class.newInstance().doSelectFractalisAnalysis(driver, 1);
+		DatasetExplorer.class.newInstance().doSelectFractalisAnalysis(driver, "ScatterPlot");
 	//	DatasetExplorer.class.newInstance().addAnalysis(driver);
-		Thread.sleep(7000);
+		Thread.sleep(10000);
 
 		try {
 	
