@@ -292,12 +292,12 @@ public class BasicStatisticsTestPlan extends Testplan {
 		}
 		
 		Thread.sleep(4000);
-		driver.navigate().refresh();
+		//driver.navigate().refresh();
 		//Actions actionObject = new Actions(driver);
 		 
 		//actionObject.keyDown(Keys.CONTROL).sendKeys(Keys.F5).keyUp(Keys.CONTROL).perform();
 
-		System.out.println("page gets refreshed.....");
+		//System.out.println("page gets refreshed.....");
 	}
 
 	public void verifyExcludeFeature(Reporter reporter) throws InterruptedException {
@@ -1317,7 +1317,7 @@ public class BasicStatisticsTestPlan extends Testplan {
 
 	}
 
-	public void verifyFractlisIntergrationCorrelationAnalysis(Reporter reporter) throws Exception {
+	public void verifyFractlisIntergrationCorrelationScatterAnalysis(Reporter reporter) throws Exception {
 
 		try {
 
@@ -1488,6 +1488,7 @@ public class BasicStatisticsTestPlan extends Testplan {
 		DatasetExplorer.class.newInstance().doSelectFractlis(driver);
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 	//	DatasetExplorer.class.newInstance().doSelectFractalisAnalysis(driver, 2);
+		DatasetExplorer.class.newInstance().doSelectFractalisAnalysis(driver, "BoxPlot");		
 		//DatasetExplorer.class.newInstance().addAnalysis(driver);
 		Thread.sleep(7000);
 
