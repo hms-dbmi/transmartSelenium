@@ -242,7 +242,7 @@ public abstract class Testplan {
 	 * @param reporter
 	 * @throws Exception 
 	 */
-	public void verifyFractlisIntergrationCorrelationAnalysis(Reporter reporter) throws Exception {
+	public void verifyFractlisIntergrationCorrelationScatterAnalysis(Reporter reporter) throws Exception {
 		// TODO Auto-generated method stub
 		
 	}
@@ -261,6 +261,18 @@ public abstract class Testplan {
 	 * @throws Exception 
 	 */
 	public void verifyFractlisIntergrationPrincipleComponentAnalysis(Reporter reporter) throws Exception {
+		// TODO Auto-generated method stub
+		
+	}
+
+	
+
+	public void verifyFractalisSurvivalPlot(Reporter reporter) throws Exception {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void verifyFractlisIntergrationHistogram(Reporter reporter) throws Exception {
 		// TODO Auto-generated method stub
 		
 	}

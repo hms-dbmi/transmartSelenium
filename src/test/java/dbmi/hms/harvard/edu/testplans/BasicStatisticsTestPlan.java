@@ -213,7 +213,6 @@ public class BasicStatisticsTestPlan extends Testplan {
 		//driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 		
 		//driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-		LOGGER.info(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>MIssing type>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
 		LOGGER.info("");
 		LOGGER.info("********************************Loading the site****" + testPlan.get("url").toString()
 				+ "********************************");
@@ -1424,7 +1423,7 @@ public class BasicStatisticsTestPlan extends Testplan {
 
 		if (driver
 				.findElements(
-						By.xpath(".//div[@id='fjs-chart-0']/div/*[name()='svg']/*[name()='g']/*[name()='rect'][1]"))
+						By.xpath(".//div[@id='fjs-tm-chart-0']/div/*[name()='svg']/*[name()='g']/*[name()='rect'][1]"))
 				.size() != 0) {
 
 			LOGGER.info(
@@ -1573,8 +1572,10 @@ public class BasicStatisticsTestPlan extends Testplan {
 
 		if (driver
 				.findElements(
-						By.xpath(".//div[@id='fjs-chart-0']/div/*[name()='svg']/*[name()='g']/*[name()='rect'][1]"))
-				.size() != 0) {
+						//By.xpath(".//div[@id='fjs-chart-0']/div/*[name()='svg']/*[name()='g']/*[name()='rect'][1]"))
+						
+						By.xpath(".//div[@id='fjs-tm-chart-0']/div/*[name()='svg']/*[name()='g']/*[name()='g'][1])"))
+									.size() != 0) {
 
 			LOGGER.info(
 					"***************************BoxPlot Anlaysis  Graph is generated through Fractalis ****************************");
@@ -1612,6 +1613,7 @@ public class BasicStatisticsTestPlan extends Testplan {
 
 		DatasetExplorer.class.newInstance().doSelectFractlis(driver);
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+		DatasetExplorer.class.newInstance().doSelectFractalisAnalysis(driver, "PCA");
 //		DatasetExplorer.class.newInstance().doSelectFractalisAnalysis(driver, 2);
 	//	DatasetExplorer.class.newInstance().addAnalysis(driver);
 		Thread.sleep(7000);
@@ -1715,6 +1717,194 @@ public class BasicStatisticsTestPlan extends Testplan {
 		DatasetExplorer.class.newInstance().resetReview(driver);
 		DatasetExplorer.class.newInstance().clearAnalysisCache(driver);
 	}
+	
+	public void verifyFractlisIntergrationHistogram(Reporter reporter) throws Exception {
+
+
+		try {
+
+			if (testPlan.get("subset1") != null && testPlan.get("subset1") != "") {
+				for (String path : java.util.Arrays.asList(testPlan.get("subset1").toString().split(","))) {
+					DatasetExplorer.class.newInstance().doNavigateByPath(driver, path);
+					DatasetExplorer.class.newInstance().doDragAndDrop(driver, path, "subset1");
+					DatasetExplorer.class.newInstance().doReverseNavigateByPath(driver, path);
+
+				}
+			}
+
+		} catch (InstantiationException | IllegalAccessException e) {
+
+			e.printStackTrace();
+		}
+
+		DatasetExplorer.class.newInstance().doSelectFractlis(driver);
+		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+		
+		//DatasetExplorer.class.newInstance().doSelectFractalisAnalysis(driver, 1);
+		DatasetExplorer.class.newInstance().doSelectFractalisAnalysis(driver, "Histogram");
+		//DatasetExplorer.class.newInstance().addAnalysis(driver);
+		Thread.sleep(10000);
+
+		try {
+
+			if (testPlan.get("fractConNum1") != null && testPlan.get("fractConNum1") != "") {
+				for (String path : java.util.Arrays.asList(testPlan.get("fractConNum1").toString().split(","))) {
+					DatasetExplorer.class.newInstance().doNavigateByPath(driver, path);
+					DatasetExplorer.class.newInstance().doDragAndDrop(driver, path, "fractConNum1");
+					DatasetExplorer.class.newInstance().doReverseNavigateByPath(driver, path);
+
+				}
+			}
+
+		} catch (InstantiationException | IllegalAccessException e) {
+
+			e.printStackTrace();
+		}
+
+		Thread.sleep(13000);
+		
+		try {
+
+			if (testPlan.get("fractConCate1") != null && testPlan.get("fractConCate1") != "") {
+				for (String path : java.util.Arrays.asList(testPlan.get("fractConCate1").toString().split(","))) {
+					DatasetExplorer.class.newInstance().doNavigateByPath(driver, path);
+					DatasetExplorer.class.newInstance().doDragAndDrop(driver, path, "fractConCate1");
+					DatasetExplorer.class.newInstance().doReverseNavigateByPath(driver, path);
+
+				}
+			}
+
+		} catch (InstantiationException | IllegalAccessException e) {
+
+			e.printStackTrace();
+		}
+
+		Thread.sleep(50000);
+
+		List<WebElement> els = driver.findElements(By.xpath("//input[@data-v-074d016a='' and @type='checkbox']"));
+		for (WebElement el : els) {
+			if (!el.isSelected()) {
+				el.click();
+			}
+		}
+
+		Thread.sleep(60000);
+
+		if (driver
+				.findElements(
+						By.xpath(".//div[@id='fjs-chart-0']/div/*[name()='svg']/*[name()='g']/*[name()='rect'][1]"))
+				.size() != 0) {
+
+			LOGGER.info(
+					"***************************Histogram Graph is generated through Fractalis ****************************");
+
+			SummaryStatisticsResults.class.newInstance().doAssertResultTrue(driver, testPlan, reporter);
+
+		} else {
+
+			LOGGER.info(
+					"***************************Histogram Analysis Graph is *NOT* generated through Fractalis***************************");
+			SummaryStatisticsResults.class.newInstance().doAssertResultFalse(driver, testPlan, reporter);
+		}
+
+
+		DatasetExplorer.class.newInstance().resetReview(driver);
+		DatasetExplorer.class.newInstance().clearAnalysisCache(driver);
+	}
+
+	public void verifyFractalisSurvivalPlot(Reporter reporter) throws Exception {
+
+		try {
+
+			if (testPlan.get("subset1") != null && testPlan.get("subset1") != "") {
+				for (String path : java.util.Arrays.asList(testPlan.get("subset1").toString().split(","))) {
+					DatasetExplorer.class.newInstance().doNavigateByPath(driver, path);
+					DatasetExplorer.class.newInstance().doDragAndDrop(driver, path, "subset1");
+					DatasetExplorer.class.newInstance().doReverseNavigateByPath(driver, path);
+
+				}
+			}
+
+		} catch (InstantiationException | IllegalAccessException e) {
+
+			e.printStackTrace();
+		}
+
+		DatasetExplorer.class.newInstance().doSelectFractlis(driver);
+		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+		
+		//DatasetExplorer.class.newInstance().doSelectFractalisAnalysis(driver, 1);
+		DatasetExplorer.class.newInstance().doSelectFractalisAnalysis(driver, "SurvivalPlot");
+		//DatasetExplorer.class.newInstance().addAnalysis(driver);
+		Thread.sleep(10000);
+
+		try {
+
+			if (testPlan.get("fractConNum1") != null && testPlan.get("fractConNum1") != "") {
+				for (String path : java.util.Arrays.asList(testPlan.get("fractConNum1").toString().split(","))) {
+					DatasetExplorer.class.newInstance().doNavigateByPath(driver, path);
+					DatasetExplorer.class.newInstance().doDragAndDrop(driver, path, "fractConNum1");
+					DatasetExplorer.class.newInstance().doReverseNavigateByPath(driver, path);
+
+				}
+			}
+
+		} catch (InstantiationException | IllegalAccessException e) {
+
+			e.printStackTrace();
+		}
+
+		Thread.sleep(13000);
+		
+		try {
+
+			if (testPlan.get("fractConCate1") != null && testPlan.get("fractConCate1") != "") {
+				for (String path : java.util.Arrays.asList(testPlan.get("fractConCate1").toString().split(","))) {
+					DatasetExplorer.class.newInstance().doNavigateByPath(driver, path);
+					DatasetExplorer.class.newInstance().doDragAndDrop(driver, path, "fractConCate1");
+					DatasetExplorer.class.newInstance().doReverseNavigateByPath(driver, path);
+
+				}
+			}
+
+		} catch (InstantiationException | IllegalAccessException e) {
+
+			e.printStackTrace();
+		}
+
+		Thread.sleep(50000);
+
+		List<WebElement> els = driver.findElements(By.xpath("//input[@data-v-074d016a='' and @type='checkbox']"));
+		for (WebElement el : els) {
+			if (!el.isSelected()) {
+				el.click();
+			}
+		}
+
+		Thread.sleep(60000);
+
+		if (driver
+				.findElements(
+						By.xpath(".//div[@id='fjs-chart-0']/div/*[name()='svg']/*[name()='g']/*[name()='rect'][1]"))
+				.size() != 0) {
+
+			LOGGER.info(
+					"***************************Survival Analysis Graph is generated through Fractalis ****************************");
+
+			SummaryStatisticsResults.class.newInstance().doAssertResultTrue(driver, testPlan, reporter);
+
+		} else {
+
+			LOGGER.info(
+					"***************************Survival Analysis Graph is *NOT* generated through Fractalis***************************");
+			SummaryStatisticsResults.class.newInstance().doAssertResultFalse(driver, testPlan, reporter);
+		}
+
+
+		DatasetExplorer.class.newInstance().resetReview(driver);
+		DatasetExplorer.class.newInstance().clearAnalysisCache(driver);
+	}
+
 	
 	
 	public void verifyDelete(Reporter reporter) throws InterruptedException {
