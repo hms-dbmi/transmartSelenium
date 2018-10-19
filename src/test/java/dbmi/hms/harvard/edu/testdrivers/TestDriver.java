@@ -27,15 +27,18 @@ public class TestDriver {
 	public static final String TESTPLANS = "dbmi.hms.harvard.edu.testplans.";
 	public static final String REPORTS = "dbmi.hms.harvard.edu.reporter.";
 	private static Properties configProperties = new Properties();
-	private static String baseURI = System.getProperty("pathtoconfig");
+	private static String baseURI = System.getProperty("pathtoconfigtest");
 
 	// Read data from Properties file using Java Selenium
 
 	static {
 
 		try {
-			//System.out.println("Path of Config.properties file is :   " + baseURI);
+			final Logger LOGGER = Logger.getLogger(TestDriver.class.getName());
+			System.out.println("Path of Config.properties file is :   " + baseURI);
+			LOGGER.info("TestRun" +baseURI);
 			String pathToConfigFile = baseURI + "Config.properties";
+			System.out.println("path is "+pathToConfigFile);
 			configProperties.load(new FileInputStream(new File(pathToConfigFile)));
 		} catch (FileNotFoundException e) {
 
@@ -151,7 +154,7 @@ public static void verifySummaryStatsMultipleSubset1OR()
 			"--------------------------------The test case verifySummaryStatsMultipleSubset1OR is Finished-------------------------");
 }
 
-@Test(priority = 11, groups = { "Sanity Regression" })
+//@Test(priority = 11, groups = { "Sanity Regression" })
 public static void verifySummaryStatsMultipleSubset1Subset2AND()
 		throws YamlException, InterruptedException, InstantiationException, IllegalAccessException {
 
@@ -194,7 +197,7 @@ public static void verifySummaryStatsSubset2() throws YamlException, Interrupted
 
 	
 	
-@Test(priority = 14, groups = { "Sanity Regression" })
+//@Test(priority = 14, groups = { "Sanity Regression" })
 
 		public static void verifySummaryStatsSetLowHighFlagLowRange() throws YamlException, InterruptedException {
 
@@ -471,7 +474,7 @@ public static void verifySavingSubset() throws YamlException, InterruptedExcepti
 				"--------------------------------The test case verifySummaryStats is Finshed-------------------------");
 	}
 
-//	@Test(priority = 11, groups = { "Sanity Regression" })
+	/*@Test(priority = 11, groups = { "Sanity Regression" })
 
 	public static void verifyFractalisCorrelationAnalysis() throws Exception {
 		LOGGER.info(
@@ -481,8 +484,23 @@ public static void verifySavingSubset() throws YamlException, InterruptedExcepti
 		LOGGER.info(
 				"--------------------------------The test case to verify Correation Analysis is Finshed-------------------------");
 	}
+	
 
-	//@Test(priority = 12, groups = { "Sanity Regression" })
+	
+*/
+	
+@Test(priority = 11, groups = { "Sanity Regression" })
+
+	public static void verifyFractalisScatterPlotCorrelationPerason() throws Exception {
+		LOGGER.info(
+				"-------------------------------The test case to verify Correation Analysis  is running-------------------------------");
+		readFile(configProperties.getProperty("verify.fractalis.correlation.analysis"));
+		testPlan.verifyFractlisIntergrationScatterPlotCorrelationPeasron(reporter);
+		LOGGER.info(
+				"--------------------------------The test case to verify Correation Analysis is Finshed-------------------------");
+	}
+	
+//@Test(priority = 12, groups = { "Sanity Regression" })
 
 	public static void verifyFractalisBoxPlotAnalysis() throws Exception {
 		LOGGER.info(
@@ -494,18 +512,39 @@ public static void verifySavingSubset() throws YamlException, InterruptedExcepti
 	}
 
 
-	//@Test(priority = 13, groups = { "Sanity Regression" })
+//@Test(priority = 13, groups = { "Sanity Regression" })
 
 	public static void verifyFractalisPrincipleComponentAnalysis() throws Exception {
 		LOGGER.info(
-				"-------------------------------The test case verify FractalisBoxPlotAnalysis  is running-------------------------------");
-		readFile(configProperties.getProperty("verify.fractalis.principlecomponent.analysis"));
+				"-------------------------------The test case verify FractalisPrincipleComponentAnalysis  is running-------------------------------");
+		readFile(configProperties.getProperty("verify.fractalis.principle.component.analysis"));
 		testPlan.verifyFractlisIntergrationPrincipleComponentAnalysis(reporter);
 		LOGGER.info(
-				"--------------------------------The test case verify FractalisBoxPlotAnalysis is Finshed-------------------------");
+				"--------------------------------The test case verify FractalisPrincipleComponentAnalysis is Finished-------------------------");
 	}
 
-	
+//@Test(priority = 14, groups = { "Sanity Regression" })
+
+	public static void verifyFractalisSurvivalPlot() throws Exception {
+		LOGGER.info(
+				"-------------------------------The test case verify Fractalis SurvivalPlot  is running-------------------------------");
+		readFile(configProperties.getProperty("verify.fractalis.survivalplot.analysis"));
+		testPlan.verifyFractalisSurvivalPlot(reporter);
+		LOGGER.info(
+				"--------------------------------The test case verify Fractalis SurvivalPlot is Finished-------------------------");
+	}
+//	@Test(priority = 15, groups = { "Sanity Regression" })
+
+	public static void verifyFractalisHistogram() throws Exception {
+		LOGGER.info(
+				"-------------------------------The test case verify Fractalis Histogram  is running-------------------------------");
+		readFile(configProperties.getProperty("verify.fractalis.histogram.analysis"));
+		testPlan.verifyFractlisIntergrationHistogram(reporter);
+		LOGGER.info(
+				"--------------------------------The test case verify Fractalis Histogram is Finished-------------------------");
+	}
+
+
 /*	
 //	 Verify that Laboratory terms loads the reports correctly 
 @Test(priority = 12, groups = { "Sanity Regression" })
@@ -689,7 +728,7 @@ public static void verifySavingSubset() throws YamlException, InterruptedExcepti
 
 	}*/
 		
-@AfterClass
+//@AfterClass
 	public void closeApplication() {
 
 		reporter.doReport();

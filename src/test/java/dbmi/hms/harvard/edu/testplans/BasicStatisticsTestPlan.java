@@ -181,34 +181,6 @@ public class BasicStatisticsTestPlan extends Testplan {
          	    driver = new FirefoxDriver(firefoxOptions);
         } 	
 		
-		//System.setProperty(BROWSER, BROWSERDRIVER);
-		//WebDriver driver = new HtmlUnitDriver();
-		//HtmlUnitDriver unitDriver = new HtmlUnitDriver(BrowserVersion.CHROME);
-		
-		/*driver.get("https://www.google.com");
-		WebElement element = driver.findElement(By.name("q"));
-		element.sendKeys("softwaretestingmaterial.com");
-		element.submit();
-		*///Click on Software Testing Material link
-		//driver.findElement(By.linkText("Software Testing Material")).click();
-		// Get the title of the site and store it in the variable Title
-		/*String Title = driver.getTitle();
-		// Print the title
-		System.out.println("I am at " +Title);
-	
-	*/
-		/*System.setProperty("webdriver.gecko.driver", System.getProperty("geckodriverpath"));
-		FirefoxOptions options = new FirefoxOptions();
-		options.setHeadless(false);
-		
-		//Instantiate Web Driver
-		WebDriver driver = new FirefoxDriver(options);
-		*///driver.get("http://www.google.com");
-		//System.out.println("Page title is - " + driver.getTitle());
-		
-		//Search on Google
-		//driver.findElement(By.name("q")).sendKeys("selenium webdriver");
-		//driver.findElement(By.name("q")).sendKeys(Keys.ENTER);/*
 		LOGGER.info(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>Launching the Browser>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
 		//driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 		
@@ -232,10 +204,12 @@ public class BasicStatisticsTestPlan extends Testplan {
 		authTypes.doAuth(driver, testPlan);
 
 }
+	
+	
 	public void checkWinodwTitle(Reporter reporter) throws InterruptedException {
 
 		// driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-
+		
 		String winodwTitle = driver.getTitle();
 		LOGGER.info("-------------------Logged in successfully: Title of winodow is -------------------------"
 				+ winodwTitle);
@@ -410,64 +384,6 @@ public class BasicStatisticsTestPlan extends Testplan {
 	public void doPlanMultipleSubset1Subset2And(Reporter reporter)
 			throws InterruptedException, InstantiationException, IllegalAccessException {
 
-		// Thread.sleep(6000);
-		/*
-		 * try {
-		 * 
-		 * if (testPlan.get("subset2") != null && testPlan.get("subset2") != "")
-		 * { for (String path :
-		 * java.util.Arrays.asList(testPlan.get("subset2").toString().split(",")
-		 * )) { DatasetExplorer.class.newInstance().doNavigateByPath(driver,
-		 * path); DatasetExplorer.class.newInstance().doDragAndDrop(driver,
-		 * path, "subset2");
-		 * DatasetExplorer.class.newInstance().doReverseNavigateByPath(driver,
-		 * path); }
-		 * 
-		 * } Thread.sleep(10000); if (testPlan.get("subsetmul2") != null &&
-		 * testPlan.get("subsetmul2") != "") { for (String path :
-		 * java.util.Arrays.asList(testPlan.get("subsetmul2").toString().split(
-		 * ","))) { DatasetExplorer.class.newInstance().doNavigateByPath(driver,
-		 * path); DatasetExplorer.class.newInstance().doDragAndDrop(driver,
-		 * path, "subsetmul2");
-		 * DatasetExplorer.class.newInstance().doReverseNavigateByPath(driver,
-		 * path); }
-		 * 
-		 * }
-		 * 
-		 * } catch (InstantiationException | IllegalAccessException e) {
-		 * 
-		 * e.printStackTrace(); }
-		 * 
-		 * try {
-		 * 
-		 * if (testPlan.get("subset1") != null && testPlan.get("subset1") != "")
-		 * { for (String path :
-		 * java.util.Arrays.asList(testPlan.get("subset1").toString().split(",")
-		 * )) { DatasetExplorer.class.newInstance().doNavigateByPath(driver,
-		 * path); DatasetExplorer.class.newInstance().doDragAndDrop(driver,
-		 * path, "subset1");
-		 * DatasetExplorer.class.newInstance().doReverseNavigateByPath(driver,
-		 * path); }
-		 * 
-		 * }
-		 * 
-		 * if (testPlan.get("subsetmul1") != null && testPlan.get("subsetmul1")
-		 * != "") { for (String path :
-		 * java.util.Arrays.asList(testPlan.get("subsetmul1").toString().split(
-		 * ","))) { DatasetExplorer.class.newInstance().doNavigateByPath(driver,
-		 * path); DatasetExplorer.class.newInstance().doDragAndDrop(driver,
-		 * path, "subset1mul");
-		 * DatasetExplorer.class.newInstance().doReverseNavigateByPath(driver,
-		 * path); }
-		 * 
-		 * }
-		 * 
-		 * } catch (InstantiationException | IllegalAccessException e) {
-		 * 
-		 * e.printStackTrace(); }
-		 * 
-		 * 
-		 */
 
 		try {
 
@@ -1316,34 +1232,11 @@ public class BasicStatisticsTestPlan extends Testplan {
 
 	}
 
-	public void verifyFractlisIntergrationCorrelationScatterAnalysis(Reporter reporter) throws Exception {
-
-		try {
-
-			if (testPlan.get("subset1") != null && testPlan.get("subset1") != "") {
-				for (String path : java.util.Arrays.asList(testPlan.get("subset1").toString().split(","))) {
-					DatasetExplorer.class.newInstance().doNavigateByPath(driver, path);
-					DatasetExplorer.class.newInstance().doDragAndDrop(driver, path, "subset1");
-					DatasetExplorer.class.newInstance().doReverseNavigateByPath(driver, path);
-
-				}
-			}
-
-		} catch (InstantiationException | IllegalAccessException e) {
-
-			e.printStackTrace();
-		}
-
-		DatasetExplorer.class.newInstance().doSelectFractlis(driver);
-		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-		
-		//		DatasetExplorer.class.newInstance().doSelectFractalisAnalysis(driver, 1);
-		DatasetExplorer.class.newInstance().doSelectFractalisAnalysis(driver, "ScatterPlot");
-	//	DatasetExplorer.class.newInstance().addAnalysis(driver);
-		Thread.sleep(10000);
-
-		try {
+	public void FractalisDragsVariables() throws InterruptedException
+	{
 	
+		try {
+			
 			if (testPlan.get("fractConNum2") != null && testPlan.get("fractConNum2") != "") {
 				for (String path : java.util.Arrays.asList(testPlan.get("fractConNum2").toString().split(","))) {
 					DatasetExplorer.class.newInstance().doNavigateByPath(driver, path);
@@ -1411,6 +1304,56 @@ public class BasicStatisticsTestPlan extends Testplan {
 		}
 
 		Thread.sleep(70000);
+
+	}
+	
+
+	public void verifyFractlisIntergrationScatterPlotCorrelationPeasron(Reporter reporter) throws Exception {
+
+		try {
+
+			if (testPlan.get("subset1") != null && testPlan.get("subset1") != "") {
+				for (String path : java.util.Arrays.asList(testPlan.get("subset1").toString().split(","))) {
+					DatasetExplorer.class.newInstance().doNavigateByPath(driver, path);
+					DatasetExplorer.class.newInstance().doDragAndDrop(driver, path, "subset1");
+					DatasetExplorer.class.newInstance().doReverseNavigateByPath(driver, path);
+
+				}
+			}
+
+		} catch (InstantiationException | IllegalAccessException e) {
+
+			e.printStackTrace();
+		}
+
+		DatasetExplorer.class.newInstance().doSelectFractlis(driver);
+		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+		
+		//DatasetExplorer.class.newInstance().doSelectFractalisAnalysis(driver, 1);
+		DatasetExplorer.class.newInstance().doSelectFractalisAnalysis(driver, "ScatterPlot");
+		//DatasetExplorer.class.newInstance().addAnalysis(driver);
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		
+/*		try {
+	
+			if (testPlan.get("fractConNum2") != null && testPlan.get("fractConNum2") != "") {
+				for (String path : java.util.Arrays.asList(testPlan.get("fractConNum2").toString().split(","))) {
+					DatasetExplorer.class.newInstance().doNavigateByPath(driver, path);
+					DatasetExplorer.class.newInstance().doDragAndDrop(driver, path, "fractConNum2");
+					DatasetExplorer.class.newInstance().doReverseNavigateByPath(driver, path);
+
+				}
+			}
+
+		} catch (InstantiationException | IllegalAccessException e) {
+
+			e.printStackTrace();
+		}
+		
+*/		//DatasetExplorer.class.newInstance().checkState(driver);
+/*
+		WebDriverWait wait = new WebDriverWait(driver, 20);
+		wait.until(ExpectedConditions.*/
 
 		List<WebElement> els = driver.findElements(By.xpath("//input[@data-v-074d016a='' and @type='checkbox']"));
 		for (WebElement el : els) {
