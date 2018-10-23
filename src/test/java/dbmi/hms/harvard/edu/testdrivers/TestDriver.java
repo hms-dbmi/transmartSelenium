@@ -489,24 +489,47 @@ public static void verifySavingSubset() throws YamlException, InterruptedExcepti
 	
 */
 	
-//@Test(priority = 11, groups = { "Sanity Regression" })
+	//@Test(priority = 11, groups = { "Sanity Regression" })
 
 	public static void verifyFractalisScatterPlotCorrelationPerason() throws Exception {
 		LOGGER.info(
-				"-------------------------------The test case to verify Correation Analysis  is running-------------------------------");
+				"-------------------------------The test case to verify Correation Analysis  Pearson is running-------------------------------");
 		readFile(configProperties.getProperty("verify.fractalis.correlation.analysis"));
 		testPlan.verifyFractlisIntergrationScatterPlotCorrelationPeasron(reporter);
 		LOGGER.info(
-				"--------------------------------The test case to verify Correation Analysis is Finshed-------------------------");
+				"--------------------------------The test case to verify Correation Analysis Pearson is Finshed-------------------------");
 	}
-	
-//@Test(priority = 12, groups = { "Sanity Regression" })
 
-	public static void verifyFractalisBoxPlotAnalysis() throws Exception {
+	//@Test(priority = 12, groups = { "Sanity Regression" })
+
+	public static void verifyFractalisScatterPlotCorrelationSpearman() throws Exception {
+		LOGGER.info(
+				"-------------------------------The test case to verify Correation Analysis  Spearman running-------------------------------");
+		readFile(configProperties.getProperty("verify.fractalis.correlation.analysis"));
+		testPlan.verifyFractlisIntergrationScatterPlotCorrelationSpearman(reporter);
+		LOGGER.info(
+				"--------------------------------The test case to verify Correation Analysis Spearman Finshed-------------------------");
+	}
+
+	//@Test(priority = 13, groups = { "Sanity Regression" })
+
+	public static void verifyFractalisScatterPlotCorrelationKendall() throws Exception {
+		LOGGER.info(
+				"-------------------------------The test case to verify Correation Analysis  Kendall running-------------------------------");
+		readFile(configProperties.getProperty("verify.fractalis.correlation.analysis"));
+		testPlan.verifyFractlisIntergrationScatterPlotCorrelationKendall(reporter);
+		LOGGER.info(
+				"--------------------------------The test case to verify Correation Analysis Kendall Finshed-------------------------");
+	}
+
+	
+@Test(priority = 12, groups = { "Sanity Regression" })
+
+	public static void verifyFractalisBoxPlotAnalysisDataTransIdenttiy() throws Exception {
 		LOGGER.info(
 				"-------------------------------The test case verify FractalisBoxPlotAnalysis  is running-------------------------------");
 		readFile(configProperties.getProperty("verify.fractalis.boxplot.analysis"));
-		testPlan.verifyFractlisIntergrationBoxPlotAnalysis(reporter);
+		testPlan.verifyFractlisIntergrationBoxPlotAnalysisIdentity(reporter);
 		LOGGER.info(
 				"--------------------------------The test case verify FractalisBoxPlotAnalysis is Finshed-------------------------");
 	}
@@ -523,7 +546,7 @@ public static void verifySavingSubset() throws YamlException, InterruptedExcepti
 				"--------------------------------The test case verify FractalisPrincipleComponentAnalysis is Finished-------------------------");
 	}
 
-@Test(priority = 14, groups = { "Sanity Regression" })
+//@Test(priority = 14, groups = { "Sanity Regression" })
 
 	public static void verifyFractalisSurvivalPlot() throws Exception {
 		LOGGER.info(

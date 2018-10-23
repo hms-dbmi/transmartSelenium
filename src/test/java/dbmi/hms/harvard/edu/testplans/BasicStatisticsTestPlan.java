@@ -62,6 +62,8 @@ public class BasicStatisticsTestPlan extends Testplan {
 	// private Set<String> relational;
 	private Set<String> subsetmul1;
 	private static WebDriver driver;
+	private String FractalisType;
+
 	private static final Logger LOGGER = Logger.getLogger(BasicStatisticsTestPlan.class.getName());
 
 	public BasicStatisticsTestPlan() {
@@ -1324,7 +1326,7 @@ public class BasicStatisticsTestPlan extends Testplan {
 		}
 
 		Thread.sleep(70000);
-		
+
 		List<WebElement> els = driver.findElements(By.xpath("//input[@data-v-074d016a='' and @type='checkbox']"));
 		for (WebElement el : els) {
 			if (!el.isSelected()) {
@@ -1373,12 +1375,25 @@ public class BasicStatisticsTestPlan extends Testplan {
 		}
 
 		DatasetExplorer.class.newInstance().resetReview(driver);
-		DatasetExplorer.class.newInstance().clearAnalysisCache(driver);
+		// DatasetExplorer.class.newInstance().clearAnalysisCache(driver);
 	}
 
-	public void verifyFractlisIntergrationBoxPlotAnalysis(Reporter reporter) throws Exception {
+	public void verifyFractlisIntergrationScatterPlotCorrelationSpearman(Reporter reporter) throws Exception
 
-		FractalisDragVariables("BoxPlot");
+	{
+
+		// DatasetExplorer.class.newInstance().checkState(driver);
+		/*
+		 * The method FractalisDragsVariables drags the concepts/variables for
+		 * the given Fractalis Analysis type
+		 */
+
+		DatasetExplorer.class.newInstance().doSelectFractalisAnalysis(driver, "ScatterPlot");
+
+		// Selecting the radio button second which separman correaltion method
+		// by passing 1
+
+		DatasetExplorer.class.newInstance().doSelectSubMethod(driver, 1);
 		List<WebElement> els = driver.findElements(By.xpath("//input[@data-v-074d016a='' and @type='checkbox']"));
 		for (WebElement el : els) {
 			if (!el.isSelected()) {
@@ -1387,6 +1402,90 @@ public class BasicStatisticsTestPlan extends Testplan {
 		}
 
 		Thread.sleep(60000);
+
+		if (driver
+				.findElements(
+						By.xpath(".//div[@id='fjs-tm-chart-0']/div/*[name()='svg']/*[name()='g']/*[name()='rect'][1]"))
+				.size() != 0) {
+
+			LOGGER.info(
+					"***************************Correlation Analysis Graph is generated through Fractalis ****************************");
+
+			SummaryStatisticsResults.class.newInstance().doAssertResultTrue(driver, testPlan, reporter);
+
+		} else {
+
+			LOGGER.info(
+					"***************************Correlation Analysis Graph is *NOT* generated through Fractalis***************************");
+			SummaryStatisticsResults.class.newInstance().doAssertResultFalse(driver, testPlan, reporter);
+		}
+
+		DatasetExplorer.class.newInstance().resetReview(driver);
+		// DatasetExplorer.class.newInstance().clearAnalysisCache(drive	r);
+	}
+
+	public void verifyFractlisIntergrationScatterPlotCorrelationKendall(Reporter reporter) throws Exception
+
+	{
+
+		// DatasetExplorer.class.newInstance().checkState(driver);
+		/*
+		 * The method FractalisDragsVariables drags the concepts/variables for
+		 * the given Fractalis Analysis type
+		 */
+
+		DatasetExplorer.class.newInstance().doSelectFractalisAnalysis(driver, "ScatterPlot");
+		
+		// Selecting the radio button second which separman correaltion method  by passing 2
+
+		DatasetExplorer.class.newInstance().doSelectSubMethod(driver, 2);
+
+		
+		List<WebElement> els = driver.findElements(By.xpath("//input[@data-v-074d016a='' and @type='checkbox']"));
+		for (WebElement el : els) {
+			if (!el.isSelected()) {
+				el.click();
+			}
+		}
+
+		Thread.sleep(60000);
+
+		if (driver
+				.findElements(
+						By.xpath(".//div[@id='fjs-tm-chart-0']/div/*[name()='svg']/*[name()='g']/*[name()='rect'][1]"))
+				.size() != 0) {
+
+			LOGGER.info(
+					"***************************Correlation Analysis Graph is generated through Fractalis ****************************");
+
+			SummaryStatisticsResults.class.newInstance().doAssertResultTrue(driver, testPlan, reporter);
+
+		} else {
+
+			LOGGER.info(
+					"***************************Correlation Analysis Graph is *NOT* generated through Fractalis***************************");
+			SummaryStatisticsResults.class.newInstance().doAssertResultFalse(driver, testPlan, reporter);
+		}
+
+		DatasetExplorer.class.newInstance().resetReview(driver);
+		// DatasetExplorer.class.newInstance().clearAnalysisCache(driver);
+	}
+
+	public void verifyFractlisIntergrationBoxPlotAnalysisIdenity(Reporter reporter) throws Exception {
+
+		FractalisDragVariables("BoxPlot");
+		DatasetExplorer.class.newInstance().doSelectBoxPlotDataTransformation(driver, 0);
+		
+		List<WebElement> els = driver.findElements(By.xpath("//input[@data-v-074d016a='' and @type='checkbox']"));
+		for (WebElement el : els) {
+			if (!el.isSelected()) {
+				el.click();
+			}
+		}
+
+		Thread.sleep(60000);
+		
+		
 
 		if (driver
 				.findElements(
@@ -1481,7 +1580,7 @@ public class BasicStatisticsTestPlan extends Testplan {
 
 	public void verifyFractalisSurvivalPlot(Reporter reporter) throws Exception {
 
-			FractalisDragVariables("SurvivalPlot");
+		FractalisDragVariables("SurvivalPlot");
 
 		if (driver
 				.findElements(
@@ -1542,7 +1641,6 @@ public class BasicStatisticsTestPlan extends Testplan {
 
 	}
 
-	
 	public void closeDriver() {
 		driver.quit();
 	}
