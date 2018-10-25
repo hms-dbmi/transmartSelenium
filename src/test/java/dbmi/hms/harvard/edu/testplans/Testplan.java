@@ -289,6 +289,11 @@ public abstract class Testplan {
 		
 	}
 
+	 public void verifyFractalisBoxPlotDataTransformation(Reporter reporter) throws Exception {
+		// TODO Auto-generated method stub
+		
+	}
+
 
 	
 
