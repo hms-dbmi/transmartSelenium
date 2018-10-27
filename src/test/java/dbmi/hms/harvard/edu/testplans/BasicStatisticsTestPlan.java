@@ -1471,7 +1471,7 @@ public class BasicStatisticsTestPlan extends Testplan {
 		// DatasetExplorer.class.newInstance().clearAnalysisCache(driver);
 	}
 
-	public void verifyFractlisIntergrationBoxPlotAnalysisIdentity(Reporter reporter) throws Exception {
+	public void verifyFractlisIntergrationBoxPlot(Reporter reporter) throws Exception {
 
 		FractalisDragVariables("BoxPlot");
 //		DatasetExplorer.class.newInstance().doSelectBoxPlotDataTransformation(driver, 1);
@@ -1514,9 +1514,10 @@ public class BasicStatisticsTestPlan extends Testplan {
 		
 		String log2xCheck = null;
 		String log10xCheck=null;
-		String twoX=null;
-		String twoPowerX=null;
-		String tenPowerX=null;
+		String identityCheck=null;
+		String twoPowerXCheck=null;
+		String tenPowerXCheck=null;
+		
 		DatasetExplorer.class.newInstance().doSelectFractalisAnalysis(driver, "BoxPlot");
 		DatasetExplorer.class.newInstance().doSelectBoxPlotDataTransformation(driver, 1);
 		
@@ -1528,6 +1529,9 @@ public class BasicStatisticsTestPlan extends Testplan {
 		}
 		
 		Thread.sleep(60000);
+		
+		//Verify that data trasformation generates tranformed data in Log2x
+		
 		if (driver
 				.findElements(By.xpath(".//div[@id='fjs-chart-0']/div/*[name()='svg']/*[name()='g']/*[name()='rect'][1]")).size() != 0) 
 		{
@@ -1549,7 +1553,64 @@ public class BasicStatisticsTestPlan extends Testplan {
 
 		System.out.println("DataTransformtion with Log2x works fine" +log2xCheck);
 		
-		if (log2xCheck=="true")
+		DatasetExplorer.class.newInstance().resetReview(driver);
+		DatasetExplorer.class.newInstance().doSelectFractalisAnalysis(driver, "BoxPlot");
+		DatasetExplorer.class.newInstance().doSelectBoxPlotDataTransformation(driver, 2);
+		
+		
+		//Verify that data trasformation generates tranformed data in Log10x
+		
+		if (driver
+				.findElements(By.xpath(".//div[@id='fjs-chart-0']/div/*[name()='svg']/*[name()='g']/*[name()='rect'][1]")).size() != 0) 
+		{
+		
+			log10xCheck = "true";
+			System.out.println("DataTransformtion with Log10x works fine" +log10xCheck);
+			
+			LOGGER.info(
+					"***************************BoxPlot Anlaysis  DataTransformtion with Log10x works fine ****************************");
+			SummaryStatisticsResults.class.newInstance().doAssertResultFalse(driver, testPlan, reporter);
+		
+		} else {
+
+			LOGGER.info(
+					"***************************BoxPlot Anlaysis DataTransformtion with Log10x is having some issue***************************");
+			log10xCheck = "false";
+			System.out.println("DataTransformtion with Log2x is having some issue****" +log10xCheck);
+		}
+		
+
+	//Verify that data trasformation generates tranformed data for Identity
+		
+		DatasetExplorer.class.newInstance().resetReview(driver);
+		DatasetExplorer.class.newInstance().doSelectFractalisAnalysis(driver, "BoxPlot");
+		DatasetExplorer.class.newInstance().doSelectBoxPlotDataTransformation(driver, 3);
+		
+		
+		if (driver
+				.findElements(By.xpath(".//div[@id='fjs-chart-0']/div/*[name()='svg']/*[name()='g']/*[name()='rect'][1]")).size() != 0) 
+		{
+		
+			identityCheck = "true";
+			System.out.println("DataTransformtion with Log10x works fine" +identityCheck);
+			
+			LOGGER.info(
+					"***************************BoxPlot Anlaysis  DataTransformtion with identityCheck works fine ****************************");
+			SummaryStatisticsResults.class.newInstance().doAssertResultFalse(driver, testPlan, reporter);
+		
+		} else {
+
+			LOGGER.info(
+					"***************************BoxPlot Anlaysis DataTransformtion with identityCheck is having some issue***************************");
+			identityCheck = "false";
+			System.out.println("DataTransformtion with Log2x is having some issue****" +identityCheck);
+		}
+		
+
+		
+		
+		
+		if (log2xCheck=="true" && log10xCheck=="true" && identityCheck=="true")
 		{
 			LOGGER.info(
 					"<<<<***************************BoxPlot Anlaysis DataTransformtion feature is working fine***************************");
@@ -1565,7 +1626,7 @@ public class BasicStatisticsTestPlan extends Testplan {
 			SummaryStatisticsResults.class.newInstance().doAssertResultFalse(driver, testPlan, reporter);
 		}
 		DatasetExplorer.class.newInstance().resetReview(driver);
-		DatasetExplorer.class.newInstance().clearAnalysisCache(driver);
+		
 	}
 
 	

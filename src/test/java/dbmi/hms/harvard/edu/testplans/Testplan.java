@@ -284,7 +284,7 @@ public abstract class Testplan {
 		
 	}
 
-	public void verifyFractlisIntergrationBoxPlotAnalysisIdentity(Reporter reporter) throws Exception {
+	public void verifyFractlisIntergrationBoxPlot(Reporter reporter) throws Exception {
 		// TODO Auto-generated method stub
 		
 	}

@@ -525,11 +525,11 @@ public static void verifySavingSubset() throws YamlException, InterruptedExcepti
 	
 @Test(priority = 12, groups = { "Sanity Regression" })
 
-	public static void verifyFractalisBoxPlotAnalysisDataTransIdentity() throws Exception {
+	public static void verifyFractalisBoxPlotAnalysis() throws Exception {
 		LOGGER.info(
 				"-------------------------------The test case verify FractalisBoxPlotAnalysis  is running-------------------------------");
 		readFile(configProperties.getProperty("verify.fractalis.boxplot.analysis"));
-		testPlan.verifyFractlisIntergrationBoxPlotAnalysisIdentity(reporter);
+		testPlan.verifyFractlisIntergrationBoxPlot(reporter);
 		LOGGER.info(
 				"--------------------------------The test case verify FractalisBoxPlotAnalysis is Finshed-------------------------");
 	}
