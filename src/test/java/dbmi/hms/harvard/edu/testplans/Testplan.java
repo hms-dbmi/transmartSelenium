@@ -294,6 +294,11 @@ public abstract class Testplan {
 		
 	}
 
+	public void verifyFractalisSurvivalPlotEstimatorKaplanMeier(Reporter reporter) {
+		// TODO Auto-generated method stub
+		
+	}
+
 
 	
 

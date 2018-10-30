@@ -1391,8 +1391,9 @@ public class BasicStatisticsTestPlan extends Testplan {
 		DatasetExplorer.class.newInstance().doSelectFractalisAnalysis(driver, "ScatterPlot");
 
 		// Selecting the radio button second which separman correaltion method
-		// by passing 1
-
+		// by passing 1s
+		
+		
 		DatasetExplorer.class.newInstance().doSelectSubMethod(driver, 1);
 		List<WebElement> els = driver.findElements(By.xpath("//input[@data-v-074d016a='' and @type='checkbox']"));
 		for (WebElement el : els) {
