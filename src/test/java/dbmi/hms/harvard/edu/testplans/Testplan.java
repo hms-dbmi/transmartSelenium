@@ -294,10 +294,15 @@ public abstract class Testplan {
 		
 	}
 
-	public void verifyFractalisSurvivalPlotEstimatorKaplanMeier(Reporter reporter) {
+	public void verifyFractalisSurvivalPlotEstimatorKaplanMeier(Reporter reporter) throws Exception {
 		// TODO Auto-generated method stub
 		
 	}
+	
+	public void verifyFractalisSurvivalPlotEstimatorNelsonAalen(Reporter reporter) throws Exception {
+		// TODO Auto-generated method stub
+		
+	} 
 
 
 	

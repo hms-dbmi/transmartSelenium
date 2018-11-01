@@ -1392,8 +1392,7 @@ public class BasicStatisticsTestPlan extends Testplan {
 
 		// Selecting the radio button second which separman correaltion method
 		// by passing 1s
-		
-		
+
 		DatasetExplorer.class.newInstance().doSelectSubMethod(driver, 1);
 		List<WebElement> els = driver.findElements(By.xpath("//input[@data-v-074d016a='' and @type='checkbox']"));
 		for (WebElement el : els) {
@@ -1422,7 +1421,7 @@ public class BasicStatisticsTestPlan extends Testplan {
 		}
 
 		DatasetExplorer.class.newInstance().resetReview(driver);
-		// DatasetExplorer.class.newInstance().clearAnalysisCache(drive	r);
+		// DatasetExplorer.class.newInstance().clearAnalysisCache(drive r);
 	}
 
 	public void verifyFractlisIntergrationScatterPlotCorrelationKendall(Reporter reporter) throws Exception
@@ -1436,12 +1435,12 @@ public class BasicStatisticsTestPlan extends Testplan {
 		 */
 
 		DatasetExplorer.class.newInstance().doSelectFractalisAnalysis(driver, "ScatterPlot");
-		
-		// Selecting the radio button second which separman correaltion method  by passing 2
+
+		// Selecting the radio button second which separman correaltion method
+		// by passing 2
 
 		DatasetExplorer.class.newInstance().doSelectSubMethod(driver, 2);
 
-		
 		List<WebElement> els = driver.findElements(By.xpath("//input[@data-v-074d016a='' and @type='checkbox']"));
 		for (WebElement el : els) {
 			if (!el.isSelected()) {
@@ -1475,8 +1474,9 @@ public class BasicStatisticsTestPlan extends Testplan {
 	public void verifyFractlisIntergrationBoxPlot(Reporter reporter) throws Exception {
 
 		FractalisDragVariables("BoxPlot");
-//		DatasetExplorer.class.newInstance().doSelectBoxPlotDataTransformation(driver, 1);
-		
+		// DatasetExplorer.class.newInstance().doSelectBoxPlotDataTransformation(driver,
+		// 1);
+
 		List<WebElement> els = driver.findElements(By.xpath("//input[@data-v-074d016a='' and @type='checkbox']"));
 		for (WebElement el : els) {
 			if (!el.isSelected()) {
@@ -1485,14 +1485,14 @@ public class BasicStatisticsTestPlan extends Testplan {
 		}
 
 		Thread.sleep(60000);
-		
-		
 
 		if (driver
-				.findElements(By.xpath(".//div[@id='fjs-chart-0']/div/*[name()='svg']/*[name()='g']/*[name()='rect'][1]")).size() != 0) 
-		{
-						
-						//By.xpath(".//div[@id='fjs-tm-chart-0']/div/*[name()='svg']/*[name()='g']/*[name()='g'][1])")).size() != 0) {
+				.findElements(
+						By.xpath(".//div[@id='fjs-chart-0']/div/*[name()='svg']/*[name()='g']/*[name()='rect'][1]"))
+				.size() != 0) {
+
+			// By.xpath(".//div[@id='fjs-tm-chart-0']/div/*[name()='svg']/*[name()='g']/*[name()='g'][1])")).size()
+			// != 0) {
 
 			LOGGER.info(
 					"***************************BoxPlot Anlaysis  Graph is generated through Fractalis ****************************");
@@ -1507,131 +1507,122 @@ public class BasicStatisticsTestPlan extends Testplan {
 		}
 
 		DatasetExplorer.class.newInstance().resetReview(driver);
-	//	DatasetExplorer.class.newInstance().clearAnalysisCache(driver);
+		// DatasetExplorer.class.newInstance().clearAnalysisCache(driver);
 	}
 
-	
 	public void verifyFractalisBoxPlotDataTransformation(Reporter reporter) throws Exception {
-		
+
 		String log2xCheck = null;
-		String log10xCheck=null;
-		String identityCheck=null;
-		String twoPowerXCheck=null;
-		String tenPowerXCheck=null;
-		
+		String log10xCheck = null;
+		String identityCheck = null;
+		String twoPowerXCheck = null;
+		String tenPowerXCheck = null;
+
 		DatasetExplorer.class.newInstance().doSelectFractalisAnalysis(driver, "BoxPlot");
 		DatasetExplorer.class.newInstance().doSelectBoxPlotDataTransformation(driver, 1);
-		
+
 		List<WebElement> els = driver.findElements(By.xpath("//input[@data-v-074d016a='' and @type='checkbox']"));
 		for (WebElement el : els) {
 			if (!el.isSelected()) {
 				el.click();
 			}
 		}
-		
+
 		Thread.sleep(60000);
-		
-		//Verify that data trasformation generates tranformed data in Log2x
-		
+
+		// Verify that data trasformation generates tranformed data in Log2x
+
 		if (driver
-				.findElements(By.xpath(".//div[@id='fjs-chart-0']/div/*[name()='svg']/*[name()='g']/*[name()='rect'][1]")).size() != 0) 
-		{
-		
+				.findElements(
+						By.xpath(".//div[@id='fjs-chart-0']/div/*[name()='svg']/*[name()='g']/*[name()='rect'][1]"))
+				.size() != 0) {
+
 			log2xCheck = "true";
-			System.out.println("DataTransformtion with Log2x works fine" +log2xCheck);
-			
+			System.out.println("DataTransformtion with Log2x works fine" + log2xCheck);
+
 			LOGGER.info(
 					"***************************BoxPlot Anlaysis  DataTransformtion with Log2x works fine ****************************");
 			SummaryStatisticsResults.class.newInstance().doAssertResultFalse(driver, testPlan, reporter);
-		
+
 		} else {
 
 			LOGGER.info(
 					"***************************BoxPlot Anlaysis DataTransformtion with Log2x is having some issue***************************");
 			log2xCheck = "false";
-			System.out.println("DataTransformtion with Log2x is having some issue****" +log2xCheck);
+			System.out.println("DataTransformtion with Log2x is having some issue****" + log2xCheck);
 		}
 
-		System.out.println("DataTransformtion with Log2x works fine" +log2xCheck);
-		
+		System.out.println("DataTransformtion with Log2x works fine" + log2xCheck);
+
 		DatasetExplorer.class.newInstance().resetReview(driver);
 		DatasetExplorer.class.newInstance().doSelectFractalisAnalysis(driver, "BoxPlot");
 		DatasetExplorer.class.newInstance().doSelectBoxPlotDataTransformation(driver, 2);
-		
-		
-		//Verify that data trasformation generates tranformed data in Log10x
-		
+
+		// Verify that data trasformation generates tranformed data in Log10x
+
 		if (driver
-				.findElements(By.xpath(".//div[@id='fjs-chart-0']/div/*[name()='svg']/*[name()='g']/*[name()='rect'][1]")).size() != 0) 
-		{
-		
+				.findElements(
+						By.xpath(".//div[@id='fjs-chart-0']/div/*[name()='svg']/*[name()='g']/*[name()='rect'][1]"))
+				.size() != 0) {
+
 			log10xCheck = "true";
-			System.out.println("DataTransformtion with Log10x works fine" +log10xCheck);
-			
+			System.out.println("DataTransformtion with Log10x works fine" + log10xCheck);
+
 			LOGGER.info(
 					"***************************BoxPlot Anlaysis  DataTransformtion with Log10x works fine ****************************");
 			SummaryStatisticsResults.class.newInstance().doAssertResultFalse(driver, testPlan, reporter);
-		
+
 		} else {
 
 			LOGGER.info(
 					"***************************BoxPlot Anlaysis DataTransformtion with Log10x is having some issue***************************");
 			log10xCheck = "false";
-			System.out.println("DataTransformtion with Log2x is having some issue****" +log10xCheck);
+			System.out.println("DataTransformtion with Log2x is having some issue****" + log10xCheck);
 		}
-		
 
-	//Verify that data trasformation generates tranformed data for Identity
-		
+		// Verify that data trasformation generates tranformed data for Identity
+
 		DatasetExplorer.class.newInstance().resetReview(driver);
 		DatasetExplorer.class.newInstance().doSelectFractalisAnalysis(driver, "BoxPlot");
 		DatasetExplorer.class.newInstance().doSelectBoxPlotDataTransformation(driver, 3);
-		
-		
+
 		if (driver
-				.findElements(By.xpath(".//div[@id='fjs-chart-0']/div/*[name()='svg']/*[name()='g']/*[name()='rect'][1]")).size() != 0) 
-		{
-		
+				.findElements(
+						By.xpath(".//div[@id='fjs-chart-0']/div/*[name()='svg']/*[name()='g']/*[name()='rect'][1]"))
+				.size() != 0) {
+
 			identityCheck = "true";
-			System.out.println("DataTransformtion with Log10x works fine" +identityCheck);
-			
+			System.out.println("DataTransformtion with Log10x works fine" + identityCheck);
+
 			LOGGER.info(
 					"***************************BoxPlot Anlaysis  DataTransformtion with identityCheck works fine ****************************");
 			SummaryStatisticsResults.class.newInstance().doAssertResultFalse(driver, testPlan, reporter);
-		
+
 		} else {
 
 			LOGGER.info(
 					"***************************BoxPlot Anlaysis DataTransformtion with identityCheck is having some issue***************************");
 			identityCheck = "false";
-			System.out.println("DataTransformtion with Log2x is having some issue****" +identityCheck);
+			System.out.println("DataTransformtion with Log2x is having some issue****" + identityCheck);
 		}
-		
 
-		
-		
-		
-		if (log2xCheck=="true" && log10xCheck=="true" && identityCheck=="true")
-		{
+		if (log2xCheck == "true" && log10xCheck == "true" && identityCheck == "true") {
 			LOGGER.info(
 					"<<<<***************************BoxPlot Anlaysis DataTransformtion feature is working fine***************************");
 
 			SummaryStatisticsResults.class.newInstance().doAssertResultTrue(driver, testPlan, reporter);
 		}
-		
-		else 
-		{
+
+		else {
 			LOGGER.info(
 					">>>>>>.***************************BoxPlot Anlaysis DataTransformtion Feature is having some issue***************************");
 			System.out.println();
 			SummaryStatisticsResults.class.newInstance().doAssertResultFalse(driver, testPlan, reporter);
 		}
 		DatasetExplorer.class.newInstance().resetReview(driver);
-		
+
 	}
 
-	
-	
 	public void verifyFractlisIntergrationPrincipleComponentAnalysis(Reporter reporter) throws Exception {
 
 		FractalisDragVariables("PCA");
@@ -1703,6 +1694,7 @@ public class BasicStatisticsTestPlan extends Testplan {
 	public void verifyFractalisSurvivalPlot(Reporter reporter) throws Exception {
 
 		FractalisDragVariables("SurvivalPlot");
+		
 
 		if (driver
 				.findElements(
@@ -1722,9 +1714,60 @@ public class BasicStatisticsTestPlan extends Testplan {
 		}
 
 		DatasetExplorer.class.newInstance().resetReview(driver);
+		//DatasetExplorer.class.newInstance().clearAnalysisCache(driver);
+	}
+
+	public void verifyFractalisSurvivalPlotEstimatorKaplanMeier(Reporter reporter) throws Exception {
+
+		DatasetExplorer.class.newInstance().doSelectFractalisAnalysis(driver, "SurvivalPlot");
+		
+		DatasetExplorer.class.newInstance().doSelectSubMethodSurvival(driver, 0);
+		if (driver
+				.findElements(
+						By.xpath(".//div[@id='fjs-chart-0']/div/*[name()='svg']/*[name()='g']/*[name()='rect'][1]"))
+				.size() != 0) {
+
+			LOGGER.info(
+					"***************************Survival Analysis Graph for kaplan Meier is generated through Fractalis ****************************");
+
+			SummaryStatisticsResults.class.newInstance().doAssertResultTrue(driver, testPlan, reporter);
+
+		} else {
+
+			LOGGER.info(
+					"***************************Survival Analysis Graph for kaplan Meier is *NOT* generated through Fractalis***************************");
+			SummaryStatisticsResults.class.newInstance().doAssertResultFalse(driver, testPlan, reporter);
+		}
+
+		DatasetExplorer.class.newInstance().resetReview(driver);
 		DatasetExplorer.class.newInstance().clearAnalysisCache(driver);
 	}
 
+	public void verifyFractalisSurvivalPlotEstimatorNelsonAalen(Reporter reporter) throws Exception {
+
+		DatasetExplorer.class.newInstance().doSelectFractalisAnalysis(driver, "SurvivalPlot");
+		DatasetExplorer.class.newInstance().doSelectSubMethodSurvival(driver, 1);
+		if (driver
+				.findElements(
+						By.xpath(".//div[@id='fjs-chart-0']/div/*[name()='svg']/*[name()='g']/*[name()='rect'][1]"))
+				.size() != 0) {
+
+			LOGGER.info(
+					"***************************Survival Analysis Graph for NelsonAalen is generated through Fractalis ****************************");
+
+			SummaryStatisticsResults.class.newInstance().doAssertResultTrue(driver, testPlan, reporter);
+
+		} else {
+
+			LOGGER.info(
+					"***************************Survival Analysis Graph for NelsonAalen is *NOT* generated through Fractalis***************************");
+			SummaryStatisticsResults.class.newInstance().doAssertResultFalse(driver, testPlan, reporter);
+		}
+
+		DatasetExplorer.class.newInstance().resetReview(driver);
+		//DatasetExplorer.class.newInstance().clearAnalysisCache(driver)
+	}
+	
 	public void verifyDelete(Reporter reporter) throws InterruptedException {
 
 		try {

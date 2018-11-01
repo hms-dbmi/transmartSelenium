@@ -489,7 +489,7 @@ public static void verifySavingSubset() throws YamlException, InterruptedExcepti
 	
 */
 	
-@Test(priority = 11, groups = { "Sanity Regression" })
+//@Test(priority = 11, groups = { "Sanity Regression" })
 
 	public static void verifyFractalisScatterPlotCorrelationPerason() throws Exception {
 		LOGGER.info(
@@ -500,7 +500,7 @@ public static void verifySavingSubset() throws YamlException, InterruptedExcepti
 				"--------------------------------The test case to verify Correation Analysis Pearson is Finshed-------------------------");
 	}
 
-@Test(priority = 12, groups = { "Sanity Regression" })
+//@Test(priority = 12, groups = { "Sanity Regression" })
 
 	public static void verifyFractalisScatterPlotCorrelationSpearman() throws Exception {
 		LOGGER.info(
@@ -558,7 +558,7 @@ public static void verifySavingSubset() throws YamlException, InterruptedExcepti
 				"--------------------------------The test case verify FractalisPrincipleComponentAnalysis is Finished-------------------------");
 	}
 
-//@Test(priority = 14, groups = { "Sanity Regression" })
+@Test(priority = 14, groups = { "Sanity Regression" })
 
 	public static void verifyFractalisSurvivalPlot() throws Exception {
 		LOGGER.info(
@@ -569,16 +569,27 @@ public static void verifySavingSubset() throws YamlException, InterruptedExcepti
 				"--------------------------------The test case verify Fractalis SurvivalPlot is Finished-------------------------");
 	}
 	
-//@Test(priority = 14, groups = { "Sanity Regression" })
+//@Test(priority = 22, groups = { "Sanity Regression" })
 
 		public static void verifyFractalisSurvivalPlotEstimatorKaplanMeier() throws Exception {
 			LOGGER.info(
-					"-------------------------------The test case verify Fractalis SurvivalPlot  is running-------------------------------");
+					"-------------------------------The test case verify Fractalis SurvivalPlot Estimator KaplanMeier is running-------------------------------");
 			readFile(configProperties.getProperty("verify.fractalis.survivalplot.analysis"));
 			testPlan.verifyFractalisSurvivalPlotEstimatorKaplanMeier(reporter);
 			LOGGER.info(
-					"--------------------------------The test case verify Fractalis SurvivalPlot is Finished-------------------------");
+					"--------------------------------The test case verify Fractalis SurvivalPlot Estimator KaplanMeier is Finished-------------------------");
 		}
+
+@Test(priority = 21, groups = { "Sanity Regression" })
+		public static void verifyFractalisSurvivalPlotEstimatorNelsonAalen() throws Exception {
+			LOGGER.info(
+					"-------------------------------The test case verify Fractalis SurvivalPlot Estimator NelsonAalen is running-------------------------------");
+			readFile(configProperties.getProperty("verify.fractalis.survivalplot.analysis"));
+			testPlan.verifyFractalisSurvivalPlotEstimatorNelsonAalen(reporter);
+			LOGGER.info(
+					"--------------------------------The test case verify Fractalis SurvivalPlot Estimator NelsonAalen is Finished-------------------------");
+		}
+		
 //	@Test(priority = 15, groups = { "Sanity Regression" })
 
 	public static void verifyFractalisHistogram() throws Exception {
