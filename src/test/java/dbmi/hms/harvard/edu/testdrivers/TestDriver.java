@@ -523,7 +523,7 @@ public static void verifySavingSubset() throws YamlException, InterruptedExcepti
 	}
 
 	
-//@Test(priority = 12, groups = { "Sanity Regression" })
+@Test(priority = 12, groups = { "Sanity Regression" })
 
 	public static void verifyFractalisBoxPlotAnalysis() throws Exception {
 		LOGGER.info(
@@ -558,7 +558,7 @@ public static void verifySavingSubset() throws YamlException, InterruptedExcepti
 				"--------------------------------The test case verify FractalisPrincipleComponentAnalysis is Finished-------------------------");
 	}
 
-@Test(priority = 14, groups = { "Sanity Regression" })
+//@Test(priority = 14, groups = { "Sanity Regression" })
 
 	public static void verifyFractalisSurvivalPlot() throws Exception {
 		LOGGER.info(
@@ -580,7 +580,7 @@ public static void verifySavingSubset() throws YamlException, InterruptedExcepti
 					"--------------------------------The test case verify Fractalis SurvivalPlot Estimator KaplanMeier is Finished-------------------------");
 		}
 
-@Test(priority = 21, groups = { "Sanity Regression" })
+//@Test(priority = 21, groups = { "Sanity Regression" })
 		public static void verifyFractalisSurvivalPlotEstimatorNelsonAalen() throws Exception {
 			LOGGER.info(
 					"-------------------------------The test case verify Fractalis SurvivalPlot Estimator NelsonAalen is running-------------------------------");
