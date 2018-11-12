@@ -523,7 +523,7 @@ public static void verifySavingSubset() throws YamlException, InterruptedExcepti
 	}
 
 	
-@Test(priority = 12, groups = { "Sanity Regression" })
+//@Test(priority = 12, groups = { "Sanity Regression" })
 
 	public static void verifyFractalisBoxPlotAnalysis() throws Exception {
 		LOGGER.info(
@@ -547,7 +547,7 @@ public static void verifySavingSubset() throws YamlException, InterruptedExcepti
 	}
 
 
-//@Test(priority = 13, groups = { "Sanity Regression" })
+@Test(priority = 13, groups = { "Sanity Regression" })
 
 	public static void verifyFractalisPrincipleComponentAnalysis() throws Exception {
 		LOGGER.info(
@@ -599,6 +599,18 @@ public static void verifySavingSubset() throws YamlException, InterruptedExcepti
 		testPlan.verifyFractlisIntergrationHistogram(reporter);
 		LOGGER.info(
 				"--------------------------------The test case verify Fractalis Histogram is Finished-------------------------");
+	}
+
+	
+//	@Test(priority = 15, groups = { "Sanity Regression" })
+
+	public static void verifyFractalisSelectionFunciotnality() throws Exception {
+		LOGGER.info(
+				"-------------------------------The test case verify seletion button to generate differnt chart  is running-------------------------------");
+		readFile(configProperties.getProperty("verify.fractalis.selection.analysis"));
+		testPlan.verifyFractlisSelection(reporter);
+		LOGGER.info(
+				"--------------------------------The test case verify seletion button to generate differnt chart  is Finished-------------------------");
 	}
 
 

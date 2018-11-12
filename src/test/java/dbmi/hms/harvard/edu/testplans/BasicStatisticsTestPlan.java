@@ -1623,6 +1623,14 @@ public class BasicStatisticsTestPlan extends Testplan {
 
 	}
 
+
+	public void verifyFractlisSelection()
+	{
+		
+		//to Do
+	}
+	
+	
 	public void verifyFractlisIntergrationPrincipleComponentAnalysis(Reporter reporter) throws Exception {
 
 		FractalisDragVariables("PCA");
