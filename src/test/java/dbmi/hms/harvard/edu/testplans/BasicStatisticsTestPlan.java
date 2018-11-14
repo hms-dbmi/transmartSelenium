@@ -1680,7 +1680,7 @@ public class BasicStatisticsTestPlan extends Testplan {
 
 		if (driver
 				.findElements(
-						By.xpath(".//div[@id='fjs-chart-0']/div/*[name()='svg']/*[name()='g']/*[name()='rect'][1]"))
+						By.xpath(" .//div[@id='fjs-tm-chart-0']/div/div[3]/div/div/div/*[name()='svg']/*[name()='rect'][1]"))
 				.size() != 0) {
 
 			LOGGER.info(
@@ -1706,7 +1706,7 @@ public class BasicStatisticsTestPlan extends Testplan {
 
 		if (driver
 				.findElements(
-						By.xpath(".//div[@id='fjs-chart-0']/div/*[name()='svg']/*[name()='g']/*[name()='rect'][1]"))
+						By.xpath(".//*[@id='fjs-tm-chart-0']/div/div[3]/div/div/div[1]/span"))
 				.size() != 0) {
 
 			LOGGER.info(
