@@ -1445,7 +1445,7 @@ public class BasicStatisticsTestPlan extends Testplan {
 		for (WebElement el : els) {
 			if (!el.isSelected()) {
 				el.click();
-			}
+			}	
 		}
 
 		Thread.sleep(60000);
@@ -1488,7 +1488,7 @@ public class BasicStatisticsTestPlan extends Testplan {
 
 		if (driver
 				.findElements(
-						By.xpath(".//div[@id='fjs-tm-chart-0']/div/*[name()='svg']/*[name()='g']/*[name()='g'][2]/*[name()='rect'][	]"))
+						By.xpath(".//div[@id='fjs-tm-chart-0']/div/*[name()='svg']/*[name()='g']/*[name()='g'][2]/*[name()='rect'][1]"))
 				.size() != 0) {
 
 			// By.xpath(".//div[@id='fjs-tm-chart-0']/div/*[name()='svg']/*[name()='g']/*[name()='g'][1])")).size()
@@ -1534,7 +1534,7 @@ public class BasicStatisticsTestPlan extends Testplan {
 
 		if (driver
 				.findElements(
-						By.xpath(".//div[@id='fjs-chart-0']/div/*[name()='svg']/*[name()='g']/*[name()='rect'][1]"))
+						By.xpath(".//div[@id='fjs-tm-chart-0']/div/*[name()='svg']/*[name()='g']/*[name()='g'][2]/*[name()='rect'][1]"))
 				.size() != 0) {
 
 			log2xCheck = "true";
@@ -1562,7 +1562,7 @@ public class BasicStatisticsTestPlan extends Testplan {
 
 		if (driver
 				.findElements(
-						By.xpath(".//div[@id='fjs-chart-0']/div/*[name()='svg']/*[name()='g']/*[name()='rect'][1]"))
+						By.xpath(".//div[@id='fjs-tm-chart-0']/div/*[name()='svg']/*[name()='g']/*[name()='g'][2]/*[name()='rect'][1]"))
 				.size() != 0) {
 
 			log10xCheck = "true";
@@ -1588,7 +1588,7 @@ public class BasicStatisticsTestPlan extends Testplan {
 
 		if (driver
 				.findElements(
-						By.xpath(".//div[@id='fjs-chart-0']/div/*[name()='svg']/*[name()='g']/*[name()='rect'][1]"))
+						By.xpath(".//div[@id='fjs-tm-chart-0']/div/*[name()='svg']/*[name()='g']/*[name()='g'][2]/*[name()='rect'][1]"))
 				.size() != 0) {
 
 			identityCheck = "true";
@@ -1732,7 +1732,7 @@ public class BasicStatisticsTestPlan extends Testplan {
 		DatasetExplorer.class.newInstance().doSelectSubMethodSurvival(driver, 0);
 		if (driver
 				.findElements(
-						By.xpath(".//div[@id='fjs-chart-0']/div/*[name()='svg']/*[name()='g']/*[name()='rect'][1]"))
+						By.xpath(".//*[@id='fjs-tm-chart-0']/div/div[3]/div/div/div[1]/span"))
 				.size() != 0) {
 
 			LOGGER.info(
@@ -1757,7 +1757,7 @@ public class BasicStatisticsTestPlan extends Testplan {
 		DatasetExplorer.class.newInstance().doSelectSubMethodSurvival(driver, 1);
 		if (driver
 				.findElements(
-						By.xpath(".//div[@id='fjs-chart-0']/div/*[name()='svg']/*[name()='g']/*[name()='rect'][1]"))
+						By.xpath(".//*[@id='fjs-tm-chart-0']/div/div[3]/div/div/div[1]/span"))
 				.size() != 0) {
 
 			LOGGER.info(
