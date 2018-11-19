@@ -304,7 +304,7 @@ public abstract class Testplan {
 		
 	}
 
-	public void verifyFractlisSelection(Reporter reporter) {
+	public void verifyFractlisSelection(Reporter reporter) throws InstantiationException, IllegalAccessException, InterruptedException  {
 		// TODO Auto-generated method stub
 		
 	} 

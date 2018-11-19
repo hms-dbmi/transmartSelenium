@@ -1327,12 +1327,12 @@ public class BasicStatisticsTestPlan extends Testplan {
 
 		Thread.sleep(70000);
 
-		List<WebElement> els = driver.findElements(By.xpath("//input[@data-v-074d016a='' and @type='checkbox']"));
+		/*List<WebElement> els = driver.findElements(By.xpath("//input[@data-v-074d016a='' and @type='checkbox']"));
 		for (WebElement el : els) {
 			if (!el.isSelected()) {
 				el.click();
 			}
-		}
+		}*/
 
 	}
 
@@ -1775,6 +1775,45 @@ public class BasicStatisticsTestPlan extends Testplan {
 		DatasetExplorer.class.newInstance().resetReview(driver);
 		//DatasetExplorer.class.newInstance().clearAnalysisCache(driver)
 	}
+
+	public void verifyFractlisSelection(Reporter reporter) throws InstantiationException, IllegalAccessException, InterruptedException {
+
+		//Cliking mulltiple times create multi select chart area
+		
+		FractalisDragVariables("ScatterPlot");
+		DatasetExplorer.class.newInstance().doSelectFractalisAnalysis(driver, "ScatterPlot");
+		DatasetExplorer.class.newInstance().doClickSelect(driver);
+		
+		List<WebElement> els = driver.findElements(By.xpath("//input[@data-v-074d016a='' and @type='checkbox']"));
+		for (WebElement el : els) {
+			if (!el.isSelected()) {
+				el.click();
+			}	
+		}
+
+		
+		if (driver
+				.findElements(
+						By.xpath(".//div[@id='fjs-tm-chart-1']/div/*[name()='svg']/*[name()='g']/*[name()='rect'][1]"))
+				.size() != 0) {
+
+			LOGGER.info(
+					"***************************Multiple Select button functionality is woring fine ****************************");
+
+			SummaryStatisticsResults.class.newInstance().doAssertResultTrue(driver, testPlan, reporter);
+
+		} else {
+			
+
+			LOGGER.info(
+					"***************************Multiple Select button functionality is woring fine***************************");
+			SummaryStatisticsResults.class.newInstance().doAssertResultFalse(driver, testPlan, reporter);
+		}
+
+		DatasetExplorer.class.newInstance().resetReview(driver);
+		//DatasetExplorer.class.newInstance().clearAnalysisCache(driver)
+	}
+	
 	
 	public void verifyDelete(Reporter reporter) throws InterruptedException {
 
@@ -1795,6 +1834,7 @@ public class BasicStatisticsTestPlan extends Testplan {
 					DatasetExplorer.class.newInstance().doDragAndDrop(driver, path, "subset1");
 					DatasetExplorer.class.newInstance().doReverseNavigateByPath(driver, path);
 				}
+				
 
 			}
 			DatasetExplorer.class.newInstance().doCheckSubsetBox(driver);
