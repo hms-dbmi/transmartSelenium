@@ -1780,11 +1780,24 @@ public class BasicStatisticsTestPlan extends Testplan {
 
 		//Cliking mulltiple times create multi select chart area
 		
-		FractalisDragVariables("ScatterPlot");
-		DatasetExplorer.class.newInstance().doSelectFractalisAnalysis(driver, "ScatterPlot");
+	
+	DatasetExplorer.class.newInstance().doSelectFractalisAnalysis(driver, "ScatterPlot");
+
+	DatasetExplorer.class.newInstance().doSelectFractalisAnalysis(driver, "ScatterPlot");
+	DatasetExplorer.class.newInstance().doClickSelect(driver);
+	FractalisDragVariables("ScatterPlot");
+	/*	System.out.println("Clicking Select");
 		DatasetExplorer.class.newInstance().doClickSelect(driver);
+		System.out.println("Clicking Chart Size");
 		
+		DatasetExplorer.class.newInstance().doClickChartSize(driver);
+		System.out.println("Clciking Checkbox");*/
+	
 		List<WebElement> els = driver.findElements(By.xpath("//input[@data-v-074d016a='' and @type='checkbox']"));
+
+		
+		
+		
 		for (WebElement el : els) {
 			if (!el.isSelected()) {
 				el.click();

@@ -6,7 +6,10 @@ import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class DatasetExplorer extends Module {
 	// private String subset1box = ".//*[@id='queryCriteriaDiv1_1']";
@@ -31,27 +34,50 @@ public class DatasetExplorer extends Module {
 	private String comparisonTab = "//span[contains(@class,'x-tab-strip-text')][contains(text(),'Comparison')]";
 	private String setNoValue = ".//*[@id='ext-gen151']/div[1]/table/tbody/tr[2]/td[1]/input[1]";
 	private String setLowHighFlagValue = ".//*[@id='ext-gen151']/div[1]/table/tbody/tr[2]/td[1]/input[2]";
-	//private String setValueNumeric = ".//*[@id='ext-gen151']/div[1]/table/tbody/tr[2]/td[1]/input[3]";
-	private String setValueNumeric =".//*[@id='ext-gen139']/div[1]/table/tbody/tr[2]/td[1]/input[3]";
-	private String setValueTextBox = ".//*[@id='setValueLowValue']";
+	// private String setValueNumeric =
+	// ".//*[@id='ext-gen151']/div[1]/table/tbody/tr[2]/td[1]/input[3]";
+	private String setValueNumeric = ".//*[@id='ext-gen139']/div[1]/table/tbody/tr[2]/td[1]/input[3]";
+	private String setValueTextBox = ".//*[@id='tValueLowValue']";
 	private String selectSetOperator = ".//*[@id='setValueOperator']";
 	private String selectLowHighRange = ".//*[@id='setValueHighLowSelect']";
-	//private String subsetOKbutton = ".//*[@id='ext-gen129']";
-	private String subsetOKbutton =".//*[@class='x-btn-text'  and @id='ext-gen117']";
+	// private String subsetOKbutton = ".//*[@id='ext-gen129']";
+	private String subsetOKbutton = ".//*[@class='x-btn-text'  and @id='ext-gen117']";
 	private String setValueTextBoxHigh = ".//*[@id='setValueHighValue']";
 	private String searchedSubject = ".//span[contains(text(),'mexican')]";
 	private String deleteButton = ".//*[@id='clearGroup1_1']";
 	private String saveSubSetButton = ".//*[@id='ext-gen59']/div[1]/button[1]";
 	private String txtBoxSaveSubset = ".//*[@id='txtSubsetDescription']";
 	private String saveSubSets = ".//*[@value='Save Subsets']";
-	private String fractalisTab=".//*[@id='resultsTabPanel__fractalisPanel']/a[2]/em";
+	// private String
+	// fractalisTab=".//*[@id='resultsTabPanel__fractalisPanel']/a[2]/em";
+	private String fractalisTab = ".//*[@id='resultsTabPanel__fractalisPanel']/a[2]/em/span/span";
 	String okexlude = "html/body/div[28]/div[2]/div[2]/div/div/div/div/div/table/tbody/tr/td[1]/table/tbody/tr/td[2]";
+	private String chartSize=".//*[@class='fjs-tm-chart-size']/button[3]";
 	public static String textSubsetBoxValue;
-	private String selectAnalysisType = ".//*[@id='ext-gen244']/div[2]/div[2]/div[1]/select";
-	private String addAnalysisType =".//*[@id='ext-gen244']/div[2]/div[2]/div[1]/input";
-	private String fractalisBox  =".//*[@id='ext-gen250']";
-	private String resetView  =".//input[@value='Reset View']";
-	private String clearAnalysisCache  =".//input[@value='Clear analysis cach']";
+	
+	// private String selectAnalysisType =
+	// ".//*[@id='ext-gen244']/div[2]/div[2]/div[1]/select";
+	// private String addAnalysisType
+	// =".//*[@id='ext-gen244']/div[2]/div[2]/div[1]/input";
+	private String fractalisScatterPlot = "//button[@value='scatterplot']";
+	private String fractalisBoxPlot = "//button[@value='boxplot']";
+	private String fractalisPca = "//button[@value='pca']";
+	private String fractalisHistogram = "//button[@value='histogram']";
+	private String fractalisSurvivalPlot = "//button[@value='survivalplot']";
+
+	// private String fractalisBox =".//*[@id='ext-gen250']";
+	// private String fractalisBox ="//div[@id='ext-gen245']";
+	private String fractalisBox = "//div[@class='fjs-tm-concept-box']";
+	// private String resetView =".//input[@value='Reset View']";
+	private String resetView = "//button[contains(text(),'Clear View')]";
+	// private String clearAnalysisCache =".//input[@value='Clear analysis
+	// cach']";
+	private String clearAnalysisCache = "//button[contains(text(),'Clear Cache')]";
+	private String ScatterCorrelationMethods = ".//input[@data-v-6f4ce107=''and @type='radio']";
+	private String SurvivalEstimatorMethods = ".//input[@data-v-adc7a632=''and @type='radio']";
+	private String BoxPlotDataTransformation = ".//*[@class='fjs-transformation-select']";
+	private String DataAnalysisClickSelect= ".//*[@class='fjs-tm-charts']/div[2]/div/div[1]/div/span";
+
 	public void doSelectNavigationTab(WebDriver driver) {
 		click(driver, driver.findElement(By.xpath(navigationTab)));
 	}
@@ -60,6 +86,16 @@ public class DatasetExplorer extends Module {
 		click(driver, driver.findElement(By.xpath(okexlude)));
 	}
 
+	
+	
+	public void doClickSelect(WebDriver driver) {
+		click(driver, driver.findElement(By.xpath(DataAnalysisClickSelect)));
+	}
+	
+	public void doClickChartSize(WebDriver driver) {
+		click(driver, driver.findElement(By.xpath(chartSize)));
+	}
+	
 	public void doSaveComparison(WebDriver driver) {
 		click(driver, driver.findElement(By.xpath(saveSubSetButton)));
 	}
@@ -112,11 +148,13 @@ public class DatasetExplorer extends Module {
 		Select oSelect = new Select(driver.findElement(By.xpath(selectSetOperator)));
 		oSelect.selectByIndex(i);
 	}
-	
-	public void doSelectFractalisAnalysis(WebDriver driver, Integer i) {
-		Select oSelect = new Select(driver.findElement(By.xpath(selectAnalysisType)));
-		oSelect.selectByIndex(i);
-	}
+
+	/*
+	 * public void doSelectFractalisAnalysis(WebDriver driver, Integer i) {
+	 * Select oSelect = new
+	 * Select(driver.findElement(By.xpath(selectAnalysisType)));
+	 * oSelect.selectByIndex(i); }
+	 */
 	public void enterValue(WebDriver driver, String subsetValue) {
 		driver.findElement(By.xpath(setValueTextBox)).sendKeys(subsetValue);
 		driver.findElement(By.xpath(subsetOKbutton)).click();
@@ -186,6 +224,43 @@ public class DatasetExplorer extends Module {
 
 	}
 
+	public void doSelectFractalisAnalysis(WebDriver driver, String ChartType) throws InterruptedException {
+		// Select oSelect = new
+		// Select(driver.findElement(By.xpath(selectAnalysisType)));
+		// oSelect.selectByIndex(i);
+
+		System.out.println("Charttype is " + ChartType);
+		String ChatType = ChartType.toString();
+		Actions action = new Actions(driver);
+		switch (ChartType) {
+		case "ScatterPlot":
+			System.out.println("Selecting ScatterPlot Analysis");
+			click(driver, driver.findElement(By.xpath(fractalisScatterPlot)));
+
+			Thread.sleep(5000);
+			break;
+
+		case "BoxPlot":
+			click(driver, driver.findElement(By.xpath(fractalisBoxPlot)));
+			break;
+		case "PCA":
+			click(driver, driver.findElement(By.xpath(fractalisPca)));
+			break;
+		case "Histogram":
+			click(driver, driver.findElement(By.xpath(fractalisHistogram)));
+			break;
+		case "SurvivalPlot":
+			click(driver, driver.findElement(By.xpath(fractalisSurvivalPlot)));
+			break;
+		default:
+			System.err.println("Something is missing  ");
+			break;
+
+		}
+		;
+
+	}
+
 	public void doSearchDoDragAndDrop(WebDriver driver, String path, String subset) {
 		WebElement source = driver.findElement(By.xpath(searchedSubject));
 		String targetStr = null;
@@ -202,20 +277,90 @@ public class DatasetExplorer extends Module {
 		dragDrop(driver, source, target);
 	}
 
-	
-	public void doSelectFractlis(WebDriver driver) {
+	public void doSelectFractlis(WebDriver driver) throws InterruptedException {
+
 		driver.findElement(By.xpath(fractalisTab)).click();
+		Thread.sleep(10000);
 	}
 
-	public void addAnalysis(WebDriver driver) {
-		click(driver, driver.findElement(By.xpath(addAnalysisType)));
+	public void checkState(WebDriver driver) throws InterruptedException {
+		WebDriverWait wait = new WebDriverWait(driver, 70);
+		wait.until(ExpectedConditions
+				.presenceOfElementLocated(By.xpath(".//*[@class='fjs-item-label' and @data-state='SUCCESS']")));
+
+		// Thread.sleep(10000);
 	}
+
+	/*
+	 * public void addAnalysis(WebDriver driver) { click(driver,
+	 * driver.findElement(By.xpath(addAnalysisType))); }
+	 */
 
 	public void resetReview(WebDriver driver) {
 		click(driver, driver.findElement(By.xpath(resetView)));
 	}
-	
+
 	public void clearAnalysisCache(WebDriver driver) {
 		click(driver, driver.findElement(By.xpath(clearAnalysisCache)));
 	}
+
+	public void doSelectSubMethod(WebDriver driver, Integer i) throws InterruptedException {
+		// Select oSelect = new
+		// Select(driver.findElement(By.xpath(selectAnalysisType)));
+		// oSelect.selectByIndex(i);
+		List<WebElement> correlationRadioBtn = driver.findElements(By.xpath(ScatterCorrelationMethods));
+
+		System.out.println("Number of Radio buttons are :" + correlationRadioBtn.size());
+
+		correlationRadioBtn.get(i).click();
+
+		// Create a boolean variable which will hold the value (True/False)
+		// boolean bValue = false;
+
+		// This statement will return True, in case of first Radio button is
+		// selected
+		// bValue = CorrelationRadioBtn.get(0).isSelected();
+
+		// This will check that if the bValue is True means if the first radio
+		// button is selected
+
+		/*
+		 * if(bValue == true){
+		 * 
+		 * for(WebElement radio : CorrelationRadioBtn) { if(radio.isSelected())
+		 * { String selectedValue
+		 * =radio.findElement(By.xpath("./parent::label")).getText(); } }
+		 */
+
+	}
+
+	public void doSelectSubMethodSurvival(WebDriver driver, Integer i) throws InterruptedException {
+		
+
+		List<WebElement> estimatorRadioBtn = driver.findElements(By.xpath(SurvivalEstimatorMethods));
+
+		System.out.println("Number of Radio buttons are :" + estimatorRadioBtn.size());
+
+		estimatorRadioBtn.get(i).click();
+	}
+
+	
+	
+	public void doSelectBoxPlotDataTransformation(WebDriver driver, int i) throws InterruptedException {
+		// Select oSelect = new
+		// Select(driver.findElement(By.xpath(selectAnalysisType)));
+		// oSelect.selectByIndex(i);
+		Select oSelect = new Select(driver.findElement(By.xpath(BoxPlotDataTransformation)));
+		List<WebElement> elementCount = oSelect.getOptions();
+		// System.out.println(elementCount.size());
+
+		for (int j = 0; j < elementCount.size(); j++) {
+			String sValue = elementCount.get(j).getText();
+			// System.out.println(sValue);
+		}
+
+		elementCount.get(i).click();
+
+	}
+
 }
