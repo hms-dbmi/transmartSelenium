@@ -1779,13 +1779,101 @@ public class BasicStatisticsTestPlan extends Testplan {
 	public void verifyFractlisSelection(Reporter reporter) throws InstantiationException, IllegalAccessException, InterruptedException {
 
 		//Cliking mulltiple times create multi select chart area
+		try {
+
+			if (testPlan.get("subset1") != null && testPlan.get("subset1") != "") {
+				for (String path : java.util.Arrays.asList(testPlan.get("subset1").toString().split(","))) {
+					DatasetExplorer.class.newInstance().doNavigateByPath(driver, path);
+					DatasetExplorer.class.newInstance().doDragAndDrop(driver, path, "subset1");
+					DatasetExplorer.class.newInstance().doReverseNavigateByPath(driver, path);
+
+				}
+			}
+
+		} catch (InstantiationException | IllegalAccessException e) {
+
+			e.printStackTrace();
+		}
 		
+		DatasetExplorer.class.newInstance().doSelectFractlis(driver);
+		
+	//FractalisDragVariables("ScatterPlot");
 	
 	DatasetExplorer.class.newInstance().doSelectFractalisAnalysis(driver, "ScatterPlot");
-
 	DatasetExplorer.class.newInstance().doSelectFractalisAnalysis(driver, "ScatterPlot");
 	DatasetExplorer.class.newInstance().doClickSelect(driver);
-	FractalisDragVariables("ScatterPlot");
+	DatasetExplorer.class.newInstance().doSelectComparison(driver);
+	DatasetExplorer.class.newInstance().doSelectFractlis(driver);
+	try {
+
+		if (testPlan.get("fractConNum2") != null && testPlan.get("fractConNum2") != "") {
+			for (String path : java.util.Arrays.asList(testPlan.get("fractConNum2").toString().split(","))) {
+				DatasetExplorer.class.newInstance().doNavigateByPath(driver, path);
+				DatasetExplorer.class.newInstance().doDragAndDrop(driver, path, "fractConNum2");
+				DatasetExplorer.class.newInstance().doReverseNavigateByPath(driver, path);
+
+			}
+		}
+
+	} catch (InstantiationException | IllegalAccessException e) {
+
+		e.printStackTrace();
+	}
+
+	Thread.sleep(12000);
+
+	try {
+
+		if (testPlan.get("fractConNum1") != null && testPlan.get("fractConNum1") != "") {
+			for (String path : java.util.Arrays.asList(testPlan.get("fractConNum1").toString().split(","))) {
+				DatasetExplorer.class.newInstance().doNavigateByPath(driver, path);
+				DatasetExplorer.class.newInstance().doDragAndDrop(driver, path, "fractConNum1");
+				DatasetExplorer.class.newInstance().doReverseNavigateByPath(driver, path);
+
+			}
+		}
+
+	} catch (InstantiationException | IllegalAccessException e) {
+
+		e.printStackTrace();
+	}
+
+	Thread.sleep(13000);
+	try {
+
+		if (testPlan.get("fractConCate2") != null && testPlan.get("fractConCate2") != "") {
+			for (String path : java.util.Arrays.asList(testPlan.get("fractConCate2").toString().split(","))) {
+				DatasetExplorer.class.newInstance().doNavigateByPath(driver, path);
+				DatasetExplorer.class.newInstance().doDragAndDrop(driver, path, "fractConCate2");
+				DatasetExplorer.class.newInstance().doReverseNavigateByPath(driver, path);
+
+			}
+		}
+
+	} catch (InstantiationException | IllegalAccessException e) {
+
+		e.printStackTrace();
+	}
+
+	Thread.sleep(10000);
+	try {
+
+		if (testPlan.get("fractConCate1") != null && testPlan.get("fractConCate1") != "") {
+			for (String path : java.util.Arrays.asList(testPlan.get("fractConCate1").toString().split(","))) {
+				DatasetExplorer.class.newInstance().doNavigateByPath(driver, path);
+				DatasetExplorer.class.newInstance().doDragAndDrop(driver, path, "fractConCate1");
+				DatasetExplorer.class.newInstance().doReverseNavigateByPath(driver, path);
+
+			}
+		}
+
+	} catch (InstantiationException | IllegalAccessException e) {
+
+		e.printStackTrace();
+	}
+
+	Thread.sleep(70000);
+
 	/*	System.out.println("Clicking Select");
 		DatasetExplorer.class.newInstance().doClickSelect(driver);
 		System.out.println("Clicking Chart Size");
