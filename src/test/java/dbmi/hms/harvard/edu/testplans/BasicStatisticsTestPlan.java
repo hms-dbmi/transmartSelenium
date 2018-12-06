@@ -1014,7 +1014,7 @@ public class BasicStatisticsTestPlan extends Testplan {
 			List<WebElement> optionsToSelect = driver.findElements(By.xpath(".//li[@class='ui-menu-item']"));
 			int serachResul = optionsToSelect.size();
 			String serachResultcount = new Integer(serachResul).toString();
-			// System.out.println("NO.dfdfdf"+count);
+			System.out.println("NO.dfdfdf"+serachResultcount);
 			// driver.findElement(By.id("your searchBox")).sendKeys("your
 			// partial keyword");
 			// List <WebElement> listItems = driver.findElements(By.xpath("your
@@ -1027,6 +1027,9 @@ public class BasicStatisticsTestPlan extends Testplan {
 			if (serachResultcount.equals(testPlan.get("expectedSearchResult").toString())) {
 				try {
 
+					LOGGER.info(
+							"***************************Search feature is working fine***************************");
+
 					SummaryStatisticsResults.class.newInstance().doAssertResultTrue(driver, testPlan, reporter);
 				} catch (InstantiationException e) {
 					e.printStackTrace();
@@ -1034,8 +1037,11 @@ public class BasicStatisticsTestPlan extends Testplan {
 			}
 
 			else {
+
+				LOGGER.info(
+						"***************************Search feature is having issue ***************************");
 				SummaryStatisticsResults.class.newInstance().doAssertResultFalse(driver, testPlan, reporter);
-			}
+							}
 		} catch (IllegalAccessException e) {
 			e.printStackTrace();
 		}

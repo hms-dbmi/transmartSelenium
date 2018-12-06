@@ -602,7 +602,7 @@ public static void verifySavingSubset() throws YamlException, InterruptedExcepti
 	}
 
 	
-@Test(priority = 15, groups = { "Sanity Regression" })
+//@Test(priority = 15, groups = { "Sanity Regression" })
 
 	public static void verifyFractalisSelectionFunciotnality() throws Exception {
 		LOGGER.info(
@@ -657,7 +657,8 @@ public static void verifySavingSubset() throws YamlException, InterruptedExcepti
 
 	}
 */
-//@Test(priority = 15, groups = { "Sanity Regression" })
+	
+@Test(priority = 16, groups = { "Sanity Regression" })
 
 	public static void verifySearch() throws YamlException, Exception {
 
