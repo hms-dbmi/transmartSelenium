@@ -7,12 +7,22 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.Map;
 import java.util.Properties;
+import java.util.concurrent.TimeUnit;
 
 import org.apache.http.impl.cookie.BasicSecureHandler;
 import org.apache.log4j.Logger;
+import org.junit.After;
 import org.junit.Before;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import static org.hamcrest.CoreMatchers.containsString;
+import static org.junit.Assert.assertThat;
+
+
 import org.testng.annotations.AfterClass;
+import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
@@ -21,6 +31,7 @@ import com.esotericsoftware.yamlbeans.YamlReader;
 
 import dbmi.hms.harvard.edu.reporter.Reporter;
 import dbmi.hms.harvard.edu.testplans.Testplan;
+
 
 public class TestDriver {
 
@@ -78,7 +89,53 @@ public class TestDriver {
 	
 //If BeforeTest method fails, all other cases won't execute...	
 	
-@BeforeTest
+	@BeforeTest
+	public void setUp()
+	{
+/*		System.setProperty("webdriver.chrome.driver", System.getProperty("googlechromepath"));
+
+		driver = new ChromeDriver();
+		driver.manage().window().maximize();*/
+
+		
+		System.setProperty("webdriver.chrome.driver", System.getProperty("googlechromepath"));
+		//System.out.println("Thepath is " +google);
+		ChromeOptions chromeOptions = new ChromeOptions();
+		chromeOptions.addArguments("--headless");
+		chromeOptions.addArguments("--disable-gpu");
+		chromeOptions.addArguments("--window-size=1280,800");
+		chromeOptions.addArguments("--allow-insecure-localhost");
+		chromeOptions.addArguments("window-size=1980,1080");
+		chromeOptions.setCapability("acceptInsecureCerts", true);
+		driver = new ChromeDriver(chromeOptions);
+		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+		// driver.manage().window().maximize();
+		
+		
+	
+	}
+	
+	@AfterTest
+	public void tearDown()
+	{
+		driver.close();
+	}
+	
+	// ----------------------------------------------------------------------------------------------------------------
+	// tests
+	// ----------------------------------------------------------------------------------------------------------------
+	
+@Test
+	public void canGoogle()
+	{
+		driver.get("https://www.google.com/ncr");
+		driver.findElement(By.name("q")).sendKeys("fish\n");
+		
+		assertThat(driver.getTitle(), containsString("fish"));
+	}
+	
+	
+//@BeforeTest
 
 	public void setup() throws InterruptedException {
 
@@ -92,7 +149,7 @@ public class TestDriver {
 	}
 	
 
-@Test(priority = 2,groups = { "Sanity" })
+//@Test(priority = 2,groups = { "Sanity" })
 	public static void verifyLoginWithWinowTitle() throws YamlException, InterruptedException {
 
 		LOGGER.info(
@@ -103,7 +160,7 @@ public class TestDriver {
 				"---------------------------------The test case verifyWinowTitle is Finished-------------------------");
 
 	}
-@Test(priority = 3, groups = { "Sanity" })
+//@Test(priority = 3, groups = { "Sanity" })
 
 public static void verifySummaryStats() throws YamlException, InterruptedException {
 
@@ -658,7 +715,7 @@ public static void verifySavingSubset() throws YamlException, InterruptedExcepti
 	}
 */
 	
-@Test(priority = 16, groups = { "Sanity Regression" })
+//@Test(priority = 16, groups = { "Sanity Regression" })
 
 	public static void verifySearch() throws YamlException, Exception {
 
