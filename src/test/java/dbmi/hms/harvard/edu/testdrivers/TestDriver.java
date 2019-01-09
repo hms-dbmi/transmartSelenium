@@ -89,13 +89,13 @@ public class TestDriver {
 	
 //If BeforeTest method fails, all other cases won't execute...	
 	
-	@BeforeTest
+/*	@BeforeTest
 	public void setUp()
 	{
-/*		System.setProperty("webdriver.chrome.driver", System.getProperty("googlechromepath"));
+		System.setProperty("webdriver.chrome.driver", System.getProperty("googlechromepath"));
 
 		driver = new ChromeDriver();
-		driver.manage().window().maximize();*/
+		driver.manage().window().maximize();
 
 		
 		System.setProperty("webdriver.chrome.driver", System.getProperty("googlechromepath"));
@@ -134,8 +134,8 @@ public class TestDriver {
 		assertThat(driver.getTitle(), containsString("fish"));
 	}
 	
-	
-//@BeforeTest
+*/	
+@BeforeTest
 
 	public void setup() throws InterruptedException {
 
@@ -149,7 +149,7 @@ public class TestDriver {
 	}
 	
 
-//@Test(priority = 2,groups = { "Sanity" })
+@Test(priority = 2,groups = { "Sanity" })
 	public static void verifyLoginWithWinowTitle() throws YamlException, InterruptedException {
 
 		LOGGER.info(
@@ -160,7 +160,7 @@ public class TestDriver {
 				"---------------------------------The test case verifyWinowTitle is Finished-------------------------");
 
 	}
-//@Test(priority = 3, groups = { "Sanity" })
+@Test(priority = 3, groups = { "Sanity" })
 
 public static void verifySummaryStats() throws YamlException, InterruptedException {
 
@@ -199,7 +199,7 @@ public static void verifySummaryStatsSetValueByNumericGreaterThanEqual() throws 
 }
 
 
-//@Test(priority = 9, groups = { "Sanity Regression" })
+@Test(priority = 9, groups = { "Sanity Regression" })
 
 public static void verifySummaryStatsMultipleSubset1OR()
 		throws YamlException, InterruptedException, InstantiationException, IllegalAccessException {
@@ -225,7 +225,7 @@ public static void verifySummaryStatsMultipleSubset1Subset2AND()
 
 }
 
-//@Test(priority = 10, groups = { "Sanity Regression" })
+@Test(priority = 10, groups = { "Sanity Regression" })
 
 public static void verifySummaryStatsSubset2() throws YamlException, InterruptedException {
 
@@ -391,18 +391,6 @@ public static void verifySummaryStatsMultipleSubset1OR()
 }
 
 
-@Test(priority = 10, groups = { "Sanity Regression" })
-
-public static void verifySummaryStatsSubset2() throws YamlException, InterruptedException {
-
-	LOGGER.info(
-			"---------------------------The test case verifySummaryStatsSubset2 is running-------------------------");
-	readFile(configProperties.getProperty("verify.summaryStats.subset2"));
-	testPlan.doPlanSubset2(reporter);
-	LOGGER.info(
-			"---------------------------The test case verifySummaryStatsSubset2 is Finished-------------------------");
-
-}
 
 
 @Test(priority = 11, groups = { "Sanity Regression" })
