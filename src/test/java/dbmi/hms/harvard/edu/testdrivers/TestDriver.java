@@ -199,7 +199,7 @@ public static void verifySummaryStatsSetValueByNumericGreaterThanEqual() throws 
 }
 
 
-@Test(priority = 9, groups = { "Sanity Regression" })
+//@Test(priority = 9, groups = { "Sanity Regression" })
 
 public static void verifySummaryStatsMultipleSubset1OR()
 		throws YamlException, InterruptedException, InstantiationException, IllegalAccessException {
@@ -211,7 +211,7 @@ public static void verifySummaryStatsMultipleSubset1OR()
 			"--------------------------------The test case verifySummaryStatsMultipleSubset1OR is Finished-------------------------");
 }
 
-//@Test(priority = 11, groups = { "Sanity Regression" })
+@Test(priority = 11, groups = { "Sanity Regression" })
 public static void verifySummaryStatsMultipleSubset1Subset2AND()
 		throws YamlException, InterruptedException, InstantiationException, IllegalAccessException {
 
@@ -225,7 +225,7 @@ public static void verifySummaryStatsMultipleSubset1Subset2AND()
 
 }
 
-@Test(priority = 10, groups = { "Sanity Regression" })
+//@Test(priority = 10, groups = { "Sanity Regression" })
 
 public static void verifySummaryStatsSubset2() throws YamlException, InterruptedException {
 
@@ -844,7 +844,7 @@ public static void verifySavingSubset() throws YamlException, InterruptedExcepti
 
 	}*/
 		
-//@AfterClass
+@AfterClass
 	public void closeApplication() {
 
 		reporter.doReport();

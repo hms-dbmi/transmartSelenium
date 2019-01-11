@@ -112,7 +112,8 @@ public class BasicStatisticsTestPlan extends Testplan {
 		String browser = browserName.toLowerCase().replaceAll(" ", "");
 		switch (browser) {
 		case "chrome":
-
+			
+			
 			System.setProperty("webdriver.chrome.driver", System.getProperty("googlechromepath"));
 
 			driver = new ChromeDriver();
@@ -134,13 +135,17 @@ public class BasicStatisticsTestPlan extends Testplan {
 			break;
 
 		case "chromeheadless":
-			System.setProperty("webdriver.chrome.driver", System.getProperty("googlechromepath"));
+			String pathgoogle=System.getProperty("googlechromepath");
+			System.out.println("Path of goolge chome is " +pathgoogle);
+			
+//			System.setProperty("webdriver.chrome.driver", System.getProperty("googlechromepath"));
+			//System.out.println("Thepath is " +google);
 			ChromeOptions chromeOptions = new ChromeOptions();
 			chromeOptions.addArguments("--headless");
 			chromeOptions.addArguments("--disable-gpu");
-			chromeOptions.addArguments("--window-size=1280,800");
+			//chromeOptions.addArguments("--window-size=1280,800");
 			chromeOptions.addArguments("--allow-insecure-localhost");
-			chromeOptions.addArguments("window-size=1980,1080");
+			chromeOptions.addArguments("window-size=1920,1080");
 			chromeOptions.setCapability("acceptInsecureCerts", true);
 			driver = new ChromeDriver(chromeOptions);
 			driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
@@ -167,17 +172,17 @@ public class BasicStatisticsTestPlan extends Testplan {
 
 			// FirefoxBinary firefoxBinary = new FirefoxBinary();
 			FirefoxBinary firefoxBinary = new FirefoxBinary();
-			// firefoxBinary.addCommandLineOptions("--headless");
+			firefoxBinary.addCommandLineOptions("--headless");
 
 			DesiredCapabilities capabilities = new DesiredCapabilities();
 			// capabilities = DesiredCapabilities.firefox();
 			capabilities.setBrowserName("firefox");
 			// capabilities.setVersion("your firefox version");
-			capabilities.setPlatform(Platform.WINDOWS);
-			// capabilities.setPlatform(Platform.LINUX);
+	//		capabilities.setPlatform(Platform.WINDOWS);
+			 capabilities.setPlatform(Platform.LINUX);
 			capabilities.setCapability("marionette", true);
 			capabilities.setCapability("acceptInsecureCerts", true);
-			System.setProperty("webdriver.gecko.driver", System.getProperty("geckodriverpath"));
+			//System.setProperty("webdriver.gecko.driver", System.getProperty("geckodriverpath"));
 			FirefoxOptions firefoxOptions = new FirefoxOptions(capabilities);
 			// firefoxOptions.setCapability("marionette", true);
 			// firefoxOptions.setCapability("acceptInsecureCerts", true);
@@ -446,7 +451,7 @@ public class BasicStatisticsTestPlan extends Testplan {
 		SummaryStatistics.class.newInstance().runSummaryStatistics(driver);
 		SummaryStatisticsResults.class.newInstance().doResults(driver, testPlan, reporter);
 		DatasetExplorer.class.newInstance().doClearAnalysis(driver);
-		DatasetExplorer.class.newInstance().doSelectComparison(driver);
+		//DatasetExplorer.class.newInstance().doSelectComparison(driver);
 
 	}
 
