@@ -1,9 +1,18 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<parent>
+		<groupId>org.hobsoft</groupId>
+		<artifactId>hobsoft-parent</artifactId>
+		<version>0.4.0</version>
+	</parent>
+	
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>transmartSelenium</groupId>
-	<artifactId>transmartSelenium</artifactId>
-	<version>0.0.1-FINAL</version>
+	<groupId>org.hobsoft.docker</groupId>
+	<artifactId>docker-maven-chrome</artifactId>
+	<packaging>jar</packaging>
+	<version>1.0.0-SNAPSHOT</version>
+	
+	<name>Docker Maven Chrome Demo</name>
 	<dependencies>
 		<dependency>
 			<groupId>com.opencsv</groupId>
@@ -37,14 +46,13 @@
 			<artifactId>selenium-chrome-driver</artifactId>
 			<version>3.7.1</version>
 		</dependency>
-		<dependency>
-			<groupId>org.testng</groupId>
-			<artifactId>testng</artifactId>
-			<!-- <version>6.8</version> -->
-			<version>6.14.2</version>
-			<scope>test</scope>
-		</dependency>
-
+		 <dependency>
+      <groupId>org.testng</groupId>
+      <artifactId>testng</artifactId>
+      <version>6.9.8</version>
+      <scope>test</scope>
+    </dependency>
+		
 		<!-- https://mvnrepository.com/artifact/org.uncommons/reportng -->
 		<dependency>
 			<groupId>org.uncommons</groupId>
@@ -52,7 +60,7 @@
 			<version>1.1.4</version>
 			<scope>test</scope>
 
-			<exclusions>
+		<exclusions>
 
 				<exclusion>
 
@@ -62,7 +70,7 @@
 
 				</exclusion>
 
-			</exclusions>
+			</exclusions> 
 		</dependency>
 		<dependency>
 
@@ -255,19 +263,15 @@
 					</execution>
 				</executions>
 			</plugin>
-			<!-- <plugin> <artifactId>maven-compiler-plugin</artifactId> <version>3.1</version> 
-				<executions> <execution> <id>default-compile</id> <phase>compile</phase> 
-				<goals> <goal>compile</goal> </goals> </execution> <execution> <id>default-testCompile</id> 
-				<phase>test-compile</phase> <goals> <goal>testCompile</goal> </goals> </execution> 
-				</executions> </plugin> -->
+			
 			<plugin>
 				<artifactId>maven-surefire-plugin</artifactId>
 				<version>2.12.4</version>
 				<configuration>
 					<systemPropertyVariables>
-						<pathtoconfig>src/test/resources/</pathtoconfig>
-						<googlechromepath>D://chromedriver.exe</googlechromepath>
-					<geckodriverpath>D://geckodriver.exe</geckodriverpath>
+						<pathtoconfigtest>src/test/resources/</pathtoconfigtest>
+						<googlechromepath>D://binaries/chromedriver.exe</googlechromepath>
+					<geckodriverpath>D://binaries/geckodriver.exe</geckodriverpath>
 					</systemPropertyVariables>
 					<systemProperties>
 						<!-- <property> <name>someSystemProperty</name> <value>src/test/resources/</value> 
